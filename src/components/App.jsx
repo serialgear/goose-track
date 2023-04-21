@@ -1,16 +1,35 @@
+// import { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { MainLayout } from './MainLayout/MainLayout';
+import { RestrictedRoute } from './AuthRouts/RestrictedRoute';
+import { PrivateRoute } from './AuthRouts/PrivateRoute';
+import LoginPage from 'pages/LoginPage/LoginPage';
+import RegisterPage from 'pages/RegisterPage/RegisterPage';
+import AccountPage from 'pages/AccountPage/AccountPage';
+import CalendarPage from 'pages/CalendarPage/CalendarPage';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      React template
-    </div>
+    <>
+      <Routes>
+        <Route>
+          <Route path="" element={<RestrictedRoute />}>
+            <Route index element={<LoginPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+          </Route>
+          <Route path="" element={<PrivateRoute />}>
+            <Route path="" element={<MainLayout />}>
+              <Route path="calendar" element={<CalendarPage />} />
+              <Route path="account" element={<AccountPage />} />
+            </Route>
+          </Route>
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      <ToastContainer />
+    </>
   );
 };

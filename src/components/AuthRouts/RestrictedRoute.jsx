@@ -1,0 +1,9 @@
+// import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
+// import { selectAuthToken } from 'redux/auth/auth.selectors';
+
+export const RestrictedRoute = () => {
+  // const token = useSelector(selectAuthToken);
+  const token = true;
+  return token ? <Navigate to="/calendar" /> : <Outlet />;
+};
