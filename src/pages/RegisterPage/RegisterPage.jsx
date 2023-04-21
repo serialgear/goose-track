@@ -1,5 +1,10 @@
-import * as React from 'react';
+// import * as React from 'react';
+import { Container } from 'components/MainLayout/MainLayout.styled';
 
 export default function RegisterPage() {
-  return <h1>RegisterPage</h1>;
+  return (
+    <Container>
+      <h1>RegisterPage</h1>
+    </Container>
+  );
 }
