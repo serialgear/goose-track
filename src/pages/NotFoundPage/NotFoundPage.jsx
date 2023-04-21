@@ -1,10 +1,9 @@
-// import * as React from 'react';
 import { Container } from 'components/MainLayout/MainLayout.styled';
 
-export default function LoginPage() {
+export default function NotFoundPage() {
   return (
     <Container>
-      <h1>LoginPage</h1>
+      <h1>NotFoundPage</h1>
     </Container>
   );
 }

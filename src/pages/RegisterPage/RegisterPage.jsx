@@ -1,3 +1,4 @@
+
 import { RegisterForm } from './RegisterForm/RegisterForm';
 
 
@@ -8,5 +9,7 @@ export default function RegisterPage() {
     
       <RegisterForm />
     </div>
+
+
   );
 }
