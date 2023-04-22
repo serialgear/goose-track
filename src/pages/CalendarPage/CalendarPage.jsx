@@ -1,7 +1,13 @@
-export default function CalendarPage() {
+import { CalendarToolbar } from "components/CalendarToolbar/CalendarToolbar";
+import { ChoosedMonth } from "components/ChoosedMonth/ChoosedMonth";
+
+import { Container } from "./CalendarPage.styled";
+
+ export default function CalendarPage() {
   return (
-    <>
-      <h2>CalendarPage</h2>
-    </>
+    <Container>
+      <CalendarToolbar />
+      <ChoosedMonth />
+    </Container>
   );
 }
