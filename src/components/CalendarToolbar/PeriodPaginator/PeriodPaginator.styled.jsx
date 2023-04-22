@@ -5,7 +5,7 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 
-margin-bottom: 18px;
+
 `;
 
 export const MonthWrapper = styled.div`
