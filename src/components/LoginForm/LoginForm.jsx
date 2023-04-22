@@ -1,6 +1,8 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import * as STC from './LoginForm.styled';
+import logInIcon from '../../images/logInIcon.svg';
+import { Link } from 'react-router-dom';
 
 const LoginValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -66,10 +68,14 @@ export const LoginForm = () => {
               <STC.Button type="submit" disabled={isSubmitting}>
                 <STC.BtnSpan>Log in</STC.BtnSpan>
                 <STC.Svg>
-                  <use href={`${icons}#icon-log-in`} />
+                  <use href={`${logInIcon}#log-in`} />
                 </STC.Svg>
               </STC.Button>
             </STC.Form>
+
+            <Link to="register">
+              <STC.H2>Sign up</STC.H2>
+            </Link>
           </STC.Container>
         </STC.Box>
       )}
