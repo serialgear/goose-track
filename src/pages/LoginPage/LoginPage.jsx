@@ -1,5 +1,11 @@
-import * as React from 'react';
+import { LoginForm } from "components/LoginForm/LoginForm";
 
-export default function LoginPage() {
-  return <h1>LoginPage</h1>;
-}
+const LoginPage = () => {
+  return (
+    <>
+      <LoginForm />
+    </>
+  );
+};
+
+export default LoginPage;
