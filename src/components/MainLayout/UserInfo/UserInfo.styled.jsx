@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export  const Form = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   max-width: 375px;
@@ -28,6 +28,7 @@ export const Input = styled.input`
 
 export const InputAva = styled.input`
   display: none;
+  position: relative;
 `;
 
 export const LabelImg = styled.img`
@@ -37,7 +38,7 @@ export const LabelImg = styled.img`
   height: auto;
   margin: 0 auto;
   bottom: 10px;
-  position: relative;
+  //position: relative;
 
 
 `;
@@ -49,8 +50,8 @@ export const LabelAva = styled.label`
   height: 124px;
   margin-bottom: 14px;
   margin-top: 40px;
+`;
 
-`
 export const ButtonPlus = styled.button`
   width: 24px;
   height: 24px;
@@ -64,6 +65,7 @@ export const ButtonPlus = styled.button`
   right: 170px;
 
 `;
+
 export const Button = styled.button`
   margin: 40px auto;
   display: block;
@@ -85,7 +87,6 @@ export const ContainerAva = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #FFFFFF;
-
 `;
 
 export const TitleAvatar = styled.h3`
@@ -103,4 +104,4 @@ export const TextAvatar = styled.p`
   line-height: 18px;
   color: #616161;
   margin: 0 0 40px 0;
-`
+`;
