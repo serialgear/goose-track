@@ -6,6 +6,7 @@ import {
   HeaderWrapper,
   Wrapper,
 } from './MainLayout.styled';
+import { SideBar } from './SideBar/SideBar';
 
 export const MainLayout = () => {
   return (
@@ -13,7 +14,7 @@ export const MainLayout = () => {
       <Container>
         <SideBarWrapper>
           {/*// Можна вставляти або замінювати весь компонент на SideBar*/}
-          <h1>Sidebar</h1>
+          <SideBar />
         </SideBarWrapper>
 
         <Wrapper>
