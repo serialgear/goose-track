@@ -1,7 +1,9 @@
+import { UserForm } from './UserForm/UserForm';
+
 export default function AccountPage() {
   return (
     <>
-      <h2>AccountPage</h2>
+      <UserForm />
     </>
   );
 }
