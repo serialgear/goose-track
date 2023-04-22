@@ -29,18 +29,21 @@ export const Title = styled.h1`
 
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+
+  @media (min-width: 768px) {
+    margin-bottom: 40px;
+    font-size: 24px;
+    line-height: 1;
+  }
 `;
 
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
-  /* font-family: var(--primary-font);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  color: var(--secondary-text-color); */
+  @media (min-width: 768px) {
+    margin-bottom: 18px;
+  }
 `;
 
 export const Span = styled.span`
@@ -81,6 +84,7 @@ export const Input = styled.input`
   border-radius: 8px;
   padding: 14px;
   width: 100%;
+  outline: none;
 
   &::placeholder {
     font-family: var(--primary-font);
@@ -109,15 +113,17 @@ export const Button = styled.button`
 
   &:hover,
   :focus {
-    transform: scale(1.02);
+    box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
   }
 
   @media (min-width: 768px) {
-    width: 400px;
+    /* width: 400px; */
     height: 56px;
+    margin-top: 30px;
   }
 `;
 
+// text on button
 export const BtnSpan = styled.span`
   font-family: var(--main-font);
   font-style: normal;
@@ -149,20 +155,42 @@ export const H2 = styled.h2`
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
-  line-height: 14px;
-  border-bottom: 1px solid var(--accent-color);
-  color: var(--accent-color);
+  line-height: 1.17;
+  text-decoration-line: underline;
+  color: var(--accent-text-color);
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
   &:hover,
   :focus {
-    color: var(--main-background-color);
-    border-color: var(--main-background-color);
+    color: var(--primary-background-color);
   }
 
   @media (min-width: 768px) {
     font-size: 18px;
-    line-height: 24px;
+    line-height: 1.33;
   }
+`;
+
+export const LoginImg = styled.img`
+  display: none;
+
+  @media (min-width: 1440px) {
+    display: block;
+    width: 368px;
+    height: 521px;
+    position: fixed;
+    bottom: 20px;
+    right: 60px;
+  }
+`;
+
+export const Errors = styled.span`
+  /* padding: 0 14px; */
+  color: red;
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
 `;
