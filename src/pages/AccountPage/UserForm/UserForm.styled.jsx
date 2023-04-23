@@ -29,6 +29,9 @@ export const Input = styled.input`
   height: 42px;
   padding: 0;
 
+  &:hover{
+    border-color: #3e85f3;
+  }
   //& :last-child{
   //  background-color: red;
   //  border: red;

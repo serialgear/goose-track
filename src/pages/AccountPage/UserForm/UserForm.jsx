@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import {
   Form,
@@ -15,8 +15,12 @@ import {
 import { format } from 'date-fns';
 import defaultAvatar from '../../../images/avatar_default.png';
 
+
+
 export const UserForm = () => {
+
   const [image, setImage] = useState(null);
+  const filePicker = useRef(null);
 
   const formik = useFormik({
     initialValues: {
@@ -27,6 +31,8 @@ export const UserForm = () => {
       telegram: '',
     },
     onSubmit: values => {
+      console.log(values);
+
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -42,7 +48,26 @@ export const UserForm = () => {
       alert('Please select a file');
       return true;
     }
+    const formData = new FormData();
+    formData.append('name',setImage);
+    formData.append('email',setImage);
+    formData.append('phone',setImage);
+    formData.append('avatarURL',setImage);
+    formData.append('telegram',setImage);
+    formData.append('birthday',setImage);
+
+    const response = await fetch('https://goose-track-api-3uhn.onrender.com/api', {
+      method:'PATCH',
+      body: formData,
+    });
+    const data = await response.json();
+    console.log(data);
+
   };
+
+  const handlePick = () => {
+    filePicker.current.click();
+  }
 
   const today = new Date();
   const formattedDate = format(today, 'yyyy-MM-dd');
@@ -50,14 +75,14 @@ export const UserForm = () => {
   return (
 
     <Form onSubmit={formik.handleSubmit}>
-      {image ? ( <LabelAva for="ava">
+      {image ? ( <LabelAva hmlFor="ava">
         <LabelImg
           alt="Мое изображение"
           src={`${image}`}
           width="48"
           height="48"/>
       </LabelAva> ) : (
-        <LabelAva for="ava">
+        <LabelAva htmlFor="ava">
           <LabelImg
             alt=""
             src={`${defaultAvatar}`}
@@ -68,12 +93,14 @@ export const UserForm = () => {
       }
 
         <InputAva
+          ref={filePicker}
           type="file"
           id="ava"
           name="ava"
           onChange={handleFileInputChange}
+
         />
-        <ButtonPlus onClick={handleUpload}><span>+</span></ButtonPlus>
+        <ButtonPlus  onClick={handlePick}><span>+</span></ButtonPlus>
         <TitleAvatar>Name user</TitleAvatar>
         <TextAvatar>User</TextAvatar>
 
@@ -117,7 +144,7 @@ export const UserForm = () => {
           onChange={formik.handleChange}
           value={formik.values.telegram}
         />
-        <Button type="submit">Save changes</Button>
+        <Button onChange={handleUpload} type="submit">Save changes</Button>
       </Form>
 
   );
