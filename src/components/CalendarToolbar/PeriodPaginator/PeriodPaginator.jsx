@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import {format, addMonths, subMonths } from 'date-fns';
 import {
   MonthName,
   Wrapper,
@@ -6,17 +8,32 @@ import {
   ButtonRight,
   WrapperButton,
 } from './PeriodPaginator.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCurrentMonth } from 'redux/calendar/calendar.slice';
+import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
+
 
 export const PeriodPaginator = () => {
+
+const currentMonth = useSelector(selectCurrentMonth)
+const dispatch = useDispatch()
+
+const handlePrevMonth = () => {
+  dispatch(addCurrentMonth(subMonths(currentMonth, 1)))
+}
+const handleNextMonth = () => {
+  dispatch(addCurrentMonth(addMonths(currentMonth, 1)))
+}
+
   return (
   
     <Wrapper>
       <MonthWrapper>
-        <MonthName>April 2023</MonthName>
+        <MonthName>{format(currentMonth, 'MMMM yyyy')}</MonthName>
       </MonthWrapper>
       <WrapperButton>
-        <ButtonLeft type="button"></ButtonLeft>
-        <ButtonRight type="button"></ButtonRight>
+        <ButtonLeft type="button" onClick={handlePrevMonth}></ButtonLeft>
+        <ButtonRight type="button" onClick={handleNextMonth}></ButtonRight>
       </WrapperButton>
     </Wrapper>
    
