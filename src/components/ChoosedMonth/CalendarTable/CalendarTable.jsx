@@ -8,7 +8,7 @@ import {
   endOfWeek,
   addDays,
   isSameMonth,
-  isToday,
+  // isToday,
   parseISO,
 } from 'date-fns';
 import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
