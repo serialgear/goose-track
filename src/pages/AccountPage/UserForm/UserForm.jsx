@@ -13,6 +13,8 @@ import {
   TitleAvatar,
   TextAvatar,
 } from './UserForm.styled';
+import { format } from 'date-fns';
+import defaultAvatar from '../../../images/avatar_default.png';
 
 export const UserForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -41,13 +43,16 @@ export const UserForm = () => {
     }
   };
 
+  const today = new Date();
+  const formattedDate = format(today, 'yyyy-MM-dd');
+
   return (
     <>
       <ContainerAva>
         <LabelAva for="ava">
           <LabelImg
             alt=""
-            src="/goose-track/avatar_default.png"
+            src={`${defaultAvatar}`}
             width="48"
             height="48"
           />
@@ -76,9 +81,9 @@ export const UserForm = () => {
         <Input
           id="birthday"
           name="birthday"
-          type="text"
+          type="date"
           onChange={formik.handleChange}
-          value={formik.values.birthday}
+          value={formattedDate}
         />
         <Label htmlFor="email">Email Address</Label>
         <Input
