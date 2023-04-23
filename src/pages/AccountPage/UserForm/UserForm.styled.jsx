@@ -6,8 +6,11 @@ export const Form = styled.form`
   flex-direction: column;
   max-width: 375px;
   max-height: 653px;
-  margin: 0 20px 0 20px;
+  margin: 95px 20px 0 20px;
   background-color: #FFFFFF;
+  border-radius: 16px;
+
+  position: relative;
 `;
 
 export const Label = styled.label`
@@ -24,47 +27,65 @@ export const Input = styled.input`
   border-radius: 8px;
   width: 299px;
   height: 42px;
+  padding: 0;
+
+  //& :last-child{
+  //  background-color: red;
+  //  border: red;
+  //  color: red;
+  //}
 `;
 
 export const InputAva = styled.input`
   display: none;
-  position: relative;
+  width: 200px;
+  height: 150px;
 `;
 
 export const LabelImg = styled.img`
   cursor: pointer;
-  display: block;
+
   width: 100%;
-  height: auto;
-  margin: 0 auto;
-  bottom: 10px;
-  //position: relative;
+  height: 100%;
 
-
+  object-fit: cover;
 `;
 
 export const LabelAva = styled.label`
   border-radius: 50%;
   border: 2px solid #3E85F3;
-  width: 124px;
-  height: 124px;
-  margin-bottom: 14px;
-  margin-top: 40px;
+  width: 72px;
+  height: 72px;
+  //margin-bottom: 14px;
+  //margin-top: 40px;
+  display: block;
+  margin: -36px auto 0 auto;
+  overflow: hidden;
+  background-color: white;
+
+
 `;
 
 export const ButtonPlus = styled.button`
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   background-color: #3E85F3;
   border-radius: 50%;
   border: none;
   color: white;
 
   position: absolute;
-  top: 210px;
-  right: 170px;
+  top: 23px;
+  right: 148px;
 
+  & span {
+    position: relative;
+    vertical-align: middle;
+    line-height: 0.5;
+    bottom: 3px;
+  }
 `;
+
 
 export const Button = styled.button`
   margin: 40px auto;
@@ -82,12 +103,7 @@ export const Button = styled.button`
   padding: 14px;
 `;
 
-export const ContainerAva = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #FFFFFF;
-`;
+
 
 export const TitleAvatar = styled.h3`
 
@@ -95,7 +111,8 @@ export const TitleAvatar = styled.h3`
   font-size: 18px;
   line-height: 1;
   color: #343434;
-  margin: 14px 0 8px 0;
+  margin: 14px 0 0 0;
+  text-align: center;
 `;
 
 export const TextAvatar = styled.p`
@@ -103,5 +120,9 @@ export const TextAvatar = styled.p`
   font-size: 14px;
   line-height: 18px;
   color: #616161;
-  margin: 0 0 40px 0;
+  margin: 4px 0 40px 0;
+  text-align: center;
 `;
+
+
+

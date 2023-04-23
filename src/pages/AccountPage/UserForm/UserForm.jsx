@@ -9,15 +9,14 @@ import {
   ButtonPlus,
   LabelImg,
   LabelAva,
-  ContainerAva,
   TitleAvatar,
-  TextAvatar,
+  TextAvatar
 } from './UserForm.styled';
 import { format } from 'date-fns';
 import defaultAvatar from '../../../images/avatar_default.png';
 
 export const UserForm = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [image, setImage] = useState(null);
 
   const formik = useFormik({
     initialValues: {
@@ -33,11 +32,13 @@ export const UserForm = () => {
   });
 
   const handleFileInputChange = event => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
+    setImage(imageUrl);
   };
 
   const handleUpload = async () => {
-    if (!selectedFile) {
+    if (!setImage) {
       alert('Please select a file');
       return true;
     }
@@ -47,28 +48,35 @@ export const UserForm = () => {
   const formattedDate = format(today, 'yyyy-MM-dd');
 
   return (
-    <>
-      <ContainerAva>
+
+    <Form onSubmit={formik.handleSubmit}>
+      {image ? ( <LabelAva for="ava">
+        <LabelImg
+          alt="Мое изображение"
+          src={`${image}`}
+          width="48"
+          height="48"/>
+      </LabelAva> ) : (
         <LabelAva for="ava">
           <LabelImg
             alt=""
             src={`${defaultAvatar}`}
             width="48"
-            height="48"
-          />
+            height="48"/>
         </LabelAva>
+      )
+      }
+
         <InputAva
           type="file"
           id="ava"
           name="ava"
           onChange={handleFileInputChange}
         />
-        <ButtonPlus onClick={handleUpload}>+</ButtonPlus>
+        <ButtonPlus onClick={handleUpload}><span>+</span></ButtonPlus>
         <TitleAvatar>Name user</TitleAvatar>
         <TextAvatar>User</TextAvatar>
-      </ContainerAva>
 
-      <Form onSubmit={formik.handleSubmit}>
         <Label htmlFor="userName">User Name</Label>
         <Input
           id="userName"
@@ -111,6 +119,6 @@ export const UserForm = () => {
         />
         <Button type="submit">Save changes</Button>
       </Form>
-    </>
+
   );
 };
