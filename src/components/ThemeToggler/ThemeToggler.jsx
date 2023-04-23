@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as STC from './ThemeToggler.styled';
-import themeTogglerIcon from '../../images/all-icons.svg';
+import themeTogglerIcon from '../../images/sprite.svg';
 
 export const ThemeToggler = () => {
   const [currentTheme, setCurrentTheme] = useState(() => {
@@ -27,7 +27,7 @@ export const ThemeToggler = () => {
       <STC.Svg>
         <use
           xlinkHref={`${themeTogglerIcon}#${
-            currentTheme === 'light' ? 'light-theme' : 'dark-theme'
+            currentTheme === 'light' ? 'profile-sun-f' : 'profile-moon-f'
           }`}
         />
       </STC.Svg>
