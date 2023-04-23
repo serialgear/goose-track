@@ -35,3 +35,7 @@ ol {
 .no-date {
   display: none;
 }
+@import './styles/fonts.css';
+@import './styles/vars.css';
+@import './styles/common.css';
+
