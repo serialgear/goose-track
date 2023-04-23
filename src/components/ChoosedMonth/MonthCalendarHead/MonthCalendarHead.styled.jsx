@@ -1,18 +1,26 @@
 import styled from "styled-components";
 
 export const List = styled.ul`
-display: flex;
-align-items: center;
-width: 100%;
-height: 50px;
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+grid-template-rows: 50px;
 
 background: #FFFFFF;
 border: 1px solid rgba(220, 227, 229, 0.5);
 border-radius: 8px;
+@media (min-width: 768px) {
+   
+    /* height: 56px;
+    margin-top: 30px; */
+  }
 `;
 
 export const Days = styled.li`
-width: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+
 font-family: 'Inter';
 font-style: normal;
 font-weight: 600;
