@@ -15,6 +15,7 @@ export const Container = styled.div`
 
   @media (min-width: 768px) {
     min-width: 768px;
+    display: flex;
   }
 
   @media (min-width: 1024px) {
@@ -23,7 +24,6 @@ export const Container = styled.div`
 
   @media (min-width: 1440px) {
     min-width: 1440px;
-    display: flex;
   }
 `;
 
@@ -33,7 +33,7 @@ export const SideBarWrapper = styled.div`
   width: 289px;
   height: 100vh;
 
-  @media (max-width: 1440px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

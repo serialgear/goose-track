@@ -1,10 +1,11 @@
-// import * as React from 'react';
-import { Container } from 'components/MainLayout/MainLayout.styled';
+import { LoginForm } from 'components/LoginForm/LoginForm';
 
-export default function LoginPage() {
+const LoginPage = () => {
   return (
-    <Container>
-      <h1>LoginPage</h1>
-    </Container>
+    <>
+      <LoginForm />
+    </>
   );
-}
+};
+
+export default LoginPage;

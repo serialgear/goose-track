@@ -10,7 +10,6 @@ import CalendarPage from 'pages/CalendarPage/CalendarPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { UserInfo } from './MainLayout/UserInfo/UserInfo';
 
 export const App = () => {
   toast.info('Hello!');
@@ -28,7 +27,6 @@ export const App = () => {
             <Route path="" element={<MainLayout />}>
               <Route path="calendar" element={<CalendarPage />} />
               <Route path="account" element={<AccountPage />} />
-              <Route path='user' element={<UserInfo />} />
             </Route>
           </Route>
         </Route>
