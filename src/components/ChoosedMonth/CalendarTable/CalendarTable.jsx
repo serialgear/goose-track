@@ -8,7 +8,8 @@ import {
   endOfWeek,
   addDays,
   isSameMonth,
-  isToday
+  isToday,
+  parseISO,
 } from 'date-fns';
 import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
 
@@ -19,7 +20,7 @@ import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
 // ];
 
 export const CalendarTable = () => {
-  const currentMonth = useSelector(selectCurrentMonth);
+  const currentMonth = parseISO(useSelector(selectCurrentMonth));
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
@@ -28,9 +29,8 @@ export const CalendarTable = () => {
   let date = dayStart;
 
   const days = [];
-//  let today
+  //  let today
   while (date <= dayEnd) {
-    
     if (!isSameMonth(date, currentMonth)) {
       days.push(format(date, ' '));
     } else {
@@ -38,20 +38,16 @@ export const CalendarTable = () => {
     }
 
     date = addDays(date, 1);
-    
+
     //  today = isToday(date)
     //  console.log(today)
-    }
+  }
 
   return (
     <Calendar>
-
       {days.map((day, idx) => {
-       
-       return (<Days key={idx} >{day}</Days>)
-       } )} 
-      
-     
+        return <Days key={idx}>{day}</Days>;
+      })}
     </Calendar>
   );
 };
