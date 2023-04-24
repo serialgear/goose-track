@@ -14,6 +14,8 @@ import {
 } from './UserForm.styled';
 import { format } from 'date-fns';
 import defaultAvatar from '../../../images/sprite.svg';
+import { useSelector } from 'react-redux';
+import { selectUserEmail, selectUserName } from '../../../redux/auth/auth.selectors';
 
 
 
@@ -22,12 +24,14 @@ export const UserForm = () => {
 
   const [image, setImage] = useState(null);
   const filePicker = useRef(null);
+  const name = useSelector(selectUserName);
+  const email = useSelector(selectUserEmail);
 
   const formik = useFormik({
     initialValues: {
-      userName: '',
+      name: name,
       birthday: '',
-      email: '',
+      email: email,
       phone: '',
       telegram: '',
     },
@@ -104,16 +108,16 @@ export const UserForm = () => {
 
         />
         <ButtonPlus  onClick={handlePick}><span>+</span></ButtonPlus>
-        <TitleAvatar>Name user</TitleAvatar>
+        <TitleAvatar>{name}</TitleAvatar>
         <TextAvatar>User</TextAvatar>
 
-        <Label htmlFor="userName">User Name</Label>
+        <Label htmlFor="name">User Name</Label>
         <Input
-          id="userName"
-          name="userName"
+          id="name"
+          name="name"
           type="text"
           onChange={formik.handleChange}
-          value={formik.values.userName}
+          value={formik.values.name}
         />
         <Label htmlFor="birthday">Birthday</Label>
         <Input
