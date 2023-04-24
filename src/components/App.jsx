@@ -12,9 +12,19 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import  ChoosedMonth  from './ChoosedMonth/ChoosedMonth';
 import ChoosedDay from './ChoosedDay/ChoosedDay'
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { refreshUser } from 'redux/auth/auth.operations';
 
 export const App = () => {
-  toast.info('Hello!');
+  const dispatch = useDispatch();
+  useEffect(() => {
+    try {
+      dispatch(refreshUser());
+    } catch (error) {
+      toast.error('Authorization error');
+    }
+  }, [dispatch]);
 
   return (
     <>

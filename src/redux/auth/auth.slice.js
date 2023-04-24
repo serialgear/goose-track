@@ -3,7 +3,12 @@ import storage from 'redux-persist/lib/storage';
 
 import { createSlice } from '@reduxjs/toolkit';
 // import { STATUS } from 'constants/status.constants';
-import { signupUser, authLogin, authLogout } from './auth.operations';
+import {
+  signupUser,
+  authLogin,
+  authLogout,
+  refreshUser, userForm,
+} from './auth.operations';
 
 const authInitState = {
   user: { name: null, email: null },
@@ -44,7 +49,26 @@ const authSlice = createSlice({
       })
       .addCase(authLogout.rejected, (state, { payload }) => {
         state.isLoading = false;
-      });
+      })
+      .addCase(refreshUser.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(refreshUser.rejected, () => authInitState)
+
+      .addCase(userForm.pending, (state, _) => state)
+      .addCase(userForm.fulfilled, (state, { payload }) => {
+        state.error = null;
+        state.user = payload.user;
+        state.token = payload.token;
+    })
+      .addCase(userForm.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+
   },
 });
 

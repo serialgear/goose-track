@@ -27,11 +27,12 @@ export const Container = styled.div`
   }
 `;
 
-export const SideBarWrapper = styled.div``;
-
 export const Wrapper = styled.div`
   display: block;
   width: 100%;
+  @media (min-width: 1280px) {
+    margin-left: 289px;
+  }
 `;
 
 export const Main = styled.main`
