@@ -2,7 +2,7 @@ import { CalendarTable } from "./CalendarTable/CalendarTable"
 import { MonthCalendarHead } from "./MonthCalendarHead/MonthCalendarHead"
 import { Wrapper } from "./ChoosedMonth.styled"
 
-export const ChoosedMonth = () => {
+ const ChoosedMonth = () => {
     return (
         <Wrapper>
         <MonthCalendarHead />
@@ -10,3 +10,4 @@ export const ChoosedMonth = () => {
         </Wrapper>
     )
 }
+export default ChoosedMonth

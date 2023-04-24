@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Calendar, DaysActive, Today, DaysOfMonth, OtherDays } from './CalendarTable.styled';
+import { Calendar, DaysActive, Today, DaysOfMonth, OtherDays, StyledLink, Wrapper } from './CalendarTable.styled';
 import {
   format,
   startOfMonth,
@@ -9,9 +9,11 @@ import {
   isSameMonth,
   isToday,
   parseISO,
-  eachDayOfInterval,
+  eachDayOfInterval
 } from 'date-fns';
 import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
+
+
 
 export const CalendarTable = () => {
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
@@ -23,13 +25,17 @@ const daysInMonth = eachDayOfInterval({
   start:startOfWeek(monthStart, { weekStartsOn: 1 }),
   end:endOfWeek(monthEnd, { weekStartsOn: 1 }),
 })
-  return (
-    <Calendar>
-      {daysInMonth.map((day, idx) => {
+return (
+  <Calendar>
+      {daysInMonth?.map((day, idx) => {
         const AllDays = isToday(day) ? Today : DaysOfMonth
         const Days = !isSameMonth(day, currentMonth) ? OtherDays : DaysActive
         return <Days key={idx}>
+          <StyledLink to={`/calendar/day/${day}`} >
+          <Wrapper>
           <AllDays>{format(day,'d')}</AllDays>
+          </Wrapper>
+          </StyledLink>
         </Days>;
       })}
     </Calendar>
