@@ -5,9 +5,9 @@ import {
   MobileMenuSvg,
   PageName,
 } from './Header.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectUserName } from 'redux/auth/auth.selectors';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
 
 export const Header = () => {
@@ -17,7 +17,7 @@ export const Header = () => {
   const location = useLocation();
 
   console.log(location.state);
-  
+
   // const handlLogOut =()=>{
   //     dispath(logOut())
   // }
