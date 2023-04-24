@@ -7,8 +7,7 @@ import logInIcon from '../../images/logInIcon.svg';
 import { Link } from 'react-router-dom';
 import LoginImg from '../../images/LoginImg.png';
 import LoginImg2x from '../../images/LoginImg@2x.png';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const LoginValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -113,7 +112,6 @@ export const LoginForm = () => {
           </STC.Box>
         )}
       </Formik>
-      <ToastContainer />
     </>
   );
 };
