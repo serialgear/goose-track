@@ -1,61 +1,51 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
 display: flex;
 `;
 
-export const ButtonMonth = styled.button`
+const StyledLink = styled(NavLink)`
 display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 8px 16px;
+
 gap: 149px;
 
 width: 76px;
 height: 34px;
 
-background: #CAE8FF;
-border: none;
-border-right: 1px solid rgba(62, 133, 243, 0.2);
-border-radius: 8px 0px 0px 8px;
+background: var(--button-period-type);
+
 cursor: pointer;
 
-font-family: 'Inter';
+font-family: var(--primary-font);
 font-style: normal;
 font-weight: 500;
 font-size: 14px;
-line-height: 18px;
-/* identical to box height, or 129% */
+line-height: 1.29px;
 
 text-align: center;
 
-color: #3E85F3;
+color: var(--accent-background-color);
+&.active{
+    background: var(--active-button-period-type); 
+}
 `;
 
-export const ButtonDay = styled.button`
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 8px 25px;
-gap: 149px;
+export const StyledLinkMonth = styled(StyledLink)`
+padding: 8px 16px;
 
-width: 76px;
-height: 34px;
 border: none;
-background: #E3F3FF;
+border-right: var(--border-calendar-period-type);
+border-radius: 8px 0px 0px 8px;
+`;
+
+export const StyledLinkDay = styled(StyledLink)`
+
+padding: 8px 25px;
+border: none;
 border-radius: 0px 8px 8px 0px;
-cursor: pointer;
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 18px;
-/* identical to box height, or 129% */
-
-text-align: center;
-
-color: #3E85F3;
 `;

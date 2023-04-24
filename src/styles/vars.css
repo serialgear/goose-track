@@ -14,6 +14,8 @@
   --auth-bg-color: #dcebf7;
 
   --border: 1px solid rgba(220, 227, 229, 0.8);
+  --border-calendar: 1px solid rgba(220, 227, 229, 0.5);
+  --border-calendar-period-type: 1px solid rgba(62, 133, 243, 0.2);
   --border-auth: 1px solid rgba(220, 227, 229, 0.6);
 
   /* text-color */
@@ -30,6 +32,8 @@
   --priority-low-bg-color: #ceeefd;
   --priority-medium-bg-сolor: #fcf0d4;
   --priority-high-bg-color: #ffd2dd;
+  --active-button-period-type: #CAE8FF;
+  --button-period-type: #E3F3FF;
   --close-btn-color: #111111;
 
   /* tasks */

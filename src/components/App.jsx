@@ -10,6 +10,8 @@ import CalendarPage from 'pages/CalendarPage/CalendarPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import  ChoosedMonth  from './ChoosedMonth/ChoosedMonth';
+import ChoosedDay from './ChoosedDay/ChoosedDay'
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from 'redux/auth/auth.operations';
@@ -35,7 +37,10 @@ export const App = () => {
           </Route>
           <Route path="" element={<PrivateRoute />}>
             <Route path="" element={<MainLayout />}>
-              <Route path="calendar" element={<CalendarPage />} />
+              <Route path="calendar" element={<CalendarPage />}>
+                <Route path="month/:currentDate" element={<ChoosedMonth />}/>
+                <Route path="day/:currentDay" element={<ChoosedDay />}/>
+                </Route>
               <Route path="account" element={<AccountPage />} />
             </Route>
           </Route>

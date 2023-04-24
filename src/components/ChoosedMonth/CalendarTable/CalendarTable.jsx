@@ -1,52 +1,42 @@
 import { useSelector } from 'react-redux';
-import { Calendar, Days } from './CalendarTable.styled';
+import { Calendar, DaysActive, Today, DaysOfMonth, OtherDays, StyledLink, Wrapper } from './CalendarTable.styled';
 import {
   format,
   startOfMonth,
   endOfMonth,
   startOfWeek,
   endOfWeek,
-  addDays,
   isSameMonth,
-  // isToday,
+  isToday,
   parseISO,
+  eachDayOfInterval
 } from 'date-fns';
 import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
 
-// const events = [
-//   { date: subDays(new Date(), 5), name: 'Event in the past' },
-//   { date: addDays(new Date(), 1), name: 'Foo' },
-//   { date: addDays(new Date(), 1), name: 'Wow calendar' },
-// ];
+
 
 export const CalendarTable = () => {
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
-  const dayStart = startOfWeek(monthStart, { weekStartsOn: 1 });
-  const dayEnd = endOfWeek(monthEnd, { weekStartsOn: 1 });
-  let date = dayStart;
-
-  const days = [];
-  //  let today
-  while (date <= dayEnd) {
-    if (!isSameMonth(date, currentMonth)) {
-      days.push(format(date, ' '));
-    } else {
-      days.push(format(date, 'd'));
-    }
-
-    date = addDays(date, 1);
-
-    //  today = isToday(date)
-    //  console.log(today)
-  }
-
-  return (
-    <Calendar>
-      {days.map((day, idx) => {
-        return <Days key={idx}>{day}</Days>;
+ 
+const daysInMonth = eachDayOfInterval({
+  start:startOfWeek(monthStart, { weekStartsOn: 1 }),
+  end:endOfWeek(monthEnd, { weekStartsOn: 1 }),
+})
+return (
+  <Calendar>
+      {daysInMonth?.map((day, idx) => {
+        const AllDays = isToday(day) ? Today : DaysOfMonth
+        const Days = !isSameMonth(day, currentMonth) ? OtherDays : DaysActive
+        return <Days key={idx}>
+          <StyledLink to={`/calendar/day/${day}`} >
+          <Wrapper>
+          <AllDays>{format(day,'d')}</AllDays>
+          </Wrapper>
+          </StyledLink>
+        </Days>;
       })}
     </Calendar>
   );
