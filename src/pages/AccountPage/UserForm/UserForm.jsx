@@ -10,10 +10,11 @@ import {
   LabelImg,
   LabelAva,
   TitleAvatar,
-  TextAvatar
+  TextAvatar, DefaultSvg,
 } from './UserForm.styled';
 import { format } from 'date-fns';
-import defaultAvatar from '../../../images/avatar_default.png';
+import defaultAvatar from '../../../images/sprite.svg';
+
 
 
 
@@ -78,16 +79,18 @@ export const UserForm = () => {
       {image ? ( <LabelAva hmlFor="ava">
         <LabelImg
           alt="Мое изображение"
-          src={`${image}`}
+          src={image}
           width="48"
           height="48"/>
       </LabelAva> ) : (
         <LabelAva htmlFor="ava">
-          <LabelImg
-            alt=""
-            src={`${defaultAvatar}`}
-            width="48"
-            height="48"/>
+          <DefaultSvg>
+            <use
+              xlinkHref={`${defaultAvatar}#${
+              'profile-avatar-f'
+              }`}
+            />
+          </DefaultSvg>
         </LabelAva>
       )
       }

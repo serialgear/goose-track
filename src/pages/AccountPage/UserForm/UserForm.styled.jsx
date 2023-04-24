@@ -7,7 +7,7 @@ export const Form = styled.form`
   max-width: 375px;
   max-height: 653px;
   margin: 95px 20px 0 20px;
-  background-color: #FFFFFF;
+  background-color:#ffffff ;
   border-radius: 16px;
 
   position: relative;
@@ -17,7 +17,7 @@ export const Label = styled.label`
 
   font-size: 12px;
   line-height: 14px;
-  color: #111111;
+  color:var(--primary-text-color);
   margin: 0 18px 8px 18px;
 `;
 
@@ -30,7 +30,7 @@ export const Input = styled.input`
   padding: 0;
 
   &:hover{
-    border-color: #3e85f3;
+    border-color: var(--accent-background-color);
   }
   //& :last-child{
   //  background-color: red;
@@ -43,6 +43,13 @@ export const InputAva = styled.input`
   display: none;
   width: 200px;
   height: 150px;
+`;
+export const DefaultSvg = styled.svg`
+  fill: var(--auth-bg-color);
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
 `;
 
 export const LabelImg = styled.img`
@@ -64,7 +71,7 @@ export const LabelAva = styled.label`
   display: block;
   margin: -36px auto 0 auto;
   overflow: hidden;
-  background-color: white;
+  background-color: var(--primary-background-color);
 
 
 `;
@@ -72,10 +79,10 @@ export const LabelAva = styled.label`
 export const ButtonPlus = styled.button`
   width: 14px;
   height: 14px;
-  background-color: #3E85F3;
+  background-color:  var(--accent-background-color);
   border-radius: 50%;
   border: none;
-  color: white;
+  color: var(--btn-text-color);
 
   position: absolute;
   top: 23px;
@@ -96,9 +103,9 @@ export const Button = styled.button`
   width: 100%;
   max-width: 195px;
   max-height: 46px;
-  background: #3E85F3;
+  background:  var(--accent-background-color);
   border-radius: 16px;
-  color: #FFFFFF;
+  color: var(--btn-text-color);
   font-size: 14px;
   line-height: 1.3;
   text-align: center;
@@ -122,7 +129,7 @@ export const TextAvatar = styled.p`
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
-  color: #616161;
+  color: var(--secondary-text-color);
   margin: 4px 0 40px 0;
   text-align: center;
 `;
