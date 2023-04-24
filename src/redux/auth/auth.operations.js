@@ -13,11 +13,11 @@ export const signupUser = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post('/users/register', credentials);
+      const { data } = await axios.post('/auth/register', credentials);
 
       setAuthHeader(data.token);
 
-      return data;
+      return { ...data };
     } catch (error) {
       const rejectMessage = error.response.data.message || error.message;
 
@@ -34,7 +34,7 @@ export const authLogin = createAsyncThunk(
 
       // тут я не впевнений що воно працює
       setAuthHeader(data.token);
-      return data;
+      return { ...data };
     } catch (error) {
       return rejectWithValue(error.message);
     }
