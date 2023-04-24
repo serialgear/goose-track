@@ -14,8 +14,16 @@ import {
 } from './UserForm.styled';
 import { format } from 'date-fns';
 import defaultAvatar from '../../../images/sprite.svg';
-import { useSelector } from 'react-redux';
-import { selectUserEmail, selectUserName } from '../../../redux/auth/auth.selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectUserAvatarURL, selectUserBirthday,
+  selectUserEmail,
+  selectUserName,
+  selectUserPhone,
+  selectUserTelegram,
+} from '../../../redux/auth/auth.selectors';
+
+import { userForm } from '../../../redux/auth/auth.operations';
 
 
 
@@ -24,19 +32,27 @@ export const UserForm = () => {
 
   const [image, setImage] = useState(null);
   const filePicker = useRef(null);
+  const dispatch = useDispatch();
+
   const name = useSelector(selectUserName);
   const email = useSelector(selectUserEmail);
+  const phone = useSelector(selectUserPhone);
+  const telegram = useSelector(selectUserTelegram);
+  const avatarURL = useSelector(selectUserAvatarURL);
+  const birthday = useSelector(selectUserBirthday);
 
   const formik = useFormik({
     initialValues: {
+      avatarURL: avatarURL,
       name: name,
       birthday: '',
       email: email,
-      phone: '',
-      telegram: '',
+      phone: phone,
+      telegram: telegram,
     },
     onSubmit: values => {
       console.log(values);
+      dispatch(userForm({name: values.name ,birthday: values.birthday, email:values.email, phone:values.phone,telegram:values.telegram}));
 
       alert(JSON.stringify(values, null, 2));
     },
@@ -53,21 +69,17 @@ export const UserForm = () => {
       alert('Please select a file');
       return true;
     }
-    const formData = new FormData();
-    formData.append('name',setImage);
-    formData.append('email',setImage);
-    formData.append('phone',setImage);
-    formData.append('avatarURL',setImage);
-    formData.append('telegram',setImage);
-    formData.append('birthday',setImage);
 
-    const response = await fetch('https://goose-track-api-3uhn.onrender.com/api', {
-      method:'PATCH',
-      body: formData,
-    });
-    const data = await response.json();
-    console.log(data);
+    // dispatch(userForm({name: values.name ,email:values.email, phone:values.phone,telegram:values.telegram}));
+    // const formData = new FormData();
+    // console.log(formData);
 
+  //   formData.append('name','email','phone', 'avatarURL','birthday', 'telegram',  setImage);
+  //
+  //
+  //   await axios.patch('https://goose-track-api-3uhn.onrender.com/api/user/info',
+  //     formData).then(console.log).catch(console.error);
+  //
   };
 
   const handlePick = () => {
@@ -80,14 +92,14 @@ export const UserForm = () => {
   return (
 
     <Form onSubmit={formik.handleSubmit}>
-      {image ? ( <LabelAva hmlFor="ava">
+      {image ? ( <LabelAva htmlFor="avatarURL">
         <LabelImg
           alt="Мое изображение"
           src={image}
           width="48"
           height="48"/>
       </LabelAva> ) : (
-        <LabelAva htmlFor="ava">
+        <LabelAva htmlFor="avatarURL">
           <DefaultSvg>
             <use
               xlinkHref={`${defaultAvatar}#${
@@ -102,8 +114,8 @@ export const UserForm = () => {
         <InputAva
           ref={filePicker}
           type="file"
-          id="ava"
-          name="ava"
+          id="avatarURL"
+          name="avatarURL"
           onChange={handleFileInputChange}
 
         />
@@ -116,6 +128,7 @@ export const UserForm = () => {
           id="name"
           name="name"
           type="text"
+          placeholder='name'
           onChange={formik.handleChange}
           value={formik.values.name}
         />
@@ -132,6 +145,7 @@ export const UserForm = () => {
           id="email"
           name="email"
           type="email"
+          placeholder='email'
           onChange={formik.handleChange}
           value={formik.values.email}
         />
@@ -141,7 +155,8 @@ export const UserForm = () => {
           name="phone"
           type="phone"
           onChange={formik.handleChange}
-          value={formik.values.phone}
+          placeholder='phone number'
+          value={formik.values.phone === '' || !formik.values.phone ? '' : formik.values.phone}
         />
         <Label htmlFor="telegram">Telegram</Label>
         <Input
@@ -149,9 +164,10 @@ export const UserForm = () => {
           name="telegram"
           type="telegram"
           onChange={formik.handleChange}
-          value={formik.values.telegram}
+          placeholder='telegram'
+          value={formik.values.telegram === '' || !formik.values.telegram ? '' :formik.values.telegram}
         />
-        <Button onChange={handleUpload} type="submit">Save changes</Button>
+        <Button  onSubmit={handleUpload} type="submit" >Save changes</Button>
       </Form>
 
   );
