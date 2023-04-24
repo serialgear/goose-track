@@ -1,18 +1,22 @@
 import { Outlet } from 'react-router-dom';
-import { Container, Main, SideBarWrapper, Wrapper } from './MainLayout.styled';
-import { SideBar } from './SideBar/SideBar';
+import { Container, Main, Wrapper } from './MainLayout.styled';
 import { Header } from './Header/Header';
+import { useState } from 'react';
+import { SideBar } from './SideBar/SideBar';
 
 export const MainLayout = () => {
+  const [isMobalMenuOpen, setIsMobalMenuOpen] = useState(false);
+
   return (
     <>
       <Container>
-        <SideBarWrapper>
-          <SideBar />
-        </SideBarWrapper>
+        <SideBar
+          isMobalMenuOpen={isMobalMenuOpen}
+          closeMobalMenu={setIsMobalMenuOpen}
+        />
 
         <Wrapper>
-          <Header />
+          <Header openMobalMenu={setIsMobalMenuOpen} />
 
           <Main>
             <Outlet />
