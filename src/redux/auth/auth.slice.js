@@ -7,7 +7,7 @@ import {
   signupUser,
   authLogin,
   authLogout,
-  refreshUser,
+  refreshUser, userForm,
 } from './auth.operations';
 
 const authInitState = {
@@ -57,7 +57,18 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(refreshUser.rejected, () => authInitState);
+      .addCase(refreshUser.rejected, () => authInitState)
+
+      .addCase(userForm.pending, (state, _) => state)
+      .addCase(userForm.fulfilled, (state, { payload }) => {
+        state.error = null;
+        state.user = payload.user;
+        state.token = payload.token;
+    })
+      .addCase(userForm.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+
   },
 });
 

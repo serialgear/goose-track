@@ -70,3 +70,18 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const userForm = createAsyncThunk(
+  'account',
+  async (values,thunkAPI) => {
+    try {
+      console.log('ghnj');
+      const { data } = await axios.patch('/user/info', values);
+      // console.log(data);
+      setAuthHeader(data.token);
+      return { ...data };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
