@@ -10,13 +10,15 @@ import {
   LabelImg,
   LabelAva,
   TitleAvatar,
-  TextAvatar, DefaultSvg,
+  TextAvatar,
+  DefaultSvg,
 } from './UserForm.styled';
 import { format } from 'date-fns';
 import defaultAvatar from '../../../images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectUserAvatarURL, selectUserBirthday,
+  selectUserAvatarURL,
+  selectUserBirthday,
   selectUserEmail,
   selectUserName,
   selectUserPhone,
@@ -25,11 +27,7 @@ import {
 
 import { userForm } from '../../../redux/auth/auth.operations';
 
-
-
-
 export const UserForm = () => {
-
   const [image, setImage] = useState(null);
   const filePicker = useRef(null);
   const dispatch = useDispatch();
@@ -39,20 +37,30 @@ export const UserForm = () => {
   const phone = useSelector(selectUserPhone);
   const telegram = useSelector(selectUserTelegram);
   const avatarURL = useSelector(selectUserAvatarURL);
-  const birthday = useSelector(selectUserBirthday);
+  const birthday = useSelector(selectUserBirthday) || Date.now();
+
+  const formattedDate = format(new Date(birthday), 'yyyy-MM-dd');
 
   const formik = useFormik({
     initialValues: {
       avatarURL: avatarURL,
       name: name,
-      birthday: '',
+      birthday: formattedDate,
       email: email,
       phone: phone,
       telegram: telegram,
     },
     onSubmit: values => {
-      console.log(values);
-      dispatch(userForm({name: values.name ,birthday: values.birthday, email:values.email, phone:values.phone,telegram:values.telegram}));
+      console.log('values ', values);
+      dispatch(
+        userForm({
+          name: values.name,
+          birthday: values.birthday,
+          email: values.email,
+          phone: values.phone,
+          telegram: values.telegram,
+        })
+      );
 
       alert(JSON.stringify(values, null, 2));
     },
@@ -74,101 +82,103 @@ export const UserForm = () => {
     // const formData = new FormData();
     // console.log(formData);
 
-  //   formData.append('name','email','phone', 'avatarURL','birthday', 'telegram',  setImage);
-  //
-  //
-  //   await axios.patch('https://goose-track-api-3uhn.onrender.com/api/user/info',
-  //     formData).then(console.log).catch(console.error);
-  //
+    //   formData.append('name','email','phone', 'avatarURL','birthday', 'telegram',  setImage);
+    //
+    //
+    //   await axios.patch('https://goose-track-api-3uhn.onrender.com/api/user/info',
+    //     formData).then(console.log).catch(console.error);
+    //
   };
 
   const handlePick = () => {
     filePicker.current.click();
-  }
+  };
 
-  const today = new Date();
-  const formattedDate = format(today, 'yyyy-MM-dd');
+  // const today = new Date();
+  // const formattedDate =  format(today, 'yyyy-MM-dd');
 
   return (
-
     <Form onSubmit={formik.handleSubmit}>
-      {image ? ( <LabelAva htmlFor="avatarURL">
-        <LabelImg
-          alt="Мое изображение"
-          src={image}
-          width="48"
-          height="48"/>
-      </LabelAva> ) : (
+      {image ? (
+        <LabelAva htmlFor="avatarURL">
+          <LabelImg alt="Мое изображение" src={image} width="48" height="48" />
+        </LabelAva>
+      ) : (
         <LabelAva htmlFor="avatarURL">
           <DefaultSvg>
-            <use
-              xlinkHref={`${defaultAvatar}#${
-              'profile-avatar-f'
-              }`}
-            />
+            <use xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`} />
           </DefaultSvg>
         </LabelAva>
-      )
-      }
+      )}
 
-        <InputAva
-          ref={filePicker}
-          type="file"
-          id="avatarURL"
-          name="avatarURL"
-          onChange={handleFileInputChange}
+      <InputAva
+        ref={filePicker}
+        type="file"
+        id="avatarURL"
+        name="avatarURL"
+        onChange={handleFileInputChange}
+      />
+      <ButtonPlus onClick={handlePick}>
+        <span>+</span>
+      </ButtonPlus>
+      <TitleAvatar>{name}</TitleAvatar>
+      <TextAvatar>User</TextAvatar>
 
-        />
-        <ButtonPlus  onClick={handlePick}><span>+</span></ButtonPlus>
-        <TitleAvatar>{name}</TitleAvatar>
-        <TextAvatar>User</TextAvatar>
-
-        <Label htmlFor="name">User Name</Label>
-        <Input
-          id="name"
-          name="name"
-          type="text"
-          placeholder='name'
-          onChange={formik.handleChange}
-          value={formik.values.name}
-        />
-        <Label htmlFor="birthday">Birthday</Label>
-        <Input
-          id="birthday"
-          name="birthday"
-          type="date"
-          onChange={formik.handleChange}
-          value={formattedDate}
-        />
-        <Label htmlFor="email">Email Address</Label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder='email'
-          onChange={formik.handleChange}
-          value={formik.values.email}
-        />
-        <Label htmlFor="phone">Phone</Label>
-        <Input
-          id="phone"
-          name="phone"
-          type="phone"
-          onChange={formik.handleChange}
-          placeholder='phone number'
-          value={formik.values.phone === '' || !formik.values.phone ? '' : formik.values.phone}
-        />
-        <Label htmlFor="telegram">Telegram</Label>
-        <Input
-          id="telegram"
-          name="telegram"
-          type="telegram"
-          onChange={formik.handleChange}
-          placeholder='telegram'
-          value={formik.values.telegram === '' || !formik.values.telegram ? '' :formik.values.telegram}
-        />
-        <Button  onSubmit={handleUpload} type="submit" >Save changes</Button>
-      </Form>
-
+      <Label htmlFor="name">User Name</Label>
+      <Input
+        id="name"
+        name="name"
+        type="text"
+        placeholder="name"
+        onChange={formik.handleChange}
+        value={formik.values.name}
+      />
+      <Label htmlFor="birthday">Birthday</Label>
+      <Input
+        id="birthday"
+        name="birthday"
+        type="date"
+        onChange={formik.handleChange}
+        value={formik.values.birthday}
+      />
+      <Label htmlFor="email">Email Address</Label>
+      <Input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="email"
+        onChange={formik.handleChange}
+        value={formik.values.email}
+      />
+      <Label htmlFor="phone">Phone</Label>
+      <Input
+        id="phone"
+        name="phone"
+        type="phone"
+        onChange={formik.handleChange}
+        placeholder="phone number"
+        value={
+          formik.values.phone === '' || !formik.values.phone
+            ? ''
+            : formik.values.phone
+        }
+      />
+      <Label htmlFor="telegram">Telegram</Label>
+      <Input
+        id="telegram"
+        name="telegram"
+        type="telegram"
+        onChange={formik.handleChange}
+        placeholder="telegram"
+        value={
+          formik.values.telegram === '' || !formik.values.telegram
+            ? ''
+            : formik.values.telegram
+        }
+      />
+      <Button onSubmit={handleUpload} type="submit">
+        Save changes
+      </Button>
+    </Form>
   );
 };
