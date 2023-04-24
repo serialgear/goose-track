@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import {
   Form,
@@ -9,13 +9,19 @@ import {
   ButtonPlus,
   LabelImg,
   LabelAva,
-  ContainerAva,
   TitleAvatar,
-  TextAvatar,
+  TextAvatar, DefaultSvg,
 } from './UserForm.styled';
+import { format } from 'date-fns';
+import defaultAvatar from '../../../images/sprite.svg';
+
+
+
 
 export const UserForm = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+
+  const [image, setImage] = useState(null);
+  const filePicker = useRef(null);
 
   const formik = useFormik({
     initialValues: {
@@ -26,44 +32,81 @@ export const UserForm = () => {
       telegram: '',
     },
     onSubmit: values => {
+      console.log(values);
+
       alert(JSON.stringify(values, null, 2));
     },
   });
 
   const handleFileInputChange = event => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
+    setImage(imageUrl);
   };
 
   const handleUpload = async () => {
-    if (!selectedFile) {
+    if (!setImage) {
       alert('Please select a file');
       return true;
     }
+    const formData = new FormData();
+    formData.append('name',setImage);
+    formData.append('email',setImage);
+    formData.append('phone',setImage);
+    formData.append('avatarURL',setImage);
+    formData.append('telegram',setImage);
+    formData.append('birthday',setImage);
+
+    const response = await fetch('https://goose-track-api-3uhn.onrender.com/api', {
+      method:'PATCH',
+      body: formData,
+    });
+    const data = await response.json();
+    console.log(data);
+
   };
 
+  const handlePick = () => {
+    filePicker.current.click();
+  }
+
+  const today = new Date();
+  const formattedDate = format(today, 'yyyy-MM-dd');
+
   return (
-    <>
-      <ContainerAva>
-        <LabelAva for="ava">
-          <LabelImg
-            alt=""
-            src="/goose-track/avatar_default.png"
-            width="48"
-            height="48"
-          />
+
+    <Form onSubmit={formik.handleSubmit}>
+      {image ? ( <LabelAva hmlFor="ava">
+        <LabelImg
+          alt="Мое изображение"
+          src={image}
+          width="48"
+          height="48"/>
+      </LabelAva> ) : (
+        <LabelAva htmlFor="ava">
+          <DefaultSvg>
+            <use
+              xlinkHref={`${defaultAvatar}#${
+              'profile-avatar-f'
+              }`}
+            />
+          </DefaultSvg>
         </LabelAva>
+      )
+      }
+
         <InputAva
+          ref={filePicker}
           type="file"
           id="ava"
           name="ava"
           onChange={handleFileInputChange}
+
         />
-        <ButtonPlus onClick={handleUpload}>+</ButtonPlus>
+        <ButtonPlus  onClick={handlePick}><span>+</span></ButtonPlus>
         <TitleAvatar>Name user</TitleAvatar>
         <TextAvatar>User</TextAvatar>
-      </ContainerAva>
 
-      <Form onSubmit={formik.handleSubmit}>
         <Label htmlFor="userName">User Name</Label>
         <Input
           id="userName"
@@ -76,9 +119,9 @@ export const UserForm = () => {
         <Input
           id="birthday"
           name="birthday"
-          type="text"
+          type="date"
           onChange={formik.handleChange}
-          value={formik.values.birthday}
+          value={formattedDate}
         />
         <Label htmlFor="email">Email Address</Label>
         <Input
@@ -104,8 +147,8 @@ export const UserForm = () => {
           onChange={formik.handleChange}
           value={formik.values.telegram}
         />
-        <Button type="submit">Save changes</Button>
+        <Button onChange={handleUpload} type="submit">Save changes</Button>
       </Form>
-    </>
+
   );
 };
