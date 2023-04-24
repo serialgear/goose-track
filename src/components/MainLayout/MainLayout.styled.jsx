@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: relative;
   margin: 0 auto;
-  background-color: #eaeaea;
+  background-color: var(--secondary-background-color);
 
   @media (min-width: 376px) {
     max-width: 376px;
@@ -27,21 +27,8 @@ export const Container = styled.div`
   }
 `;
 
-export const SideBarWrapper = styled.div`
-  display: flex;
-  background-color: #fff;
-  width: 289px;
-  height: 100vh;
+export const SideBarWrapper = styled.div``;
 
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-export const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 100%;
-`;
 export const Wrapper = styled.div`
   display: block;
   width: 100%;

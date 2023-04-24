@@ -9,17 +9,20 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { authReducer } from './auth/auth.slice';
+import { calendarReducer } from './calendar/calendar.slice';
+
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    calendar: calendarReducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
+  getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER ],
       },
-    }),
+  }),
 });
 
 export const persistor = persistStore(store);

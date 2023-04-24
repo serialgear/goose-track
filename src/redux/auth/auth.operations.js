@@ -27,7 +27,7 @@ export const signupUser = createAsyncThunk(
 );
 
 export const authLogin = createAsyncThunk(
-  'login',
+  'auth/login',
   async (values, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', values);
@@ -37,6 +37,18 @@ export const authLogin = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const authLogout = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      await axios.post('/user/logout');
+      axios.defaults.headers.common.Authorization = '';
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
