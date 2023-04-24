@@ -32,11 +32,10 @@ export const authLogin = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', values);
 
-      // тут я не впевнений що воно працює
       setAuthHeader(data.token);
       return { ...data };
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message || error.message);
     }
   }
 );
@@ -64,7 +63,7 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(token);
       const { data } = await axios.get('/user/current');
-      return {...data};
+      return { ...data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
