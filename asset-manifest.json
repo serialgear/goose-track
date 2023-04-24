@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/goose-track/static/css/main.e254f10d.css",
-    "main.js": "/goose-track/static/js/main.e66591c1.js",
+    "main.css": "/goose-track/static/css/main.160ffedc.css",
+    "main.js": "/goose-track/static/js/main.abb0a050.js",
     "static/media/login-goose-.svg": "/goose-track/static/media/login-goose-.1c553c6a3f164ed903259ed77dd6b178.svg",
     "static/media/Inter-Bold.woff": "/goose-track/static/media/Inter-Bold.d863298c035ae887b7d6.woff",
     "static/media/Inter-SemiBold.woff": "/goose-track/static/media/Inter-SemiBold.133ad17891ba17ce4b7e.woff",
@@ -20,11 +20,11 @@
     "static/media/sprite.svg": "/goose-track/static/media/sprite.e12ce964de2bd035fa31167ce9483dad.svg",
     "index.html": "/goose-track/index.html",
     "static/media/logInIcon.svg": "/goose-track/static/media/logInIcon.a255be8977dff107049bccd8351f44a7.svg",
-    "main.e254f10d.css.map": "/goose-track/static/css/main.e254f10d.css.map",
-    "main.e66591c1.js.map": "/goose-track/static/js/main.e66591c1.js.map"
+    "main.160ffedc.css.map": "/goose-track/static/css/main.160ffedc.css.map",
+    "main.abb0a050.js.map": "/goose-track/static/js/main.abb0a050.js.map"
   },
   "entrypoints": [
-    "static/css/main.e254f10d.css",
-    "static/js/main.e66591c1.js"
+    "static/css/main.160ffedc.css",
+    "static/js/main.abb0a050.js"
   ]
 }
