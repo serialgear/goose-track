@@ -10,9 +10,19 @@ import CalendarPage from 'pages/CalendarPage/CalendarPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { refreshUser } from 'redux/auth/auth.operations';
 
 export const App = () => {
-  toast.info('Hello!');
+  const dispatch = useDispatch();
+  useEffect(() => {
+    try {
+      dispatch(refreshUser());
+    } catch (error) {
+      toast.error('Authorization error');
+    }
+  }, [dispatch]);
 
   return (
     <>
