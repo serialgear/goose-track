@@ -1,15 +1,19 @@
 
+import { startOfWeek, format, addDays } from 'date-fns';
 import { List, Days } from "./MonthCalendarHead.styled"
+
+
 export const MonthCalendarHead = () => {
+    const weekStart = startOfWeek(new Date(),{weekStartsOn: 1})
+    const days = [];
+    for (let i = 0; i < 7; i++) {
+        days.push(format(addDays(weekStart, i), 'EEEEE'))
+    }
     return(
         <List>
-            <Days>M</Days>
-            <Days>T</Days>
-            <Days>W</Days>
-            <Days>T</Days>
-            <Days>F</Days>
-            <Days>S</Days>
-            <Days>S</Days>
+            {days.map((day, idx) => (
+   <Days key={idx}>{day}</Days>
+             ) )}
         </List>
     )
 }
