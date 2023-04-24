@@ -3,11 +3,10 @@ import { authLogin } from 'redux/auth/auth.operations';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import * as STC from './LoginForm.styled';
-import logInIcon from '../../images/logInIcon.svg';
+import logInIcon from '../../images/sprite.svg';
 import { Link } from 'react-router-dom';
-import LoginImg from '../../images/LoginImg.png';
-import LoginImg2x from '../../images/LoginImg@2x.png';
 import { toast } from 'react-toastify';
+import loginRocketSvg from '../../images/Icons/login-rocket-goose.svg';
 
 const LoginValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -95,7 +94,7 @@ export const LoginForm = () => {
                 <STC.Button type="submit" disabled={isSubmitting}>
                   <STC.BtnSpan>Log in</STC.BtnSpan>
                   <STC.Svg>
-                    <use href={`${logInIcon}#log-in`} />
+                    <use href={`${logInIcon}#login-door-sf`} />
                   </STC.Svg>
                 </STC.Button>
               </STC.Form>
@@ -103,11 +102,15 @@ export const LoginForm = () => {
               <Link to="/register">
                 <STC.H2>Sign up</STC.H2>
               </Link>
-              <STC.LoginImg
-                alt="rocket"
-                srcset={`${LoginImg} 1x, ${LoginImg2x} 2x`}
-                src={`${LoginImg}`}
-              />
+
+              <STC.CloudSvg>
+                <use href={`${logInIcon}#login-cloud`} />
+              </STC.CloudSvg>
+              <STC.ImgRocketSvg src={`${loginRocketSvg}`} alt="rocket" />
+              <STC.GooseText>
+                Quickly <STC.GooseTextAccent>come in</STC.GooseTextAccent> and{' '}
+                {'\n'}write down your {'\n'}tasks for the day!
+              </STC.GooseText>
             </STC.Container>
           </STC.Box>
         )}
