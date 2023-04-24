@@ -10,13 +10,13 @@ import { selectUserName } from 'redux/auth/auth.selectors';
 import { useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
 
-export const Header = () => {
+export const Header = ({ openMobalMenu }) => {
   // const dispath = useDispatch();
   const name = useSelector(selectUserName);
 
   const location = useLocation();
 
-  console.log(location.state);
+  // console.log(location.state);
 
   // const handlLogOut =()=>{
   //     dispath(logOut())
@@ -27,7 +27,7 @@ export const Header = () => {
       {<PageName>{}PageName</PageName>}
 
       <MobileMenuSvg
-        //   onClick={handleMobileMenuToggle}
+        onClick={() => openMobalMenu(true)}
         aria-label="Toggle mobile menu"
       >
         <use xlinkHref={`${icon}#profile-mobile-menu`}></use>
