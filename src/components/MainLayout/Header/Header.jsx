@@ -7,14 +7,14 @@ import {
 } from './Header.styled';
 import { useSelector } from 'react-redux';
 import { selectUserName } from 'redux/auth/auth.selectors';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
 
 export const Header = ({ openMobalMenu }) => {
   // const dispath = useDispatch();
   const name = useSelector(selectUserName);
 
-  const location = useLocation();
+  // const location = useLocation();
 
   // console.log(location.state);
 
