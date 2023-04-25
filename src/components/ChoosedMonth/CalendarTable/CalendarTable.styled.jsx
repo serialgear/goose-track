@@ -20,14 +20,30 @@ color: var(--calendar-digit-color);
 
 `;
 
-export const DaysActive = styled.li`
+export const Days = styled.li`
 position: relative;
 border: var(--border-calendar);
 
-
-
-cursor: pointer;
 `;
+
+
+export const OtherMonthStyledLink = styled(Link)`
+text-decoration: none;
+color: inherit;
+pointer-events: none;
+`;
+export const CurrentMonthStyledLink = styled(Link)`
+text-decoration: none;
+color: inherit;
+`;
+
+
+export const Wrapper = styled.div`
+width: 100%;
+height: 100%;
+padding: 8px 4px;
+`; 
+
 
 export const DaysOfMonth = styled.div`
 position: absolute;
@@ -48,18 +64,4 @@ background-color: var(--accent-background-color);
 color:  var(--primary-background-color);
 `;
 
-export const OtherDays = styled(DaysActive)`
-color:  var(--primary-background-color);
-cursor: default;
-`;
-export const Wrapper = styled.div`
-width: 100%;
-height: 100%;
-padding: 8px 4px;
-`; 
 
-export const StyledLink = styled(Link)`
-
-text-decoration: none;
-color: inherit;
-`;

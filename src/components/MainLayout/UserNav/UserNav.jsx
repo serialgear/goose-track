@@ -1,8 +1,12 @@
 import * as STC from './UserNav.styled';
 
 import Icons from '../../../images/sprite.svg';
+import { useSelector } from 'react-redux';
+import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
+import { formatISO } from 'date-fns';
 
 export const UserNav = () => {
+  const currentDate = useSelector(selectCurrentMonth)
   return (
     <>
       <nav>
@@ -17,7 +21,8 @@ export const UserNav = () => {
             </STC.Link>
           </STC.Item>
           <STC.Item>
-            <STC.Link to="/calendar">
+            <STC.Link to={`/calendar/month/${formatISO(new Date(currentDate),
+     { representation: 'date' })}`}>
               <STC.Icon>
                 <use href={`${Icons}#profile-calendar-sf`} />
               </STC.Icon>
