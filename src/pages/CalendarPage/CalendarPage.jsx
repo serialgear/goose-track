@@ -1,18 +1,17 @@
 import { CalendarToolbar } from "components/CalendarToolbar/CalendarToolbar";
-import { Navigate } from 'react-router-dom';
 import { Container } from "./CalendarPage.styled";
 import { Outlet } from "react-router";
-import { parseISO } from "date-fns";
-import { useSelector } from "react-redux";
-import { selectCurrentMonth } from "redux/calendar/calendar.selectors";
-import { selectUserName } from "redux/auth/auth.selectors";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getTasksOfMonth } from "redux/calendar/calendar.operations";
+
 
  export default function CalendarPage() {
-  const currentDate = parseISO(useSelector(selectCurrentMonth));
-  const user = useSelector(selectUserName)
-   if(user) {
-   <Navigate to={`month/${currentDate}`} replace/>
-  }
+ const dispatch = useDispatch();
+
+  useEffect(()=> {
+dispatch(getTasksOfMonth())
+  }, [dispatch])
   
   return (
     <Container>

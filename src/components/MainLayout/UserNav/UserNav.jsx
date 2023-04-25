@@ -2,8 +2,13 @@ import PropTypes from 'prop-types';
 
 import * as STC from './UserNav.styled';
 import Icons from '../../../images/sprite.svg';
+import { useSelector } from 'react-redux';
+import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
+import { formatISO } from 'date-fns';
 
 export const UserNav = ({ closeMobalMenu }) => {
+  const currentDate = useSelector(selectCurrentMonth);
+
   const handleCloseMobalMenu = () => {
     closeMobalMenu(false);
   };
@@ -22,7 +27,12 @@ export const UserNav = ({ closeMobalMenu }) => {
             </STC.Link>
           </STC.Item>
           <STC.Item>
-            <STC.Link to="/calendar" onClick={handleCloseMobalMenu}>
+            <STC.Link
+              to={`/calendar/month/${formatISO(new Date(currentDate), {
+                representation: 'date',
+              })}`}
+              onClick={handleCloseMobalMenu}
+            >
               <STC.Icon>
                 <use href={`${Icons}#profile-calendar-sf`} />
               </STC.Icon>

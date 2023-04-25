@@ -57,7 +57,8 @@ export const Link = styled(NavLink)`
 export const Icon = styled.svg`
   width: 20px;
   height: 20px;
-  fill: currentColor;
+  stroke: #84828A;
+  fill: transparent;
 
   @media (min-width: 768px) {
     width: 24px;
