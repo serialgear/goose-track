@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { LogoutBtn } from '../LogoutBtn/LogoutBtn';
@@ -9,15 +9,15 @@ import LogoGoose from '../../../images/GOOSE.png';
 import Icons from '../../../images/sprite.svg';
 
 export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
-  useEffect(() => {
-    const close = e => {
-      if (isMobalMenuOpen && e.keyCode === 27) {
-        handleCloseMobalMenu();
-      }
-    };
-    window.addEventListener('keydown', close);
-    return () => window.removeEventListener('keydown', close);
-  }, [isMobalMenuOpen]);
+  // useEffect(() => {
+  //   const close = e => {
+  //     if (isMobalMenuOpen && e.keyCode === 27) {
+  //       handleCloseMobalMenu();
+  //     }
+  //   };
+  //   window.addEventListener('keydown', close);
+  //   return () => window.removeEventListener('keydown', close);
+  // }, [isMobalMenuOpen]);
 
   const handleCloseMobalMenu = () => {
     closeMobalMenu(false);
