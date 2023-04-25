@@ -6,6 +6,7 @@ import { parseISO } from "date-fns";
 import { useSelector } from "react-redux";
 import { selectCurrentMonth } from "redux/calendar/calendar.selectors";
 import { selectUserName } from "redux/auth/auth.selectors";
+import { TaskColumnCard } from "components/ChoosedDay/TaskColumnCard/TaskColumnCard";
 
  export default function CalendarPage() {
   const currentDate = parseISO(useSelector(selectCurrentMonth));
@@ -18,6 +19,7 @@ import { selectUserName } from "redux/auth/auth.selectors";
     <Container>
       <CalendarToolbar />
       <Outlet />
+      <TaskColumnCard/>
     </Container>
   );
 }
