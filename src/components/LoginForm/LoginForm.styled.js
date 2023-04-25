@@ -173,25 +173,62 @@ export const H2 = styled.h2`
   }
 `;
 
-export const LoginImg = styled.img`
+export const CloudSvg = styled.svg`
   display: none;
 
   @media (min-width: 1440px) {
     display: block;
-    width: 368px;
-    height: 521px;
+    width: 182px;
+    height: 144px;
     position: fixed;
-    bottom: 20px;
-    right: 60px;
+    bottom: 386px;
+    right: 127px;
+  }
+`;
+
+export const ImgRocketSvg = styled.img`
+  display: none;
+
+  @media (min-width: 1440px) {
+    display: inline-block;
+    width: 178px;
+    height: 414px;
+    position: fixed;
+    bottom: 35px;
+    right: 155px;
+    transform: rotate(-31.56deg);
   }
 `;
 
 export const Errors = styled.span`
-  /* padding: 0 14px; */
   color: red;
   font-family: var(--primary-font);
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
+`;
+
+export const GooseText = styled.p`
+  display: none;
+
+  @media (min-width: 1440px) {
+    display: inline-block;
+    position: fixed;
+    bottom: 442px;
+    right: 150px;
+    color: var(--primary-text-color);
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.14;
+    white-space: pre-line;
+    transform: rotate(18deg);
+  }
+`;
+
+export const GooseTextAccent = styled.span`
+  color: var(--accent-text-color);
+  font-style: italic;
 `;
