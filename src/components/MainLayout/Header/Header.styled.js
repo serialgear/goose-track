@@ -5,10 +5,18 @@ export const HeaderStyled = styled.header`
   align-items: center;
   justify-content: space-between;
   max-width: 100%;
-  /* padding-left: 20px;
-  padding-right: 20px; */
+  padding-left: 20px;
+  padding-right: 20px;
   padding-top: 24px;
   margin-bottom: 64px;
+
+  @media (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @media (min-width: 1280) {
+    padding-top: 40px;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
@@ -17,31 +25,68 @@ export const HeaderWrapper = styled.div`
   gap: 16px;
 `;
 
-// export const MobileMenu = styled.button`
-// display: flex;
-// @media (min-width: 1280px) {
-//     display: none;
-//   }
 
-// `
 export const PageName = styled.h2`
   display: none;
   @media (min-width: 1280px) {
     display: flex;
+    font-family: var(--primary-font);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 32px;
+    color: var(--primary-text-color);
+  }
+`;
+
+export const UserName = styled.h2`
+  font-family: var(--primary-font);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--primary-text-color);
+  @media (min-width: 768px) {
+    font-size: 18px;
   }
 `;
 
 export const MobileMenuSvg = styled.svg`
-  width: 34px;
-  height: 34px;
-  fill: var(--primary-text-color);
+  width: 24px;
+  height: 24px;
+  stroke: var(--calendar-digit-color);
+  
   display: flex;
+  @media (min-width: 768px) {
+    width: 34px;
+    height: 34px;
+  }
   @media (min-width: 1280px) {
     display: none;
-  }
+  }  
+`;
 
-  /* @media screen and (min-width: 768px) {
+export const AvatarSvg = styled.svg`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: solid 1px var(--accent-background-color);
+  /* fill: #3e85f3; */
+  fill: var(--auth-bg-color);
+  /* fill-opacity: 0.18; */
+  cursor: pointer;
+  @media (min-width: 1280px) {
     width: 44px;
     height: 44px;
-  } */
+  }
+`;
+
+export const AvatarImg = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: solid 1px var(--accent-background-color);
+  cursor: pointer;
+  @media (min-width: 1280px) {
+    width: 44px;
+    height: 44px;
+  }
 `;
