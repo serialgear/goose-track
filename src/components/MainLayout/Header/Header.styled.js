@@ -64,29 +64,13 @@ export const MobileMenuSvg = styled.svg`
   }  
 `;
 
-export const AvatarSvg = styled.svg`
+export const HeaderAvatarWrapper = styled.div`
   width: 32px;
   height: 32px;
-  border-radius: 50%;
-  border: solid 1px var(--accent-background-color);
-  /* fill: #3e85f3; */
-  fill: var(--auth-bg-color);
-  /* fill-opacity: 0.18; */
-  cursor: pointer;
   @media (min-width: 1280px) {
     width: 44px;
     height: 44px;
   }
 `;
 
-export const AvatarImg = styled.img`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: solid 1px var(--accent-background-color);
-  cursor: pointer;
-  @media (min-width: 1280px) {
-    width: 44px;
-    height: 44px;
-  }
-`;
+
