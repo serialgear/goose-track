@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/goose-track/static/css/main.160ffedc.css",
-    "main.js": "/goose-track/static/js/main.abb0a050.js",
+    "main.js": "/goose-track/static/js/main.44ee40ee.js",
     "static/media/login-goose-.svg": "/goose-track/static/media/login-goose-.1c553c6a3f164ed903259ed77dd6b178.svg",
     "static/media/Inter-Bold.woff": "/goose-track/static/media/Inter-Bold.d863298c035ae887b7d6.woff",
     "static/media/Inter-SemiBold.woff": "/goose-track/static/media/Inter-SemiBold.133ad17891ba17ce4b7e.woff",
@@ -10,21 +10,20 @@
     "static/media/Inter-Bold.woff2": "/goose-track/static/media/Inter-Bold.33a5a4566bb3413901e3.woff2",
     "static/media/Inter-SemiBold.woff2": "/goose-track/static/media/Inter-SemiBold.f8f55aa9d497b7683ed5.woff2",
     "static/media/Inter-Medium.woff2": "/goose-track/static/media/Inter-Medium.3b9cdcf0bbb18875523f.woff2",
-    "static/media/LoginImg@2x.png": "/goose-track/static/media/LoginImg@2x.515b599409bffa0ef6ab.png",
     "static/media/Inter-Regular.woff2": "/goose-track/static/media/Inter-Regular.582d8a8e254ad87ea376.woff2",
     "static/media/CoolveticaRg-Italic.woff": "/goose-track/static/media/CoolveticaRg-Italic.3c946da17c9b327cdb07.woff",
     "static/media/CoolveticaRg-Regular.woff": "/goose-track/static/media/CoolveticaRg-Regular.18553089a0255bf3ff57.woff",
-    "static/media/LoginImg.png": "/goose-track/static/media/LoginImg.e2657d9bef66b18d4b8b.png",
     "static/media/CoolveticaRg-Italic.woff2": "/goose-track/static/media/CoolveticaRg-Italic.303f6d191c54ca2d8032.woff2",
     "static/media/CoolveticaRg-Regular.woff2": "/goose-track/static/media/CoolveticaRg-Regular.527dd81079648bc83492.woff2",
     "static/media/sprite.svg": "/goose-track/static/media/sprite.e12ce964de2bd035fa31167ce9483dad.svg",
+    "static/media/login-rocket-goose.svg": "/goose-track/static/media/login-rocket-goose.29c8ea1148d3a97cc4c04d86ff52e0a8.svg",
     "index.html": "/goose-track/index.html",
     "static/media/logInIcon.svg": "/goose-track/static/media/logInIcon.a255be8977dff107049bccd8351f44a7.svg",
     "main.160ffedc.css.map": "/goose-track/static/css/main.160ffedc.css.map",
-    "main.abb0a050.js.map": "/goose-track/static/js/main.abb0a050.js.map"
+    "main.44ee40ee.js.map": "/goose-track/static/js/main.44ee40ee.js.map"
   },
   "entrypoints": [
     "static/css/main.160ffedc.css",
-    "static/js/main.abb0a050.js"
+    "static/js/main.44ee40ee.js"
   ]
 }
