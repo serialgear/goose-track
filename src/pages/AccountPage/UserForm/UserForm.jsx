@@ -11,7 +11,7 @@ import {
   LabelAva,
   TitleAvatar,
   TextAvatar,
-  DefaultSvg,
+  DefaultSvg, FlexInput, AvatarBlock, FlexChield,
 } from './UserForm.styled';
 import { format } from 'date-fns';
 import defaultAvatar from '../../../images/sprite.svg';
@@ -99,83 +99,101 @@ export const UserForm = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      {image ? (
-        <LabelAva htmlFor="avatarURL">
-          <LabelImg alt="Мое изображение" src={image} width="48" height="48" />
-        </LabelAva>
-      ) : (
-        <LabelAva htmlFor="avatarURL">
-          <DefaultSvg>
-            <use xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`} />
-          </DefaultSvg>
-        </LabelAva>
-      )}
+      <AvatarBlock>
+        {image ? (
+          <LabelAva htmlFor="avatarURL">
+            <LabelImg alt="Мое изображение" src={image} width="48" height="48" />
+          </LabelAva>
+        ) : (
+          <LabelAva htmlFor="avatarURL">
+            <DefaultSvg>
+              <use xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`} />
+            </DefaultSvg>
+          </LabelAva>
+        )}
 
-      <InputAva
-        ref={filePicker}
-        type="file"
-        id="avatarURL"
-        name="avatarURL"
-        onChange={handleFileInputChange}
-      />
-      <ButtonPlus onClick={handlePick}>
-        <span>+</span>
-      </ButtonPlus>
-      <TitleAvatar>{name}</TitleAvatar>
-      <TextAvatar>User</TextAvatar>
+        <InputAva
+          ref={filePicker}
+          type="file"
+          id="avatarURL"
+          name="avatarURL"
+          onChange={handleFileInputChange}
+        />
+        <ButtonPlus onClick={handlePick}>
+          <span>+</span>
+        </ButtonPlus>
+        <TitleAvatar>{name}</TitleAvatar>
+        <TextAvatar>User</TextAvatar>
+      </AvatarBlock>
 
-      <Label htmlFor="name">User Name</Label>
-      <Input
-        id="name"
-        name="name"
-        type="text"
-        placeholder="name"
-        onChange={formik.handleChange}
-        value={formik.values.name}
-      />
-      <Label htmlFor="birthday">Birthday</Label>
-      <Input
-        id="birthday"
-        name="birthday"
-        type="date"
-        onChange={formik.handleChange}
-        value={formik.values.birthday}
-      />
-      <Label htmlFor="email">Email Address</Label>
-      <Input
-        id="email"
-        name="email"
-        type="email"
-        placeholder="email"
-        onChange={formik.handleChange}
-        value={formik.values.email}
-      />
-      <Label htmlFor="phone">Phone</Label>
-      <Input
-        id="phone"
-        name="phone"
-        type="phone"
-        onChange={formik.handleChange}
-        placeholder="phone number"
-        value={
-          formik.values.phone === '' || !formik.values.phone
-            ? ''
-            : formik.values.phone
-        }
-      />
-      <Label htmlFor="telegram">Telegram</Label>
-      <Input
-        id="telegram"
-        name="telegram"
-        type="telegram"
-        onChange={formik.handleChange}
-        placeholder="telegram"
-        value={
-          formik.values.telegram === '' || !formik.values.telegram
-            ? ''
-            : formik.values.telegram
-        }
-      />
+<FlexInput>
+  <FlexChield>
+    <Label htmlFor="name">User Name</Label>
+    <Input
+      id="name"
+      name="name"
+      type="text"
+      placeholder="name"
+      onChange={formik.handleChange}
+      value={formik.values.name}
+    />
+  </FlexChield>
+  <FlexChield>
+    <Label htmlFor="birthday">Birthday</Label>
+    <Input
+      id="birthday"
+      name="birthday"
+      type="date"
+      onChange={formik.handleChange}
+      value={formik.values.birthday === '' || !formik.values.birthday
+        ? ''
+        : formik.values.birthday}
+    />
+  </FlexChield>
+  <FlexChield>
+    <Label htmlFor="email">Email Address</Label>
+    <Input
+      id="email"
+      name="email"
+      type="email"
+      placeholder="email"
+      onChange={formik.handleChange}
+      value={formik.values.email}
+    />
+  </FlexChield>
+  <FlexChield>
+    <Label htmlFor="phone">Phone</Label>
+    <Input
+      id="phone"
+      name="phone"
+      type="phone"
+      onChange={formik.handleChange}
+      placeholder="phone number"
+      value={
+        formik.values.phone === '' || !formik.values.phone
+          ? ''
+          : formik.values.phone
+      }
+    />
+  </FlexChield>
+ <FlexChield>
+   <Label htmlFor="telegram">Telegram</Label>
+   <Input
+     id="telegram"
+     name="telegram"
+     type="telegram"
+     onChange={formik.handleChange}
+     placeholder="telegram"
+     value={
+       formik.values.telegram === '' || !formik.values.telegram
+         ? ''
+         : formik.values.telegram
+     }
+   />
+ </FlexChield>
+
+</FlexInput>
+
       <Button onSubmit={handleUpload} type="submit">
         Save changes
       </Button>
