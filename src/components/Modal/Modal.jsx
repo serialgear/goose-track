@@ -10,7 +10,7 @@ export const Modal = ({ children, onClose }) => {
     window.addEventListener('keydown', memoKeyClose);
 
     return () => {
-      window.veEventListener('keydown', memoKeyClose);
+      window.removeEventListener('keydown', memoKeyClose);
     };
   }, [memoKeyClose]);
 
