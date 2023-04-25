@@ -1,30 +1,33 @@
 import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
 import {
+  HeaderAvatarWrapper,
   HeaderStyled,
   HeaderWrapper,
   MobileMenuSvg,
   PageName,
+  UserName,
 } from './Header.styled';
 import { useSelector } from 'react-redux';
 import { selectUserName } from 'redux/auth/auth.selectors';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
+import { Avatar } from '../Avatar/Avatar';
 
 export const Header = ({ openMobalMenu }) => {
-  // const dispath = useDispatch();
   const name = useSelector(selectUserName);
 
-  // const location = useLocation();
+  const location = useLocation();
+  let isActivePage = location.pathname.split('/')[1];
 
-  // console.log(location.state);
-
-  // const handlLogOut =()=>{
-  //     dispath(logOut())
-  // }
+  if (isActivePage === 'calendar') {
+    isActivePage = 'Calendar';
+  } else if (isActivePage === 'account') {
+    isActivePage = 'User Profile';
+  }
 
   return (
     <HeaderStyled>
-      {<PageName>{}PageName</PageName>}
+      {<PageName>{isActivePage}</PageName>}
 
       <MobileMenuSvg
         onClick={() => openMobalMenu(true)}
@@ -36,18 +39,15 @@ export const Header = ({ openMobalMenu }) => {
       <HeaderWrapper>
         <ThemeToggler></ThemeToggler>
 
-        <h2>{name.split(' ')[0]}</h2>
+        <UserName>{name.split(' ')[0]}</UserName>
 
         <button
           type="button"
-          //   onClick={handleUserSmallInfo}
+          //   onClick={openUserSmallInfo}
         >
-          <img
-            width="44"
-            height="44"
-            src="https://img.icons8.com/arcade/64/null/rick-sanchez.png"
-            alt="user"
-          />
+          <HeaderAvatarWrapper>
+            <Avatar />
+          </HeaderAvatarWrapper>
         </button>
       </HeaderWrapper>
     </HeaderStyled>
