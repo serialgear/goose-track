@@ -1,5 +1,6 @@
-import * as STC from './UserNav.styled';
+import PropTypes from 'prop-types';
 
+import * as STC from './UserNav.styled';
 import Icons from '../../../images/sprite.svg';
 
 export const UserNav = ({ closeMobalMenu }) => {
@@ -32,4 +33,8 @@ export const UserNav = ({ closeMobalMenu }) => {
       </nav>
     </>
   );
+};
+
+UserNav.propTypes = {
+  closeMobalMenu: PropTypes.func.isRequired,
 };

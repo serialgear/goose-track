@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { LogoutBtn } from '../LogoutBtn/LogoutBtn';
 import { UserNav } from '../UserNav/UserNav';
@@ -42,4 +43,9 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
       {isMobalMenuOpen && <STC.Overlay onClick={handleCloseMobalMenu} />}
     </>
   );
+};
+
+SideBar.propTypes = {
+  isMobalMenuOpen: PropTypes.bool.isRequired,
+  closeMobalMenu: PropTypes.func.isRequired,
 };
