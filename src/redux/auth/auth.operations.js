@@ -72,7 +72,7 @@ export const refreshUser = createAsyncThunk(
 
 export const userForm = createAsyncThunk(
   'account',
-  async (values,thunkAPI) => {
+  async (values, thunkAPI) => {
     try {
       console.log('ghnj');
       const { data } = await axios.patch('/user/info', values);
