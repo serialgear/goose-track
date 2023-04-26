@@ -36,5 +36,5 @@ export const Wrapper = styled.div`
 `;
 
 export const Main = styled.main`
-  height: 100%;
+  //height: 100%;
 `;
