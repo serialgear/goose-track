@@ -28,17 +28,18 @@ export const Header = ({ openMobalMenu }) => {
 
   return (
     <HeaderStyled>
-      <div>
+      {/* <div>
         <div>{false
       // toDoTask
-       && <img src={gooseToDo} alt='Goose'/>}
-      {<PageName>{isActivePage}</PageName>}</div>
+       && <img src={gooseToDo} alt='Goose'/>} */}
+      {<PageName>{isActivePage}</PageName>}
+      {/* </div> */}
       
-      {false 
+      {/* {false 
       // toDoTask
       && <p><span>Let go</span> of the past and focus on the present!</p>
       }
-      </div>
+      </div> */}
       
 
       <MobileMenuSvg
