@@ -1,5 +1,13 @@
 import { useSelector } from 'react-redux';
-import { Calendar, DaysActive, Today, DaysOfMonth, OtherDays, StyledLink, Wrapper } from './CalendarTable.styled';
+import {
+  Calendar,
+  Days,
+  Today,
+  DaysOfMonth,
+  OtherMonthStyledLink,
+  Wrapper,
+  CurrentMonthStyledLink,
+} from './CalendarTable.styled';
 import {
   format,
   startOfMonth,
@@ -9,34 +17,53 @@ import {
   isSameMonth,
   isToday,
   parseISO,
-  eachDayOfInterval
+  eachDayOfInterval,
+  formatISO,
+  isThisMonth,
+  isFirstDayOfMonth,
 } from 'date-fns';
 import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
-
-
+import { useParams } from 'react-router-dom';
 
 export const CalendarTable = () => {
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
+  const firsDayOfMonth = useParams()
+  
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
- 
-const daysInMonth = eachDayOfInterval({
-  start:startOfWeek(monthStart, { weekStartsOn: 1 }),
-  end:endOfWeek(monthEnd, { weekStartsOn: 1 }),
-})
-return (
-  <Calendar>
+
+  const daysInMonth = eachDayOfInterval({
+    start: startOfWeek(monthStart, { weekStartsOn: 1 }),
+    end: endOfWeek(monthEnd, { weekStartsOn: 1 }),
+  });
+
+
+
+  return (
+    <Calendar>
       {daysInMonth?.map((day, idx) => {
-        const AllDays = isToday(day) ? Today : DaysOfMonth
-        const Days = !isSameMonth(day, currentMonth) ? OtherDays : DaysActive
-        return <Days key={idx}>
-          <StyledLink to={`/calendar/day/${day}`} >
-          <Wrapper>
-          <AllDays>{format(day,'d')}</AllDays>
-          </Wrapper>
-          </StyledLink>
-        </Days>;
+        
+        const StyledLink = !isSameMonth(day, currentMonth)
+          ? OtherMonthStyledLink
+          : CurrentMonthStyledLink;
+          
+        const AllDays =  isThisMonth(new Date(firsDayOfMonth.currentDate)) ? 
+        (isToday(day) ? Today : DaysOfMonth) :
+        (isFirstDayOfMonth(new Date(day)) ? Today : DaysOfMonth)
+       
+        const choosedDay = new Date(day)
+
+        return (
+          <Days key={idx}>
+            <StyledLink to={`/calendar/day/${formatISO(new Date(choosedDay),
+              { representation: 'date' })}`}>
+              <Wrapper>
+                {isSameMonth(day, currentMonth) && <AllDays>{format(day, 'd')}</AllDays>}
+              </Wrapper>
+            </StyledLink>
+          </Days>
+        );
       })}
     </Calendar>
   );

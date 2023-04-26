@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const List = styled.ul`
@@ -21,50 +22,25 @@ export const ListDays = styled(List)`
 grid-template-rows:74px;
 `;
 
-export const Week = styled.li`
-/* display: flex;
-align-items: center;
-justify-content: center; */
-
-`;
-
-export const Month = styled(Week)`
+export const Month = styled.li`
 display: flex;
 align-items: center;
 justify-content: center;
 
 `;
 
-export const Days = styled(Week)`
+export const Days = styled.li`
 display: flex;
 align-items: center;
 justify-content: center;
 
 flex-direction: column;
-gap: 24px;
-
-/* padding: 14px 0; */
+gap: 16px;
 `;
 
-// const Day = styled.p`
-// font-family: var(--primary-font);
-// font-style: normal;
-// font-weight: 600;
-// font-size: 16px;
-// line-height: 1.12px;
-
-// text-transform: uppercase;
-
-// color: var(--secondary-text-color);
-// text-align: center;
-// `;
-
-export const DayWeek = styled.p`
+const Day = styled.div`
 font-family: var(--primary-font);
 font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 1.12px;
 
 text-transform: uppercase;
 
@@ -72,16 +48,36 @@ color: var(--secondary-text-color);
 text-align: center;
 `;
 
-export const DateWeek = styled.p`
-font-family: var(--primary-font);
-font-style: normal;
+export const DayWeek = styled(Day)`
+
+font-weight: 600;
+font-size: 16px;
+line-height: 1.12px;
+`;
+
+export const StyledLink = styled(Link)`
+text-decoration: none;
+color: inherit;
+`;
+
+export const DateOfWeek = styled(Day)`
+display: flex;
+align-items: center;
+justify-content: center;
+
 font-weight: 700;
 font-size: 12px;
 line-height: 1.17px;
 
-text-transform: uppercase;
+width: 24px;
+height: 24px;
+padding: 4px 6px;
 
-color: var(--secondary-text-color);
-text-align: center;
+border-radius: 6px;
+`;
+
+export const ChoosedDate = styled(DateOfWeek)`
+background-color: var(--accent-background-color);
+color:  var(--primary-background-color);
 `;
 

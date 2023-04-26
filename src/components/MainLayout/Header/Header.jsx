@@ -1,7 +1,6 @@
 import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
 import {
-  AvatarImg,
-  AvatarSvg,
+  HeaderAvatarWrapper,
   HeaderStyled,
   HeaderWrapper,
   MobileMenuSvg,
@@ -9,13 +8,13 @@ import {
   UserName,
 } from './Header.styled';
 import { useSelector } from 'react-redux';
-import { selectUserAvatarURL, selectUserName } from 'redux/auth/auth.selectors';
+import { selectUserName } from 'redux/auth/auth.selectors';
 import { useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
+import { Avatar } from '../../Avatar/Avatar';
 
 export const Header = ({ openMobalMenu }) => {
   const name = useSelector(selectUserName);
-  const avatarUrl = useSelector(selectUserAvatarURL);
 
   const location = useLocation();
   let isActivePage = location.pathname.split('/')[1];
@@ -42,19 +41,14 @@ export const Header = ({ openMobalMenu }) => {
 
         <UserName>{name.split(' ')[0]}</UserName>
 
-        {avatarUrl ? (
-          <button
+        <button
+          type="button"
           //   onClick={openUserSmallInfo}
-          >
-            <AvatarImg src={avatarUrl} alt="user" />
-          </button>
-        ) : (
-          <AvatarSvg
-          //    onClick={openUserSmallInfo}
-          >
-            <use xlinkHref={`${icon}#profile-avatar-f`}></use>
-          </AvatarSvg>
-        )}
+        >
+          <HeaderAvatarWrapper>
+            <Avatar />
+          </HeaderAvatarWrapper>
+        </button>
       </HeaderWrapper>
     </HeaderStyled>
   );

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -43,8 +44,8 @@ export const WrapperButton = styled.div`
   display: flex;
 `;
 
-export const ButtonLeft = styled.button`
-  display: flex;
+const StyledLink = styled(Link)`
+ display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px 12px;
@@ -56,23 +57,18 @@ export const ButtonLeft = styled.button`
 
   background: var(--primary-background-color);
   border:  var(--border-calendar);
-  border-radius: 8px 0px 0px 8px;
-  cursor: pointer;
 `;
-export const ButtonRight = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 12px;
-  gap: 149px;
-  isolation: isolate;
 
-  width: 36px;
-  height: 30px;
+export const ButtonLeft = styled(StyledLink)`
+  border-radius: 8px 0px 0px 8px;
+`;
+export const ButtonRight = styled(StyledLink)`
 
-  background: var(--primary-background-color);
-  border: var(--border-calendar);
-  border-radius: 0px 8px 8px 0px;
-  cursor: pointer;
+  border-radius: 0px 8px 8px 0px; 
+`;
+export const Icon = styled.svg`
+width: 16px;
+height: 16px;
+stroke: #616161;
+fill: transparent;
 `;

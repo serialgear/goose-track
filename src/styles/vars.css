@@ -32,8 +32,8 @@
   --priority-low-bg-color: #ceeefd;
   --priority-medium-bg-сolor: #fcf0d4;
   --priority-high-bg-color: #ffd2dd;
-  --active-button-period-type: #CAE8FF;
-  --button-period-type: #E3F3FF;
+  --active-button-period-type: #cae8ff;
+  --button-period-type: #e3f3ff;
   --close-btn-color: #111111;
 
   /* tasks */
@@ -42,6 +42,10 @@
   --task-priority-high-color: #ea3d65;
   --task-input-bg-color: #f7f7f7;
   --task-btn-cancel-bg-color: #efefef;
+
+  /* avatar */
+  --avatar-fill-color: #d7e3f7;
+  --avatar-background-color: #f8f8f8;
 
   /* scroll */
   --scrollbar-color: #e7e5e5;
