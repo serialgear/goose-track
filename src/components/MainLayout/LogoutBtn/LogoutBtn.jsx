@@ -11,6 +11,8 @@ export const LogoutBtn = () => {
     <STC.Btn
       onClick={() => {
         dispatch(authLogout());
+        const body = document.querySelector('body');
+        body.classList.remove('dark-theme');
       }}
     >
       <STC.Txt>Log out</STC.Txt>

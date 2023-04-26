@@ -1,5 +1,5 @@
 import { AvatarImg, AvatarSvg } from './Avatar.styles';
-import icon from '../../../images/sprite.svg';
+import icon from '../../images/sprite.svg';
 import { useSelector } from 'react-redux';
 import { selectUserAvatarURL, selectUserName } from 'redux/auth/auth.selectors';
 

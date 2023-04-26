@@ -7,7 +7,8 @@ import {
   signupUser,
   authLogin,
   authLogout,
-  refreshUser, userForm,
+  refreshUser,
+  userForm,
 } from './auth.operations';
 
 const authInitState = {
@@ -42,11 +43,7 @@ const authSlice = createSlice({
       .addCase(authLogout.pending, state => {
         state.isLoading = true;
       })
-      .addCase(authLogout.fulfilled, state => {
-        state.isLoading = false;
-        state.token = null;
-        state.isLoggedIn = false;
-      })
+      .addCase(authLogout.fulfilled, () => authInitState)
       .addCase(authLogout.rejected, (state, { payload }) => {
         state.isLoading = false;
       })
@@ -64,11 +61,10 @@ const authSlice = createSlice({
         state.error = null;
         state.user = payload.user;
         state.token = payload.token;
-    })
+      })
       .addCase(userForm.rejected, (state, { payload }) => {
         state.error = payload;
-      })
-
+      });
   },
 });
 
