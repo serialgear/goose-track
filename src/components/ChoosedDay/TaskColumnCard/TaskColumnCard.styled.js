@@ -1,10 +1,13 @@
-import styled from "styled-components";
+import { TASK_PRIORITY } from 'constants/taskPriority.constants';
+import styled from 'styled-components';
 
 export const Container = styled.div`
-  display  : flex;
+  display: flex;
   flex-direction: column;
   gap: 28px;
   padding: 15px;
+
+  max-width: 300px;
 
   background-color: var(--secondary-background-color);
   border: var(--border);
@@ -12,24 +15,47 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  display  : flex;
+  display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px;
 `;
 
-export const TaskTitle = styled.h3`
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 18px;
-/* or 129% */
-
-
-color: #111111;
+export const TaskTitle = styled.h4`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
 `;
 
 export const TaskAvatarWrapper = styled.div`
   width: 32px;
   height: 32px;
+`;
+
+export const TaskPriority = styled.p`
+  padding: 4px 12px;
+  background: var(
+    ${props => {
+      if (props.priority === TASK_PRIORITY.medium) {
+        return '--task-priority-medium-color';
+      }
+      if (props.priority === TASK_PRIORITY.high) {
+        return '--task-priority-high-color';
+      }
+      return '--task-priority-low-color';
+    }}
+  );
+  border-radius: 4px;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  /* identical to box height, or 120% */
+
+  text-align: center;
+
+  color: var(--btn-text-color);
 
   /* fill-opacity: 0.18; */
   /* overflow: hidden; */
