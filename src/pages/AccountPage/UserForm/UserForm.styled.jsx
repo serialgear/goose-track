@@ -23,16 +23,18 @@ export const Form = styled.form`
     margin-bottom: 35px;
   }
 
-  @media (min-width: 1024px) {
-    max-width: 1024px;
+  @media (min-width: 1440px) {
+    max-width: 1087px;
    //max-height: 752px;
     position: relative;
-
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 32px;
   }
 `;
 
 export const FlexInput = styled.div`
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     display: flex;
     flex-wrap: wrap;
     width: 758px;
@@ -47,7 +49,7 @@ export const FlexChild = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     display: flex;
     flex-wrap: wrap;
     width: 354px;
@@ -94,7 +96,7 @@ export const Input = styled.input`
 `;
 
 export const AvatarBlock = styled.div`
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -138,7 +140,7 @@ export const LabelAva = styled.label`
     margin: 40px auto 0 auto;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     width: 124px;
     height: 130px;
     margin-top: 60px;
@@ -162,9 +164,9 @@ export const ButtonPlus = styled.button`
     right: 317px;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     top: 172px;
-    right: 478px;
+    right: 505px;
   }
 
   & span {
@@ -200,7 +202,7 @@ export const Button = styled.button`
     margin-bottom: 40px;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     margin: 64px auto 60px auto;
   }
 `;
@@ -231,7 +233,7 @@ export const TextAvatar = styled.p`
     margin: 8px 0 40px 0;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     margin-bottom: 44px;
   }
 `;
