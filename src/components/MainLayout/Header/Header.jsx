@@ -34,13 +34,12 @@ export const Header = ({ openMobalMenu }) => {
        && <img src={gooseToDo} alt='Goose'/>} */}
       {<PageName>{isActivePage}</PageName>}
       {/* </div> */}
-      
+
       {/* {false 
       // toDoTask
       && <p><span>Let go</span> of the past and focus on the present!</p>
       }
       </div> */}
-      
 
       <MobileMenuSvg
         onClick={() => openMobalMenu(true)}
@@ -54,17 +53,11 @@ export const Header = ({ openMobalMenu }) => {
 
         <UserName>{name.split(' ')[0]}</UserName>
 
-       <Link to='/account'>
-       <button
-          type="button"
-          //   onClick={openUserSmallInfo}
-        >
+        <Link to="/account">
           <HeaderAvatarWrapper>
             <Avatar />
           </HeaderAvatarWrapper>
-        </button>
-       </Link>
-        
+        </Link>
       </HeaderWrapper>
     </HeaderStyled>
   );
