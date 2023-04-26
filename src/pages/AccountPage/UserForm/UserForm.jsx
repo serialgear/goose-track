@@ -11,7 +11,7 @@ import {
   LabelAva,
   TitleAvatar,
   TextAvatar,
-  DefaultSvg, FlexInput, AvatarBlock, FlexChield,
+  DefaultSvg, FlexInput, AvatarBlock, FlexChild,
 } from './UserForm.styled';
 import { format } from 'date-fns';
 import defaultAvatar from '../../../images/sprite.svg';
@@ -59,7 +59,7 @@ export const UserForm = () => {
           email: values.email,
           phone: values.phone,
           telegram: values.telegram,
-        })
+        }),
       );
 
       alert(JSON.stringify(values, null, 2));
@@ -101,11 +101,11 @@ export const UserForm = () => {
     <Form onSubmit={formik.handleSubmit}>
       <AvatarBlock>
         {image ? (
-          <LabelAva htmlFor="avatarURL">
-            <LabelImg alt="Мое изображение" src={image} width="48" height="48" />
+          <LabelAva htmlFor='avatarURL'>
+            <LabelImg alt='Мое изображение' src={image} width='48' height='48' />
           </LabelAva>
         ) : (
-          <LabelAva htmlFor="avatarURL">
+          <LabelAva htmlFor='avatarURL'>
             <DefaultSvg>
               <use xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`} />
             </DefaultSvg>
@@ -114,9 +114,9 @@ export const UserForm = () => {
 
         <InputAva
           ref={filePicker}
-          type="file"
-          id="avatarURL"
-          name="avatarURL"
+          type='file'
+          id='avatarURL'
+          name='avatarURL'
           onChange={handleFileInputChange}
         />
         <ButtonPlus onClick={handlePick}>
@@ -126,75 +126,75 @@ export const UserForm = () => {
         <TextAvatar>User</TextAvatar>
       </AvatarBlock>
 
-<FlexInput>
-  <FlexChield>
-    <Label htmlFor="name">User Name</Label>
-    <Input
-      id="name"
-      name="name"
-      type="text"
-      placeholder="name"
-      onChange={formik.handleChange}
-      value={formik.values.name}
-    />
-  </FlexChield>
-  <FlexChield>
-    <Label htmlFor="birthday">Birthday</Label>
-    <Input
-      id="birthday"
-      name="birthday"
-      type="date"
-      onChange={formik.handleChange}
-      value={formik.values.birthday === '' || !formik.values.birthday
-        ? ''
-        : formik.values.birthday}
-    />
-  </FlexChield>
-  <FlexChield>
-    <Label htmlFor="email">Email Address</Label>
-    <Input
-      id="email"
-      name="email"
-      type="email"
-      placeholder="email"
-      onChange={formik.handleChange}
-      value={formik.values.email}
-    />
-  </FlexChield>
-  <FlexChield>
-    <Label htmlFor="phone">Phone</Label>
-    <Input
-      id="phone"
-      name="phone"
-      type="phone"
-      onChange={formik.handleChange}
-      placeholder="phone number"
-      value={
-        formik.values.phone === '' || !formik.values.phone
-          ? ''
-          : formik.values.phone
-      }
-    />
-  </FlexChield>
- <FlexChield>
-   <Label htmlFor="telegram">Telegram</Label>
-   <Input
-     id="telegram"
-     name="telegram"
-     type="telegram"
-     onChange={formik.handleChange}
-     placeholder="telegram"
-     value={
-       formik.values.telegram === '' || !formik.values.telegram
-         ? ''
-         : formik.values.telegram
-     }
-   />
- </FlexChield>
+      <FlexInput>
+        <FlexChild>
+          <Label htmlFor='name'>User Name</Label>
+          <Input
+            id='name'
+            name='name'
+            type='text'
+            placeholder='name'
+            onChange={formik.handleChange}
+            value={formik.values.name}
+          />
+        </FlexChild>
+        <FlexChild>
+          <Label htmlFor='birthday'>Birthday</Label>
+          <Input
+            id='birthday'
+            name='birthday'
+            type='date'
+            onChange={formik.handleChange}
+            value={formik.values.birthday === '' || !formik.values.birthday
+              ? ''
+              : formik.values.birthday}
+          />
+        </FlexChild>
+        <FlexChild>
+          <Label htmlFor='email'>Email Address</Label>
+          <Input
+            id='email'
+            name='email'
+            type='email'
+            placeholder='email'
+            onChange={formik.handleChange}
+            value={formik.values.email}
+          />
+        </FlexChild>
+        <FlexChild>
+          <Label htmlFor='phone'>Phone</Label>
+          <Input
+            id='phone'
+            name='phone'
+            type='phone'
+            onChange={formik.handleChange}
+            placeholder='phone number'
+            value={
+              formik.values.phone === '' || !formik.values.phone
+                ? ''
+                : formik.values.phone
+            }
+          />
+        </FlexChild>
+        <FlexChild>
+          <Label htmlFor='telegram'>Telegram</Label>
+          <Input
+            id='telegram'
+            name='telegram'
+            type='telegram'
+            onChange={formik.handleChange}
+            placeholder='telegram'
+            value={
+              formik.values.telegram === '' || !formik.values.telegram
+                ? ''
+                : formik.values.telegram
+            }
+          />
+        </FlexChild>
 
-</FlexInput>
+      </FlexInput>
 
-      <Button onSubmit={handleUpload} type="submit">
+      <Button onSubmit={handleUpload} type='submit'>
         Save changes
       </Button>
     </Form>
