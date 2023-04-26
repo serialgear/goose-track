@@ -10,13 +10,18 @@ export const Container = styled.div`
   width: 225px;
   height: 100vh;
   z-index: 2;
+
   @media (min-width: 768px) {
     width: 289px;
   }
   @media (max-width: 1279px) {
-    display: none;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform var(--animation);
+
     &.openMobalMenu {
       display: block;
+      transform: translateX(0%);
     }
   }
 `;
@@ -42,9 +47,13 @@ export const CloseBtn = styled.button`
   }
 `;
 export const CloseBtnSvg = styled.svg`
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
+  width: 24px;
+  height: 24px;
+
+  stroke: currentColor;
+  fill: transparent;
+
+  cursor: pointer;
 `;
 
 export const Logo = styled(Link)`

@@ -25,7 +25,6 @@ export const HeaderWrapper = styled.div`
   gap: 16px;
 `;
 
-
 export const PageName = styled.h2`
   display: none;
   @media (min-width: 1280px) {
@@ -53,15 +52,17 @@ export const MobileMenuSvg = styled.svg`
   width: 24px;
   height: 24px;
   stroke: var(--calendar-digit-color);
-  
+
   display: flex;
+
+  cursor: pointer;
   @media (min-width: 768px) {
     width: 34px;
     height: 34px;
   }
   @media (min-width: 1280px) {
     display: none;
-  }  
+  }
 `;
 
 export const HeaderAvatarWrapper = styled.div`
@@ -72,5 +73,3 @@ export const HeaderAvatarWrapper = styled.div`
     height: 44px;
   }
 `;
-
-
