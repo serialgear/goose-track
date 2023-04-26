@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { selectUserName } from 'redux/auth/auth.selectors';
 import { useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
-import { Avatar } from '../Avatar/Avatar';
+import { Avatar } from '../../Avatar/Avatar';
 
 export const Header = ({ openMobalMenu }) => {
   const name = useSelector(selectUserName);
