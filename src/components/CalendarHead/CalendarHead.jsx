@@ -3,12 +3,14 @@ import {
   format,
   eachDayOfInterval,
   endOfISOWeek,
+  isSameDay,
+  formatISO,
 } from 'date-fns';
-import { ListMonth,  DateWeek, DayWeek, Days, Month, ListDays } from './CalendarHead.styled';
+import { ListMonth,  DateOfWeek, ChoosedDate, DayWeek, Days, Month, ListDays, StyledLink } from './CalendarHead.styled';
+
 
 
 export const CalendarHead = ({ currentDay }) => {
-
   let daysInWeek;
 
   if (currentDay) {
@@ -29,10 +31,15 @@ export const CalendarHead = ({ currentDay }) => {
        <List>
       {daysInWeek?.map((day, idx) => {
         const Week = currentDay ? Days : Month
+        const DateWeek = isSameDay(new Date(currentDay), new Date(day)) ? ChoosedDate : DateOfWeek
+        const choosedDay = new Date(day).toISOString()
         return <Week key={idx}>
-        {!currentDay && <DayWeek>{format(day, 'EEEEE')}</DayWeek>}
-        {currentDay && <DayWeek>{format(day, 'EEEEE')}</DayWeek>}
-        {currentDay && <DateWeek>{format(day, 'd')}</DateWeek>}
+        <DayWeek>{format(day, 'EEEEE')}</DayWeek>
+        
+        {currentDay && <StyledLink to={`/calendar/day/${formatISO(new Date(choosedDay),
+     { representation: 'date' })}`}>
+          <DateWeek>{format(day, 'd')}</DateWeek>
+          </StyledLink>}
       </Week>
       } 
       )}
