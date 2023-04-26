@@ -5,9 +5,11 @@ import Icons from '../../../images/sprite.svg';
 import { useSelector } from 'react-redux';
 import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
 import { formatISO } from 'date-fns';
+import { useLocation } from 'react-router-dom';
 
 export const UserNav = ({ closeMobalMenu }) => {
   const currentDate = useSelector(selectCurrentMonth);
+  const inActive = useLocation().pathname.split('/')[1];
 
   const handleCloseMobalMenu = () => {
     closeMobalMenu(false);
@@ -17,7 +19,7 @@ export const UserNav = ({ closeMobalMenu }) => {
     <>
       <nav>
         <STC.Title>User Panel</STC.Title>
-        <STC.List>
+        <ul>
           <STC.Item>
             <STC.Link to="/account" onClick={handleCloseMobalMenu}>
               <STC.Icon>
@@ -28,6 +30,7 @@ export const UserNav = ({ closeMobalMenu }) => {
           </STC.Item>
           <STC.Item>
             <STC.Link
+              className={inActive === 'calendar' && 'active'}
               to={`/calendar/month/${formatISO(new Date(currentDate), {
                 representation: 'date',
               })}`}
@@ -39,7 +42,7 @@ export const UserNav = ({ closeMobalMenu }) => {
               <STC.Txt>Calendar</STC.Txt>
             </STC.Link>
           </STC.Item>
-        </STC.List>
+        </ul>
       </nav>
     </>
   );

@@ -1,4 +1,4 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { LogoutBtn } from '../LogoutBtn/LogoutBtn';
@@ -9,15 +9,15 @@ import LogoGoose from '../../../images/GOOSE.png';
 import Icons from '../../../images/sprite.svg';
 
 export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
-  // useEffect(() => {
-  //   const close = e => {
-  //     if (isMobalMenuOpen && e.keyCode === 27) {
-  //       handleCloseMobalMenu();
-  //     }
-  //   };
-  //   window.addEventListener('keydown', close);
-  //   return () => window.removeEventListener('keydown', close);
-  // }, [isMobalMenuOpen]);
+  useEffect(() => {
+    const close = e => {
+      if (e.keyCode === 27) {
+        closeMobalMenu(false);
+      }
+    };
+    isMobalMenuOpen && window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [isMobalMenuOpen, closeMobalMenu]);
 
   const handleCloseMobalMenu = () => {
     closeMobalMenu(false);
@@ -33,7 +33,7 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
           </STC.Logo>
           <STC.CloseBtn onClick={handleCloseMobalMenu}>
             <STC.CloseBtnSvg>
-              <use xlinkHref={`${Icons}#icon-close`} />
+              <use xlinkHref={`${Icons}#calendar-close-sf`} />
             </STC.CloseBtnSvg>
           </STC.CloseBtn>
         </STC.Box>

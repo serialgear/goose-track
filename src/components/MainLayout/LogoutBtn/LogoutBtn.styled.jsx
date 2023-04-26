@@ -12,15 +12,21 @@ export const Btn = styled.button`
 
   color: var(--btn-text-color);
   background: var(--accent-background-color);
-  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
+  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.3);
   border-radius: 16px;
   border: none;
+  &:hover,
+  :focus {
+    box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
+  }
 
   @media (min-width: 768px) {
     padding: 16px 23px;
   }
 `;
 export const Txt = styled.span`
+  padding-right: 6px;
+
   font-family: var(--primary-font);
   font-weight: 600;
   font-size: 14px;
@@ -35,7 +41,8 @@ export const Svg = styled.svg`
   width: 18px;
   height: 18px;
 
-  fill: currentColor;
+  stroke: currentColor;
+  fill: transparent;
 
   @media (min-width: 768px) {
     width: 20px;
