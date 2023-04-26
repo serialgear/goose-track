@@ -44,10 +44,12 @@ export const Link = styled(NavLink)`
 
   color: var(--not-active-item-sidebar-text-color);
 
+  transition: background-color var(--animation);
+
   &:hover,
   :focus {
     background-color: var(--secondary-background-color);
-    border: var(--border-calendar-period-type);
+    /* border: var(--border-calendar-period-type); */
   }
   @media (min-width: 768px) {
     padding: 16px 20px;

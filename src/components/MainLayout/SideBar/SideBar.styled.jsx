@@ -17,10 +17,10 @@ export const Container = styled.div`
   @media (max-width: 1279px) {
     left: 0;
     transform: translateX(-100%);
+    transition: transform var(--animation);
 
     &.openMobalMenu {
       display: block;
-      transition: transform 0.2s;
       transform: translateX(0%);
     }
   }
@@ -52,6 +52,8 @@ export const CloseBtnSvg = styled.svg`
 
   stroke: currentColor;
   fill: transparent;
+
+  cursor: pointer;
 `;
 
 export const Logo = styled(Link)`

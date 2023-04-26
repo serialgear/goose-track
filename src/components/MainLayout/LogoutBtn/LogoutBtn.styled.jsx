@@ -15,6 +15,9 @@ export const Btn = styled.button`
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.3);
   border-radius: 16px;
   border: none;
+
+  transition: box-shadow var(--animation);
+
   &:hover,
   :focus {
     box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
