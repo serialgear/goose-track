@@ -182,7 +182,7 @@ export const Button = styled.button`
   display: block;
   width: 100%;
   max-width: 195px;
-  max-height: 46px;
+
   background: var(--accent-background-color);
   border-radius: 16px;
   color: var(--btn-text-color);
