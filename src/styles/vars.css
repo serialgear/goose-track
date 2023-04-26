@@ -17,6 +17,7 @@
   --border-calendar: 1px solid rgba(220, 227, 229, 0.5);
   --border-calendar-period-type: 1px solid rgba(62, 133, 243, 0.2);
   --border-auth: 1px solid rgba(220, 227, 229, 0.6);
+  --border-AddTaskBtn: 1px dashed #3E85F3;
 
   /* text-color */
   --primary-text-color: #111111;

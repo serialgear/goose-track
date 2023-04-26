@@ -11,7 +11,7 @@ import { getTasksOfMonth } from "redux/calendar/calendar.operations";
  const dispatch = useDispatch();
 
   useEffect(()=> {
-dispatch(getTasksOfMonth())
+
   }, [dispatch])
   
   return (

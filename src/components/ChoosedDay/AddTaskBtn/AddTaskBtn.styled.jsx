@@ -12,8 +12,8 @@ isolation: isolate;
 width: 100%;
 height: 48px;
 
-background: #E3F3FF;
-border: 1px dashed #3E85F3;
+background: var(--active-item-sidebar-background);
+border: var(--border-AddTaskBtn);
 border-radius: 8px;
 `;
  export const AddTask = styled.span`

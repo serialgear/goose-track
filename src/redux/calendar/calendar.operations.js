@@ -3,9 +3,9 @@ import axios from "axios";
 
 axios.defaults.baseURL = 'https://goose-track-api-3uhn.onrender.com/api';
 
-export const getTasksOfMonth = createAsyncThunk('month/tasks', async (_, thunkAPI) => {
+export const getTasksOfMonth = createAsyncThunk('month/tasks', async ( date, thunkAPI) => {
     try {
-        const data = await axios.get('tasksRouters')
+        const {data} = await axios.get('/tasks', date)
         console.log(data)
         return data
     } catch (error) {
