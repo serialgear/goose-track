@@ -66,14 +66,7 @@ export const UserForm = () => {
 
   return (
     <Formik
-      initialValues={{
-        avatar: avatar,
-        name: name,
-        birthday: formattedDate,
-        email: email,
-        phone: phone,
-        telegram: telegram,
-      }}
+      initialValues={{avatar, name, birthday:formattedDate , email, phone, telegram}}
       validationSchema={Yup.object({
         name: Yup.string()
           .max(16, 'Максимальная длина имени пользователя - 16 символов')
