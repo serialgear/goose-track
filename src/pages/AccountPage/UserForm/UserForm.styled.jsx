@@ -25,7 +25,7 @@ export const Form = styled.form`
 
   @media (min-width: 1440px) {
     max-width: 1087px;
-   //max-height: 752px;
+    //max-height: 752px;
     position: relative;
     margin-left: 32px;
     margin-right: 32px;
@@ -34,6 +34,13 @@ export const Form = styled.form`
 `;
 
 export const FlexInput = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+  @media (min-width: 768px) {
+    gap: 24px;
+  }
   @media (min-width: 1440px) {
     display: flex;
     flex-wrap: wrap;
@@ -62,7 +69,7 @@ export const Label = styled.label`
   line-height: 1.2;
   display: inline-block;
   margin: 0 0 8px 0;
-  padding: 0;
+  padding: 0 2px;
 `;
 
 export const Input = styled.input`
@@ -70,7 +77,7 @@ export const Input = styled.input`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.3;
-  margin-bottom: 18px;
+  // margin-bottom: 18px;
   border: 1px solid rgba(17, 17, 17, 0.1);
   border-radius: 8px;
   width: 299px;
@@ -82,7 +89,7 @@ export const Input = styled.input`
     width: 354px;
     height: 46px;
     padding-left: 18px;
-    margin-bottom: 24px;
+    // margin-bottom: 24px;
   }
 
   &:hover,
@@ -170,17 +177,21 @@ export const ButtonPlus = styled.button`
   }
 
   & span {
-    position: relative;
+    // position: relative;
     vertical-align: middle;
     line-height: 0.5;
-    bottom: 3px;
+    // bottom: 3px;
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) 
   }
 `;
 
 
 export const Button = styled.button`
   font-family: 'Inter', sans-serif;
-  margin: 22px auto 31px auto;
+  margin: 40px auto;
   display: block;
   width: 100%;
   max-width: 195px;
@@ -196,14 +207,14 @@ export const Button = styled.button`
 
   @media (min-width: 768px) {
     padding: 15px;
-    margin-top: 16px;
+    // margin-top: 16px;
     max-width: 262px;
     max-height: 48px;
-    margin-bottom: 40px;
+    // margin-bottom: 40px;
   }
 
   @media (min-width: 1440px) {
-    margin: 64px auto 60px auto;
+    margin: 88px auto 60px auto;
   }
 `;
 
