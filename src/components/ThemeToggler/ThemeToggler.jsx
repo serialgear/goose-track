@@ -27,7 +27,7 @@ export const ThemeToggler = () => {
       <STC.Svg>
         <use
           xlinkHref={`${themeTogglerIcon}#${
-            currentTheme === 'light' ? 'profile-sun-f' : 'profile-moon-f'
+            currentTheme === 'light' ? 'profile-moon-f' : 'profile-sun-f'
           }`}
         />
       </STC.Svg>
