@@ -17,7 +17,7 @@
   --border-calendar: 1px solid rgba(220, 227, 229, 0.5);
   --border-calendar-period-type: 1px solid rgba(62, 133, 243, 0.2);
   --border-auth: 1px solid rgba(220, 227, 229, 0.6);
-  --border-AddTaskBtn: 1px dashed #3E85F3;
+  --border-AddTaskBtn: 1px dashed #3e85f3;
 
   /* text-color */
   --primary-text-color: #111111;
@@ -36,6 +36,8 @@
   --active-button-period-type: #cae8ff;
   --button-period-type: #e3f3ff;
   --close-btn-color: #111111;
+  --modal-border-color: rgba(220, 227, 229, 0.8);
+  --modal-shadow-color: rgba(17, 17, 17, 0.4);
 
   /* tasks */
   --task-priority-low-color: #72c2f8;
@@ -75,4 +77,9 @@
   /* scroll */
   --scrollbar-color: #171820;
   --scrollbar-bg-color: #2d3037;
+
+  /* calendar */
+  --close-btn-color: #ffffff;
+  --modal-border-color: #21222c;
+  --modal-shadow-color: rgba(62, 133, 243, 0.4);
 }
