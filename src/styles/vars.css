@@ -27,6 +27,7 @@
   --btn-text-color: #ffffff;
   --not-active-item-sidebar-text-color: #84828a;
   --auth-placeholder-color: #dce3e5;
+  --accent-span-text-color: #3e85f3;
 
   /* calendar */
   --calendar-digit-color: #343434;
@@ -62,6 +63,7 @@
   --secondary-background-color: #171820;
   --primary-background-color: #21222c;
   --sidebar-background-color: #13151a;
+  
 
   --border: 1px solid rgba(255, 255, 255, 0.15);
 
@@ -70,6 +72,7 @@
   --accent-text-color: #ffffff;
   --not-active-item-sidebar-text-color: #ffffff;
   --active-item-sidebar-background: #3e85f3;
+  --accent-span-text-color: #3e85f3;
 
   --calendar-digit-color: #ffffff;
   --task-input-bg-color: rgba(255, 255, 255, 0);
@@ -78,6 +81,9 @@
   --scrollbar-color: #171820;
   --scrollbar-bg-color: #2d3037;
 
+  /* avatar */
+  --avatar-fill-color: #d7e3f7;  
+  --avatar-background-color: #171820;
   /* calendar */
   --close-btn-color: #ffffff;
   --modal-border-color: #21222c;

@@ -4,7 +4,11 @@ import {
   HeaderStyled,
   HeaderWrapper,
   MobileMenuSvg,
+  Overlay,
   PageName,
+  PageNameWraper,
+  SpanStyled,
+  Text,
   UserName,
 } from './Header.styled';
 import { useSelector } from 'react-redux';
@@ -12,7 +16,7 @@ import { selectUserName } from 'redux/auth/auth.selectors';
 import { Link, useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
 import { Avatar } from '../../Avatar/Avatar';
-// import gooseToDo from "../../../images/Goose-toDo-task.png"
+import gooseToDo from '../../../images/Goose-toDo-task.png';
 
 export const Header = ({ openMobalMenu }) => {
   const name = useSelector(selectUserName);
@@ -28,18 +32,24 @@ export const Header = ({ openMobalMenu }) => {
 
   return (
     <HeaderStyled>
-      {/* <div>
-        <div>{false
-      // toDoTask
-       && <img src={gooseToDo} alt='Goose'/>} */}
-      {<PageName>{isActivePage}</PageName>}
-      {/* </div> */}
+      <Overlay>
+        <PageNameWraper>
+          {true && (
+            // toDoTask
+            <img src={gooseToDo} alt="Goose" />
+          )}
 
-      {/* {false 
-      // toDoTask
-      && <p><span>Let go</span> of the past and focus on the present!</p>
-      }
-      </div> */}
+          <div>
+            {<PageName>{isActivePage}</PageName>}
+            {true && (
+              // toDoTask
+              <Text>
+                <SpanStyled>Let go</SpanStyled> of the past and focus on the present!
+              </Text>
+            )}
+          </div>
+        </PageNameWraper>
+      </Overlay>
 
       <MobileMenuSvg
         onClick={() => openMobalMenu(true)}
