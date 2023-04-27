@@ -11,7 +11,10 @@ import {
   LabelAva,
   TitleAvatar,
   TextAvatar,
-  DefaultSvg, FlexInput, AvatarBlock, FlexChild,
+  DefaultSvg,
+  FlexInput,
+  AvatarBlock,
+  FlexChild,
 } from './UserForm.styled';
 import { format } from 'date-fns';
 import defaultAvatar from '../../../images/sprite.svg';
@@ -28,8 +31,6 @@ import {
 import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
-
-
 export const UserForm = () => {
   const [image, setImage] = useState(null);
   const filePicker = useRef(null);
@@ -44,7 +45,6 @@ export const UserForm = () => {
 
   const formattedDate = format(new Date(birthday), 'yyyy-MM-dd');
 
-
   const handleFileInputChange = event => {
     const file = event.target.files[0];
     const imageUrl = URL.createObjectURL(file);
@@ -56,29 +56,41 @@ export const UserForm = () => {
       alert('Please select a file');
       return true;
     }
-
   };
 
   const handlePick = () => {
     filePicker.current.click();
   };
 
-
   return (
     <Formik
-      initialValues={{avatar, name, birthday:formattedDate , email, phone, telegram}}
+      initialValues={{
+        avatar,
+        name,
+        birthday: formattedDate,
+        email,
+        phone,
+        telegram,
+      }}
       validationSchema={Yup.object({
         name: Yup.string()
           .max(16, 'Максимальная длина имени пользователя - 16 символов')
           .required('Имя пользователя обязательно'),
-        email: Yup.string().email('Неверный формат электронной почты').required('Электронная почта обязательна'),
+        email: Yup.string()
+          .email('Неверный формат электронной почты')
+          .required('Электронная почта обязательна'),
         birthday: Yup.date().required('Дата рождения обязательна').nullable(),
         phone: Yup.string()
-          .matches(/^\+380\d{9}$/, 'Номер телефона должен быть в формате +380XXXXXXXXX')
+          .matches(
+            /^\+380\d{9}$/,
+            'Номер телефона должен быть в формате +380XXXXXXXXX'
+          )
           .required('Номер телефона обязателен'),
-        telegram: Yup.string().max(16, 'Максимальная длина telegram - 16 символов'),
+        telegram: Yup.string().max(
+          16,
+          'Максимальная длина telegram - 16 символов'
+        ),
       })}
-
       onSubmit={async (values, { setSubmitting }) => {
         await dispatch(
           userForm({
@@ -87,7 +99,7 @@ export const UserForm = () => {
             email: values.email,
             phone: values.phone,
             telegram: values.telegram,
-          }),
+          })
         ).unwrap();
         setSubmitting(false);
       }}
@@ -96,22 +108,36 @@ export const UserForm = () => {
         <Form onSubmit={formik.handleSubmit}>
           <AvatarBlock>
             {image ? (
-              <LabelAva htmlFor='avatar'>
-                <LabelImg alt='Мое изображение' src={image} width='48' height='48' />
+              <LabelAva htmlFor="avatar">
+                <LabelImg
+                  alt="Мое изображение"
+                  src={image}
+                  width="48"
+                  height="48"
+                />
               </LabelAva>
             ) : (
-              <LabelAva htmlFor='avatar'>
-                <DefaultSvg>
-                  <use xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`} />
-                </DefaultSvg>
+              <LabelAva htmlFor="avatar">
+                {avatar ? (
+                  <LabelImg
+                    alt="Мое изображение"
+                    src={avatar}
+                    width="48"
+                    height="48"
+                  />
+                ) : (
+                  <DefaultSvg>
+                    <use xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`} />
+                  </DefaultSvg>
+                )}
               </LabelAva>
             )}
 
             <InputAva
               ref={filePicker}
-              type='file'
-              id='avatar'
-              name='avatar'
+              type="file"
+              id="avatar"
+              name="avatar"
               onChange={handleFileInputChange}
             />
             {/*{formik.touched.avatar && formik.errors.avatar ? (*/}
@@ -126,12 +152,12 @@ export const UserForm = () => {
 
           <FlexInput>
             <FlexChild>
-              <Label htmlFor='name'>User Name</Label>
+              <Label htmlFor="name">User Name</Label>
               <Input
-                id='name'
-                name='name'
-                type='text'
-                placeholder='name'
+                id="name"
+                name="name"
+                type="text"
+                placeholder="name"
                 onChange={formik.handleChange}
                 value={formik.values.name}
                 {...formik.getFieldProps('name')}
@@ -141,15 +167,17 @@ export const UserForm = () => {
               ) : null}
             </FlexChild>
             <FlexChild>
-              <Label htmlFor='birthday'>Birthday</Label>
+              <Label htmlFor="birthday">Birthday</Label>
               <Input
-                id='birthday'
-                name='birthday'
-                type='date'
+                id="birthday"
+                name="birthday"
+                type="date"
                 onChange={formik.handleChange}
-                value={formik.values.birthday === '' || !formik.values.birthday
-                  ? ''
-                  : formik.values.birthday}
+                value={
+                  formik.values.birthday === '' || !formik.values.birthday
+                    ? ''
+                    : formik.values.birthday
+                }
                 {...formik.getFieldProps('birthday')}
               />
               {formik.touched.birthday && formik.errors.birthday ? (
@@ -157,12 +185,12 @@ export const UserForm = () => {
               ) : null}
             </FlexChild>
             <FlexChild>
-              <Label htmlFor='email'>Email Address</Label>
+              <Label htmlFor="email">Email Address</Label>
               <Input
-                id='email'
-                name='email'
-                type='email'
-                placeholder='email'
+                id="email"
+                name="email"
+                type="email"
+                placeholder="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
                 {...formik.getFieldProps('email')}
@@ -172,13 +200,13 @@ export const UserForm = () => {
               ) : null}
             </FlexChild>
             <FlexChild>
-              <Label htmlFor='phone'>Phone</Label>
+              <Label htmlFor="phone">Phone</Label>
               <Input
-                id='phone'
-                name='phone'
-                type='phone'
+                id="phone"
+                name="phone"
+                type="phone"
                 onChange={formik.handleChange}
-                placeholder='phone number'
+                placeholder="phone number"
                 value={
                   formik.values.phone === '' || !formik.values.phone
                     ? ''
@@ -191,13 +219,13 @@ export const UserForm = () => {
               ) : null}
             </FlexChild>
             <FlexChild>
-              <Label htmlFor='telegram'>Telegram</Label>
+              <Label htmlFor="telegram">Telegram</Label>
               <Input
-                id='telegram'
-                name='telegram'
-                type='telegram'
+                id="telegram"
+                name="telegram"
+                type="telegram"
                 onChange={formik.handleChange}
-                placeholder='telegram'
+                placeholder="telegram"
                 value={
                   formik.values.telegram === '' || !formik.values.telegram
                     ? ''
@@ -209,10 +237,13 @@ export const UserForm = () => {
                 <div>{formik.errors.telegram}</div>
               ) : null}
             </FlexChild>
-
           </FlexInput>
 
-          <Button onSubmit={handleUpload} type='submit' disabled={formik.isSubmitting}>
+          <Button
+            onSubmit={handleUpload}
+            type="submit"
+            disabled={formik.isSubmitting}
+          >
             Save changes
           </Button>
         </Form>
