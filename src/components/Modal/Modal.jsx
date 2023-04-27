@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { CloseBtn, ModalContainer, Overlay } from './Modal.styled';
+import Icons from '../../images/sprite.svg';
 
 export const Modal = ({ children, onClose }) => {
   const memoKeyClose = useCallback(handleKeyClose, [handleKeyClose]);
@@ -36,7 +37,7 @@ export const Modal = ({ children, onClose }) => {
     <Overlay onClick={handleClose}>
       <ModalContainer>
         <CloseBtn onClick={handleCloseBtn}>
-          <use href="../../images/sprite.svg#calendar-close-sf"></use>
+          <use xlinkHref={`${Icons}#calendar-close-sf`} />
         </CloseBtn>
         {children}
       </ModalContainer>
