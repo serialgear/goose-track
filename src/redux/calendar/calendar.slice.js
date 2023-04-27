@@ -7,7 +7,7 @@ const calendarInitState = {
   currentMonth: new Date().toISOString(),
   choosedDay: null,
   tasks: [],
-  indexCurrentDay: [],
+  indexCurrentDay: null,
   isLoggedIn: false,
   error: null
 };
@@ -28,7 +28,7 @@ const calendarSlice = createSlice({
     builder
     .addCase(getTasksOfMonth.pending, (state) => state)
     .addCase(getTasksOfMonth.fulfilled, (state, {payload}) => {
-      state.tasks.push(payload)
+      state.tasks = [...payload]
       state.error = null
     })
     .addCase(getTasksOfMonth.rejected, (state, {payload})=> {

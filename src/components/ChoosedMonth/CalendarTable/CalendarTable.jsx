@@ -22,13 +22,48 @@ import {
   isThisMonth,
   isFirstDayOfMonth,
 } from 'date-fns';
-import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
+import {
+  selectCurrentMonth,
+  selectTasks,
+} from 'redux/calendar/calendar.selectors';
 import { useParams } from 'react-router-dom';
+import { CalendarTableItem } from './CalendarTableItem';
 
 export const CalendarTable = () => {
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
-  const firsDayOfMonth = useParams()
-  
+  const firsDayOfMonth = useParams();
+  const tasksOfMonth = useSelector(selectTasks);
+
+  const tasksOfDay = tasksOfMonth.flatMap(tasks => {
+    return tasks;
+  });
+  console.log(tasksOfDay); //і це масив потрібних мені об'єктів
+  //=========================================================================
+
+  // let task
+  //  tasksOfMonth.forEach((tasks, idx) => {
+
+  //     if(tasks.length > 0) {
+  //       console.log(tasks)
+  //       task = tasks.map(({priority, title, createDay, createMonth, createYear}) => {
+  //         const date = formatISO(new Date(createYear, createMonth, createDay))
+
+  //     return { priority,
+  //       title,
+  //       idx,
+  //     date
+  //     }
+  //   })
+  //   console.log(task)
+  //     }
+
+  //   })
+
+  //==============================================================
+
+  // for(let i = 0; i < tasksOfMonth.length; i++ ) {
+  //     console.log(i, tasksOfMonth[i])
+  // }
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
@@ -38,28 +73,39 @@ export const CalendarTable = () => {
     end: endOfWeek(monthEnd, { weekStartsOn: 1 }),
   });
 
-
-
   return (
     <Calendar>
       {daysInMonth?.map((day, idx) => {
-        
         const StyledLink = !isSameMonth(day, currentMonth)
           ? OtherMonthStyledLink
           : CurrentMonthStyledLink;
-          
-        const AllDays =  isThisMonth(new Date(firsDayOfMonth.currentDate)) ? 
-        (isToday(day) ? Today : DaysOfMonth) :
-        (isFirstDayOfMonth(new Date(day)) ? Today : DaysOfMonth)
-       
-        const choosedDay = new Date(day)
+
+        const AllDays = isThisMonth(new Date(firsDayOfMonth.currentDate))
+          ? isToday(day)
+            ? Today
+            : DaysOfMonth
+          : isFirstDayOfMonth(new Date(day))
+          ? Today
+          : DaysOfMonth;
+
+        const choosedDay = new Date(day);
 
         return (
           <Days key={idx}>
-            <StyledLink to={`/calendar/day/${formatISO(new Date(choosedDay),
-              { representation: 'date' })}`}>
+            <StyledLink
+              to={`/calendar/day/${formatISO(new Date(choosedDay), {
+                representation: 'date',
+              })}`}
+            >
               <Wrapper>
-                {isSameMonth(day, currentMonth) && <AllDays>{format(day, 'd')}</AllDays>}
+                {isSameMonth(day, currentMonth) && (
+                  <>
+                    <AllDays>{format(day, 'd')}</AllDays>
+                    <CalendarTableItem
+                      dayTasks={tasksOfMonth[Number(format(day, 'd') - 1)]}
+                    />
+                  </>
+                )}
               </Wrapper>
             </StyledLink>
           </Days>

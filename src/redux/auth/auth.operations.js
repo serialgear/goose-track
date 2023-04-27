@@ -5,7 +5,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://goose-track-api-3uhn.onrender.com/api';
 // axios.defaults.baseURL = 'http://localhost:4000/api';
 
-const setAuthHeader = token => {
+export const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
