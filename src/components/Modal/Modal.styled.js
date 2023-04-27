@@ -19,6 +19,7 @@ export const ModalContainer = styled.div`
   width: fit-content;
   height: fit-content;
   border: 1px solid rgba(220, 227, 229, 0.8);
+  background-color: var(--primary-background-color);
   border-radius: 8px;
   box-shadow: 0px 0px 16px 4px rgba(17, 17, 17, 0.4);
   @media screen and (min-width: 768px) {
