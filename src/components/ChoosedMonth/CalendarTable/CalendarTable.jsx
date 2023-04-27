@@ -22,13 +22,46 @@ import {
   isThisMonth,
   isFirstDayOfMonth,
 } from 'date-fns';
-import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
+import { selectCurrentMonth, selectTasks } from 'redux/calendar/calendar.selectors';
 import { useParams } from 'react-router-dom';
 
 export const CalendarTable = () => {
+
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
   const firsDayOfMonth = useParams()
+  const tasksOfMonth = useSelector(selectTasks)
   
+  const tasksOfDay = tasksOfMonth.flatMap((tasks) => {
+    return tasks
+  })  
+  console.log(tasksOfDay)  //і це масив потрібних мені об'єктів
+//=========================================================================
+
+// let task
+//  tasksOfMonth.forEach((tasks, idx) => {
+  
+//     if(tasks.length > 0) {
+//       console.log(tasks)
+//       task = tasks.map(({priority, title, createDay, createMonth, createYear}) => {
+//         const date = formatISO(new Date(createYear, createMonth, createDay))
+        
+//     return { priority,
+//       title,
+//       idx,
+//     date
+//     }
+//   })
+//   console.log(task)
+//     }
+  
+//   })
+
+//==============================================================
+
+// for(let i = 0; i < tasksOfMonth.length; i++ ) {
+//     console.log(i, tasksOfMonth[i])
+// }
+
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
