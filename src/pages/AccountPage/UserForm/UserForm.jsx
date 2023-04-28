@@ -29,7 +29,6 @@ import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
 
-
 export const UserForm = () => {
   const [image, setImage] = useState('');
   const filePicker = useRef(null);
@@ -67,7 +66,7 @@ export const UserForm = () => {
 
   return (
     <Formik
-      initialValues={{ name, birthday:formattedDate , email, phone, telegram}}
+      initialValues={{ name, birthday: formattedDate, email, phone, telegram }}
       validationSchema={Yup.object({
         name: Yup.string()
           .max(16, 'Too Long!')
@@ -128,7 +127,7 @@ export const UserForm = () => {
 
           <FlexInput>
 
-              <Label htmlFor='name'><LabelSpan>User Name</LabelSpan>
+            <Label htmlFor='name'><LabelSpan>User Name</LabelSpan>
               <Input
                 id='name'
                 name='name'
@@ -141,7 +140,7 @@ export const UserForm = () => {
               {formik.touched.name && formik.errors.name ? (
                 <Errors>{formik.errors.name}</Errors>
               ) : null}
-              </Label>
+            </Label>
 
 
             <Label htmlFor='birthday'><LabelSpan>Birthday</LabelSpan>
@@ -158,7 +157,7 @@ export const UserForm = () => {
               {formik.touched.birthday && formik.errors.birthday ? (
                 <Errors>{formik.errors.birthday}</Errors>
               ) : null}
-              </Label>
+            </Label>
 
 
             <Label htmlFor='email'><LabelSpan>Email Address</LabelSpan>
@@ -174,7 +173,7 @@ export const UserForm = () => {
               {formik.touched.email && formik.errors.email ? (
                 <Errors>{formik.errors.email}</Errors>
               ) : null}
-              </Label>
+            </Label>
 
 
             <Label htmlFor='phone'><LabelSpan>Phone</LabelSpan>
@@ -194,10 +193,10 @@ export const UserForm = () => {
               {formik.touched.phone && formik.errors.phone ? (
                 <Errors>{formik.errors.phone}</Errors>
               ) : null}
-              </Label>
+            </Label>
 
 
-              <Label htmlFor='telegram'><LabelSpan>Telegram</LabelSpan>
+            <Label htmlFor='telegram'><LabelSpan>Telegram</LabelSpan>
               <Input
                 id='telegram'
                 name='telegram'
@@ -214,7 +213,7 @@ export const UserForm = () => {
               {formik.touched.telegram && formik.errors.telegram ? (
                 <Errors>{formik.errors.telegram}</Errors>
               ) : null}
-              </Label>
+            </Label>
 
 
           </FlexInput>
