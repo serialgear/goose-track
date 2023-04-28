@@ -8,7 +8,7 @@ export const HeaderStyled = styled.header`
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 24px;
-  margin-bottom: 64px;
+  padding-bottom: 32px;
 
   @media (min-width: 768px) {
     padding-left: 32px;
@@ -20,11 +20,11 @@ export const HeaderStyled = styled.header`
   }
 `;
 export const Overlay = styled.div`
-display: none;
-@media (min-width: 1280px) {
-  display: block;
-}
-`
+  display: none;
+  @media (min-width: 1280px) {
+    display: block;
+  }
+`;
 
 export const HeaderWrapper = styled.div`
   display: flex;
@@ -58,10 +58,10 @@ export const Text = styled.p`
   line-height: 18px;
 `;
 
-export const SpanStyled =styled.span`
-font-family: inherit;
-color: var(--accent-span-text-color);
-`
+export const SpanStyled = styled.span`
+  font-family: inherit;
+  color: var(--accent-span-text-color);
+`;
 
 export const UserName = styled.h2`
   font-family: var(--primary-font);
