@@ -92,7 +92,7 @@ export const LoginForm = () => {
                 </STC.Label>
 
                 <STC.Button type="submit" disabled={isSubmitting}>
-                  <STC.BtnSpan>Log in</STC.BtnSpan>
+                  <STC.BtnSpan>Log In</STC.BtnSpan>
                   <STC.Svg>
                     <use href={`${logInIcon}#login-door-sf`} />
                   </STC.Svg>
