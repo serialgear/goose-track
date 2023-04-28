@@ -2,8 +2,6 @@ import { useSelector } from 'react-redux';
 import {
   Calendar,
   Days,
-  Today,
-  DaysOfMonth,
   OtherMonthStyledLink,
   Wrapper,
   CurrentMonthStyledLink,
@@ -15,23 +13,19 @@ import {
   startOfWeek,
   endOfWeek,
   isSameMonth,
-  isToday,
   parseISO,
   eachDayOfInterval,
   formatISO,
-  isThisMonth,
-  isFirstDayOfMonth,
 } from 'date-fns';
 import {
   selectCurrentMonth,
   selectTasks,
 } from 'redux/calendar/calendar.selectors';
-import { useParams } from 'react-router-dom';
 import { CalendarTableItem } from './CalendarTableItem';
 
 export const CalendarTable = () => {
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
-  const firsDayOfMonth = useParams()
+  
   const tasksOfMonth = useSelector(selectTasks)
   
   const monthStart = startOfMonth(currentMonth);
@@ -42,8 +36,6 @@ export const CalendarTable = () => {
     end: endOfWeek(monthEnd, { weekStartsOn: 1 }),
   });
 
-
-
   return (
     <Calendar>
       {daysInMonth?.map((day, idx) => {
@@ -52,10 +44,6 @@ export const CalendarTable = () => {
           ? OtherMonthStyledLink
           : CurrentMonthStyledLink;
           
-        const AllDays =  isThisMonth(new Date(firsDayOfMonth.currentDate)) ? 
-        (isToday(day) ? Today : DaysOfMonth) :
-        (isFirstDayOfMonth(new Date(day)) ? Today : DaysOfMonth)
-       
         const choosedDay = new Date(day)
 
         return (
@@ -64,12 +52,9 @@ export const CalendarTable = () => {
               { representation: 'date' })}`}>
               <Wrapper>
               {isSameMonth(day, currentMonth) && (
-                  <>
-                    <AllDays>{format(day, 'd')}</AllDays>
-                    <CalendarTableItem
+                    <CalendarTableItem day={day}
                       dayTasks={tasksOfMonth[Number(format(day, 'd'))]}
                     />
-                  </>
                 )}
               </Wrapper>
             </StyledLink>
