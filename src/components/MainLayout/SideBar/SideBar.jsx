@@ -24,8 +24,8 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
   };
 
   return (
-    <>
-      <STC.Container className={isMobalMenuOpen && 'openMobalMenu'}>
+    <STC.Container>
+      <STC.ContainerFixed className={isMobalMenuOpen && 'openMobalMenu'}>
         <STC.Box>
           <STC.Logo to="/" onClick={handleCloseMobalMenu}>
             <STC.LogoImg src={`${LogoGoose}`} />
@@ -39,9 +39,9 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
         </STC.Box>
         <UserNav closeMobalMenu={closeMobalMenu} />
         <LogoutBtn />
-      </STC.Container>
+      </STC.ContainerFixed>
       {isMobalMenuOpen && <STC.Overlay onClick={handleCloseMobalMenu} />}
-    </>
+    </STC.Container>
   );
 };
 

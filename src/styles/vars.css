@@ -57,13 +57,16 @@
 
   /* decorations */
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* shadow */
+  --shadow-logout-btn: 4px 2px 16px rgba(136, 165, 191, 0.48);
+  --shadow-logout-btn-hover: 4px 2px 16px rgba(136, 165, 191, 1);
 }
 
 .dark-theme {
   --secondary-background-color: #171820;
   --primary-background-color: #21222c;
   --sidebar-background-color: #13151a;
-  
 
   --border: 1px solid rgba(255, 255, 255, 0.15);
 
@@ -82,10 +85,13 @@
   --scrollbar-bg-color: #2d3037;
 
   /* avatar */
-  --avatar-fill-color: #d7e3f7;  
+  --avatar-fill-color: #d7e3f7;
   --avatar-background-color: #171820;
   /* calendar */
   --close-btn-color: #ffffff;
   --modal-border-color: #21222c;
   --modal-shadow-color: rgba(62, 133, 243, 0.4);
+
+  /* shadow */
+  --shadow-logout-btn: 4px 2px 16px rgba(136, 165, 191, 0.3);
 }

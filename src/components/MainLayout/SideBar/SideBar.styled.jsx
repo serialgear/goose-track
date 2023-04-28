@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
+  height: 100vh;
+  @media (max-width: 1279px) {
+    height: 0;
+  }
+`;
+export const ContainerFixed = styled.div`
   box-sizing: border-box;
 
   position: fixed;
@@ -14,7 +20,7 @@ export const Container = styled.div`
   @media (min-width: 768px) {
     width: 289px;
   }
-  @media (max-width: 1279px) {
+  @media (max-width: 1279.9px) {
     left: 0;
     transform: translateX(-100%);
     transition: transform var(--animation);
@@ -23,6 +29,9 @@ export const Container = styled.div`
       display: block;
       transform: translateX(0%);
     }
+  }
+  @media (min-width: 1280px) {
+    width: 289px;
   }
 `;
 export const Overlay = styled.div`
