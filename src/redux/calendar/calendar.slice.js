@@ -7,7 +7,7 @@ const calendarInitState = {
   currentMonth: new Date().toISOString(),
   choosedDay: null,
   tasks: [],
-  indexCurrentDay: null,
+  indexCurrentDay: 0,
   isLoggedIn: false,
   error: null,
 };
