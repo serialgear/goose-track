@@ -17,6 +17,7 @@ import { format } from 'date-fns';
 import defaultAvatar from '../../../images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  selectUserAvatarURL,
 
   selectUserBirthday,
   selectUserEmail,
@@ -39,7 +40,7 @@ export const UserForm = () => {
   const email = useSelector(selectUserEmail);
   const phone = useSelector(selectUserPhone);
   const telegram = useSelector(selectUserTelegram);
-  // const avatar = useSelector(selectUserAvatarURL);
+  const avatar = useSelector(selectUserAvatarURL);
   const birthday = useSelector(selectUserBirthday) || Date.now();
 
   const formattedDate = format(new Date(birthday), 'yyyy-MM-dd');
@@ -156,7 +157,6 @@ export const UserForm = () => {
               ) : null}
             </Label>
 
-
             <Label htmlFor='birthday'><LabelSpan>Birthday</LabelSpan>
               <Input
                 id="birthday"
@@ -173,9 +173,9 @@ export const UserForm = () => {
               {formik.touched.birthday && formik.errors.birthday ? (
                 <Errors>{formik.errors.birthday}</Errors>
               ) : null}
+            </Label>
 
-
-              <Label htmlFor='email'>Email Address</Label>
+              <Label htmlFor='email'><LabelSpan>Email</LabelSpan>
               <Input
                 id="email"
                 name="email"

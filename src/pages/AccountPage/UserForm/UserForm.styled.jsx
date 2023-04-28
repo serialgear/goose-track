@@ -118,9 +118,13 @@ export const InputAva = styled.input`
 
 export const DefaultSvg = styled.svg`
   fill: var(--auth-bg-color);
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  top: 25%;
+  left: 25%;
   object-fit: cover;
+
 `;
 
 export const LabelImg = styled.img`
@@ -214,7 +218,7 @@ export const Button = styled.button`
   }
 
   @media (min-width: 1440px) {
-    margin: 88px auto 60px auto;
+    margin: 64px auto 60px auto;
   }
 `;
 
@@ -253,5 +257,6 @@ export const TextAvatar = styled.p`
 export const Errors = styled.p`
   color: red;
   font-size: 10px;
+
 `;
 
