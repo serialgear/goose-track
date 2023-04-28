@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+
   @media (min-width: 768px) {
     display: flex;
   }
@@ -9,7 +10,7 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 25% 1fr;
   }
-
+  
   @media (min-width: 1440px) {
     grid-template-columns: 20% 1fr;
   }
