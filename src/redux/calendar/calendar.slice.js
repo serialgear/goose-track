@@ -19,8 +19,8 @@ const calendarSlice = createSlice({
     addCurrentMonth(state, { payload }) {
       state.currentMonth = payload;
     },
-    toggleModal(state, {payload}) {
-      state.modal = payload;
+    addIndexCyrrentDay(state, {payload}) {
+      state.indexCurrentDay = payload;
     },
   },
 
@@ -37,7 +37,7 @@ const calendarSlice = createSlice({
   }
 });
 
-export const { addCurrentMonth, toggleModal } = calendarSlice.actions;
+export const { addCurrentMonth, addIndexCyrrentDay } = calendarSlice.actions;
 
 export const calendarReducer = persistReducer(
   {
