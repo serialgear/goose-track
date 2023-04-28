@@ -18,7 +18,6 @@ export const Title = styled.p`
     line-height: 17px;
   }
 `;
-export const List = styled.ul``;
 
 export const Item = styled.li`
   margin-bottom: 18px;
@@ -26,6 +25,7 @@ export const Item = styled.li`
 
   @media (min-width: 768px) {
     margin-bottom: 16px;
+    height: 56px;
   }
 
   &:last-child {
@@ -44,6 +44,13 @@ export const Link = styled(NavLink)`
 
   color: var(--not-active-item-sidebar-text-color);
 
+  transition: background-color var(--animation);
+
+  &:hover,
+  :focus {
+    background-color: var(--secondary-background-color);
+    /* border: var(--border-calendar-period-type); */
+  }
   @media (min-width: 768px) {
     padding: 16px 20px;
     width: 225px;
@@ -57,7 +64,7 @@ export const Link = styled(NavLink)`
 export const Icon = styled.svg`
   width: 20px;
   height: 20px;
-  stroke: #84828A;
+  stroke: currentColor;
   fill: transparent;
 
   @media (min-width: 768px) {

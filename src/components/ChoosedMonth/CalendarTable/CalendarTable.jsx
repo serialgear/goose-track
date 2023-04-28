@@ -22,14 +22,18 @@ import {
   isThisMonth,
   isFirstDayOfMonth,
 } from 'date-fns';
-import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
+import {
+  selectCurrentMonth,
+  selectTasks,
+} from 'redux/calendar/calendar.selectors';
 import { useParams } from 'react-router-dom';
+import { CalendarTableItem } from './CalendarTableItem';
 
 export const CalendarTable = () => {
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
   const firsDayOfMonth = useParams()
+  const tasksOfMonth = useSelector(selectTasks)
   
-
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
 
@@ -59,7 +63,14 @@ export const CalendarTable = () => {
             <StyledLink to={`/calendar/day/${formatISO(new Date(choosedDay),
               { representation: 'date' })}`}>
               <Wrapper>
-                {isSameMonth(day, currentMonth) && <AllDays>{format(day, 'd')}</AllDays>}
+              {isSameMonth(day, currentMonth) && (
+                  <>
+                    <AllDays>{format(day, 'd')}</AllDays>
+                    <CalendarTableItem
+                      dayTasks={tasksOfMonth[Number(format(day, 'd'))]}
+                    />
+                  </>
+                )}
               </Wrapper>
             </StyledLink>
           </Days>

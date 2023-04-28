@@ -14,10 +14,17 @@ export const HeaderStyled = styled.header`
     padding-left: 32px;
     padding-right: 32px;
   }
-  @media (min-width: 1280) {
+
+  @media (min-width: 1280px) {
     padding-top: 40px;
   }
 `;
+export const Overlay = styled.div`
+display: none;
+@media (min-width: 1280px) {
+  display: block;
+}
+`
 
 export const HeaderWrapper = styled.div`
   display: flex;
@@ -25,7 +32,12 @@ export const HeaderWrapper = styled.div`
   gap: 16px;
 `;
 
-
+export const PageNameWraper = styled.div`
+  display: none;
+  @media (min-width: 1280px) {
+    display: flex;
+  }
+`;
 export const PageName = styled.h2`
   display: none;
   @media (min-width: 1280px) {
@@ -35,8 +47,21 @@ export const PageName = styled.h2`
     font-size: 32px;
     line-height: 32px;
     color: var(--primary-text-color);
+    margin-bottom: 8px;
   }
 `;
+
+export const Text = styled.p`
+  font-family: var(--primary-font);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+`;
+
+export const SpanStyled =styled.span`
+font-family: inherit;
+color: var(--accent-span-text-color);
+`
 
 export const UserName = styled.h2`
   font-family: var(--primary-font);
@@ -53,15 +78,17 @@ export const MobileMenuSvg = styled.svg`
   width: 24px;
   height: 24px;
   stroke: var(--calendar-digit-color);
-  
+
   display: flex;
+
+  cursor: pointer;
   @media (min-width: 768px) {
     width: 34px;
     height: 34px;
   }
   @media (min-width: 1280px) {
     display: none;
-  }  
+  }
 `;
 
 export const HeaderAvatarWrapper = styled.div`
@@ -72,5 +99,3 @@ export const HeaderAvatarWrapper = styled.div`
     height: 44px;
   }
 `;
-
-

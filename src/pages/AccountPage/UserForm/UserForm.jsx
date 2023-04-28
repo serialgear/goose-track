@@ -29,8 +29,9 @@ import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
 
+
 export const UserForm = () => {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
   const filePicker = useRef(null);
   const dispatch = useDispatch();
 
@@ -87,32 +88,45 @@ export const UserForm = () => {
             email: values.email,
             phone: values.phone,
             telegram: values.telegram,
-          }),
+          })
         ).unwrap();
         setSubmitting(false);
       }}
     >
-
       {formik => (
         <Form onSubmit={formik.handleSubmit}>
           <AvatarBlock>
             {image ? (
-              <LabelAva htmlFor='avatar'>
-                <LabelImg alt='Мое изображение' src={image} width='48' height='48' />
+              <LabelAva htmlFor="avatar">
+                <LabelImg
+                  alt="Мое изображение"
+                  src={image}
+                  width="48"
+                  height="48"
+                />
               </LabelAva>
             ) : (
-              <LabelAva htmlFor='avatar'>
-                <DefaultSvg>
-                  <use xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`} />
-                </DefaultSvg>
+              <LabelAva htmlFor="avatar">
+                {avatar ? (
+                  <LabelImg
+                    alt="Мое изображение"
+                    src={avatar}
+                    width="48"
+                    height="48"
+                  />
+                ) : (
+                  <DefaultSvg>
+                    <use xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`} />
+                  </DefaultSvg>
+                )}
               </LabelAva>
             )}
 
             <InputAva
               ref={filePicker}
-              type='file'
-              id='avatar'
-              name='avatar'
+              type="file"
+              id="avatar"
+              name="avatar"
               onChange={handleFileInputChange}
             />
             {/*{formik.touched.avatar && formik.errors.avatar ? (*/}
@@ -129,10 +143,10 @@ export const UserForm = () => {
 
             <Label htmlFor='name'><LabelSpan>User Name</LabelSpan>
               <Input
-                id='name'
-                name='name'
-                type='text'
-                placeholder='name'
+                id="name"
+                name="name"
+                type="text"
+                placeholder="name"
                 onChange={formik.handleChange}
                 value={formik.values.name}
                 {...formik.getFieldProps('name')}
@@ -145,27 +159,28 @@ export const UserForm = () => {
 
             <Label htmlFor='birthday'><LabelSpan>Birthday</LabelSpan>
               <Input
-                id='birthday'
-                name='birthday'
-                type='date'
+                id="birthday"
+                name="birthday"
+                type="date"
                 onChange={formik.handleChange}
-                value={formik.values.birthday === '' || !formik.values.birthday
-                  ? ''
-                  : formik.values.birthday}
+                value={
+                  formik.values.birthday === '' || !formik.values.birthday
+                    ? ''
+                    : formik.values.birthday
+                }
                 {...formik.getFieldProps('birthday')}
               />
               {formik.touched.birthday && formik.errors.birthday ? (
                 <Errors>{formik.errors.birthday}</Errors>
               ) : null}
-            </Label>
 
 
-            <Label htmlFor='email'><LabelSpan>Email Address</LabelSpan>
+              <Label htmlFor='email'>Email Address</Label>
               <Input
-                id='email'
-                name='email'
-                type='email'
-                placeholder='email'
+                id="email"
+                name="email"
+                type="email"
+                placeholder="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
                 {...formik.getFieldProps('email')}
@@ -178,11 +193,11 @@ export const UserForm = () => {
 
             <Label htmlFor='phone'><LabelSpan>Phone</LabelSpan>
               <Input
-                id='phone'
-                name='phone'
-                type='phone'
+                id="phone"
+                name="phone"
+                type="phone"
                 onChange={formik.handleChange}
-                placeholder='phone number'
+                placeholder="phone number"
                 value={
                   formik.values.phone === '' || !formik.values.phone
                     ? ''
@@ -198,11 +213,11 @@ export const UserForm = () => {
 
             <Label htmlFor='telegram'><LabelSpan>Telegram</LabelSpan>
               <Input
-                id='telegram'
-                name='telegram'
-                type='telegram'
+                id="telegram"
+                name="telegram"
+                type="telegram"
                 onChange={formik.handleChange}
-                placeholder='telegram'
+                placeholder="telegram"
                 value={
                   formik.values.telegram === '' || !formik.values.telegram
                     ? ''

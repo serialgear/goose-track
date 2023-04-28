@@ -177,17 +177,21 @@ export const ButtonPlus = styled.button`
   }
 
   & span {
-    position: relative;
+    //position: relative;
     vertical-align: middle;
     line-height: 0.5;
-    bottom: 3px;
+    // bottom: 3px;
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
   }
 `;
 
 
 export const Button = styled.button`
   font-family: 'Inter', sans-serif;
-  margin: 22px auto 31px auto;
+  margin: 40px auto;
   display: block;
   width: 100%;
   max-width: 195px;
@@ -203,14 +207,14 @@ export const Button = styled.button`
 
   @media (min-width: 768px) {
     padding: 15px;
-    margin-top: 16px;
+    // margin-top: 16px;
     max-width: 262px;
     max-height: 48px;
-    margin-bottom: 40px;
+    // margin-bottom: 40px;
   }
 
   @media (min-width: 1440px) {
-    margin: 64px auto 60px auto;
+    margin: 88px auto 60px auto;
   }
 `;
 

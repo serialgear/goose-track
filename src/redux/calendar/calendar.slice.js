@@ -7,6 +7,7 @@ const calendarInitState = {
   currentMonth: new Date().toISOString(),
   choosedDay: null,
   tasks: [],
+  indexCurrentDay: null,
   isLoggedIn: false,
   error: null
 };
@@ -18,12 +19,16 @@ const calendarSlice = createSlice({
     addCurrentMonth(state, { payload }) {
       state.currentMonth = payload;
     },
+    toggleModal(state, {payload}) {
+      state.modal = payload;
+    },
   },
+
   extraReducers: builder => {
     builder
     .addCase(getTasksOfMonth.pending, (state) => state)
     .addCase(getTasksOfMonth.fulfilled, (state, {payload}) => {
-      state.tasks.push(payload)
+      state.tasks = [...payload]
       state.error = null
     })
     .addCase(getTasksOfMonth.rejected, (state, {payload})=> {
@@ -32,12 +37,13 @@ const calendarSlice = createSlice({
   }
 });
 
-export const { addCurrentMonth } = calendarSlice.actions;
+export const { addCurrentMonth, toggleModal } = calendarSlice.actions;
 
 export const calendarReducer = persistReducer(
   {
     key: 'calendar',
     storage,
+    whitelist: ['currentMonth']
   },
   calendarSlice.reducer
 );

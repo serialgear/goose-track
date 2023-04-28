@@ -17,6 +17,7 @@
   --border-calendar: 1px solid rgba(220, 227, 229, 0.5);
   --border-calendar-period-type: 1px solid rgba(62, 133, 243, 0.2);
   --border-auth: 1px solid rgba(220, 227, 229, 0.6);
+  --border-AddTaskBtn: 1px dashed #3e85f3;
 
   /* text-color */
   --primary-text-color: #111111;
@@ -26,6 +27,7 @@
   --btn-text-color: #ffffff;
   --not-active-item-sidebar-text-color: #84828a;
   --auth-placeholder-color: #dce3e5;
+  --accent-span-text-color: #3e85f3;
 
   /* calendar */
   --calendar-digit-color: #343434;
@@ -35,6 +37,8 @@
   --active-button-period-type: #cae8ff;
   --button-period-type: #e3f3ff;
   --close-btn-color: #111111;
+  --modal-border-color: rgba(220, 227, 229, 0.8);
+  --modal-shadow-color: rgba(17, 17, 17, 0.4);
 
   /* tasks */
   --task-priority-low-color: #72c2f8;
@@ -59,6 +63,7 @@
   --secondary-background-color: #171820;
   --primary-background-color: #21222c;
   --sidebar-background-color: #13151a;
+  
 
   --border: 1px solid rgba(255, 255, 255, 0.15);
 
@@ -67,6 +72,7 @@
   --accent-text-color: #ffffff;
   --not-active-item-sidebar-text-color: #ffffff;
   --active-item-sidebar-background: #3e85f3;
+  --accent-span-text-color: #3e85f3;
 
   --calendar-digit-color: #ffffff;
   --task-input-bg-color: rgba(255, 255, 255, 0);
@@ -74,4 +80,12 @@
   /* scroll */
   --scrollbar-color: #171820;
   --scrollbar-bg-color: #2d3037;
+
+  /* avatar */
+  --avatar-fill-color: #d7e3f7;  
+  --avatar-background-color: #171820;
+  /* calendar */
+  --close-btn-color: #ffffff;
+  --modal-border-color: #21222c;
+  --modal-shadow-color: rgba(62, 133, 243, 0.4);
 }

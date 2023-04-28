@@ -4,14 +4,19 @@ import {
   HeaderStyled,
   HeaderWrapper,
   MobileMenuSvg,
+  Overlay,
   PageName,
+  PageNameWraper,
+  SpanStyled,
+  Text,
   UserName,
 } from './Header.styled';
 import { useSelector } from 'react-redux';
 import { selectUserName } from 'redux/auth/auth.selectors';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
 import { Avatar } from '../../Avatar/Avatar';
+import gooseToDo from '../../../images/Goose-toDo-task.png';
 
 export const Header = ({ openMobalMenu }) => {
   const name = useSelector(selectUserName);
@@ -27,7 +32,24 @@ export const Header = ({ openMobalMenu }) => {
 
   return (
     <HeaderStyled>
-      {<PageName>{isActivePage}</PageName>}
+      <Overlay>
+        <PageNameWraper>
+          {true && (
+            // toDoTask
+            <img src={gooseToDo} alt="Goose" />
+          )}
+
+          <div>
+            {<PageName>{isActivePage}</PageName>}
+            {true && (
+              // toDoTask
+              <Text>
+                <SpanStyled>Let go</SpanStyled> of the past and focus on the present!
+              </Text>
+            )}
+          </div>
+        </PageNameWraper>
+      </Overlay>
 
       <MobileMenuSvg
         onClick={() => openMobalMenu(true)}
@@ -41,14 +63,11 @@ export const Header = ({ openMobalMenu }) => {
 
         <UserName>{name.split(' ')[0]}</UserName>
 
-        <button
-          type="button"
-          //   onClick={openUserSmallInfo}
-        >
+        <Link to="/account">
           <HeaderAvatarWrapper>
             <Avatar />
           </HeaderAvatarWrapper>
-        </button>
+        </Link>
       </HeaderWrapper>
     </HeaderStyled>
   );
