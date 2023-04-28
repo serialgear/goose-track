@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
 import {
   HeaderAvatarWrapper,
@@ -17,6 +18,7 @@ import { Link, useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
 import { Avatar } from '../../Avatar/Avatar';
 import gooseToDo from '../../../images/Goose-toDo-task.png';
+import { selectTasks } from 'redux/calendar/calendar.selectors';
 
 export const Header = ({ openMobalMenu }) => {
   const name = useSelector(selectUserName);
@@ -30,21 +32,25 @@ export const Header = ({ openMobalMenu }) => {
     isActivePage = 'User Profile';
   }
 
+  const tasks = useSelector(selectTasks);
+  // console.log(tasks);
+
+  const taskStatusToDo = tasks
+    .flatMap(day => day.map(task => task.status))
+    .includes('To do' || 'In progress');
+  
   return (
     <HeaderStyled>
       <Overlay>
         <PageNameWraper>
-          {true && (
-            // toDoTask
-            <img src={gooseToDo} alt="Goose" />
-          )}
+          {taskStatusToDo && <img src={gooseToDo} alt="Goose" />}
 
           <div>
             {<PageName>{isActivePage}</PageName>}
-            {true && (
-              // toDoTask
+            {taskStatusToDo && (
               <Text>
-                <SpanStyled>Let go</SpanStyled> of the past and focus on the present!
+                <SpanStyled>Let go</SpanStyled> of the past and focus on the
+                present!
               </Text>
             )}
           </div>
@@ -72,3 +78,7 @@ export const Header = ({ openMobalMenu }) => {
     </HeaderStyled>
   );
 };
+
+Header.propTypes = {
+  openMobalMenu: PropTypes.func.isRequired
+}
