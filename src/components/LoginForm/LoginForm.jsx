@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import * as STC from './LoginForm.styled';
 import logInIcon from '../../images/sprite.svg';
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import loginRocketSvg from '../../images/Icons/login-rocket-goose.svg';
+import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
 
 const LoginValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -99,9 +99,7 @@ export const LoginForm = () => {
                 </STC.Button>
               </STC.Form>
 
-              <Link to="/register">
-                <STC.H2>Sign up</STC.H2>
-              </Link>
+              <AuthNavigate route="/register" title="Sign Up" />
 
               <STC.CloudSvg>
                 <use href={`${logInIcon}#login-cloud`} />
