@@ -7,17 +7,15 @@ export const Form = styled.form`
   align-items: center;
   max-width: 335px;
   width: 100%;
-  //max-height: 653px;
   margin: 0 auto 40px auto;
   padding: 0 20px;
-  background-color: #ffffff;
+  background-color: var(--primary-background-color);
   border-radius: 16px;
   position: relative;
 
 
   @media (min-width: 768px) {
     max-width: 704px;
-    //max-height: 854px;
     padding: 0 ;
     position: relative;
     margin-bottom: 35px;
@@ -25,7 +23,6 @@ export const Form = styled.form`
 
   @media (min-width: 1440px) {
     max-width: 1087px;
-   //max-height: 752px;
     position: relative;
     margin-left: 32px;
     margin-right: 32px;
@@ -42,27 +39,28 @@ export const FlexInput = styled.div`
   }
 `;
 
-export const FlexChild = styled.div`
-  @media (min-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-  @media (min-width: 1440px) {
-    display: flex;
-    flex-wrap: wrap;
-    width: 354px;
-  }
+export const LabelSpan = styled.span`
+  margin-bottom: 8px;
+  color: var(--secondary-text-color);
 `;
 
 export const Label = styled.label`
   font-family: 'Inter', serif;
   font-size: 12px;
   line-height: 1.2;
-  display: inline-block;
-  margin: 0 0 8px 0;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;;
+
+  & > *:last-child {
+    margin-bottom: 0;
+
+  }
+
+  @media ( min-width: 768px) {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
 `;
 
 export const Input = styled.input`
@@ -70,29 +68,38 @@ export const Input = styled.input`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.3;
-  margin-bottom: 18px;
-  border: 1px solid rgba(17, 17, 17, 0.1);
+  outline: none;
+  border: var(--border);
   border-radius: 8px;
   width: 299px;
   height: 42px;
   padding: 14px;
   box-sizing: border-box;
+  color: var(--primary-text-color);
+  background-color: var(--primary-background-color);
+
+  &::placeholder {
+    font-family: var(--primary-font);
+    font-size: 14px;
+    line-height: 1.29;
+    color: var(--auth-placeholder-color);
+
+  }
+
 
   @media (min-width: 768px) {
     width: 354px;
     height: 46px;
     padding-left: 18px;
-    margin-bottom: 24px;
+    font-size: 16px;
   }
 
-  &:hover,
-  :focus {
-    border-color: var(--accent-background-color);
-  }
+  //&:hover,
+  //:focus {
+  //  border-color: var(--accent-background-color);
+  //}
 
-  &:nth-last-child(5) {
-    margin-bottom: 0;
-  }
+
 `;
 
 export const AvatarBlock = styled.div`
@@ -125,14 +132,14 @@ export const LabelImg = styled.img`
 
 export const LabelAva = styled.label`
   border-radius: 50%;
-  border: 2px solid var(--accent-text-color);
+  border: 2px solid var(--accent-background-color);
   width: 72px;
   height: 72px;
 
   display: block;
   margin: -36px auto 0 auto;
   overflow: hidden;
-  background-color: var(--primary-background-color);
+  background-color: var(--avatar-background-color);
 
   @media (min-width: 768px) {
     width: 124px;
@@ -212,9 +219,10 @@ export const TitleAvatar = styled.h3`
   font-weight: 700;
   font-size: 18px;
   line-height: 1;
-  color: #343434;
+  //color: #343434;
   margin: 14px 0 0 0;
   text-align: center;
+  color: var(--primary-text-color);
 
   @media (min-width: 768px) {
     margin: 20px 0 0 0 ;
@@ -238,5 +246,8 @@ export const TextAvatar = styled.p`
   }
 `;
 
-
+export const Errors = styled.p`
+  color: red;
+  font-size: 10px;
+`;
 
