@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { signupUser } from '../../redux/auth/auth.operations';
@@ -10,6 +9,7 @@ import logInCloud from '../../images/sprite.svg';
 import LoginGoose from '../../images/login-goose-.svg';
 import * as STC from '../LoginForm/LoginForm.styled';
 import { LoginImg, LoginImg2, Text, Span } from './RegisterForm.styled';
+import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
 
 const RegisterValidationSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
@@ -115,9 +115,8 @@ export const RegisterForm = () => {
                   </STC.Svg>
                 </STC.Button>
               </STC.Form>
-              <Link to="/login">
-                <STC.H2>Log in</STC.H2>
-              </Link>
+              
+              <AuthNavigate route="/login" title="Log In"/>
 
               <LoginImg
                 alt="LoginGoose"
