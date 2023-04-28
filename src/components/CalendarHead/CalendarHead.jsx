@@ -17,7 +17,7 @@ import {
   StyledLink,
 } from './CalendarHead.styled';
 import { useDispatch } from 'react-redux';
-import { addIndexCyrrentDay } from 'redux/calendar/calendar.slice';
+import { addIndexCurrentDay } from 'redux/calendar/calendar.slice';
 
 export const CalendarHead = ({ currentDay }) => {
   const dispath = useDispatch();
@@ -54,7 +54,9 @@ export const CalendarHead = ({ currentDay }) => {
                   to={`/calendar/day/${formatISO(new Date(choosedDay), {
                     representation: 'date',
                   })}`}
-                  onClick={() => dispath(addIndexCyrrentDay(Number(format(day, 'd')) - 1))}
+                  onClick={() =>
+                    dispath(addIndexCurrentDay(Number(format(day, 'd')) - 1))
+                  }
                 >
                   <DateWeek>{format(day, 'd')}</DateWeek>
                 </StyledLink>
