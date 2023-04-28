@@ -20,46 +20,26 @@ color: var(--calendar-digit-color);
 
 `;
 
-export const DaysActive = styled.li`
+export const Days = styled.li`
 position: relative;
 border: var(--border-calendar);
-
-
-
-cursor: pointer;
 `;
 
-export const DaysOfMonth = styled.div`
-position: absolute;
-right: 4px;
-display: flex;
-align-items: center;
-justify-content: center;
-width: 24px;
-height: 24px;
-padding: 4px 6px;
-
-border-radius: 6px;
+export const OtherMonthStyledLink = styled(Link)`
+text-decoration: none;
+color: currentColor;
+pointer-events: none;
+`;
+export const CurrentMonthStyledLink = styled(Link)`
+text-decoration: none;
+color: currentColor;
 `;
 
-export const Today = styled(DaysOfMonth)`
-
-background-color: var(--accent-background-color);
-color:  var(--primary-background-color);
-`;
-
-export const OtherDays = styled(DaysActive)`
-color:  var(--primary-background-color);
-cursor: default;
-`;
 export const Wrapper = styled.div`
+
 width: 100%;
 height: 100%;
-padding: 8px 4px;
+/* padding: 8px 4px; */
+padding-top: 28px;
 `; 
 
-export const StyledLink = styled(Link)`
-
-text-decoration: none;
-color: inherit;
-`;

@@ -1,21 +1,27 @@
+import PropTypes from "prop-types";
 import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
 import {
-  AvatarImg,
-  AvatarSvg,
+  HeaderAvatarWrapper,
   HeaderStyled,
   HeaderWrapper,
   MobileMenuSvg,
+  Overlay,
   PageName,
+  PageNameWraper,
+  SpanStyled,
+  Text,
   UserName,
 } from './Header.styled';
 import { useSelector } from 'react-redux';
-import { selectUserAvatarURL, selectUserName } from 'redux/auth/auth.selectors';
-import { useLocation } from 'react-router-dom';
+import { selectUserName } from 'redux/auth/auth.selectors';
+import { Link, useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
+import { Avatar } from '../../Avatar/Avatar';
+import gooseToDo from '../../../images/Goose-toDo-task.png';
+import { selectTasks } from 'redux/calendar/calendar.selectors';
 
 export const Header = ({ openMobalMenu }) => {
   const name = useSelector(selectUserName);
-  const avatarUrl = useSelector(selectUserAvatarURL);
 
   const location = useLocation();
   let isActivePage = location.pathname.split('/')[1];
@@ -26,9 +32,30 @@ export const Header = ({ openMobalMenu }) => {
     isActivePage = 'User Profile';
   }
 
+  const tasks = useSelector(selectTasks);
+  // console.log(tasks);
+
+  const taskStatusToDo = tasks
+    .flatMap(day => day.map(task => task.status))
+    .includes('To do' || 'In progress');
+  
   return (
     <HeaderStyled>
-      {<PageName>{isActivePage}</PageName>}
+      <Overlay>
+        <PageNameWraper>
+          {taskStatusToDo && <img src={gooseToDo} alt="Goose" />}
+
+          <div>
+            {<PageName>{isActivePage}</PageName>}
+            {taskStatusToDo && (
+              <Text>
+                <SpanStyled>Let go</SpanStyled> of the past and focus on the
+                present!
+              </Text>
+            )}
+          </div>
+        </PageNameWraper>
+      </Overlay>
 
       <MobileMenuSvg
         onClick={() => openMobalMenu(true)}
@@ -42,20 +69,16 @@ export const Header = ({ openMobalMenu }) => {
 
         <UserName>{name.split(' ')[0]}</UserName>
 
-        {avatarUrl ? (
-          <button
-          //   onClick={openUserSmallInfo}
-          >
-            <AvatarImg src={avatarUrl} alt="user" />
-          </button>
-        ) : (
-          <AvatarSvg
-          //    onClick={openUserSmallInfo}
-          >
-            <use xlinkHref={`${icon}#profile-avatar-f`}></use>
-          </AvatarSvg>
-        )}
+        <Link to="/account">
+          <HeaderAvatarWrapper>
+            <Avatar />
+          </HeaderAvatarWrapper>
+        </Link>
       </HeaderWrapper>
     </HeaderStyled>
   );
 };
+
+Header.propTypes = {
+  openMobalMenu: PropTypes.func.isRequired
+}
