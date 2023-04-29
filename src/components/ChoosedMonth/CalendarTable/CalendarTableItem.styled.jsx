@@ -21,28 +21,32 @@ background-color: var(--accent-background-color);
 color:  var(--primary-background-color);
 `;
 export const BoxTasks = styled.ul`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap:2px;
+width: 100%;
+height: 100%;
+
+padding-top: 28px;
+padding-bottom: 1px;
+display: grid;
+grid-template-columns: 1fr;
+grid-auto-rows: minmax(auto,22px);
 `;
 
 export const Task = styled.li`
-display: flex;
-align-items: center;
-justify-content: center;
-width: 40px;
-height: 22px;
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: minmax(auto,11px);
+width: 95%;
+padding: 0 4px;
+
 background: var(
     ${props => {
         if(props.priority === TASK_PRIORITY.medium) {
-            return '--priority-medium-bg-сolor';
+            return '--priority-medium-bg-color';
         }
         if(props.priority === TASK_PRIORITY.high) {
-            return '--priority-high-bg-color'
+            return '--priority-high-bg-color';
         }
-        return '--priority-low-bg-color'
+        return '--priority-low-bg-color';
     }}
 );
 border-radius: 8px;
@@ -51,11 +55,16 @@ border-radius: 8px;
 `;
 
 export const Title = styled.p`
+
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
 font-size: 10px;
 line-height: 1.4;
+
 
 color: var(
     ${props => {

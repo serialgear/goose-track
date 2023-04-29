@@ -12,7 +12,7 @@ export const ColumnsTasksList = ({ status }) => {
   const dayTasks = tasks[indexCurrentDay];
 
   let filteredDayTasks;
-  if (dayTasks.length > 0) {
+  if (dayTasks?.length > 0) {
     filteredDayTasks = dayTasks.filter(task => task.status === status.name);
   }
   //   console.log('filteredDayTasks ', filteredDayTasks);
@@ -24,7 +24,7 @@ export const ColumnsTasksList = ({ status }) => {
       <ul>
         {filteredDayTasks &&
           filteredDayTasks.map(task => (
-            <li>
+            <li key={task._id}>
               <TaskColumnCard {...task} />
             </li>
           ))}
