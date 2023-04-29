@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router';
 import { Formik } from 'formik';
-import { format, isAfter, isValid, parse } from 'date-fns';
+import { isAfter, isValid, parse } from 'date-fns';
 import * as Yup from 'yup';
 import * as STC from './TaskForm.styled';
 import icon from '../../images/sprite.svg';
