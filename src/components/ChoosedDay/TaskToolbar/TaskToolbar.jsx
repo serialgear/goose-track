@@ -5,9 +5,7 @@ import {
 } from './TaskToolbar.styled';
 import icons from 'images/sprite.svg';
 
-export const TaskToolbar = ({ _id: taskId = '123', status = 'To Do' }) => {
-  // console.log('status ', status);
-  // console.log('taskId ', taskId);
+export const TaskToolbar = props => {
   // console.log('props ', props);
   return (
     <>
@@ -28,7 +26,7 @@ export const TaskToolbar = ({ _id: taskId = '123', status = 'To Do' }) => {
           <TaskToolbarButton
             type="button"
             onClick={() => {
-              console.log('edit', taskId);
+              console.log('edit', props._id);
             }}
           >
             <ToolbarSvg>
@@ -40,7 +38,7 @@ export const TaskToolbar = ({ _id: taskId = '123', status = 'To Do' }) => {
           <TaskToolbarButton
             type="button"
             onClick={() => {
-              console.log('trash', taskId);
+              console.log('trash', props._id);
             }}
           >
             <ToolbarSvg>

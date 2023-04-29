@@ -1,42 +1,48 @@
 import styled from 'styled-components';
-import DatePicker from 'react-datepicker';
-
 import { createGlobalStyle } from 'styled-components';
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 335px;
+  justify-content: center;
+  gap: 40px;
   width: 100%;
-  margin: 0 auto 40px auto;
-  padding: 0 20px;
+  margin-top: 51px;
+  padding: 40px 20px;
   background-color: var(--primary-background-color);
   border-radius: 16px;
   position: relative;
 
   @media (min-width: 768px) {
-    max-width: 704px;
-    padding: 0;
-    position: relative;
-    margin-bottom: 35px;
+    margin-top: 0;
+    padding: 40px;
+    position: static;
   }
 
-  @media (min-width: 1440px) {
-    max-width: 1087px;
-    position: relative;
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 32px;
+  @media (min-width: 1280px) {
+    gap: 60px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 `;
 
 export const FlexInput = styled.div`
-  @media (min-width: 1440px) {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+
+  @media (min-width: 768px) {
+    gap: 24px;
+    flex-direction: row;
     flex-wrap: wrap;
-    width: 758px;
+    max-width: 732px;
+  }
+
+  @media (min-width: 876px) {
     justify-content: space-between;
   }
 `;
@@ -52,15 +58,8 @@ export const Label = styled.label`
   line-height: 1.2;
   display: flex;
   flex-direction: column;
-  margin-bottom: 18px;
-
-  & > *:last-child {
-    margin-bottom: 0;
-  }
-
   @media (min-width: 768px) {
     font-size: 14px;
-    margin-bottom: 24px;
   }
 `;
 
@@ -72,9 +71,8 @@ export const Input = styled.input`
   outline: none;
   border: var(--border);
   border-radius: 8px;
-  width: 299px;
   height: 42px;
-  padding: 14px;
+  padding: 12px 12px 12px 14px;
   box-sizing: border-box;
   color: var(--primary-text-color);
   background-color: var(--primary-background-color);
@@ -85,14 +83,19 @@ export const Input = styled.input`
     line-height: 1.29;
     color: var(--auth-placeholder-color);
   }
-  &:focus {
-    border: var(--border);
+
+  @media (max-width: 374px) {
+    max-width: 298px;
+  }
+
+  @media (min-width: 375px) {
+    width: 299px;
   }
 
   @media (min-width: 768px) {
     width: 354px;
     height: 46px;
-    padding-left: 18px;
+    padding-left: 14px 14px 14px 18px;
     font-size: 16px;
   }
 
@@ -103,7 +106,13 @@ export const Input = styled.input`
 `;
 
 export const AvatarBlock = styled.div`
-  @media (min-width: 1440px) {
+  margin-top: -76px;
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
+
+  @media (min-width: 1280px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,70 +139,68 @@ export const LabelImg = styled.img`
   cursor: pointer;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
+  /* overflow: hidden; */
   object-fit: cover;
 `;
 
 export const LabelAva = styled.label`
+  position: relative;
   border-radius: 50%;
   border: 2px solid var(--accent-background-color);
   width: 72px;
   height: 72px;
 
   display: block;
-  margin: -36px auto 0 auto;
-  overflow: hidden;
+  /* margin: -36px auto 0 auto; */
+  /* overflow: hidden; */
   background-color: var(--avatar-background-color);
 
   @media (min-width: 768px) {
     width: 124px;
     height: 124px;
-    margin: 40px auto 0 auto;
-  }
-
-  @media (min-width: 1440px) {
-    width: 124px;
-    height: 130px;
-    margin-top: 60px;
   }
 `;
 
-export const ButtonPlus = styled.button`
+export const ButtonPlus = styled.div`
   width: 14px;
   height: 14px;
   background-color: var(--accent-background-color);
   border-radius: 50%;
-  border: none;
   color: var(--btn-text-color);
 
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   position: absolute;
-  top: 23px;
-  right: 148px;
+  bottom: -4px;
+  right: 15px;
 
   @media (min-width: 768px) {
-    top: 148px;
-    right: 317px;
+    bottom: -6px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
   }
+`;
 
-  @media (min-width: 1440px) {
-    top: 172px;
-    right: 505px;
-  }
+export const PlusSvg = styled.svg`
+  fill: currentColor;
+  stroke: currentColor;
+  width: 8px;
+  height: 8px;
 
-  & span {
-    //position: relative;
-    vertical-align: middle;
-    line-height: 0.5;
-    // bottom: 3px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  @media (min-width: 768px) {
+    width: 18px;
+    height: 18px;
   }
 `;
 
 export const Button = styled.button`
   font-family: 'Inter', sans-serif;
-  margin: 40px auto;
+  /* margin: 40px auto; */
   display: block;
   width: 100%;
   max-width: 195px;
@@ -215,8 +222,8 @@ export const Button = styled.button`
     // margin-bottom: 40px;
   }
 
-  @media (min-width: 1440px) {
-    margin: 64px auto 60px auto;
+  @media (min-width: 1280px) {
+    /* margin: 64px auto 60px auto; */
   }
 `;
 
@@ -239,16 +246,18 @@ export const TextAvatar = styled.p`
   font-size: 14px;
   line-height: 18px;
   color: var(--secondary-text-color);
-  margin: 4px 0 40px 0;
+  margin-top: 4px;
+  /* margin: 4px 0 40px 0; */
   text-align: center;
 
   @media (min-width: 768px) {
-    margin: 8px 0 40px 0;
+    margin-top: 8px;
+    /* margin: 8px 0 40px 0; */
   }
-
-  @media (min-width: 1440px) {
+  /* 
+  @media (min-width: 1280px) {
     margin-bottom: 44px;
-  }
+  } */
 `;
 
 export const Errors = styled.p`

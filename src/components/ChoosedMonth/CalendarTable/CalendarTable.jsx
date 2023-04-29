@@ -1,11 +1,8 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Calendar,
   Days,
-  Today,
-  DaysOfMonth,
   OtherMonthStyledLink,
-  Wrapper,
   CurrentMonthStyledLink,
 } from './CalendarTable.styled';
 import {
@@ -15,23 +12,21 @@ import {
   startOfWeek,
   endOfWeek,
   isSameMonth,
-  isToday,
   parseISO,
   eachDayOfInterval,
   formatISO,
-  isThisMonth,
-  isFirstDayOfMonth,
 } from 'date-fns';
 import {
   selectCurrentMonth,
   selectTasks,
 } from 'redux/calendar/calendar.selectors';
-import { useParams } from 'react-router-dom';
 import { CalendarTableItem } from './CalendarTableItem';
+import { addIndexCurrentDay } from 'redux/calendar/calendar.slice';
 
 export const CalendarTable = () => {
+  const dispath = useDispatch()
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
-  const firsDayOfMonth = useParams()
+  
   const tasksOfMonth = useSelector(selectTasks)
   
   const monthStart = startOfMonth(currentMonth);
@@ -42,8 +37,6 @@ export const CalendarTable = () => {
     end: endOfWeek(monthEnd, { weekStartsOn: 1 }),
   });
 
-
-
   return (
     <Calendar>
       {daysInMonth?.map((day, idx) => {
@@ -52,26 +45,21 @@ export const CalendarTable = () => {
           ? OtherMonthStyledLink
           : CurrentMonthStyledLink;
           
-        const AllDays =  isThisMonth(new Date(firsDayOfMonth.currentDate)) ? 
-        (isToday(day) ? Today : DaysOfMonth) :
-        (isFirstDayOfMonth(new Date(day)) ? Today : DaysOfMonth)
-       
         const choosedDay = new Date(day)
 
         return (
           <Days key={idx}>
             <StyledLink to={`/calendar/day/${formatISO(new Date(choosedDay),
-              { representation: 'date' })}`}>
-              <Wrapper>
+              { representation: 'date' })}`}  onClick={() =>
+                dispath(addIndexCurrentDay(Number(format(day, 'd'))))
+              }>
+            
               {isSameMonth(day, currentMonth) && (
-                  <>
-                    <AllDays>{format(day, 'd')}</AllDays>
-                    <CalendarTableItem
+                    <CalendarTableItem day={day}
                       dayTasks={tasksOfMonth[Number(format(day, 'd'))]}
                     />
-                  </>
                 )}
-              </Wrapper>
+            
             </StyledLink>
           </Days>
         );

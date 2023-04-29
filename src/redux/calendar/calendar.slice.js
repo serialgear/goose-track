@@ -7,7 +7,7 @@ const calendarInitState = {
   currentMonth: new Date().toISOString(),
   choosedDay: null,
   tasks: [],
-  indexCurrentDay: null,
+  indexCurrentDay: 0,
   isLoggedIn: false,
   error: null,
 };
@@ -22,8 +22,8 @@ const calendarSlice = createSlice({
     addIndexCurrentDay(state, { payload }) {
       state.indexCurrentDay = payload;
     },
-    toggleModal(state, { payload }) {
-      state.modal = payload;
+    addChoosedDay(state, { payload }) {
+      state.choosedDay = payload;
     },
   },
 
@@ -40,7 +40,7 @@ const calendarSlice = createSlice({
   },
 });
 
-export const { addCurrentMonth, addIndexCurrentDay, toggleModal } =
+export const { addCurrentMonth, addIndexCurrentDay, addChoosedDay } =
   calendarSlice.actions;
 
 export const calendarReducer = persistReducer(

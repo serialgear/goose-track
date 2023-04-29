@@ -23,45 +23,17 @@ color: var(--calendar-digit-color);
 export const Days = styled.li`
 position: relative;
 border: var(--border-calendar);
-
 `;
-
 
 export const OtherMonthStyledLink = styled(Link)`
 text-decoration: none;
-color: inherit;
+color: currentColor;
 pointer-events: none;
 `;
 export const CurrentMonthStyledLink = styled(Link)`
 text-decoration: none;
-color: inherit;
+color: currentColor;
 `;
 
-
-export const Wrapper = styled.div`
-width: 100%;
-height: 100%;
-padding: 8px 4px;
-`; 
-
-
-export const DaysOfMonth = styled.div`
-position: absolute;
-right: 4px;
-display: flex;
-align-items: center;
-justify-content: center;
-width: 24px;
-height: 24px;
-padding: 4px 6px;
-
-border-radius: 6px;
-`;
-
-export const Today = styled(DaysOfMonth)`
-
-background-color: var(--accent-background-color);
-color:  var(--primary-background-color);
-`;
 
 

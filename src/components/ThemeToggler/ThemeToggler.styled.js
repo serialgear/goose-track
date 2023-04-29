@@ -5,9 +5,9 @@ export const Input = styled.input`
 `;
 
 export const Svg = styled.svg`
-  width: 19px;
-  height: 19px;
-  margin-right: 14px;
+  width: 20px;
+  height: 20px;
+  /* margin-right: 14px; */
   fill: var(--accent-background-color);
 
   @media screen and (min-width: 768px) {
