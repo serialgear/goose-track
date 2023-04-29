@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Formik } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import {
   Form,
   Input,
@@ -11,14 +13,21 @@ import {
   LabelAva,
   TitleAvatar,
   TextAvatar,
-  DefaultSvg, FlexInput, AvatarBlock, Errors, LabelSpan,
+  DefaultSvg,
+  FlexInput,
+  AvatarBlock,
+  Errors,
+  LabelSpan,
+  StyledDatePick,
+  StyledIconContainer,
 } from './UserForm.styled';
+import { GlobalStyles } from './UserForm.styled';
 import { format } from 'date-fns';
+
 import defaultAvatar from '../../../images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectUserAvatarURL,
-
   selectUserBirthday,
   selectUserEmail,
   selectUserName,
@@ -28,8 +37,6 @@ import {
 
 import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
-
-
 
 export const UserForm = () => {
   const [image, setImage] = useState(null);
@@ -45,42 +52,38 @@ export const UserForm = () => {
 
   const formattedDate = format(new Date(birthday), 'yyyy-MM-dd');
 
-
   const handleFileInputChange = event => {
     const file = event.target.files[0];
     const imageUrl = URL.createObjectURL(file);
     setImage(imageUrl);
   };
 
-  const handleUpload = async (event) => {
+  const handleUpload = async event => {
     event.preventDefault();
     if (!setImage) {
       alert('Please select a file');
       return true;
     }
-
   };
 
   const handlePick = () => {
     filePicker.current.click();
   };
 
-
   return (
     <Formik
       initialValues={{ name, birthday: formattedDate, email, phone, telegram }}
       validationSchema={Yup.object({
-        name: Yup.string()
-          .max(16, 'Too Long!')
-          .required('Name is required'),
-        email: Yup.string().email('Invalid email').required('Email is required'),
+        name: Yup.string().max(16, 'Too Long!').required('Name is required'),
+        email: Yup.string()
+          .email('Invalid email')
+          .required('Email is required'),
         birthday: Yup.date().required('Birthday is required').nullable(),
         phone: Yup.string()
           .matches(/^\+380\d{9}$/, 'Number of phone must be +380XXXXXXXXX')
           .required('Number is required'),
         telegram: Yup.string().max(16, 'Too Long!').nullable(),
       })}
-
       onSubmit={async (values, { setSubmitting }) => {
         await dispatch(
           userForm({
@@ -141,8 +144,8 @@ export const UserForm = () => {
           </AvatarBlock>
 
           <FlexInput>
-
-            <Label htmlFor='name'><LabelSpan>User Name</LabelSpan>
+            <Label htmlFor="name">
+              <LabelSpan>User Name</LabelSpan>
               <Input
                 id="name"
                 name="name"
@@ -156,26 +159,31 @@ export const UserForm = () => {
                 <Errors>{formik.errors.name}</Errors>
               ) : null}
             </Label>
-
-            <Label htmlFor='birthday'><LabelSpan>Birthday</LabelSpan>
-              <Input
+            <Label htmlFor="birthday">
+              <LabelSpan>Birthday</LabelSpan>
+              <StyledIconContainer>
+                <FontAwesomeIcon icon={faChevronDown} />
+              </StyledIconContainer>
+              <GlobalStyles />
+              <StyledDatePick
                 id="birthday"
                 name="birthday"
-                type="date"
-                onChange={formik.handleChange}
-                value={
-                  formik.values.birthday === '' || !formik.values.birthday
-                    ? ''
-                    : formik.values.birthday
-                }
-                {...formik.getFieldProps('birthday')}
+                selected={new Date(formik.values.birthday)}
+                onChange={date => formik.setFieldValue('birthday', date)}
+                dateFormat="yyyy-MM-dd"
+                maxDate={new Date()}
+                placeholderText="yyyy-MM-dd"
+                formatWeekDay={day => day.charAt(0)}
+                calendarStartDay={1}
+                disabledKeyboardNavigation
               />
+
               {formik.touched.birthday && formik.errors.birthday ? (
                 <Errors>{formik.errors.birthday}</Errors>
               ) : null}
             </Label>
-
-              <Label htmlFor='email'><LabelSpan>Email</LabelSpan>
+            <Label htmlFor="email">
+              <LabelSpan>Email</LabelSpan>
               <Input
                 id="email"
                 name="email"
@@ -189,9 +197,8 @@ export const UserForm = () => {
                 <Errors>{formik.errors.email}</Errors>
               ) : null}
             </Label>
-
-
-            <Label htmlFor='phone'><LabelSpan>Phone</LabelSpan>
+            <Label htmlFor="phone">
+              <LabelSpan>Phone</LabelSpan>
               <Input
                 id="phone"
                 name="phone"
@@ -209,9 +216,8 @@ export const UserForm = () => {
                 <Errors>{formik.errors.phone}</Errors>
               ) : null}
             </Label>
-
-
-            <Label htmlFor='telegram'><LabelSpan>Telegram</LabelSpan>
+            <Label htmlFor="telegram">
+              <LabelSpan>Telegram</LabelSpan>
               <Input
                 id="telegram"
                 name="telegram"
@@ -229,11 +235,13 @@ export const UserForm = () => {
                 <Errors>{formik.errors.telegram}</Errors>
               ) : null}
             </Label>
-
-
           </FlexInput>
 
-          <Button onSubmit={handleUpload} type='submit' disabled={!formik.isValid}>
+          <Button
+            onSubmit={handleUpload}
+            type="submit"
+            disabled={!formik.isValid}
+          >
             Save changes
           </Button>
         </Form>
