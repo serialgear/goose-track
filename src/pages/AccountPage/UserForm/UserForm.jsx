@@ -34,6 +34,7 @@ import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
 import { Persist } from "formik-persist";
+import { NAME_REGEX, PHONE_REGEX, TELEGRAM_REGEX } from '../../../constants/joiRegex';
 
 
 export const UserForm = () => {
@@ -67,10 +68,7 @@ export const UserForm = () => {
   const handlePick = () => {
     filePicker.current.click();
   };
-  // const NAME_REGEX = /^[a-zA-Z .'-]+$/;
-  // const PHONE_REGEX =
-  //   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{0,4}[-.\s]?\d{0,9}$/;
-  // const TELEGRAM_REGEX = /(?: ?^@)[a-z0-9_]{5,32}/;
+
 
   return (
     <Formik
