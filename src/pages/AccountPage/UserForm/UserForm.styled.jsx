@@ -5,56 +5,42 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* max-width: 728px; */
+  gap: 40px;
   width: 100%;
   margin-top: 51px;
-  padding: 0 20px;
+  padding: 40px 20px;
   background-color: var(--primary-background-color);
   border-radius: 16px;
   position: relative;
 
   @media (min-width: 768px) {
     margin-top: 0;
-    max-width: 1280px;
-    /* padding: 0 165px; */
-    position: relative;
-    /* margin-bottom: 35px; */
+    padding: 40px;
+    position: static;
   }
 
   @media (min-width: 1280px) {
-    max-width: 1440px;
-    position: relative;
-    /* margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 32px; */
+    gap: 60px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 `;
 
 export const FlexInput = styled.div`
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
+  justify-content: center;
   gap: 18px;
-
-  @media (min-width: 376px) {
-    max-width: 728px;
-    justify-content: center;
-  }
 
   @media (min-width: 768px) {
     gap: 24px;
     flex-direction: row;
-    justify-content: center;
     flex-wrap: wrap;
-    max-width: 1280px;
-    padding-left: 64px;
-    padding-right: 64px;
-    /* justify-content: space-between; */
+    max-width: 732px;
   }
 
-  @media (min-width: 1280px) {
-    max-width: 1600px;
-    /* justify-content: space-between; */
+  @media (min-width: 876px) {
+    justify-content: space-between;
   }
 `;
 
@@ -69,15 +55,9 @@ export const Label = styled.label`
   line-height: 1.2;
   display: flex;
   flex-direction: column;
-  /* margin-bottom: 18px; */
-
-  & > *:last-child {
-    margin-bottom: 0;
-  }
 
   @media (min-width: 768px) {
     font-size: 14px;
-    /* margin-bottom: 24px; */
   }
 `;
 
@@ -102,12 +82,12 @@ export const Input = styled.input`
     color: var(--auth-placeholder-color);
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 374px) {
     max-width: 298px;
   }
 
-  @media (min-width: 376px) {
-    width: 300px;
+  @media (min-width: 375px) {
+    width: 299px;
   }
 
   @media (min-width: 768px) {
@@ -124,7 +104,7 @@ export const Input = styled.input`
 `;
 
 export const AvatarBlock = styled.div`
-  margin-top: -36px;
+  margin-top: -76px;
 
   @media (min-width: 768px) {
     margin-top: 0;
@@ -218,7 +198,7 @@ export const PlusSvg = styled.svg`
 
 export const Button = styled.button`
   font-family: 'Inter', sans-serif;
-  margin: 40px auto;
+  /* margin: 40px auto; */
   display: block;
   width: 100%;
   max-width: 195px;
@@ -241,7 +221,7 @@ export const Button = styled.button`
   }
 
   @media (min-width: 1280px) {
-    margin: 64px auto 60px auto;
+    /* margin: 64px auto 60px auto; */
   }
 `;
 
@@ -264,16 +244,18 @@ export const TextAvatar = styled.p`
   font-size: 14px;
   line-height: 18px;
   color: var(--secondary-text-color);
-  margin: 4px 0 40px 0;
+  margin-top: 4px;
+  /* margin: 4px 0 40px 0; */
   text-align: center;
 
   @media (min-width: 768px) {
-    margin: 8px 0 40px 0;
+    margin-top: 8px;
+    /* margin: 8px 0 40px 0; */
   }
-
+  /* 
   @media (min-width: 1280px) {
     margin-bottom: 44px;
-  }
+  } */
 `;
 
 export const Errors = styled.p`
