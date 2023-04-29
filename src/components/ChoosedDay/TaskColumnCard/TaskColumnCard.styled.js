@@ -7,11 +7,16 @@ export const Container = styled.div`
   gap: 28px;
   padding: 14px 15px 18px 14px;
 
-  max-width: 300px;
+  width: 100%;
 
   background-color: var(--secondary-background-color);
   border: var(--border);
   border-radius: 8px;
+
+  @media (min-width: 1280px) {
+    min-height: 100px;
+    padding-top: 8px;
+  }
 `;
 
 export const Wrapper = styled.div`
