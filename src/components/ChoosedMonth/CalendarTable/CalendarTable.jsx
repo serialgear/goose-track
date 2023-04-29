@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Calendar,
   Days,
@@ -21,8 +21,10 @@ import {
   selectTasks,
 } from 'redux/calendar/calendar.selectors';
 import { CalendarTableItem } from './CalendarTableItem';
+import { addIndexCurrentDay } from 'redux/calendar/calendar.slice';
 
 export const CalendarTable = () => {
+  const dispath = useDispatch()
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
   
   const tasksOfMonth = useSelector(selectTasks)
@@ -48,7 +50,9 @@ export const CalendarTable = () => {
         return (
           <Days key={idx}>
             <StyledLink to={`/calendar/day/${formatISO(new Date(choosedDay),
-              { representation: 'date' })}`}>
+              { representation: 'date' })}`}  onClick={() =>
+                dispath(addIndexCurrentDay(Number(format(day, 'd'))))
+              }>
             
               {isSameMonth(day, currentMonth) && (
                     <CalendarTableItem day={day}
