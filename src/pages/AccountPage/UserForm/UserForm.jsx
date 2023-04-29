@@ -61,9 +61,9 @@ export const UserForm = () => {
     }
   };
 
-  const handlePick = () => {
-    filePicker.current.click();
-  };
+  // const handlePick = () => {
+  //   filePicker.current.click();
+  // };
 
   return (
     <Formik
