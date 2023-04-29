@@ -128,7 +128,11 @@ export const UserForm = () => {
               type="file"
               id="avatar"
               name="avatar"
-              onChange={handleFileInputChange}
+              onChange={(event) => {
+                handleFileInputChange(event);
+                setFieldValue('avatar', event.currentTarget.files[0]);
+              }
+              }
             />
             {/*{formik.touched.avatar && formik.errors.avatar ? (*/}
             {/*  <div>{formik.errors.avatar}</div>*/}
@@ -236,6 +240,7 @@ export const UserForm = () => {
           <Button onSubmit={handleUpload} type='submit' disabled={!formik.isValid}>
             Save changes
           </Button>
+          <Persist name="user-form" />
         </Form>
       )}
     </Formik>
