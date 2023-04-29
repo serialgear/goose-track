@@ -40,10 +40,10 @@ export const Title = styled.h1`
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
-  @media (min-width: 768px) {
-    margin-bottom: 18px;
-  }
+  // margin-bottom: 24px;
+  // @media (min-width: 768px) {
+  //   margin-bottom: 18px;
+  // }
 `;
 
 export const Span = styled.span`
@@ -180,12 +180,17 @@ export const ImgRocketSvg = styled.img`
 `;
 
 export const Errors = styled.span`
+  width: 100%;
+  height: 24px;
   color: red;
   font-family: var(--primary-font);
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
+  @media (min-width: 768px) {
+     height: 18px;
+  }
 `;
 
 export const GooseText = styled.p`

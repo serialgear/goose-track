@@ -55,7 +55,7 @@ export const CalendarHead = ({ currentDay }) => {
                     representation: 'date',
                   })}`}
                   onClick={() =>
-                    dispath(addIndexCurrentDay(Number(format(day, 'd')) - 1))
+                    dispath(addIndexCurrentDay(Number(format(day, 'd'))))
                   }
                 >
                   <DateWeek>{format(day, 'd')}</DateWeek>
