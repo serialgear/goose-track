@@ -89,7 +89,11 @@ export const userForm = createAsyncThunk(
     setAuthHeader(token);
 
     try {
-      const { data } = await axios.patch('/user/info', values);
+      const { data } = await axios.patch('/user/info', values, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
       return { ...data };
     } catch (error) {

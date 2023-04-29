@@ -33,9 +33,13 @@ import {
 import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
-import { Persist } from "formik-persist";
-import { NAME_REGEX, PHONE_REGEX, TELEGRAM_REGEX } from '../../../constants/joiRegex';
-
+import { Persist } from 'formik-persist';
+import {
+  NAME_REGEX,
+  PHONE_REGEX,
+  TELEGRAM_REGEX,
+} from '../../../constants/joiRegex';
+import { toast } from 'react-toastify';
 
 export const UserForm = () => {
   const [image, setImage] = useState(null);
@@ -51,11 +55,11 @@ export const UserForm = () => {
 
   const formattedDate = format(new Date(birthday), 'yyyy-MM-dd');
 
-  const handleFileInputChange = event => {
-    const file = event.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
-    setImage(imageUrl);
-  };
+  // const handleFileInputChange = event => {
+  //   const file = event.target.files[0];
+  //   const imageUrl = URL.createObjectURL(file);
+  //   setImage(imageUrl);
+  // };
 
   const handleUpload = async event => {
     event.preventDefault();
@@ -65,41 +69,51 @@ export const UserForm = () => {
     }
   };
 
-  // const handlePick = () => {
-  //   filePicker.current.click();
-  // };
-
+  const FILE_SIZE = 2 * 1024 * 1024;
+  const SUPPORTED_FORMATS = [
+    'image/jpg',
+    'image/jpeg',
+    'image/gif',
+    'image/png',
+  ];
 
   return (
     <Formik
       initialValues={{ name, birthday: formattedDate, email, phone, telegram }}
       validationSchema={Yup.object({
         name: Yup.string()
-          .matches(NAME_REGEX,'Not correct,try again')
+          .matches(NAME_REGEX, 'Not correct, try again')
           .max(16, 'Too Long!')
           .required('Name is required'),
-        email: Yup.string().email('Invalid email').required('Email is required'),
-        birthday: Yup.date()
-          .required('Birthday is required')
-          .nullable(),
-        phone: Yup.string()
-          .matches(PHONE_REGEX, 'Not correct,try again')
-          .required('Number is required'),
+        email: Yup.string()
+          .email('Invalid email')
+          .required('Email is required'),
+        birthday: Yup.date().required('Birthday is required').nullable(),
+        phone: Yup.string().matches(PHONE_REGEX, 'Not correct, try again'),
+        // .required('Number is required'),
         telegram: Yup.string()
-          .matches(TELEGRAM_REGEX,'Not correct,try again')
-            .max(16, 'Too Long!')
-            .nullable(),
+          .matches(TELEGRAM_REGEX, 'Not correct, try again')
+          .max(16, 'Too Long!')
+          .nullable(),
+        avatar: Yup.mixed()
+          .test('size', 'File too large', value => {
+            const isGoodSize = value && value.size <= FILE_SIZE;
+            if (!isGoodSize) {
+              toast.error('File too large');
+            }
+            return isGoodSize;
+          })
+          .test('format', 'Unsupported Format', value => {
+            const isSupportedFormat =
+              value && SUPPORTED_FORMATS.includes(value.type);
+            if (!isSupportedFormat) {
+              toast.error('Unsupported format');
+            }
+            return isSupportedFormat;
+          }),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        await dispatch(
-          userForm({
-            name: values.name,
-            birthday: values.birthday,
-            email: values.email,
-            phone: values.phone,
-            telegram: values.telegram,
-          })
-        ).unwrap();
+        await dispatch(userForm(values)).unwrap();
         setSubmitting(false);
       }}
     >
@@ -108,17 +122,12 @@ export const UserForm = () => {
           <AvatarBlock>
             <LabelAva htmlFor="avatar">
               {image ? (
-                <LabelImg
-                  alt="Мое изображение"
-                  src={image}
-                  width="48"
-                  height="48"
-                />
+                <LabelImg alt="Avatar" src={image} width="48" height="48" />
               ) : (
                 <>
                   {avatar ? (
                     <LabelImg
-                      alt="Мое изображение"
+                      alt="Avatar"
                       src={avatar}
                       width="48"
                       height="48"
@@ -137,14 +146,14 @@ export const UserForm = () => {
                 type="file"
                 id="avatar"
                 name="avatar"
-                onChange={handleFileInputChange}
+                onChange={event => {
+                  const file = event.target.files[0];
+                  formik.setFieldValue('avatar', file);
+                  setImage(URL.createObjectURL(file));
+                }}
+                accept={SUPPORTED_FORMATS.join(', ')}
               />
-              {/*{formik.touched.avatar && formik.errors.avatar ? (*/}
-              {/*  <div>{formik.errors.avatar}</div>*/}
-              {/*) : null}*/}
-              {/* <ButtonPlus onClick={handlePick}> */}
               <ButtonPlus>
-                {/* <span>+</span> */}
                 <PlusSvg>
                   <use xlinkHref={`${defaultAvatar}#${'profile-plus-s'}`} />
                 </PlusSvg>
