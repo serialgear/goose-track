@@ -28,7 +28,7 @@ import {
 
 import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
-
+import { Persist } from "formik-persist";
 
 
 export const UserForm = () => {
@@ -64,21 +64,30 @@ export const UserForm = () => {
   const handlePick = () => {
     filePicker.current.click();
   };
-
+  // const NAME_REGEX = /^[a-zA-Z .'-]+$/;
+  // const PHONE_REGEX =
+  //   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{0,4}[-.\s]?\d{0,9}$/;
+  // const TELEGRAM_REGEX = /(?: ?^@)[a-z0-9_]{5,32}/;
 
   return (
     <Formik
       initialValues={{ name, birthday: formattedDate, email, phone, telegram }}
       validationSchema={Yup.object({
         name: Yup.string()
+          .matches(NAME_REGEX,'Not correct,try again')
           .max(16, 'Too Long!')
           .required('Name is required'),
         email: Yup.string().email('Invalid email').required('Email is required'),
-        birthday: Yup.date().required('Birthday is required').nullable(),
+        birthday: Yup.date()
+          .required('Birthday is required')
+          .nullable(),
         phone: Yup.string()
-          .matches(/^\+380\d{9}$/, 'Number of phone must be +380XXXXXXXXX')
+          .matches(PHONE_REGEX, 'Not correct,try again')
           .required('Number is required'),
-        telegram: Yup.string().max(16, 'Too Long!').nullable(),
+        telegram: Yup.string()
+          .matches(TELEGRAM_REGEX,'Not correct,try again')
+            .max(16, 'Too Long!')
+            .nullable(),
       })}
 
       onSubmit={async (values, { setSubmitting }) => {
@@ -130,7 +139,7 @@ export const UserForm = () => {
               name="avatar"
               onChange={(event) => {
                 handleFileInputChange(event);
-                setFieldValue('avatar', event.currentTarget.files[0]);
+                // setFieldValue('avatar', event.currentTarget.files[0]);
               }
               }
             />
