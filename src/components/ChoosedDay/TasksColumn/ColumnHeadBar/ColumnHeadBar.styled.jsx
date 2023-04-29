@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 299px;
+  margin-bottom: 24px;
 `;
 export const Title = styled.p`
 font-family: var(--primary-font);
@@ -11,7 +13,6 @@ font-style: normal;
 font-weight: 700;
 font-size: 18px;
 line-height: 1.11;
-
 color: var(--primary-text-color);
 `;
 
