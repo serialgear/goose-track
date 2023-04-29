@@ -13,8 +13,8 @@ export const CalendarTableItem = ({day, dayTasks }) => {
     <AllDays>{format(day, 'd')}</AllDays>
 <BoxTasks>
 {dayTasks?.length > 0 && dayTasks.map(task =>
-       <Task key={task._id} priority={task.priority}>
-        <Title priority={task.priority} ellipsizeMode='tail'>{task.title}</Title>
+        <Task key={task._id} priority={task.priority} >
+        <Title priority={task.priority} >{task.title}</Title>
        </Task>
        )}
 </BoxTasks>

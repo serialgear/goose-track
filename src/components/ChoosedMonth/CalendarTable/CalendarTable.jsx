@@ -3,7 +3,6 @@ import {
   Calendar,
   Days,
   OtherMonthStyledLink,
-  Wrapper,
   CurrentMonthStyledLink,
 } from './CalendarTable.styled';
 import {
@@ -50,13 +49,13 @@ export const CalendarTable = () => {
           <Days key={idx}>
             <StyledLink to={`/calendar/day/${formatISO(new Date(choosedDay),
               { representation: 'date' })}`}>
-              <Wrapper>
+            
               {isSameMonth(day, currentMonth) && (
                     <CalendarTableItem day={day}
                       dayTasks={tasksOfMonth[Number(format(day, 'd'))]}
                     />
                 )}
-              </Wrapper>
+            
             </StyledLink>
           </Days>
         );
