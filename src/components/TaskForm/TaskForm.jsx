@@ -45,9 +45,11 @@ export const TaskForm = ({ taskFormData, status, onClose }) => {
       )
       .required('Start is required'),
     end: Yup.string()
-      .test('valid-time', 'Invalid time format', value =>
-        isValid(parse(value, 'HH:mm', new Date()))
-      )
+      .nullable()
+      .test('valid-time', 'Invalid time format', value => {
+        if (!value) return true; // return true if value is empty
+        return isValid(parse(value, 'HH:mm', new Date()));
+      })
       .when('start', (start, schema) =>
         schema.test('end-time-greater', 'Less than start', end =>
           start && end
@@ -57,8 +59,7 @@ export const TaskForm = ({ taskFormData, status, onClose }) => {
               )
             : true
         )
-      )
-      .required('End is required'),
+      ),
     priority: Yup.string()
       .required('Priority is required')
       .oneOf(['Low', 'Medium', 'High'], 'Invalid priority'),
