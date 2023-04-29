@@ -12,15 +12,14 @@ export const Btn = styled.button`
 
   color: var(--btn-text-color);
   background: var(--accent-background-color);
-  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.3);
+  box-shadow: var(--shadow-logout-btn);
   border-radius: 16px;
-  border: none;
 
   transition: box-shadow var(--animation);
 
   &:hover,
   :focus {
-    box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
+    box-shadow: var(--shadow-logout-btn-hover);
   }
 
   @media (min-width: 768px) {
@@ -34,8 +33,11 @@ export const Txt = styled.span`
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
+  letter-spacing: -0.02em;
 
   @media (min-width: 768px) {
+    padding-right: 11px;
+
     font-size: 18px;
     line-height: 24px;
   }
