@@ -18,7 +18,7 @@ export const MonthWrapper = styled.div`
 
   min-width: 118px;
   height: 30px;
-padding: 6px 12px;
+  padding: 6px 12px;
 
   background-color: var(--accent-btn-background);
   border-radius: 8px;
@@ -45,7 +45,7 @@ export const WrapperButton = styled.div`
 `;
 
 const StyledLink = styled(Link)`
- display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px 12px;
@@ -56,19 +56,18 @@ const StyledLink = styled(Link)`
   height: 30px;
 
   background: var(--primary-background-color);
-  border:  var(--border-calendar);
+  border: var(--border-calendar);
 `;
 
 export const ButtonLeft = styled(StyledLink)`
   border-radius: 8px 0px 0px 8px;
 `;
 export const ButtonRight = styled(StyledLink)`
-
-  border-radius: 0px 8px 8px 0px; 
+  border-radius: 0px 8px 8px 0px;
 `;
 export const Icon = styled.svg`
-width: 16px;
-height: 16px;
-stroke: #616161;
-fill: transparent;
+              width: 16px;
+  height: 16px;
+  stroke: #616161;
+  fill: transparent;
 `;

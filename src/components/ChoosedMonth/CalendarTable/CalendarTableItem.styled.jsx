@@ -23,30 +23,35 @@ color:  var(--primary-background-color);
 export const BoxTasks = styled.ul`
 width: 100%;
 height: 100%;
-
 padding-top: 28px;
 padding-bottom: 1px;
 display: grid;
+align-content: center;
+justify-items: center;
 grid-template-columns: 1fr;
 grid-auto-rows: minmax(auto,22px);
+
 `;
 
 export const Task = styled.li`
 display: grid;
+align-content: center;
 grid-template-columns: 1fr;
-grid-template-rows: minmax(auto,11px);
+grid-template-rows: minmax(auto,10px);
+
+
+
 width: 95%;
 padding: 0 4px;
-
 background: var(
     ${props => {
         if(props.priority === TASK_PRIORITY.medium) {
             return '--priority-medium-bg-color';
         }
         if(props.priority === TASK_PRIORITY.high) {
-            return '--priority-high-bg-color';
+            return '--priority-high-bg-color'
         }
-        return '--priority-low-bg-color';
+        return '--priority-low-bg-color'
     }}
 );
 border-radius: 8px;
@@ -56,6 +61,7 @@ border-radius: 8px;
 
 export const Title = styled.p`
 
+text-align:center ;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
@@ -63,8 +69,7 @@ font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
 font-size: 10px;
-line-height: 1.4;
-
+line-height: 1;
 
 color: var(
     ${props => {
