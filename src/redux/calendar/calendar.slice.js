@@ -1,15 +1,15 @@
 import { persistReducer } from 'redux-persist';
 import { createSlice } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage'
+import storage from 'redux-persist/lib/storage';
 import { getTasksOfMonth } from './calendar.operations';
 
 const calendarInitState = {
   currentMonth: new Date().toISOString(),
   choosedDay: null,
   tasks: [],
-  indexCurrentDay: null,
+  indexCurrentDay: 0,
   isLoggedIn: false,
-  error: null
+  error: null,
 };
 
 const calendarSlice = createSlice({
@@ -19,31 +19,31 @@ const calendarSlice = createSlice({
     addCurrentMonth(state, { payload }) {
       state.currentMonth = payload;
     },
-    toggleModal(state, {payload}) {
-      state.modal = payload;
+    addIndexCurrentDay(state, { payload }) {
+      state.indexCurrentDay = payload;
     },
   },
 
   extraReducers: builder => {
     builder
-    .addCase(getTasksOfMonth.pending, (state) => state)
-    .addCase(getTasksOfMonth.fulfilled, (state, {payload}) => {
-      state.tasks = [...payload]
-      state.error = null
-    })
-    .addCase(getTasksOfMonth.rejected, (state, {payload})=> {
-      state.error = payload
-    })
-  }
+      .addCase(getTasksOfMonth.pending, state => state)
+      .addCase(getTasksOfMonth.fulfilled, (state, { payload }) => {
+        state.tasks = [...payload];
+        state.error = null;
+      })
+      .addCase(getTasksOfMonth.rejected, (state, { payload }) => {
+        state.error = payload;
+      });
+  },
 });
 
-export const { addCurrentMonth, toggleModal } = calendarSlice.actions;
+export const { addCurrentMonth, addIndexCurrentDay } = calendarSlice.actions;
 
 export const calendarReducer = persistReducer(
   {
     key: 'calendar',
     storage,
-    whitelist: ['currentMonth']
+    whitelist: ['currentMonth'],
   },
   calendarSlice.reducer
 );

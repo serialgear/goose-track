@@ -40,10 +40,10 @@ export const Title = styled.h1`
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
-  @media (min-width: 768px) {
-    margin-bottom: 18px;
-  }
+  // margin-bottom: 24px;
+  // @media (min-width: 768px) {
+  //   margin-bottom: 18px;
+  // }
 `;
 
 export const Span = styled.span`
@@ -151,27 +151,6 @@ export const Svg = styled.svg`
   }
 `;
 
-export const H2 = styled.h2`
-  font-family: var(--main-font);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 1.17;
-  text-decoration-line: underline;
-  color: var(--accent-text-color);
-  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
-    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
-
-  &:hover,
-  :focus {
-    color: var(--primary-background-color);
-  }
-
-  @media (min-width: 768px) {
-    font-size: 18px;
-    line-height: 1.33;
-  }
-`;
 
 export const CloudSvg = styled.svg`
   display: none;
@@ -201,12 +180,17 @@ export const ImgRocketSvg = styled.img`
 `;
 
 export const Errors = styled.span`
+  width: 100%;
+  height: 24px;
   color: red;
   font-family: var(--primary-font);
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
+  @media (min-width: 768px) {
+     height: 18px;
+  }
 `;
 
 export const GooseText = styled.p`
