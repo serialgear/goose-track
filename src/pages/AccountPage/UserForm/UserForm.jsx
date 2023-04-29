@@ -33,13 +33,12 @@ import {
 import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
-import { Persist } from 'formik-persist';
+// import { Persist } from 'formik-persist';
 import {
   NAME_REGEX,
   PHONE_REGEX,
   TELEGRAM_REGEX,
 } from '../../../constants/joiRegex';
-import { toast } from 'react-toastify';
 
 export const UserForm = () => {
   const [image, setImage] = useState(null);
@@ -69,7 +68,7 @@ export const UserForm = () => {
     }
   };
 
-  const FILE_SIZE = 2 * 1024 * 1024;
+  // const FILE_SIZE = 2 * 1024 * 1024;
   const SUPPORTED_FORMATS = [
     'image/jpg',
     'image/jpeg',
@@ -89,28 +88,30 @@ export const UserForm = () => {
           .email('Invalid email')
           .required('Email is required'),
         birthday: Yup.date().required('Birthday is required').nullable(),
-        phone: Yup.string().matches(PHONE_REGEX, 'Not correct, try again'),
+        phone: Yup.string()
+          .matches(PHONE_REGEX, 'Not correct, try again')
+          .nullable(),
         // .required('Number is required'),
         telegram: Yup.string()
           .matches(TELEGRAM_REGEX, 'Not correct, try again')
           .max(16, 'Too Long!')
           .nullable(),
-        avatar: Yup.mixed()
-          .test('size', 'File too large', value => {
-            const isGoodSize = value && value.size <= FILE_SIZE;
-            if (!isGoodSize) {
-              toast.error('File too large');
-            }
-            return isGoodSize;
-          })
-          .test('format', 'Unsupported Format', value => {
-            const isSupportedFormat =
-              value && SUPPORTED_FORMATS.includes(value.type);
-            if (!isSupportedFormat) {
-              toast.error('Unsupported format');
-            }
-            return isSupportedFormat;
-          }),
+        // avatar: Yup.mixed()
+        //   .test('size', 'File too large', value => {
+        //     const isGoodSize = value && value.size <= FILE_SIZE;
+        //     if (!isGoodSize) {
+        //       toast.error('File too large');
+        //     }
+        //     return isGoodSize;
+        //   })
+        //   .test('format', 'Unsupported Format', value => {
+        //     const isSupportedFormat =
+        //       value && SUPPORTED_FORMATS.includes(value.type);
+        //     if (!isSupportedFormat) {
+        //       toast.error('Unsupported format');
+        //     }
+        //     return isSupportedFormat;
+        //   }),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         await dispatch(userForm(values)).unwrap();
@@ -264,7 +265,7 @@ export const UserForm = () => {
           >
             Save changes
           </Button>
-          <Persist name="user-form" />
+          {/* <Persist name="user-form" /> */}
         </Form>
       )}
     </Formik>
