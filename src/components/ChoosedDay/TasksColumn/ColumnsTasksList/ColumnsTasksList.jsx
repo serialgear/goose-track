@@ -4,6 +4,7 @@ import {
   selectTasks,
 } from 'redux/calendar/calendar.selectors';
 import { TaskColumnCard } from 'components/ChoosedDay/TaskColumnCard/TaskColumnCard';
+import { TasksList} from './ColumnsTasksList.styled';
 
 export const ColumnsTasksList = ({ status }) => {
   //   console.log('status ', status);
@@ -21,14 +22,14 @@ export const ColumnsTasksList = ({ status }) => {
   //   console.log('tasks[indexCurrentDay] ', tasks[indexCurrentDay]);
   return (
     <>
-      <ul>
+      <TasksList>
         {filteredDayTasks &&
           filteredDayTasks.map(task => (
             <li key={task._id}>
               <TaskColumnCard {...task} />
             </li>
           ))}
-      </ul>
+      </TasksList>
     </>
   );
 };
