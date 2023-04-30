@@ -7,7 +7,6 @@ import ImageCalendar3 from '../../images/StartPage/Calendar3.jpg';
 import ImageNavigationDark from '../../images/StartPage/NavigationDark.jpg';
 import ImageNavigationLite from '../../images/StartPage/NavigationLite.jpg';
 import ImageDay from '../../images/StartPage/Day.jpg';
-import { fontStyle } from 'styled-system';
 
 export default function StartPage() {
   return (
