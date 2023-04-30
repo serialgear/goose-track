@@ -27,6 +27,9 @@ const calendarSlice = createSlice({
     addIndexCurrentDay(state, { payload }) {
       state.indexCurrentDay = payload;
     },
+    addChoosedDay(state, { payload }) {
+      state.choosedDay = payload;
+    },
   },
 
   extraReducers: builder => {
@@ -62,7 +65,8 @@ const calendarSlice = createSlice({
   },
 });
 
-export const { addCurrentMonth, addIndexCurrentDay } = calendarSlice.actions;
+export const { addCurrentMonth, addIndexCurrentDay, addChoosedDay } =
+  calendarSlice.actions;
 
 export const calendarReducer = persistReducer(
   {

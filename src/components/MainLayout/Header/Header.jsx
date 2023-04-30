@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
 import {
   HeaderAvatarWrapper,
@@ -35,10 +35,11 @@ export const Header = ({ openMobalMenu }) => {
   const tasks = useSelector(selectTasks);
   // console.log(tasks);
 
-  const taskStatusToDo = tasks
-    .flatMap(day => day.map(task => task.status))
-    .includes('To do' || 'In progress');
-  
+  const taskStatusToDo =
+    tasks
+      .flatMap(day => day.map(task => task.status))
+      .includes('To do' || 'In progress') && isActivePage === 'Calendar';
+
   return (
     <HeaderStyled>
       <Overlay>
@@ -80,5 +81,5 @@ export const Header = ({ openMobalMenu }) => {
 };
 
 Header.propTypes = {
-  openMobalMenu: PropTypes.func.isRequired
-}
+  openMobalMenu: PropTypes.func.isRequired,
+};

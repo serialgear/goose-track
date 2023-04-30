@@ -11,14 +11,18 @@ import {
   LabelAva,
   TitleAvatar,
   TextAvatar,
-  DefaultSvg, FlexInput, AvatarBlock, Errors, LabelSpan,
+  DefaultSvg,
+  FlexInput,
+  AvatarBlock,
+  Errors,
+  LabelSpan,
+  PlusSvg,
 } from './UserForm.styled';
 import { format } from 'date-fns';
 import defaultAvatar from '../../../images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectUserAvatarURL,
-
   selectUserBirthday,
   selectUserEmail,
   selectUserName,
@@ -29,7 +33,12 @@ import {
 import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
-
+// import { Persist } from 'formik-persist';
+import {
+  NAME_REGEX,
+  PHONE_REGEX,
+  TELEGRAM_REGEX,
+} from '../../../constants/joiRegex';
 
 export const UserForm = () => {
   const [image, setImage] = useState(null);
@@ -45,104 +54,120 @@ export const UserForm = () => {
 
   const formattedDate = format(new Date(birthday), 'yyyy-MM-dd');
 
+  // const handleFileInputChange = event => {
+  //   const file = event.target.files[0];
+  //   const imageUrl = URL.createObjectURL(file);
+  //   setImage(imageUrl);
+  // };
 
-  const handleFileInputChange = event => {
-    const file = event.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
-    setImage(imageUrl);
-  };
-
-  const handleUpload = async (event) => {
+  const handleUpload = async event => {
     event.preventDefault();
     if (!setImage) {
       alert('Please select a file');
       return true;
     }
-
   };
 
-  const handlePick = () => {
-    filePicker.current.click();
-  };
-
+  // const FILE_SIZE = 2 * 1024 * 1024;
+  const SUPPORTED_FORMATS = [
+    'image/jpg',
+    'image/jpeg',
+    'image/gif',
+    'image/png',
+  ];
 
   return (
     <Formik
       initialValues={{ name, birthday: formattedDate, email, phone, telegram }}
       validationSchema={Yup.object({
         name: Yup.string()
+          .matches(NAME_REGEX, 'Not correct, try again')
           .max(16, 'Too Long!')
           .required('Name is required'),
-        email: Yup.string().email('Invalid email').required('Email is required'),
+        email: Yup.string()
+          .email('Invalid email')
+          .required('Email is required'),
         birthday: Yup.date().required('Birthday is required').nullable(),
         phone: Yup.string()
-          .matches(/^\+380\d{9}$/, 'Number of phone must be +380XXXXXXXXX')
-          .required('Number is required'),
-        telegram: Yup.string().max(16, 'Too Long!').nullable(),
+          .matches(PHONE_REGEX, 'Not correct, try again')
+          .nullable(),
+        // .required('Number is required'),
+        telegram: Yup.string()
+          .matches(TELEGRAM_REGEX, 'Not correct, try again')
+          .max(16, 'Too Long!')
+          .nullable(),
+        // avatar: Yup.mixed()
+        //   .test('size', 'File too large', value => {
+        //     const isGoodSize = value && value.size <= FILE_SIZE;
+        //     if (!isGoodSize) {
+        //       toast.error('File too large');
+        //     }
+        //     return isGoodSize;
+        //   })
+        //   .test('format', 'Unsupported Format', value => {
+        //     const isSupportedFormat =
+        //       value && SUPPORTED_FORMATS.includes(value.type);
+        //     if (!isSupportedFormat) {
+        //       toast.error('Unsupported format');
+        //     }
+        //     return isSupportedFormat;
+        //   }),
       })}
-
       onSubmit={async (values, { setSubmitting }) => {
-        await dispatch(
-          userForm({
-            name: values.name,
-            birthday: values.birthday,
-            email: values.email,
-            phone: values.phone,
-            telegram: values.telegram,
-          })
-        ).unwrap();
+        await dispatch(userForm(values)).unwrap();
         setSubmitting(false);
       }}
     >
       {formik => (
         <Form onSubmit={formik.handleSubmit}>
           <AvatarBlock>
-            {image ? (
-              <LabelAva htmlFor="avatar">
-                <LabelImg
-                  alt="Мое изображение"
-                  src={image}
-                  width="48"
-                  height="48"
-                />
-              </LabelAva>
-            ) : (
-              <LabelAva htmlFor="avatar">
-                {avatar ? (
-                  <LabelImg
-                    alt="Мое изображение"
-                    src={avatar}
-                    width="48"
-                    height="48"
-                  />
-                ) : (
-                  <DefaultSvg>
-                    <use xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`} />
-                  </DefaultSvg>
-                )}
-              </LabelAva>
-            )}
+            <LabelAva htmlFor="avatar">
+              {image ? (
+                <LabelImg alt="Avatar" src={image} width="48" height="48" />
+              ) : (
+                <>
+                  {avatar ? (
+                    <LabelImg
+                      alt="Avatar"
+                      src={avatar}
+                      width="48"
+                      height="48"
+                    />
+                  ) : (
+                    <DefaultSvg>
+                      <use
+                        xlinkHref={`${defaultAvatar}#${'profile-avatar-f'}`}
+                      />
+                    </DefaultSvg>
+                  )}
+                </>
+              )}
+              <InputAva
+                ref={filePicker}
+                type="file"
+                id="avatar"
+                name="avatar"
+                onChange={event => {
+                  const file = event.target.files[0];
+                  formik.setFieldValue('avatar', file);
+                  setImage(URL.createObjectURL(file));
+                }}
+                accept={SUPPORTED_FORMATS.join(', ')}
+              />
+              <ButtonPlus>
+                <PlusSvg>
+                  <use xlinkHref={`${defaultAvatar}#${'profile-plus-s'}`} />
+                </PlusSvg>
+              </ButtonPlus>
+            </LabelAva>
 
-            <InputAva
-              ref={filePicker}
-              type="file"
-              id="avatar"
-              name="avatar"
-              onChange={handleFileInputChange}
-            />
-            {/*{formik.touched.avatar && formik.errors.avatar ? (*/}
-            {/*  <div>{formik.errors.avatar}</div>*/}
-            {/*) : null}*/}
-            <ButtonPlus onClick={handlePick}>
-              <span>+</span>
-            </ButtonPlus>
             <TitleAvatar>{name}</TitleAvatar>
             <TextAvatar>User</TextAvatar>
           </AvatarBlock>
 
           <FlexInput>
-
-            <Label htmlFor='name'><LabelSpan>User Name</LabelSpan>
+            <Label htmlFor="name">
+              <LabelSpan>User Name</LabelSpan>
               <Input
                 id="name"
                 name="name"
@@ -157,7 +182,8 @@ export const UserForm = () => {
               ) : null}
             </Label>
 
-            <Label htmlFor='birthday'><LabelSpan>Birthday</LabelSpan>
+            <Label htmlFor="birthday">
+              <LabelSpan>Birthday</LabelSpan>
               <Input
                 id="birthday"
                 name="birthday"
@@ -175,7 +201,8 @@ export const UserForm = () => {
               ) : null}
             </Label>
 
-              <Label htmlFor='email'><LabelSpan>Email</LabelSpan>
+            <Label htmlFor="email">
+              <LabelSpan>Email</LabelSpan>
               <Input
                 id="email"
                 name="email"
@@ -190,8 +217,8 @@ export const UserForm = () => {
               ) : null}
             </Label>
 
-
-            <Label htmlFor='phone'><LabelSpan>Phone</LabelSpan>
+            <Label htmlFor="phone">
+              <LabelSpan>Phone</LabelSpan>
               <Input
                 id="phone"
                 name="phone"
@@ -210,8 +237,8 @@ export const UserForm = () => {
               ) : null}
             </Label>
 
-
-            <Label htmlFor='telegram'><LabelSpan>Telegram</LabelSpan>
+            <Label htmlFor="telegram">
+              <LabelSpan>Telegram</LabelSpan>
               <Input
                 id="telegram"
                 name="telegram"
@@ -229,13 +256,16 @@ export const UserForm = () => {
                 <Errors>{formik.errors.telegram}</Errors>
               ) : null}
             </Label>
-
-
           </FlexInput>
 
-          <Button onSubmit={handleUpload} type='submit' disabled={!formik.isValid}>
+          <Button
+            onSubmit={handleUpload}
+            type="submit"
+            disabled={!formik.isValid}
+          >
             Save changes
           </Button>
+          {/* <Persist name="user-form" /> */}
         </Form>
       )}
     </Formik>
