@@ -6,6 +6,9 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   min-width: 100%;
   margin-bottom: 24px;
+  @media (min-width: 768px) {
+    margin-bottom: 28px;
+  }
 `;
 export const Title = styled.p`
   font-family: var(--primary-font);

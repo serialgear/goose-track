@@ -37,8 +37,9 @@ export const Header = ({ openMobalMenu }) => {
 
   const taskStatusToDo =
     tasks
-      .flatMap(day => day.map(task => task.status))
-      .includes('To do' || 'In progress') && isActivePage === 'Calendar';
+      .flatMap(day => (day.length > 0 ? day.map(task => task.status) : ''))
+      .some(status => ['To do', 'In progress'].includes(status)) &&
+    isActivePage === 'Calendar';
 
   return (
     <HeaderStyled>

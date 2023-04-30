@@ -15,15 +15,16 @@ export const Btn = styled.button`
   box-shadow: var(--shadow-logout-btn);
   border-radius: 16px;
 
-  transition: box-shadow var(--animation);
+  transition: background-color var(--animation);
 
   &:hover,
   :focus {
-    box-shadow: var(--shadow-logout-btn-hover);
+    background-color: var(--hover-btn-background-color);
   }
 
   @media (min-width: 768px) {
     padding: 16px 23px;
+    bottom: 32px;
   }
 `;
 export const Txt = styled.span`
