@@ -53,7 +53,8 @@ export const Span = styled.span`
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
-  color: var(--primary-text-color);
+  color: ${props =>
+    props.error ? 'var(--text-error-color)' : 'var(--primary-text-color)'};
 
   @media (min-width: 768px) {
     margin-top: 18px;
@@ -81,11 +82,17 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   background-color: rgba(255, 255, 255, 0);
-  border: var(--border-auth);
+  /* border: var(--border-auth); */
+  border: ${props =>
+    props.error ? 'var(--border-auth-error)' : 'var(--border-auth)'};
   border-radius: 8px;
   padding: 14px;
   width: 100%;
   outline: none;
+
+  &:hover {
+    border: 1px solid var(--primary-text-color);
+  }
 
   &::placeholder {
     font-family: var(--primary-font);
@@ -114,7 +121,7 @@ export const Button = styled.button`
 
   &:hover,
   :focus {
-    box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
+    background: var(--hover-btn-background-color);
   }
 
   @media (min-width: 768px) {
@@ -150,7 +157,6 @@ export const Svg = styled.svg`
     height: 20px;
   }
 `;
-
 
 export const CloudSvg = styled.svg`
   display: none;
@@ -189,7 +195,7 @@ export const Errors = styled.span`
   font-size: 14px;
   line-height: 1.2;
   @media (min-width: 768px) {
-     height: 18px;
+    height: 18px;
   }
 `;
 
