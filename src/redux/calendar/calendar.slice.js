@@ -1,7 +1,12 @@
 import { persistReducer } from 'redux-persist';
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import { getTasksOfMonth } from './calendar.operations';
+import {
+  getTasksOfMonth,
+  addTaskOperation,
+  deleteTaskOperation,
+  editTaskOperation,
+} from './calendar.operations';
 
 const calendarInitState = {
   currentMonth: new Date().toISOString(),
@@ -35,6 +40,40 @@ const calendarSlice = createSlice({
         state.error = null;
       })
       .addCase(getTasksOfMonth.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+
+      .addCase(addTaskOperation.pending, state => state)
+
+      .addCase(addTaskOperation.fulfilled, (state, { payload }) => {
+        state.tasks.push(payload);
+        state.error = null;
+      })
+      .addCase(addTaskOperation.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+
+      .addCase(deleteTaskOperation.pending, state => {
+        state.error = null;
+      })
+      .addCase(deleteTaskOperation.fulfilled, (state, { payload }) => {
+        state.error = null;
+        state.tasks = state.tasks.filter(task => task._id !== payload.id);
+      })
+      .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+
+      .addCase(editTaskOperation.pending, state => {
+        state.error = null;
+      })
+      .addCase(editTaskOperation.fulfilled, (state, { payload }) => {
+        const index = state.tasks.findIndex(task => task.id === payload.id);
+        if (index !== -1) {
+          state.tasks[index] = payload;
+        }
+      })
+      .addCase(editTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
       });
   },
