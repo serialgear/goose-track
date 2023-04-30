@@ -4,9 +4,21 @@ import {
   ToolbarSvg,
 } from './TaskToolbar.styled';
 import icons from 'images/sprite.svg';
+import { useState } from 'react';
+import { TaskModal } from '../../TaskModal/TaskModal';
 
 export const TaskToolbar = props => {
-  // console.log('props ', props);
+  console.log('props ', props);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <TaskToolbarList>
@@ -23,12 +35,7 @@ export const TaskToolbar = props => {
           </TaskToolbarButton>
         </li>
         <li>
-          <TaskToolbarButton
-            type="button"
-            onClick={() => {
-              console.log('edit', props._id);
-            }}
-          >
+          <TaskToolbarButton type="button" onClick={handleShowModal}>
             <ToolbarSvg>
               <use xlinkHref={`${icons}#task-edit-sf`}></use>
             </ToolbarSvg>
@@ -47,6 +54,14 @@ export const TaskToolbar = props => {
           </TaskToolbarButton>
         </li>
       </TaskToolbarList>
+
+      {showModal && (
+        <TaskModal
+          editMode={true}
+          handleCloseModal={handleCloseModal}
+          {...props}
+        />
+      )}
     </>
   );
 };

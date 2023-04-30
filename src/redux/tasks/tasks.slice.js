@@ -23,16 +23,18 @@ const tasksSlice = createSlice({
       })
       .addCase(addTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
-      });
+      })
 
-    //   .addCase(deleteTaskOperation.fulfilled, (state, { payload }) => {
-    //     state.isLoading = false;
-    //     state.items = state.items.filter(({ id }) => id !== payload);
-    //     state.error = null;
-    //   })
-    //   .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
-    //     state.error = payload;
-    //   });
+      .addCase(deleteTaskOperation.pending, state => {
+        state.error = null;
+      })
+      .addCase(deleteTaskOperation.fulfilled, (state, { payload }) => {
+        state.error = null;
+        state.tasks = state.tasks.filter(task => task._id !== payload.id);
+      })
+      .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
+        state.error = payload;
+      });
   },
 });
 

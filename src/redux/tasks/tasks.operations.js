@@ -8,11 +8,9 @@ export const addTaskOperation = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-
       if (token === null) {
         return thunkAPI.rejectWithValue('Error authorization');
       }
-
       setAuthHeader(token);
 
       const response = await axios.post('/tasks', taskData);
@@ -29,15 +27,25 @@ export const addTaskOperation = createAsyncThunk(
 );
 
 export const deleteTaskOperation = createAsyncThunk(
-  'add/tasks',
-  async (taskData, thunkAPI) => {
+  'tasks/deleteTaskOperation',
+  async (taskId, thunkAPI) => {
     try {
-      const response = await axios.post('/tasks', taskData);
-
+      const response = await axios.delete(`/tasks/${taskId}`);
       return response.data;
     } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editTaskOperation = createAsyncThunk(
+  'tasks/editTaskOperation',
+  async (task, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/tasks/${task.id}`, task.task);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

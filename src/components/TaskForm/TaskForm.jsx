@@ -6,33 +6,39 @@ import * as Yup from 'yup';
 import * as STC from './TaskForm.styled';
 import icon from '../../images/sprite.svg';
 import { useDispatch } from 'react-redux';
-import { addTaskOperation } from '../../redux/tasks/tasks.operations';
+import {
+  addTaskOperation,
+  editTaskOperation,
+} from '../../redux/calendar/calendar.operations';
 
-export const TaskForm = ({ taskFormData, status, onClose }) => {
+export const TaskForm = ({ onClose, ...props }) => {
   const dispatch = useDispatch();
-
-  // const [title, setTitle] = useState(task?.title || '');
-  // const [start, setStart] = useState(task?.start || '');
-  // const [end, setEnd] = useState(task?.end || '');
-  // const [priority, setPriority] = useState(task?.priority || 'low');
+  const editMode = props?.editMode || false;
+  console.log('props', props);
+  console.log('editMode', editMode);
 
   const initialValues = {
-    title: taskFormData?.title || '',
-    start: taskFormData?.start || '',
-    end: taskFormData?.end || '',
-    priority: taskFormData?.priority || 'Low',
+    title: props?.title || '',
+    start: props?.start || '',
+    end: props?.end || '',
+    priority: props?.priority || 'Low',
   };
 
   const { currentDay: date } = useParams();
 
   const handleAdd = values => {
-    console.log('values====>', values);
-    const addData = { ...values, date, status: status.name };
-    console.log('addData====>', addData);
+    const addData = { ...values, date, status: props.status.name };
 
-    dispatch(addTaskOperation(addData));
-    console.log('add task done');
-    onClose();
+    if (!editMode) {
+      dispatch(addTaskOperation(addData));
+      // dispatch(addTaskToState( {_id: nanoid(), ...addData}))
+      onClose();
+    } else {
+      dispatch(editTaskOperation(addData));
+
+      console.log('EDIT MODE FUNC');
+      onClose();
+    }
   };
 
   const validationSchema = Yup.object({
@@ -158,40 +164,32 @@ export const TaskForm = ({ taskFormData, status, onClose }) => {
             </STC.RadioButtonGroup>
 
             <STC.Wrapper>
-              {
-                (taskFormData = 1 ? (
-                  <>
-                    <STC.Button type="submit">
-                      <STC.Svg>
-                        <use href={`${icon}#add-btn-s`} />
-                      </STC.Svg>
-                      Add
-                    </STC.Button>
-                    <STC.ButtonCancel
-                      type="button"
-                      disabled={isSubmitting}
-                      onClick={() => {
-                        onClose();
-                      }}
-                    >
-                      Cancel
-                    </STC.ButtonCancel>
-                  </>
-                ) : (
-                  <STC.Button
-                    type="submit"
-                    onClick={() => {
-                      console.log('handleSubmit called');
-                    }}
-                    disabled={isSubmitting}
-                  >
+              {!editMode ? (
+                <>
+                  <STC.Button type="submit">
                     <STC.Svg>
-                      <use href={`${icon}#edit-btn-s`} />
+                      <use href={`${icon}#add-btn-s`} />
                     </STC.Svg>
-                    Edit
+                    Add
                   </STC.Button>
-                ))
-              }
+                  <STC.ButtonCancel
+                    type="button"
+                    disabled={isSubmitting}
+                    onClick={() => {
+                      onClose();
+                    }}
+                  >
+                    Cancel
+                  </STC.ButtonCancel>
+                </>
+              ) : (
+                <STC.Button type="submit" disabled={isSubmitting}>
+                  <STC.Svg>
+                    <use href={`${icon}#edit-btn-s`} />
+                  </STC.Svg>
+                  Edit
+                </STC.Button>
+              )}
             </STC.Wrapper>
           </STC.Form>
         )}
