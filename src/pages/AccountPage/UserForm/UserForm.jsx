@@ -21,6 +21,7 @@ import {
   StyledDatePick,
   StyledIconContainer,
   PlusSvg,
+  BirthdayContainer,
 } from './UserForm.styled';
 import { GlobalStyles } from './UserForm.styled';
 import { format } from 'date-fns';
@@ -188,29 +189,36 @@ export const UserForm = () => {
               ) : null}
             </Label>
 
-            <Label htmlFor="birthday">
-              <LabelSpan>Birthday</LabelSpan>
-              <StyledIconContainer>
-                <FontAwesomeIcon icon={faChevronDown} />
-              </StyledIconContainer>
+            <BirthdayContainer>
+              <Label htmlFor="birthday">
+                <LabelSpan>Birthday</LabelSpan>
+                <StyledIconContainer>
+                  <FontAwesomeIcon
+                    icon={faChevronDown}
+                    width={'18px'}
+                    height={'18px'}
+                  />
+                </StyledIconContainer>
+
+                {formik.touched.birthday && formik.errors.birthday ? (
+                  <Errors>{formik.errors.birthday}</Errors>
+                ) : null}
+              </Label>
               <GlobalStyles />
               <StyledDatePick
                 id="birthday"
                 name="birthday"
                 selected={new Date(formik.values.birthday)}
                 onChange={date => formik.setFieldValue('birthday', date)}
-                dateFormat="yyyy-MM-dd"
+                dateFormat="dd-MMM-yyyy"
                 maxDate={new Date()}
-                placeholderText="yyyy-MM-dd"
+                placeholderText="dd-MMM-yyyy"
                 formatWeekDay={day => day.charAt(0)}
                 calendarStartDay={1}
                 disabledKeyboardNavigation
               />
+            </BirthdayContainer>
 
-              {formik.touched.birthday && formik.errors.birthday ? (
-                <Errors>{formik.errors.birthday}</Errors>
-              ) : null}
-            </Label>
             <Label htmlFor="email">
               <LabelSpan>Email</LabelSpan>
               <Input
