@@ -151,11 +151,10 @@ export const Svg = styled.svg`
   }
 `;
 
-
 export const CloudSvg = styled.svg`
   display: none;
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1280px) {
     display: block;
     width: 182px;
     height: 144px;
@@ -168,7 +167,7 @@ export const CloudSvg = styled.svg`
 export const ImgRocketSvg = styled.img`
   display: none;
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1280px) {
     display: inline-block;
     width: 178px;
     height: 414px;
@@ -189,14 +188,14 @@ export const Errors = styled.span`
   font-size: 14px;
   line-height: 1.2;
   @media (min-width: 768px) {
-     height: 18px;
+    height: 18px;
   }
 `;
 
 export const GooseText = styled.p`
   display: none;
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1280px) {
     display: inline-block;
     position: fixed;
     bottom: 442px;
