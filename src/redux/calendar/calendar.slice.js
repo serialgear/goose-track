@@ -42,6 +42,7 @@ const calendarSlice = createSlice({
       .addCase(getTasksOfMonth.rejected, (state, { payload }) => {
         state.error = payload;
       })
+
       .addCase(addTaskOperation.pending, state => state)
 
       .addCase(addTaskOperation.fulfilled, (state, { payload }) => {
@@ -60,6 +61,19 @@ const calendarSlice = createSlice({
         state.tasks = state.tasks.filter(task => task._id !== payload.id);
       })
       .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+
+      .addCase(editTaskOperation.pending, state => {
+        state.error = null;
+      })
+      .addCase(editTaskOperation.fulfilled, (state, { payload }) => {
+        const index = state.tasks.findIndex(task => task.id === payload.id);
+        if (index !== -1) {
+          state.tasks[index] = payload;
+        }
+      })
+      .addCase(editTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
       });
   },

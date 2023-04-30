@@ -43,7 +43,6 @@ export const addTaskOperation = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue({
         message: error.message,
         status: error.response.status,
@@ -68,9 +67,20 @@ export const editTaskOperation = createAsyncThunk(
   'tasks/editTaskOperation',
   async (task, thunkAPI) => {
     try {
-      console.log(task);
-      // const response = await axios.patch(`/tasks/${task.id}`, task);
-      // return response.data;
+      const response = await axios.patch(`/tasks/${task._id}`, task);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const MoveTaskOperation = createAsyncThunk(
+  'tasks/moveTaskOperation',
+  async (task, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/tasks/${task._id}`, task);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

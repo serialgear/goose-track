@@ -14,8 +14,7 @@ import {
 export const TaskForm = ({ onClose, ...props }) => {
   const dispatch = useDispatch();
   const editMode = props?.editMode || false;
-  console.log('props', props);
-  console.log('editMode', editMode);
+  const status = props?.status.name || 'To do';
 
   const initialValues = {
     title: props?.title || '',
@@ -27,16 +26,14 @@ export const TaskForm = ({ onClose, ...props }) => {
   const { currentDay: date } = useParams();
 
   const handleAdd = values => {
-    const addData = { ...values, date, status: props.status.name };
-
     if (!editMode) {
-      dispatch(addTaskOperation(addData));
-      // dispatch(addTaskToState( {_id: nanoid(), ...addData}))
+      const payload = { ...values, date, status };
+      dispatch(addTaskOperation(payload));
       onClose();
     } else {
-      dispatch(editTaskOperation(addData));
+      const payload = { ...values, date, status, _id: props._id };
+      dispatch(editTaskOperation(payload));
 
-      console.log('EDIT MODE FUNC');
       onClose();
     }
   };
