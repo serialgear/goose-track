@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Formik } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import {
   Form,
   Input,
@@ -16,9 +18,13 @@ import {
   AvatarBlock,
   Errors,
   LabelSpan,
+  StyledDatePick,
+  StyledIconContainer,
   PlusSvg,
 } from './UserForm.styled';
+import { GlobalStyles } from './UserForm.styled';
 import { format } from 'date-fns';
+
 import defaultAvatar from '../../../images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -184,23 +190,27 @@ export const UserForm = () => {
 
             <Label htmlFor="birthday">
               <LabelSpan>Birthday</LabelSpan>
-              <Input
+              <StyledIconContainer>
+                <FontAwesomeIcon icon={faChevronDown} />
+              </StyledIconContainer>
+              <GlobalStyles />
+              <StyledDatePick
                 id="birthday"
                 name="birthday"
-                type="date"
-                onChange={formik.handleChange}
-                value={
-                  formik.values.birthday === '' || !formik.values.birthday
-                    ? ''
-                    : formik.values.birthday
-                }
-                {...formik.getFieldProps('birthday')}
+                selected={new Date(formik.values.birthday)}
+                onChange={date => formik.setFieldValue('birthday', date)}
+                dateFormat="yyyy-MM-dd"
+                maxDate={new Date()}
+                placeholderText="yyyy-MM-dd"
+                formatWeekDay={day => day.charAt(0)}
+                calendarStartDay={1}
+                disabledKeyboardNavigation
               />
+
               {formik.touched.birthday && formik.errors.birthday ? (
                 <Errors>{formik.errors.birthday}</Errors>
               ) : null}
             </Label>
-
             <Label htmlFor="email">
               <LabelSpan>Email</LabelSpan>
               <Input
@@ -216,7 +226,6 @@ export const UserForm = () => {
                 <Errors>{formik.errors.email}</Errors>
               ) : null}
             </Label>
-
             <Label htmlFor="phone">
               <LabelSpan>Phone</LabelSpan>
               <Input
@@ -236,7 +245,6 @@ export const UserForm = () => {
                 <Errors>{formik.errors.phone}</Errors>
               ) : null}
             </Label>
-
             <Label htmlFor="telegram">
               <LabelSpan>Telegram</LabelSpan>
               <Input
