@@ -14,7 +14,8 @@ export default function StartPage() {
       <STC.Hero>
         <STC.LogoImg src={`${LogoGoose}`} />
         <STC.Title>
-          G<span style={{ fontStyle: 'italic' }}>oo</span>seTrack
+          G<span style={{ fontStyle: 'italic', marginRight: '7px' }}>oo</span>
+          seTrack
         </STC.Title>
         <STC.LinkBox>
           <STC.LoginLink to="/login">
