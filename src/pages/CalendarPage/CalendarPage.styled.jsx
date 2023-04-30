@@ -9,8 +9,10 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 24px;
 
-  /* @media (min-width: 768px) {
-    margin-left: 32px;
-    margin-right: 32px;
-  } */
+  @media (min-width: 768px) {
+    padding-top: 32px;
+    gap: 32px;
+    /* margin-left: 32px;
+    margin-right: 32px; */
+  }
 `;

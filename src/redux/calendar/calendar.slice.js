@@ -1,6 +1,7 @@
 import { persistReducer } from 'redux-persist';
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
+import { authLogout } from 'redux/auth/auth.operations';
 import {
   getTasksOfMonth,
   addTaskOperation,
@@ -12,8 +13,8 @@ const calendarInitState = {
   currentMonth: new Date().toISOString(),
   choosedDay: null,
   tasks: [],
-  indexCurrentDay: 0,
-  isLoggedIn: false,
+  indexCurrentDay: null,
+  isLoading: false,
   error: null,
 };
 
@@ -30,18 +31,27 @@ const calendarSlice = createSlice({
     addChoosedDay(state, { payload }) {
       state.choosedDay = payload;
     },
+    clearTasks(state) {
+      state.tasks = [];
+    },
   },
 
   extraReducers: builder => {
     builder
-      .addCase(getTasksOfMonth.pending, state => state)
+      .addCase(getTasksOfMonth.pending, state => {
+        state.isLoading = true;
+      })
       .addCase(getTasksOfMonth.fulfilled, (state, { payload }) => {
         state.tasks = [...payload];
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(getTasksOfMonth.rejected, (state, { payload }) => {
         state.error = payload;
+        state.isLoading = false;
       })
+      .addCase(authLogout.fulfilled, () => calendarInitState)
+      
 
       .addCase(addTaskOperation.pending, state => state)
 
@@ -75,18 +85,23 @@ const calendarSlice = createSlice({
       })
       .addCase(editTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
-      });
-  },
-});
+      })
+    }
+})
 
-export const { addCurrentMonth, addIndexCurrentDay, addChoosedDay } =
-  calendarSlice.actions;
+
+export const {
+  addCurrentMonth,
+  addIndexCurrentDay,
+  addChoosedDay,
+  clearTasks,
+} = calendarSlice.actions;
 
 export const calendarReducer = persistReducer(
   {
     key: 'calendar',
     storage,
-    whitelist: ['currentMonth'],
+    whitelist: ['currentMonth', 'choosedDay', 'indexCurrentDay'],
   },
   calendarSlice.reducer
 );

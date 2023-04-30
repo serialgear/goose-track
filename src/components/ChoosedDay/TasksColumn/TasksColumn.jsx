@@ -4,7 +4,7 @@ import { ColumnsTasksList } from './ColumnsTasksList/ColumnsTasksList';
 import { Container } from './TasksColumn.styled';
 
 export const TasksColumn = ({ status }) => {
-  console.log('status ', status);
+  
   return (
     <>
       <Container>
