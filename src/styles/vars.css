@@ -19,6 +19,7 @@
   --border-calendar: 1px solid rgba(220, 227, 229, 0.5);
   --border-calendar-period-type: 1px solid rgba(62, 133, 243, 0.2);
   --border-auth: 1px solid rgba(220, 227, 229, 0.6);
+  --border-auth-error: 1px solid #e74a3b;
   --border-AddTaskBtn: 1px dashed #3e85f3;
 
   /* text-color */
@@ -30,6 +31,7 @@
   --not-active-item-sidebar-text-color: #84828a;
   --auth-placeholder-color: #dce3e5;
   --accent-span-text-color: #3e85f3;
+  --text-error-color: #e74a3b;
 
   /* calendar */
   --calendar-digit-color: #343434;

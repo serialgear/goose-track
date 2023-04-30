@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Formik } from 'formik';
 import { authLogin } from 'redux/auth/auth.operations';
 import { useDispatch } from 'react-redux';
@@ -21,6 +22,10 @@ const LoginValidationSchema = Yup.object().shape({
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.body.classList.remove('dark-theme');
+  }, []);
 
   return (
     <>
@@ -63,8 +68,11 @@ export const LoginForm = () => {
             <STC.Container>
               <STC.Form onSubmit={handleSubmit}>
                 <STC.Title>Log In</STC.Title>
+
                 <STC.Label htmlFor="email">
-                  <STC.Span>Email</STC.Span>
+                  <STC.Span error={errors.email && touched.email}>
+                    Email
+                  </STC.Span>
                   <STC.Input
                     type="email"
                     name="email"
@@ -73,13 +81,17 @@ export const LoginForm = () => {
                     onBlur={handleBlur}
                     value={values.email}
                     placeholder="Enter your email"
+                    error={errors.email && touched.email}
                   />
                   <STC.Errors>
                     {errors.email && touched.email && errors.email}
                   </STC.Errors>
                 </STC.Label>
+
                 <STC.Label htmlFor="password">
-                  <STC.Span>Password</STC.Span>
+                  <STC.Span error={errors.password && touched.password}>
+                    Password
+                  </STC.Span>
                   <STC.Input
                     type="password"
                     name="password"
@@ -87,6 +99,7 @@ export const LoginForm = () => {
                     onBlur={handleBlur}
                     value={values.password}
                     placeholder="Enter password"
+                    error={errors.password && touched.password}
                   />
                   <STC.Errors>
                     {errors.password && touched.password && errors.password}
