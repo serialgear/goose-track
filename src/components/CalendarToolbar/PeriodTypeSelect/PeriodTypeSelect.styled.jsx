@@ -11,14 +11,10 @@ const StyledLink = styled(NavLink)`
   justify-content: center;
   align-items: center;
 
-  gap: 149px;
-
   width: 76px;
   height: 34px;
 
   background: var(--button-period-type);
-
-  cursor: pointer;
 
   font-family: var(--primary-font);
   font-style: normal;
@@ -26,11 +22,15 @@ const StyledLink = styled(NavLink)`
   font-size: 14px;
   line-height: 1.29px;
 
-  text-align: center;
-
-  color: var(--accent-background-color);
+  color: var(--accent-text-color);
   &.active {
     background: var(--active-button-period-type);
+  }
+  @media (min-width: 768px) {
+    width: 82px;
+
+    font-size: 16px;
+    line-height: 1.12;
   }
 `;
 
@@ -46,4 +46,7 @@ export const StyledLinkDay = styled(StyledLink)`
   padding: 8px 25px;
   border: none;
   border-radius: 0px 8px 8px 0px;
+  @media (min-width: 768px) {
+    padding: 8px 26px;
+  }
 `;
