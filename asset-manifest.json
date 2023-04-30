@@ -1,29 +1,37 @@
 {
   "files": {
-    "main.css": "/goose-track/static/css/main.b4ab98b1.css",
-    "main.js": "/goose-track/static/js/main.98c5732d.js",
+    "main.css": "/goose-track/static/css/main.348ac555.css",
+    "main.js": "/goose-track/static/js/main.1209d079.js",
     "static/media/login-goose-.svg": "/goose-track/static/media/login-goose-.1c553c6a3f164ed903259ed77dd6b178.svg",
     "static/media/Inter-Bold.woff": "/goose-track/static/media/Inter-Bold.d863298c035ae887b7d6.woff",
     "static/media/Inter-SemiBold.woff": "/goose-track/static/media/Inter-SemiBold.133ad17891ba17ce4b7e.woff",
     "static/media/Inter-Medium.woff": "/goose-track/static/media/Inter-Medium.5aebe1f6c4605768582d.woff",
     "static/media/Inter-Regular.woff": "/goose-track/static/media/Inter-Regular.16cbea275b2ab28453af.woff",
+    "static/media/Day.jpg": "/goose-track/static/media/Day.ecbc4e97fe71425558da.jpg",
     "static/media/Inter-Bold.woff2": "/goose-track/static/media/Inter-Bold.33a5a4566bb3413901e3.woff2",
     "static/media/Inter-SemiBold.woff2": "/goose-track/static/media/Inter-SemiBold.f8f55aa9d497b7683ed5.woff2",
     "static/media/Inter-Medium.woff2": "/goose-track/static/media/Inter-Medium.3b9cdcf0bbb18875523f.woff2",
     "static/media/Inter-Regular.woff2": "/goose-track/static/media/Inter-Regular.582d8a8e254ad87ea376.woff2",
+    "static/media/Calendar2.jpg": "/goose-track/static/media/Calendar2.ce1daaa75288d1084e5e.jpg",
+    "static/media/Calendar1.jpg": "/goose-track/static/media/Calendar1.f91e939eaa3d08c661ff.jpg",
+    "static/media/coolvetica rg it.otf": "/goose-track/static/media/coolvetica rg it.733776c8d6437461f923.otf",
+    "static/media/coolvetica rg.otf": "/goose-track/static/media/coolvetica rg.3d81d0e1fdbd5f69b232.otf",
+    "static/media/Calendar3.jpg": "/goose-track/static/media/Calendar3.4c2c7cdb440b6a114023.jpg",
     "static/media/CoolveticaRg-Italic.woff": "/goose-track/static/media/CoolveticaRg-Italic.3c946da17c9b327cdb07.woff",
     "static/media/CoolveticaRg-Regular.woff": "/goose-track/static/media/CoolveticaRg-Regular.18553089a0255bf3ff57.woff",
     "static/media/CoolveticaRg-Italic.woff2": "/goose-track/static/media/CoolveticaRg-Italic.303f6d191c54ca2d8032.woff2",
+    "static/media/NavigationDark.jpg": "/goose-track/static/media/NavigationDark.19f85e1bebc9fe582fd8.jpg",
+    "static/media/NavigationLite.jpg": "/goose-track/static/media/NavigationLite.8154e6475b49f7421975.jpg",
     "static/media/CoolveticaRg-Regular.woff2": "/goose-track/static/media/CoolveticaRg-Regular.527dd81079648bc83492.woff2",
     "static/media/sprite.svg": "/goose-track/static/media/sprite.cd95b72bacf0b6f2bfae66ffd14c6dcd.svg",
     "static/media/login-rocket-goose.svg": "/goose-track/static/media/login-rocket-goose.29c8ea1148d3a97cc4c04d86ff52e0a8.svg",
     "index.html": "/goose-track/index.html",
     "static/media/logInIcon.svg": "/goose-track/static/media/logInIcon.a255be8977dff107049bccd8351f44a7.svg",
-    "main.b4ab98b1.css.map": "/goose-track/static/css/main.b4ab98b1.css.map",
-    "main.98c5732d.js.map": "/goose-track/static/js/main.98c5732d.js.map"
+    "main.348ac555.css.map": "/goose-track/static/css/main.348ac555.css.map",
+    "main.1209d079.js.map": "/goose-track/static/js/main.1209d079.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4ab98b1.css",
-    "static/js/main.98c5732d.js"
+    "static/css/main.348ac555.css",
+    "static/js/main.1209d079.js"
   ]
 }
