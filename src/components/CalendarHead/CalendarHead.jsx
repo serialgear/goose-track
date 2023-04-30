@@ -5,6 +5,7 @@ import {
   endOfISOWeek,
   isSameDay,
   formatISO,
+  isSameMonth,
 } from 'date-fns';
 import {
   ListMonth,
@@ -14,12 +15,18 @@ import {
   Days,
   Month,
   ListDays,
-  StyledLink,
+  OtherMonthStyledLink,
+  CurrentMonthStyledLink,
 } from './CalendarHead.styled';
-import { useDispatch } from 'react-redux';
-import { addIndexCurrentDay } from 'redux/calendar/calendar.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addChoosedDay,
+  addIndexCurrentDay,
+} from 'redux/calendar/calendar.slice';
+import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
 
 export const CalendarHead = ({ currentDay }) => {
+  const currentMonth = useSelector(selectCurrentMonth);
   const dispath = useDispatch();
 
   let daysInWeek;
@@ -41,6 +48,9 @@ export const CalendarHead = ({ currentDay }) => {
       <List>
         {daysInWeek?.map((day, idx) => {
           const Week = currentDay ? Days : Month;
+          const StyledLink = !isSameMonth(new Date(day), new Date(currentMonth))
+            ? OtherMonthStyledLink
+            : CurrentMonthStyledLink;
           const DateWeek = isSameDay(new Date(currentDay), new Date(day))
             ? ChoosedDate
             : DateOfWeek;
@@ -54,9 +64,10 @@ export const CalendarHead = ({ currentDay }) => {
                   to={`/calendar/day/${formatISO(new Date(choosedDay), {
                     representation: 'date',
                   })}`}
-                  onClick={() =>
-                    dispath(addIndexCurrentDay(Number(format(day, 'd'))))
-                  }
+                  onClick={() => {
+                    dispath(addIndexCurrentDay(Number(format(day, 'd'))));
+                    dispath(addChoosedDay(format(day, 'yyyy-MM-dd')));
+                  }}
                 >
                   <DateWeek>{format(day, 'd')}</DateWeek>
                 </StyledLink>

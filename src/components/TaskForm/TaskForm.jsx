@@ -16,7 +16,7 @@ export const TaskForm = ({ taskFormData, status, onClose }) => {
   // const [end, setEnd] = useState(task?.end || '');
   // const [priority, setPriority] = useState(task?.priority || 'low');
 
-  const initialValues = {
+  const initialValues  = {
     title: taskFormData?.title || '',
     start: taskFormData?.start || '',
     end: taskFormData?.end || '',

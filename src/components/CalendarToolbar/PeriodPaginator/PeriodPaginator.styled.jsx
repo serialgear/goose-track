@@ -66,7 +66,7 @@ export const ButtonRight = styled(StyledLink)`
   border-radius: 0px 8px 8px 0px;
 `;
 export const Icon = styled.svg`
-              width: 16px;
+  width: 16px;
   height: 16px;
   stroke: #616161;
   fill: transparent;
