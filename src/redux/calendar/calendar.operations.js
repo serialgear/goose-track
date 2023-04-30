@@ -74,15 +74,3 @@ export const editTaskOperation = createAsyncThunk(
     }
   }
 );
-
-export const MoveTaskOperation = createAsyncThunk(
-  'tasks/moveTaskOperation',
-  async (task, thunkAPI) => {
-    try {
-      const response = await axios.patch(`/tasks/${task._id}`, task);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
