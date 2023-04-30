@@ -7,12 +7,14 @@ import logInIcon from '../../images/sprite.svg';
 import { toast } from 'react-toastify';
 import loginRocketSvg from '../../images/Icons/login-rocket-goose.svg';
 import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
+import { PASSWORD_REGEX } from '../../constants/joiRegex';
 
 const LoginValidationSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Required'),
+  email: Yup.string().email('This is an ERROR email').required('Required'),
 
   password: Yup.string()
-    .min(3, 'Too Short!')
+    .matches(PASSWORD_REGEX, 'This is an ERROR password')
+    .min(5, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
 });
