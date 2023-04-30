@@ -5,7 +5,9 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   min-height: 155px;
-  padding: 18px 18px 20px;
+  max-height: inherit;
+  padding: 20px;
+  gap: 14px;
 
   background: var(--primary-background-color);
   border: var(--border-calendar);

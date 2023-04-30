@@ -5,16 +5,17 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   min-width: 100%;
-  margin-bottom: 24px;
+  padding: 7px 0;
+  /* margin-bottom: 24px; */
   @media (min-width: 768px) {
-    margin-bottom: 28px;
+    /* margin-bottom: 28px; */
   }
 `;
 export const Title = styled.p`
   font-family: var(--primary-font);
   font-style: normal;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 18px 18px 20px;
   line-height: 1.11;
   color: var(--primary-text-color);
 `;
