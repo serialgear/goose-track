@@ -10,6 +10,7 @@
   --sidebar-background-color: #ffffff;
   --accent-background-color: #3e85f3;
   --active-item-sidebar-background: #e3f3ff;
+  --hover-active-item-sidebar-background: #e3f3ff;
 
   --hover-btn-background-color: #2b78ef;
 
@@ -85,6 +86,7 @@
   --accent-text-color: #ffffff;
   --not-active-item-sidebar-text-color: #ffffff;
   --active-item-sidebar-background: #3e85f3;
+  --hover-active-item-sidebar-background: #2b78ef;
   --accent-span-text-color: #3e85f3;
 
   --calendar-digit-color: #ffffff;
