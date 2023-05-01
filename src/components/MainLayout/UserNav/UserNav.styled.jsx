@@ -64,15 +64,12 @@ export const Link = styled(NavLink)`
     background-color: var(--active-item-sidebar-background);
     color: var(--accent-text-color);
 
-    /* transition: background-color var(--animation);
+    transition: background-color var(--animation);
 
     &:hover,
     :focus {
-      background-color: ${() =>
-      document.body.classList.contains('dark-theme')
-        ? 'var(--hover-btn-background-color)'
-        : 'var(--active-item-sidebar-background)'};
-    } */
+      background-color: var(--hover-active-item-sidebar-background);
+    }
   }
 `;
 export const Icon = styled.svg`
