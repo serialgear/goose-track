@@ -22,6 +22,7 @@ import {
   selectTasks,
 } from 'redux/calendar/calendar.selectors';
 import { CalendarTableItem } from './CalendarTableItem';
+import { DotsSpinner } from '../../Loader/Loader';
 import { addIndexCurrentDay } from 'redux/calendar/calendar.slice';
 import { addChoosedDay } from 'redux/calendar/calendar.slice';
 
@@ -42,7 +43,7 @@ export const CalendarTable = () => {
 
   return (
     <>
-      {isLoading && <p>Loading.....</p>}
+      {isLoading && <DotsSpinner />}
       <Calendar>
         {daysInMonth?.map((day, idx) => {
           const StyledLink = !isSameMonth(day, currentMonth)
