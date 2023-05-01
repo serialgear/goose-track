@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { Formik } from 'formik';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import {
   Form,
   Input,
@@ -22,6 +20,7 @@ import {
   StyledIconContainer,
   PlusSvg,
   BirthdayContainer,
+  ArrowSvg,
 } from './UserForm.styled';
 import { GlobalStyles } from './UserForm.styled';
 import { format } from 'date-fns';
@@ -193,11 +192,11 @@ export const UserForm = () => {
               <Label htmlFor="birthday">
                 <LabelSpan>Birthday</LabelSpan>
                 <StyledIconContainer>
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    width={'18px'}
-                    height={'18px'}
-                  />
+                  <ArrowSvg>
+                    <use
+                      xlinkHref={`${defaultAvatar}#${'user-chevron-down-sf'}`}
+                    />
+                  </ArrowSvg>
                 </StyledIconContainer>
 
                 {formik.touched.birthday && formik.errors.birthday ? (
