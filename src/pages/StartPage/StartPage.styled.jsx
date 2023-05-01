@@ -413,3 +413,21 @@ export const ImageEllipse = styled.div`
     display: none;
   }
 `;
+
+export const ScrollToTop = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+
+  border: 5px solid var(--auth-bg-color);
+  border-radius: 50%;
+  background-color: var(--accent-background-color);
+`;
+export const ScrollTopTxt = styled.span`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--btn-text-color);
+`;

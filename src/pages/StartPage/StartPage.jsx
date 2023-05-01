@@ -1,3 +1,5 @@
+import ScrollToTop from 'react-scroll-up';
+
 import * as STC from './StartPage.styled';
 import LogoGoose from '../../images/GOOSE.png';
 import Icons from '../../images/sprite.svg';
@@ -82,6 +84,12 @@ export default function StartPage() {
           </STC.ImageBox>
         </STC.ContentItem>
       </STC.ContentList>
+
+      <ScrollToTop showUnder={160}>
+        <STC.ScrollToTop>
+          <STC.ScrollTopTxt>UP</STC.ScrollTopTxt>
+        </STC.ScrollToTop>
+      </ScrollToTop>
     </STC.Container>
   );
 }
