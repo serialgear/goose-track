@@ -14,7 +14,8 @@ import {
 export const TaskForm = ({ onClose, ...props }) => {
   const dispatch = useDispatch();
   const editMode = props?.editMode || false;
-  const status = props?.status.name || 'To do';
+  const status = props?.status || 'To do';
+  // console.log('status ', status);
 
   const initialValues = {
     title: props?.title || '',
