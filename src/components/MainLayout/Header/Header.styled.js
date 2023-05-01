@@ -83,6 +83,10 @@ export const MobileMenuSvg = styled.svg`
   @media (min-width: 1280px) {
     display: none;
   }
+  &:hover,
+  :focus {
+    stroke: var(--accent-background-color);
+  }
 `;
 
 export const HeaderAvatarWrapper = styled.div`

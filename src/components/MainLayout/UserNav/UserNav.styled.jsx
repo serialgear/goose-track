@@ -43,15 +43,14 @@ export const Link = styled(NavLink)`
   border-radius: 8px;
 
   color: var(--not-active-item-sidebar-text-color);
-  border: var(--border);
   border-color: transparent;
 
-  transition: background-color var(--animation), border var(--animation);
+  transition: background-color var(--animation), color var(--animation);
 
   &:hover,
   :focus {
-    background-color: var(--secondary-background-color);
-    border: var(--border);
+    color: var(--btn-text-color);
+    background-color: var(--hover-btn-background-color);
   }
   @media (min-width: 768px) {
     padding: 16px 20px;
@@ -61,6 +60,12 @@ export const Link = styled(NavLink)`
   &.active {
     background: var(--active-item-sidebar-background);
     color: var(--accent-text-color);
+
+    &:hover,
+    :focus {
+      color: var(--btn-text-color);
+      background-color: var(--hover-btn-background-color);
+    }
   }
 `;
 export const Icon = styled.svg`
