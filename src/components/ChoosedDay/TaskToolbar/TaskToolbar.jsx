@@ -8,15 +8,17 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TaskModal } from '../../TaskModal/TaskModal';
 import {
-  deleteTaskOperation,
+  // deleteTaskOperation,
   editTaskOperation,
 } from '../../../redux/calendar/calendar.operations';
 import { TASK_STATUS } from '../../../constants/taskStatus.constants';
+import { TaskDelete } from 'components/TaskDelete/TaskDelete';
 
 export const TaskToolbar = props => {
   const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -25,6 +27,9 @@ export const TaskToolbar = props => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+  const handleCloseDeleteModal= ()=> {
+    setShowDeleteModal(false)
+  }
 
   const NextStatus = currentStatus => {
     const currentIndex = TASK_STATUS.findIndex(
@@ -46,9 +51,9 @@ export const TaskToolbar = props => {
     }
   };
 
-  const handleDelete = () => {
-    dispatch(deleteTaskOperation(props._id));
-  };
+  // const handleDelete = () => {
+  //   dispatch(deleteTaskOperation(props._id));
+  // };
 
   return (
     <>
@@ -68,7 +73,11 @@ export const TaskToolbar = props => {
           </TaskToolbarButton>
         </li>
         <li>
-          <TaskToolbarButton type="button" onClick={handleDelete}>
+          <TaskToolbarButton
+            type="button"
+            // onClick={handleDelete}
+            onClick={() => setShowDeleteModal(true)}
+          >
             <ToolbarSvg>
               <use xlinkHref={`${icons}#task-trash-sf`}></use>
             </ToolbarSvg>
@@ -82,6 +91,9 @@ export const TaskToolbar = props => {
           handleCloseModal={handleCloseModal}
           {...props}
         />
+      )}
+      {showDeleteModal && (
+        <TaskDelete handleCloseDeleteModal={handleCloseDeleteModal} id={props._id} />
       )}
     </>
   );
