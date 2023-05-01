@@ -61,20 +61,18 @@ export const Link = styled(NavLink)`
     height: 56px;
   }
   &.active {
-    background: var(--active-item-sidebar-background);
+    background-color: var(--active-item-sidebar-background);
     color: var(--accent-text-color);
+
+    /* transition: background-color var(--animation);
 
     &:hover,
     :focus {
-      color: ${() =>
-        document.body.classList.contains('dark-theme')
-          ? 'var(--btn-text-color)'
-          : 'var(--hover-btn-background-color)'};
       background-color: ${() =>
-        document.body.classList.contains('dark-theme')
-          ? 'var(--hover-btn-background-color)'
-          : 'var(--active-item-sidebar-background)'};
-    }
+      document.body.classList.contains('dark-theme')
+        ? 'var(--hover-btn-background-color)'
+        : 'var(--active-item-sidebar-background)'};
+    } */
   }
 `;
 export const Icon = styled.svg`
