@@ -276,7 +276,7 @@ export const UserForm = () => {
           <Button
             onSubmit={handleUpload}
             type="submit"
-            disabled={!formik.isValid}
+            disabled={!(formik.isValid && formik.dirty)}
           >
             Save changes
           </Button>
