@@ -20,7 +20,7 @@ export const TaskStatusModal = ({ handleCloseStatusModal, ...props }) => {
 
   return (
     <>
-      <Modal onClose={handleCloseStatusModal}>
+      <Modal onClose={handleCloseStatusModal} isCloseBtn={false}>
         <STC.Ul>
           {filteredStatuses.map(status => (
             <li key={status.id}>

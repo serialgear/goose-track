@@ -27,6 +27,21 @@ export const ModalContainer = styled.div`
   }
 `;
 
+export const SmallModalContainer = styled.div`
+  position: absolute;
+  padding: 40px 18px;
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid var(--modal-border-color);
+  background-color: var(--primary-background-color);
+  border-radius: 8px;
+  box-shadow: 0px 0px 16px 4px var(--modal-shadow-color);
+  z-index: 1000;
+  @media screen and (min-width: 768px) {
+    padding: 40px 28px;
+  }
+`;
+
 export const CloseBtn = styled.svg`
   position: absolute;
   top: 14px;
@@ -39,4 +54,10 @@ export const CloseBtn = styled.svg`
   border: none;
   stroke: var(--close-btn-color);
   fill: transparent;
+  cursor: pointer;
+  transition: stroke var(--animation);
+  &:hover,
+  :focus {
+    stroke: var(--hover-btn-background-color);
+  }
 `;

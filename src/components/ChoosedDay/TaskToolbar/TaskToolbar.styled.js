@@ -8,6 +8,7 @@ export const TaskToolbarList = styled.ul`
 export const TaskToolbarItem = styled.ul``;
 
 export const TaskToolbarButton = styled.button`
+  position: relative;
   display: flex;
   width: 20px;
   height: 100%;

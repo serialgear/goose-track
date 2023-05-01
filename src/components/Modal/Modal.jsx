@@ -1,10 +1,15 @@
 import { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { CloseBtn, ModalContainer, Overlay } from './Modal.styled';
+import {
+  CloseBtn,
+  ModalContainer,
+  Overlay,
+  SmallModalContainer,
+} from './Modal.styled';
 import Icons from '../../images/sprite.svg';
 
-export const Modal = ({ children, onClose }) => {
+export const Modal = ({ children, onClose, isCloseBtn = true }) => {
   const memoKeyClose = useCallback(handleKeyClose, [handleKeyClose]);
 
   useEffect(() => {
@@ -35,12 +40,16 @@ export const Modal = ({ children, onClose }) => {
 
   return (
     <Overlay onClick={handleClose}>
-      <ModalContainer>
-        <CloseBtn onClick={handleCloseBtn}>
-          <use xlinkHref={`${Icons}#calendar-close-sf`} />
-        </CloseBtn>
-        {children}
-      </ModalContainer>
+      {isCloseBtn ? (
+        <ModalContainer>
+          <CloseBtn onClick={handleCloseBtn}>
+            <use xlinkHref={`${Icons}#calendar-close-sf`} />
+          </CloseBtn>
+          {children}
+        </ModalContainer>
+      ) : (
+        <SmallModalContainer>{children}</SmallModalContainer>
+      )}
     </Overlay>
   );
 };
@@ -48,4 +57,5 @@ export const Modal = ({ children, onClose }) => {
 Modal.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
+  isCloseBtn: PropTypes.bool,
 };
