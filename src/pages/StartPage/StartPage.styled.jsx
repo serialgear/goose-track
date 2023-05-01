@@ -74,10 +74,22 @@ export const LoginLink = styled(NavLink)`
   box-shadow: var(--shadow-logout-btn);
   background-color: var(--sidebar-background-color);
   color: var(--accent-text-color);
+  border: var(--border);
+  border-color: transparent;
+
+  transition: background-color var(--animation), color var(--animation),
+    border var(--animation);
 
   @media (min-width: 768px) {
     margin: 0;
-    margin-left: 24px;
+    margin-left: 10px;
+  }
+
+  &:hover,
+  :focus {
+    background-color: var(--modal-shadow-color);
+    color: var(--btn-text-color);
+    border-color: var(--btn-text-color);
   }
 `;
 export const LoginTxt = styled.span`
@@ -98,6 +110,9 @@ export const LoginSvg = styled.svg`
   fill: transparent;
 `;
 export const SignupLink = styled(NavLink)`
+  padding: 14px 32px;
+  border-radius: 16px;
+
   font-weight: 600;
   font-size: 12px;
   line-height: 14px;
@@ -107,10 +122,22 @@ export const SignupLink = styled(NavLink)`
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
   color: var(--btn-text-color);
+  border: var(--border);
+  border-color: transparent;
+
+  transition: background-color var(--animation), color var(--animation),
+    border var(--animation);
 
   @media (min-width: 768px) {
     font-size: 14px;
     line-height: 18px;
+  }
+
+  &:hover,
+  :focus {
+    background-color: var(--modal-shadow-color);
+    color: var(--btn-text-color);
+    border-color: var(--btn-text-color);
   }
 `;
 
@@ -424,6 +451,14 @@ export const ScrollToTop = styled.div`
   border: 5px solid var(--auth-bg-color);
   border-radius: 50%;
   background-color: var(--accent-background-color);
+
+  transition: background-color var(--animation), border-color var(--animation);
+
+  &:hover,
+  :focus {
+    background-color: var(--hover-btn-background-color);
+    border-color: var(--modal-shadow-color);
+  }
 `;
 export const ScrollTopTxt = styled.span`
   font-style: normal;
