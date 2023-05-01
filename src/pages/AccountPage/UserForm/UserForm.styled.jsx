@@ -221,6 +221,12 @@ export const Button = styled.button`
   border: none;
   padding: 14px;
 
+  &[disabled] {
+    background-color: #84828a;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   @media (min-width: 768px) {
     padding: 15px;
     // margin-top: 16px;
@@ -478,7 +484,7 @@ export const GlobalStyles = createGlobalStyle`
 .react-datepicker__triangle {
   visibility: hidden;
 }
-  
+
 `;
 
 export const StyledDatePick = styled(DatePicker)`
