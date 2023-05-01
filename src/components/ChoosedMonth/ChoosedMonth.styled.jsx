@@ -4,7 +4,10 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 14px;
-  @media (min-width:768px){
+  @media (min-width: 768px) {
     gap: 18px;
+  }
+  @media (min-width: 1280px) {
+    gap: 15px;
   }
 `;

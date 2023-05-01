@@ -2,7 +2,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { createSlice } from '@reduxjs/toolkit';
-// import { STATUS } from 'constants/status.constants';
+
 import {
   signupUser,
   authLogin,

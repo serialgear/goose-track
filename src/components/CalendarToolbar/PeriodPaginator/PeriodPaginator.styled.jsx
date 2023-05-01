@@ -7,7 +7,12 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 
   @media (min-width: 768px) {
-    width: 245px;
+    width: ${props => {
+      if (props.index) {
+        return '270px';
+      }
+      return '245px';
+    }};
   }
 `;
 
@@ -20,7 +25,7 @@ export const MonthWrapper = styled.div`
 
   min-width: 118px;
   height: 30px;
-  padding: 6px 12px;
+  padding: 3px 12px;
 
   background-color: var(--accent-btn-background);
   border-radius: 8px;
@@ -61,7 +66,7 @@ const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 12px;
+
   isolation: isolate;
 
   width: 36px;
@@ -69,6 +74,12 @@ const StyledLink = styled(Link)`
 
   background: var(--primary-background-color);
   border: var(--border-calendar);
+  opacity: ${props => {
+    if (props.disabled) {
+      return '0.3';
+    }
+    return '1';
+  }};
 
   @media (min-width: 768px) {
     width: 38px;
@@ -87,7 +98,7 @@ export const ButtonRight = styled(StyledLink)`
 export const Icon = styled.svg`
   width: 16px;
   height: 16px;
-  stroke: #616161;
+  stroke: var(--secondary-text-color);
   fill: transparent;
   @media (min-width: 768px) {
     width: 18px;

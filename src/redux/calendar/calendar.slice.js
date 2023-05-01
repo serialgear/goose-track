@@ -66,19 +66,6 @@ const calendarSlice = createSlice({
         state.error = payload;
       })
 
-      // .addCase(deleteTaskOperation.pending, state => {
-      //   state.error = null;
-      // })
-      // .addCase(deleteTaskOperation.fulfilled, (state, { payload }) => {
-      //   state.error = null;
-
-      //   state.tasks[state.indexCurrentDay] =
-      //    state[state.indexCurrentDay].tasks.filter(task => task._id !== payload._id);
-      // })
-      // .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
-      //   state.error = payload;
-      // })
-
       .addCase(editTaskOperation.pending, state => {
         state.isLoading = true;
       })

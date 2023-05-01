@@ -23,6 +23,9 @@ export const Calendar = styled.ul`
     font-size: 16px;
     line-height: 1.12;
   }
+  @media (min-width: 1280px) {
+    grid-auto-rows: 125px;
+  }
 `;
 
 export const Days = styled.li`
