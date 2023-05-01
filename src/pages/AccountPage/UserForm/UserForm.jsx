@@ -39,12 +39,12 @@ import {
 import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
-// import { Persist } from 'formik-persist';
 import {
   NAME_REGEX,
   PHONE_REGEX,
   TELEGRAM_REGEX,
 } from '../../../constants/joiRegex';
+import { toast } from 'react-toastify';
 
 export const UserForm = () => {
   const [image, setImage] = useState(null);
@@ -60,21 +60,16 @@ export const UserForm = () => {
 
   const formattedDate = format(new Date(birthday), 'yyyy-MM-dd');
 
-  // const handleFileInputChange = event => {
-  //   const file = event.target.files[0];
-  //   const imageUrl = URL.createObjectURL(file);
-  //   setImage(imageUrl);
-  // };
 
   const handleUpload = async event => {
     event.preventDefault();
     if (!setImage) {
-      alert('Please select a file');
+      toast.error('Please select a file');
       return true;
     }
   };
 
-  // const FILE_SIZE = 2 * 1024 * 1024;
+  const FILE_SIZE = 2 * 1024 * 1024;
   const SUPPORTED_FORMATS = [
     'image/jpg',
     'image/jpeg',
@@ -97,47 +92,47 @@ export const UserForm = () => {
         phone: Yup.string()
           .matches(PHONE_REGEX, 'Not correct, try again')
           .nullable(),
-        // .required('Number is required'),
         telegram: Yup.string()
           .matches(TELEGRAM_REGEX, 'Not correct, try again')
           .max(16, 'Too Long!')
           .nullable(),
-        // avatar: Yup.mixed()
-        //   .test('size', 'File too large', value => {
-        //     const isGoodSize = value && value.size <= FILE_SIZE;
-        //     if (!isGoodSize) {
-        //       toast.error('File too large');
-        //     }
-        //     return isGoodSize;
-        //   })
-        //   .test('format', 'Unsupported Format', value => {
-        //     const isSupportedFormat =
-        //       value && SUPPORTED_FORMATS.includes(value.type);
-        //     if (!isSupportedFormat) {
-        //       toast.error('Unsupported format');
-        //     }
-        //     return isSupportedFormat;
-        //   }),
+        avatar: Yup.mixed()
+          .test('size', 'File too large', value => {
+            const isGoodSize = value && value.size <= FILE_SIZE;
+            if (!isGoodSize) {
+              toast.error('File too large');
+            }
+            return isGoodSize;
+          })
+          .test('format', 'Unsupported Format', value => {
+            const isSupportedFormat =
+              value && SUPPORTED_FORMATS.includes(value.type);
+            if (!isSupportedFormat) {
+              toast.error('Unsupported format');
+            }
+            return isSupportedFormat;
+          }),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         await dispatch(userForm(values)).unwrap();
         setSubmitting(false);
+        toast.success('Form submitted successfully');
       }}
     >
       {formik => (
         <Form onSubmit={formik.handleSubmit}>
           <AvatarBlock>
-            <LabelAva htmlFor="avatar">
+            <LabelAva htmlFor='avatar'>
               {image ? (
-                <LabelImg alt="Avatar" src={image} width="48" height="48" />
+                <LabelImg alt='Avatar' src={image} width='48' height='48' />
               ) : (
                 <>
                   {avatar ? (
                     <LabelImg
-                      alt="Avatar"
+                      alt='Avatar'
                       src={avatar}
-                      width="48"
-                      height="48"
+                      width='48'
+                      height='48'
                     />
                   ) : (
                     <DefaultSvg>
@@ -150,9 +145,9 @@ export const UserForm = () => {
               )}
               <InputAva
                 ref={filePicker}
-                type="file"
-                id="avatar"
-                name="avatar"
+                type='file'
+                id='avatar'
+                name='avatar'
                 onChange={event => {
                   const file = event.target.files[0];
                   formik.setFieldValue('avatar', file);
@@ -172,13 +167,13 @@ export const UserForm = () => {
           </AvatarBlock>
 
           <FlexInput>
-            <Label htmlFor="name">
+            <Label htmlFor='name'>
               <LabelSpan>User Name</LabelSpan>
               <Input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="name"
+                id='name'
+                name='name'
+                type='text'
+                placeholder='name'
                 onChange={formik.handleChange}
                 value={formik.values.name}
                 {...formik.getFieldProps('name')}
@@ -189,7 +184,7 @@ export const UserForm = () => {
             </Label>
 
             <BirthdayContainer>
-              <Label htmlFor="birthday">
+              <Label htmlFor='birthday'>
                 <LabelSpan>Birthday</LabelSpan>
                 <StyledIconContainer>
                   <ArrowSvg>
@@ -205,26 +200,26 @@ export const UserForm = () => {
               </Label>
               <GlobalStyles />
               <StyledDatePick
-                id="birthday"
-                name="birthday"
+                id='birthday'
+                name='birthday'
                 selected={new Date(formik.values.birthday)}
                 onChange={date => formik.setFieldValue('birthday', date)}
-                dateFormat="dd-MMM-yyyy"
+                dateFormat='dd-MMM-yyyy'
                 maxDate={new Date()}
-                placeholderText="dd-MMM-yyyy"
+                placeholderText='dd-MMM-yyyy'
                 formatWeekDay={day => day.charAt(0)}
                 calendarStartDay={1}
                 disabledKeyboardNavigation
               />
             </BirthdayContainer>
 
-            <Label htmlFor="email">
+            <Label htmlFor='email'>
               <LabelSpan>Email</LabelSpan>
               <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="email"
+                id='email'
+                name='email'
+                type='email'
+                placeholder='email'
                 onChange={formik.handleChange}
                 value={formik.values.email}
                 {...formik.getFieldProps('email')}
@@ -233,14 +228,14 @@ export const UserForm = () => {
                 <Errors>{formik.errors.email}</Errors>
               ) : null}
             </Label>
-            <Label htmlFor="phone">
+            <Label htmlFor='phone'>
               <LabelSpan>Phone</LabelSpan>
               <Input
-                id="phone"
-                name="phone"
-                type="phone"
+                id='phone'
+                name='phone'
+                type='phone'
                 onChange={formik.handleChange}
-                placeholder="phone number"
+                placeholder='phone number'
                 value={
                   formik.values.phone === '' || !formik.values.phone
                     ? ''
@@ -252,14 +247,14 @@ export const UserForm = () => {
                 <Errors>{formik.errors.phone}</Errors>
               ) : null}
             </Label>
-            <Label htmlFor="telegram">
+            <Label htmlFor='telegram'>
               <LabelSpan>Telegram</LabelSpan>
               <Input
-                id="telegram"
-                name="telegram"
-                type="telegram"
+                id='telegram'
+                name='telegram'
+                type='telegram'
                 onChange={formik.handleChange}
-                placeholder="telegram"
+                placeholder='telegram'
                 value={
                   formik.values.telegram === '' || !formik.values.telegram
                     ? ''
@@ -272,15 +267,13 @@ export const UserForm = () => {
               ) : null}
             </Label>
           </FlexInput>
-
           <Button
             onSubmit={handleUpload}
-            type="submit"
+            type='submit'
             disabled={!(formik.isValid && formik.dirty)}
           >
             Save changes
           </Button>
-          {/* <Persist name="user-form" /> */}
         </Form>
       )}
     </Formik>
