@@ -198,6 +198,13 @@ export const PlusSvg = styled.svg`
   }
 `;
 
+export const ArrowSvg = styled.svg`
+  stroke: currentColor;
+  fill: currentColor;
+  width: 12px;
+  height: 12px;
+`;
+
 export const Button = styled.button`
   font-family: 'Inter', sans-serif;
   /* margin: 40px auto; */

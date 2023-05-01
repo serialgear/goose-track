@@ -51,44 +51,43 @@ const calendarSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(authLogout.fulfilled, () => calendarInitState)
-      
-
       .addCase(addTaskOperation.pending, state => state)
-
       .addCase(addTaskOperation.fulfilled, (state, { payload }) => {
-        state.tasks.push(payload);
+        state.tasks[state.indexCurrentDay].push(payload);
         state.error = null;
       })
       .addCase(addTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
       })
-
       .addCase(deleteTaskOperation.pending, state => {
         state.error = null;
       })
       .addCase(deleteTaskOperation.fulfilled, (state, { payload }) => {
+        console.log('payload ', payload);
         state.error = null;
-        state.tasks = state.tasks.filter(task => task._id !== payload.id);
+        state.tasks[state.indexCurrentDay] = state.tasks[
+          state.indexCurrentDay
+        ].filter(task => task._id !== payload._id);
       })
       .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
       })
-
       .addCase(editTaskOperation.pending, state => {
         state.error = null;
       })
       .addCase(editTaskOperation.fulfilled, (state, { payload }) => {
-        const index = state.tasks.findIndex(task => task.id === payload.id);
+        const index = state.tasks[state.indexCurrentDay].findIndex(
+          task => task._id === payload._id
+        );
         if (index !== -1) {
-          state.tasks[index] = payload;
+          state.tasks[state.indexCurrentDay][index] = payload;
         }
       })
       .addCase(editTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
-      })
-    }
-})
-
+      });
+  },
+});
 
 export const {
   addCurrentMonth,
