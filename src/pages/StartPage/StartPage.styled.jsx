@@ -354,7 +354,7 @@ export const Images = styled.img`
     }
   }
   &.day {
-    min-width: 450px;
+    max-width: max-content;
     height: 310px;
     left: 59px;
     top: 102px;
@@ -363,7 +363,6 @@ export const Images = styled.img`
 
     border: 1.5px solid rgba(62, 133, 243, 0.4);
     @media (min-width: 768px) {
-      min-width: 800px;
       height: 532px;
       left: 84px;
       top: 84px;
