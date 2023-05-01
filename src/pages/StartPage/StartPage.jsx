@@ -14,7 +14,7 @@ export default function StartPage() {
       <STC.Hero>
         <STC.LogoImg src={`${LogoGoose}`} />
         <STC.Title>
-          G<span style={{ fontStyle: 'italic', marginRight: '7px' }}>oo</span>
+          G<STC.Title className="italic">oo</STC.Title>
           seTrack
         </STC.Title>
         <STC.LinkBox>
@@ -77,7 +77,6 @@ export default function StartPage() {
             </STC.Txt>
           </STC.ContentBox>
           <STC.ImageBox>
-            <STC.ImageEllipse className="day" />
             <STC.Images className="day" src={ImageDay} />
           </STC.ImageBox>
         </STC.ContentItem>
