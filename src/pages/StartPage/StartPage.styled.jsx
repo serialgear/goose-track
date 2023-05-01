@@ -87,7 +87,7 @@ export const LoginLink = styled(NavLink)`
 
   &:hover,
   :focus {
-    background-color: var(--modal-shadow-color);
+    background-color: var(--hover-btn-background-color);
     color: var(--btn-text-color);
     border-color: var(--btn-text-color);
   }
@@ -135,7 +135,7 @@ export const SignupLink = styled(NavLink)`
 
   &:hover,
   :focus {
-    background-color: var(--modal-shadow-color);
+    background-color: var(--hover-btn-background-color);
     color: var(--btn-text-color);
     border-color: var(--btn-text-color);
   }
@@ -456,8 +456,8 @@ export const ScrollToTop = styled.div`
 
   &:hover,
   :focus {
-    background-color: var(--hover-btn-background-color);
-    border-color: var(--modal-shadow-color);
+    background-color: var(--accent-background-color);
+    border-color: var(--hover-btn-background-color);
   }
 `;
 export const ScrollTopTxt = styled.span`
