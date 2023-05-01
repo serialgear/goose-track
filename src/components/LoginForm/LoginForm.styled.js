@@ -90,6 +90,8 @@ export const Input = styled.input`
   width: 100%;
   outline: none;
 
+  transition: border var(--animation);
+
   &:hover {
     border: 1px solid var(--primary-text-color);
   }
