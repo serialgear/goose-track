@@ -15,12 +15,8 @@ export const TaskStatusModal = ({ handleCloseStatusModal, ...props }) => {
 
   const handleStatusClick = status => {
     const payload = { ...props, status };
-    console.log('payload===', payload);
-
     dispatch(editTaskOperation(payload));
   };
-
-  console.log('props===', props);
 
   return (
     <>
