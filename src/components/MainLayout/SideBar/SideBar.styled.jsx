@@ -42,7 +42,7 @@ export const CloseBtn = styled.button`
   height: 24px;
   z-index: 4;
   color: var(--calendar-digit-color);
-
+  transition: color var(--animation);
   @media (min-width: 768px) {
     width: 33px;
     height: 33px;

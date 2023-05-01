@@ -76,6 +76,8 @@ export const MobileMenuSvg = styled.svg`
   display: flex;
 
   cursor: pointer;
+
+  transition: stroke var(--animation);
   @media (min-width: 768px) {
     width: 34px;
     height: 34px;
