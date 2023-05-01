@@ -44,7 +44,7 @@ export const MonthName = styled.p`
   text-align: center;
   text-transform: uppercase;
 
-  color: var(--primary-background-color);
+  color: var(--btn-text-color);
   @media (min-width: 768px) {
     min-width: 107px;
 

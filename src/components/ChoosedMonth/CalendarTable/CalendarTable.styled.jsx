@@ -17,11 +17,20 @@ export const Calendar = styled.ul`
   text-transform: uppercase;
 
   color: var(--calendar-digit-color);
+  @media (min-width: 768px) {
+    grid-auto-rows: 144px;
+
+    font-size: 16px;
+    line-height: 1.12;
+  }
 `;
 
 export const Days = styled.li`
   position: relative;
   border: var(--border-calendar);
+  @media (min-width: 768px) {
+    border: var(--border);
+  }
 `;
 
 export const OtherMonthStyledLink = styled(Link)`

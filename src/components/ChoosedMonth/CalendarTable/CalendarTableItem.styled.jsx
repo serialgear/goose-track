@@ -13,11 +13,20 @@ export const DaysOfMonth = styled.div`
   padding: 4px 6px;
 
   border-radius: 6px;
+  @media (min-width: 768px) {
+    top: 12px;
+    right: 14px;
+    width: 27px;
+    height: 26px;
+
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
 `;
 
 export const Today = styled(DaysOfMonth)`
   background-color: var(--accent-background-color);
-  color: var(--primary-background-color);
+  color: var(--btn-text-color);
 `;
 export const BoxTasks = styled.ul`
   width: 100%;
@@ -29,6 +38,10 @@ export const BoxTasks = styled.ul`
   grid-template-columns: 1fr;
   grid-auto-rows: minmax(auto, 20px);
   grid-gap: 2px;
+  @media (min-width: 768px) {
+    padding-top: 34px;
+    grid-auto-rows: minmax(auto, 25px);
+  }
 `;
 
 export const Task = styled.li`
@@ -51,6 +64,10 @@ export const Task = styled.li`
     }}
   );
   border-radius: 8px;
+  @media (min-width: 768px) {
+    grid-template-rows: minmax(auto, 12px);
+    padding: 0 6px;
+  }
 `;
 
 export const Title = styled.p`
@@ -74,4 +91,7 @@ export const Title = styled.p`
       return '--task-priority-low-color';
     }}
   );
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;

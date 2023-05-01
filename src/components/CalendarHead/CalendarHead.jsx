@@ -9,6 +9,7 @@ import {
 } from 'date-fns';
 import {
   ListMonth,
+  
   DateOfWeek,
   ChoosedDate,
   DayWeek,
@@ -28,6 +29,7 @@ import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
 export const CalendarHead = ({ currentDay }) => {
   const currentMonth = useSelector(selectCurrentMonth);
   const dispath = useDispatch();
+
 
   let daysInWeek;
 
@@ -57,7 +59,10 @@ export const CalendarHead = ({ currentDay }) => {
           const choosedDay = new Date(day).toISOString();
           return (
             <Week key={idx}>
-              <DayWeek>{format(day, 'EEEEE')}</DayWeek>
+              {window.matchMedia('(min-width: 768px)').matches ?
+               <DayWeek>{format(day, 'EEE')}</DayWeek>:
+               <DayWeek>{format(day, 'EEEEE')}</DayWeek>}
+              
 
               {currentDay && (
                 <StyledLink

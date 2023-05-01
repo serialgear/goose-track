@@ -22,9 +22,10 @@ const StyledLink = styled(NavLink)`
   font-size: 14px;
   line-height: 1.29px;
 
-  color: var(--accent-text-color);
+  color: var(--color-button-period-type);
   &.active {
     background: var(--active-button-period-type);
+    color: var(--accent-text-color);
   }
   @media (min-width: 768px) {
     width: 82px;
