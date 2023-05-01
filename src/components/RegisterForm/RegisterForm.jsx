@@ -10,10 +10,7 @@ import LoginGoose from '../../images/login-goose-.svg';
 import * as STC from '../LoginForm/LoginForm.styled';
 import { LoginImg, LoginImg2, Text, Span } from './RegisterForm.styled';
 import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
-import {
-  NAME_REGEX,
-  PASSWORD_REGEX,
-} from '../../constants/joiRegex';
+import { NAME_REGEX, PASSWORD_REGEX } from '../../constants/joiRegex';
 
 const RegisterValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,7 +24,7 @@ const RegisterValidationSchema = Yup.object().shape({
       PASSWORD_REGEX,
       'must contain minimum 6 characters,at least 1 letter and 1 number'
     )
-    .min(6, 'Too Short!')
+    .min(5, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
 });
@@ -53,8 +50,7 @@ export const RegisterForm = () => {
           } catch (error) {
             setSubmitting(false);
             toast.error(
-              error ||
-              "It seems like your goose didn't fly. Please try again."
+              error || "It seems like your goose didn't fly. Please try again."
             );
           }
         }}
@@ -72,7 +68,7 @@ export const RegisterForm = () => {
               <STC.Form onSubmit={handleSubmit} autoComplete="on">
                 <STC.Title>Sign Up</STC.Title>
                 <STC.Label htmlFor="name">
-                  <STC.Span>Name</STC.Span>
+                  <STC.Span error={errors.name && touched.name}>Name</STC.Span>
                   <STC.Input
                     id="name"
                     name="name"
@@ -81,6 +77,7 @@ export const RegisterForm = () => {
                     value={values.name}
                     onChange={handleChange}
                     placeholder="Enter your name"
+                    error={errors.name && touched.name}
                   />
                   <STC.Errors>
                     {errors.name && touched.name && errors.name}
@@ -88,7 +85,9 @@ export const RegisterForm = () => {
                 </STC.Label>
 
                 <STC.Label htmlFor="email">
-                  <STC.Span>Email</STC.Span>
+                  <STC.Span error={errors.email && touched.email}>
+                    Email
+                  </STC.Span>
                   <STC.Input
                     id="email"
                     name="email"
@@ -97,13 +96,17 @@ export const RegisterForm = () => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     placeholder="Enter email"
+                    error={errors.email && touched.email}
                   />
                   <STC.Errors>
                     {errors.email && touched.email && errors.email}
                   </STC.Errors>
                 </STC.Label>
 
-                <STC.Label htmlFor="password">
+                <STC.Label
+                  htmlFor="password"
+                  error={errors.password && touched.password}
+                >
                   <STC.Span>Password</STC.Span>
                   <STC.Input
                     id="password"
@@ -114,6 +117,7 @@ export const RegisterForm = () => {
                     placeholder="Enter password"
                     value={values.password}
                     onChange={handleChange}
+                    error={errors.password && touched.password}
                   />
                   <STC.Errors>
                     {errors.password && touched.password && errors.password}
@@ -127,8 +131,8 @@ export const RegisterForm = () => {
                   </STC.Svg>
                 </STC.Button>
               </STC.Form>
-              
-              <AuthNavigate route="/login" title="Log In"/>
+
+              <AuthNavigate route="/login" title="Log In" />
 
               <LoginImg
                 alt="LoginGoose"
