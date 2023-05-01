@@ -76,12 +76,18 @@ export const MobileMenuSvg = styled.svg`
   display: flex;
 
   cursor: pointer;
+
+  transition: stroke var(--animation);
   @media (min-width: 768px) {
     width: 34px;
     height: 34px;
   }
   @media (min-width: 1280px) {
     display: none;
+  }
+  &:hover,
+  :focus {
+    stroke: var(--accent-background-color);
   }
 `;
 

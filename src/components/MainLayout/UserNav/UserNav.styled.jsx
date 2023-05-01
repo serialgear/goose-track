@@ -52,6 +52,8 @@ export const Link = styled(NavLink)`
   :focus {
     background-color: var(--secondary-background-color);
     border: var(--border);
+    /* color: var(--btn-text-color);
+    background-color: var(--hover-btn-background-color); */
   }
   @media (min-width: 768px) {
     padding: 16px 20px;
@@ -61,6 +63,18 @@ export const Link = styled(NavLink)`
   &.active {
     background: var(--active-item-sidebar-background);
     color: var(--accent-text-color);
+
+    &:hover,
+    :focus {
+      color: ${() =>
+        document.body.classList.contains('dark-theme')
+          ? 'var(--btn-text-color)'
+          : 'var(--hover-btn-background-color)'};
+      background-color: ${() =>
+        document.body.classList.contains('dark-theme')
+          ? 'var(--hover-btn-background-color)'
+          : 'var(--active-item-sidebar-background)'};
+    }
   }
 `;
 export const Icon = styled.svg`

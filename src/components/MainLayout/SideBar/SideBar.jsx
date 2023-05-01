@@ -28,12 +28,9 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
       <STC.Container className={isMobalMenuOpen && 'openMobalMenu'}>
         <STC.Box>
           <STC.Logo to="/" onClick={handleCloseMobalMenu}>
-            <STC.LogoImg src={`${LogoGoose}`} />
+            <STC.LogoImg src={`${LogoGoose}`} alt="Logo" />
             <STC.LogoTxt>
-              G
-              <span style={{ fontStyle: 'italic', marginRight: '1.5px' }}>
-                oo
-              </span>
+              G<STC.LogoTxt className="italic">oo</STC.LogoTxt>
               seTrack
             </STC.LogoTxt>
           </STC.Logo>

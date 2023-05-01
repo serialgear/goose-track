@@ -42,9 +42,17 @@ export const CloseBtn = styled.button`
   height: 24px;
   z-index: 4;
   color: var(--calendar-digit-color);
-
+  transition: color var(--animation);
+  @media (min-width: 768px) {
+    width: 33px;
+    height: 33px;
+  }
   @media (min-width: 1280px) {
     display: none;
+  }
+  &:hover,
+  :focus {
+    color: var(--accent-background-color);
   }
 `;
 export const CloseBtnSvg = styled.svg`
@@ -55,13 +63,17 @@ export const CloseBtnSvg = styled.svg`
   fill: transparent;
 
   cursor: pointer;
+
+  @media (min-width: 768px) {
+    width: 33px;
+    height: 33px;
+  }
 `;
 
 export const Logo = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 39px;
 `;
 
 export const LogoImg = styled.img`
@@ -82,6 +94,8 @@ export const LogoImg = styled.img`
 `;
 
 export const LogoTxt = styled.h1`
+  display: inline-block;
+
   font-family: var(--secondary-font);
   font-weight: 400;
   font-size: 16px;
@@ -99,11 +113,16 @@ export const LogoTxt = styled.h1`
     font-size: 24px;
     line-height: 24px;
   }
+  &.italic {
+    font-style: italic;
+    margin-right: 1.5px;
+  }
 `;
 
 export const Box = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 64px;
   @media (min-width: 768px) {
     margin-bottom: 32px;
