@@ -12,6 +12,7 @@ import {
   editTaskOperation,
 } from '../../../redux/calendar/calendar.operations';
 import { TASK_STATUS } from '../../../constants/taskStatus.constants';
+import { deleteTask } from 'redux/calendar/calendar.slice';
 
 export const TaskToolbar = props => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export const TaskToolbar = props => {
 
   const handleDelete = () => {
     dispatch(deleteTaskOperation(props._id));
+    dispatch(deleteTask(props._id));
   };
 
   return (

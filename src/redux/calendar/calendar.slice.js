@@ -5,7 +5,6 @@ import { authLogout } from 'redux/auth/auth.operations';
 import {
   getTasksOfMonth,
   addTaskOperation,
-  deleteTaskOperation,
   editTaskOperation,
 } from './calendar.operations';
 
@@ -34,6 +33,11 @@ const calendarSlice = createSlice({
     clearTasks(state) {
       state.tasks = [];
     },
+    deleteTask(state, { payload }) {
+      state.tasks[state.indexCurrentDay] = state.tasks[
+        state.indexCurrentDay
+      ].filter(task => task._id !== payload);
+    },
   },
 
   extraReducers: builder => {
@@ -51,50 +55,55 @@ const calendarSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(authLogout.fulfilled, () => calendarInitState)
-      
 
       .addCase(addTaskOperation.pending, state => state)
 
       .addCase(addTaskOperation.fulfilled, (state, { payload }) => {
-        state.tasks.push(payload);
+        state.tasks[state.indexCurrentDay].push(payload);
         state.error = null;
       })
       .addCase(addTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
       })
 
-      .addCase(deleteTaskOperation.pending, state => {
-        state.error = null;
-      })
-      .addCase(deleteTaskOperation.fulfilled, (state, { payload }) => {
-        state.error = null;
-        state.tasks = state.tasks.filter(task => task._id !== payload.id);
-      })
-      .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
-        state.error = payload;
-      })
+      // .addCase(deleteTaskOperation.pending, state => {
+      //   state.error = null;
+      // })
+      // .addCase(deleteTaskOperation.fulfilled, (state, { payload }) => {
+      //   state.error = null;
+
+      //   state.tasks[state.indexCurrentDay] =
+      //    state[state.indexCurrentDay].tasks.filter(task => task._id !== payload._id);
+      // })
+      // .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
+      //   state.error = payload;
+      // })
 
       .addCase(editTaskOperation.pending, state => {
-        state.error = null;
+        state.isLoading = true;
       })
       .addCase(editTaskOperation.fulfilled, (state, { payload }) => {
-        const index = state.tasks.findIndex(task => task.id === payload.id);
-        if (index !== -1) {
-          state.tasks[index] = payload;
-        }
+        state.error = null;
+        state.isLoading = false;
+        const idx = state.tasks[state.indexCurrentDay].findIndex(
+          task => task._id === payload._id
+        );
+
+        state.tasks[state.indexCurrentDay][idx] = payload;
       })
       .addCase(editTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
-      })
-    }
-})
-
+        state.isLoading = false;
+      });
+  },
+});
 
 export const {
   addCurrentMonth,
   addIndexCurrentDay,
   addChoosedDay,
   clearTasks,
+  deleteTask,
 } = calendarSlice.actions;
 
 export const calendarReducer = persistReducer(
