@@ -1,7 +1,9 @@
 import ScrollToTop from 'react-scroll-up';
 
 import * as STC from './StartPage.styled';
-import LogoGoose from '../../images/GooseLogo.png';
+import LogoGoose from '../../images/Logo/GooseLogo.png';
+import LogoGooseX2 from '../../images/Logo/GooseLogo@2x.png';
+import LogoGooseX3 from '../../images/Logo/GooseLogo@3x.png';
 import Icons from '../../images/sprite.svg';
 import ImageCalendar1 from '../../images/StartPage/Calendar1.jpg';
 import ImageCalendar2 from '../../images/StartPage/Calendar2.jpg';
@@ -14,7 +16,11 @@ export default function StartPage() {
   return (
     <STC.Container>
       <STC.Hero>
-        <STC.LogoImg src={`${LogoGoose}`} />
+        <STC.LogoImg
+          srcSet={`${LogoGoose} 1x, ${LogoGooseX2} 2x, ${LogoGooseX3} 3x`}
+          src={`${LogoGoose}`}
+          alt="Logo"
+        />
         <STC.Title>
           G<STC.LogoSpan>oo</STC.LogoSpan>
           seTrack
