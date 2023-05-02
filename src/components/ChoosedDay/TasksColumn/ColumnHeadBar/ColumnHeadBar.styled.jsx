@@ -27,11 +27,20 @@ export const Button = styled.button`
 
   padding: 0;
   border-radius: 50%;
-  border: 2px solid black;
+  color: var(--primary-text-color);
+  border: 2px solid;
+  border-color: var(--primary-text-color);
+  transition: color var(--animation), border-color var(--animation);
+  &:hover,
+  :focus {
+    color: var(--hover-btn-background-color);
+    border-color: var(--hover-btn-background-color);
+  }
 `;
+
 export const Icon = styled.svg`
   width: 22px;
   height: 22px;
-  stroke: var(--primary-text-color);
-  fill: transparent;
+  stroke: currentColor;
+  /* fill: transparent; */
 `;
