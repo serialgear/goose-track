@@ -33,12 +33,24 @@ import PropTypes from 'prop-types';
 
 export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
-
   const dispatch = useDispatch();
+
+  const prevMonth = formatISO(new Date(subMonths(currentMonth, 1)), {
+    representation: 'date',
+  });
+  const nextMonth = formatISO(new Date(addMonths(currentMonth, 1)), {
+    representation: 'date',
+  });
+  const prevDay = formatISO(new Date(subDays(new Date(choosedDay), 1)), {
+    representation: 'date',
+  });
+  const nextDay = formatISO(new Date(addDays(new Date(choosedDay), 1)), {
+    representation: 'date',
+  });
 
   const handlePrevMonth = () => {
     dispatch(clearTasks());
-    dispatch(addCurrentMonth(subMonths(currentMonth, 1).toISOString()));
+    dispatch(addCurrentMonth(prevMonth));
     dispatch(
       addChoosedDay(
         formatISO(
@@ -50,7 +62,7 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
   };
   const handleNextMonth = () => {
     dispatch(clearTasks());
-    dispatch(addCurrentMonth(addMonths(currentMonth, 1).toISOString()));
+    dispatch(addCurrentMonth(nextMonth));
     dispatch(
       addChoosedDay(
         formatISO(
@@ -61,13 +73,14 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
     );
   };
   const handlePrevDay = () => {
-    dispatch(addChoosedDay(subDays(new Date(choosedDay), 1).toISOString()));
+    dispatch(addChoosedDay(prevDay));
     dispatch(addIndexCurrentDay(currentIndex - 1));
   };
   const handleNextDay = () => {
-    dispatch(addChoosedDay(addDays(new Date(choosedDay), 1).toISOString()));
+    dispatch(addChoosedDay(nextDay));
     dispatch(addIndexCurrentDay(currentIndex + 1));
   };
+
   return (
     <Wrapper index={currentIndex}>
       <MonthWrapper>
@@ -80,19 +93,14 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
 
       <WrapperButton>
         {currentIndex ? (
-          !isFirstDayOfMonth(new Date(choosedDay)) ? (
-            <ButtonLeft
-              to={`day/${formatISO(new Date(subDays(new Date(choosedDay), 1)), {
-                representation: 'date',
-              })}`}
-              onClick={handlePrevDay}
-            >
+          isFirstDayOfMonth(new Date(choosedDay)) ? (
+            <ButtonLeft disabled>
               <Icon width="20" height="20">
                 <use href={`${Icons}#calendar-right-sf`}></use>
               </Icon>
             </ButtonLeft>
           ) : (
-            <ButtonLeft disabled>
+            <ButtonLeft to={`day/${prevDay}`} onClick={handlePrevDay}>
               <Icon width="20" height="20">
                 <use href={`${Icons}#calendar-right-sf`}></use>
               </Icon>
@@ -105,13 +113,10 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
             </Icon>
           </ButtonLeft>
         ) : (
-          <ButtonLeft
-            to={`month/${formatISO(
-              new Date(subMonths(startOfMonth(new Date(currentMonth)), 1)),
-              { representation: 'date' }
-            )}`}
-            onClick={handlePrevMonth}
-          >
+          <ButtonLeft to={`month/${formatISO(
+            new Date(subMonths(startOfMonth(new Date(currentMonth)), 1)),
+            { representation: 'date' }
+          )}`} onClick={handlePrevMonth}>
             <Icon width="20" height="20">
               <use href={`${Icons}#calendar-right-sf`}></use>
             </Icon>
@@ -126,25 +131,17 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
               </Icon>
             </ButtonRight>
           ) : (
-            <ButtonRight
-              to={`day/${formatISO(new Date(addDays(new Date(choosedDay), 1)), {
-                representation: 'date',
-              })}`}
-              onClick={handleNextDay}
-            >
+            <ButtonRight to={`day/${nextDay}`} onClick={handleNextDay}>
               <Icon>
                 <use href={`${Icons}#calendar-left-sf`}></use>
               </Icon>
             </ButtonRight>
           )
         ) : (
-          <ButtonRight
-            to={`month/${formatISO(
-              new Date(addMonths(startOfMonth(new Date(currentMonth)), 1)),
-              { representation: 'date' }
-            )}`}
-            onClick={handleNextMonth}
-          >
+          <ButtonRight to={`month/${formatISO(
+            new Date(addMonths(startOfMonth(new Date(currentMonth)), 1)),
+            { representation: 'date' }
+          )}`} onClick={handleNextMonth}>
             <Icon>
               <use href={`${Icons}#calendar-left-sf`}></use>
             </Icon>

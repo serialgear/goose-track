@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 export const Form = styled.form`
   display: flex;
@@ -185,6 +184,11 @@ export const ButtonPlus = styled.div`
     width: 24px;
     height: 24px;
   }
+  transition: background-color var(--animation);
+  &:hover,
+  :focus {
+    background-color: var(--hover-btn-background-color);
+  }
 `;
 
 export const PlusSvg = styled.svg`
@@ -240,9 +244,10 @@ export const Button = styled.button`
     /* margin: 64px auto 60px auto; */
   }
 
-  transition: background-color var(--animation);
+  transition: background-color var(--animation), box-shadow var(--animation);
   &:hover,
   :focus {
+    box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
     background-color: var(--hover-btn-background-color);
   }
 `;
