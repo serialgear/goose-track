@@ -99,10 +99,11 @@ export const Input = styled.input`
     font-size: 16px;
   }
 
+  transition: border var(--animation);
   &:hover,
   :focus {
-    border: 1px solid ${(props) => (props.hasError ? 'red' : 'gray')
-    }
+    border: 1px solid ${props => (props.hasError ? 'red' : 'gray')};
+  }
 `;
 
 export const AvatarBlock = styled.div`
@@ -212,7 +213,7 @@ export const Button = styled.button`
   width: 100%;
   max-width: 195px;
 
-  background: var(--accent-background-color);
+  background-color: var(--accent-background-color);
   border-radius: 16px;
   color: var(--btn-text-color);
   font-size: 14px;
@@ -237,6 +238,12 @@ export const Button = styled.button`
 
   @media (min-width: 1280px) {
     /* margin: 64px auto 60px auto; */
+  }
+
+  transition: background-color var(--animation);
+  &:hover,
+  :focus {
+    background-color: var(--hover-btn-background-color);
   }
 `;
 
@@ -270,9 +277,7 @@ export const TextAvatar = styled.p`
 export const Errors = styled.div`
   color: red;
   font-size: 10px;
-
 `;
-
 
 export const GlobalStyles = createGlobalStyle`
   .react-datepicker__wrapper {
@@ -529,6 +534,11 @@ export const StyledDatePick = styled(DatePicker)`
     font-size: 16px;
     line-height: 1.12;
     padding: 14px 14px 14px 18px;
+  }
+  transition: border var(--animation);
+  &:hover,
+  :focus {
+    border: 1px solid ${props => (props.hasError ? 'red' : 'gray')};
   }
 `;
 
