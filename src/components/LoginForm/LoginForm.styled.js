@@ -228,8 +228,12 @@ export const GooseTextAccent = styled.span`
 
 export const ButtonEye = styled.button`
   position: absolute;
-  top: 45%;
-  left: 90%;
+  top: 38%;
+  left: 89%;
+  @media (min-width: 768px) {
+    top: 47%;
+    left: 87%;
+  }
 `;
 
 export const SvgEye = styled.svg`
