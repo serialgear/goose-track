@@ -76,7 +76,7 @@ export const Form = styled.form`
 
   @media (min-width: 768px) {
     padding: 40px;
-    width: 480px;
+    min-width: 480px;
     margin-bottom: 24px;
   }
 `;

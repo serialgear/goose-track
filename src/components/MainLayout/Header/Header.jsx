@@ -33,7 +33,7 @@ export const Header = ({ openMobalMenu }) => {
   }
 
   const tasks = useSelector(selectTasks);
-  // console.log(tasks);
+ 
 
   const taskStatusToDo =
     tasks
