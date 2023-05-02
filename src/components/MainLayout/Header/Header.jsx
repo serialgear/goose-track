@@ -18,10 +18,15 @@ import { Link, useLocation } from 'react-router-dom';
 import icon from '../../../images/sprite.svg';
 import { Avatar } from '../../Avatar/Avatar';
 import gooseToDo from '../../../images/Goose-toDo-task.png';
-import { selectTasks } from 'redux/calendar/calendar.selectors';
+import {
+  selectIndexCurrentDay,
+  selectTasks,
+} from 'redux/calendar/calendar.selectors';
 
 export const Header = ({ openMobalMenu }) => {
   const name = useSelector(selectUserName);
+  const indxCurrentDay = useSelector(selectIndexCurrentDay);
+  const tasks = useSelector(selectTasks);
 
   const location = useLocation();
   let isActivePage = location.pathname.split('/')[1];
@@ -32,12 +37,10 @@ export const Header = ({ openMobalMenu }) => {
     isActivePage = 'User Profile';
   }
 
-  const tasks = useSelector(selectTasks);
- 
-
+  const currentDayTasks = tasks[indxCurrentDay];
   const taskStatusToDo =
-    tasks
-      .flatMap(day => (day.length > 0 ? day.map(task => task.status) : ''))
+    currentDayTasks
+      ?.map(item => item.status)
       .some(status => ['To do', 'In progress'].includes(status)) &&
     isActivePage === 'Calendar';
 
