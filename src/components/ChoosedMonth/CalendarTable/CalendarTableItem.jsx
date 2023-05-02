@@ -1,4 +1,4 @@
-import { format, formatISO, isSameDay, isThisMonth, isToday } from 'date-fns';
+import { format, isSameDay, isThisMonth, isToday } from 'date-fns';
 import { useParams } from 'react-router-dom';
 import {
   DaysOfMonth,
@@ -14,15 +14,13 @@ import PropTypes from 'prop-types';
 export const CalendarTableItem = ({ day, dayTasks }) => {
   const DayOfMonth = useParams();
   const isWide = useMedia('(min-width: 768px) and (max-width: 1279.98px)');
+  const isWideSmaller = useMedia('(max-width: 374.98px)');
 
   const AllDays = isThisMonth(new Date(DayOfMonth.currentDate))
     ? isToday(day)
       ? Today
       : DaysOfMonth
-    : isSameDay(
-        new Date(DayOfMonth.currentDate),
-        new Date(formatISO(new Date(day)))
-      )
+    : isSameDay(new Date(DayOfMonth.currentDate), new Date(day))
     ? Today
     : DaysOfMonth;
   return (
@@ -66,11 +64,15 @@ export const CalendarTableItem = ({ day, dayTasks }) => {
               }
               return false;
             })}
+
         {dayTasks?.length > 4 && isWide && (
           <MoreTasks>+ {dayTasks?.length - 3} More</MoreTasks>
         )}
-        {dayTasks?.length > 3 && !isWide && (
-          <MoreTasks>+ {dayTasks?.length - 2} More</MoreTasks>
+        {dayTasks?.length > 3 && isWideSmaller ? (
+          <MoreTasks>+ {dayTasks?.length - 2}</MoreTasks>
+        ) : (
+          dayTasks?.length > 3 &&
+          !isWide && <MoreTasks>+ {dayTasks?.length - 2} More</MoreTasks>
         )}
       </BoxTasks>
     </>
