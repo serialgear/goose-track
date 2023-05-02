@@ -57,7 +57,7 @@ export const CalendarHead = ({ currentDay }) => {
           const DateWeek = isSameDay(new Date(currentDay), new Date(day))
             ? ChoosedDate
             : DateOfWeek;
-          const choosedDay = new Date(day).toISOString();
+
           return (
             <Week key={idx}>
               {isWide ? (
@@ -68,12 +68,18 @@ export const CalendarHead = ({ currentDay }) => {
 
               {currentDay && (
                 <StyledLink
-                  to={`/calendar/day/${formatISO(new Date(choosedDay), {
+                  to={`/calendar/day/${formatISO(new Date(day), {
                     representation: 'date',
                   })}`}
                   onClick={() => {
-                    dispath(addIndexCurrentDay(Number(format(day, 'd'))));
-                    dispath(addChoosedDay(format(day, 'yyyy-MM-dd')));
+                    dispath(addIndexCurrentDay(Number(format(day, 'd')) - 1));
+                    dispath(
+                      addChoosedDay(
+                        formatISO(new Date(day), {
+                          representation: 'date',
+                        })
+                      )
+                    );
                   }}
                 >
                   <DateWeek>{format(day, 'd')}</DateWeek>

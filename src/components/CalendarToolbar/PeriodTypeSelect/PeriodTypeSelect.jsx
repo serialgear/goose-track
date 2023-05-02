@@ -57,7 +57,7 @@ export const PeriodTypeSelect = () => {
               )
             );
             dispath(
-              addIndexCurrentDay(Number(format(new Date(currentDate), 'd')))
+              addIndexCurrentDay(Number(format(new Date(currentDate), 'd')) - 1)
             );
           }}
         >
@@ -70,12 +70,12 @@ export const PeriodTypeSelect = () => {
           })}`}
           onClick={() => {
             dispath(
-              addChoosedDay(formatISO(new Date(choosedDay)), {
-                representation: 'date',
-              })
+              addChoosedDay(
+                formatISO(new Date(choosedDay), { representation: 'date' })
+              )
             );
             dispath(
-              addIndexCurrentDay(Number(format(new Date(choosedDay), 'd')))
+              addIndexCurrentDay(Number(format(new Date(choosedDay), 'd')) - 1)
             );
           }}
         >

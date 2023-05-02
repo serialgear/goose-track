@@ -50,25 +50,27 @@ export const CalendarTable = () => {
             ? OtherMonthStyledLink
             : CurrentMonthStyledLink;
 
-          const choosedDay = new Date(day);
-
           return (
             <Days key={idx}>
               <StyledLink
-                to={`/calendar/day/${formatISO(new Date(choosedDay), {
+                to={`/calendar/day/${formatISO(new Date(day), {
                   representation: 'date',
                 })}`}
                 onClick={() => {
-                  dispath(addIndexCurrentDay(Number(format(day, 'd'))));
-                  dispath(addChoosedDay(formatISO(new Date(choosedDay))), {
-                    representation: 'date',
-                  });
+                  dispath(addIndexCurrentDay(Number(format(day, 'd')) - 1));
+                  dispath(
+                    addChoosedDay(
+                      formatISO(new Date(day), {
+                        representation: 'date',
+                      })
+                    )
+                  );
                 }}
               >
                 {isSameMonth(day, currentMonth) && (
                   <CalendarTableItem
                     day={day}
-                    dayTasks={tasksOfMonth[Number(format(day, 'd'))]}
+                    dayTasks={tasksOfMonth[Number(format(day, 'd')) - 1]}
                   />
                 )}
               </StyledLink>

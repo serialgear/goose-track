@@ -8,9 +8,12 @@ import {
   editTaskOperation,
   deleteTaskOperation,
 } from './calendar.operations';
+import { formatISO } from 'date-fns';
 
 const calendarInitState = {
-  currentMonth: new Date().toISOString(),
+  currentMonth: formatISO(new Date(), {
+    representation: 'date',
+  }),
   choosedDay: null,
   tasks: [],
   indexCurrentDay: null,
@@ -33,11 +36,6 @@ const calendarSlice = createSlice({
     },
     clearTasks(state) {
       state.tasks = [];
-    },
-    deleteTask(state, { payload }) {
-      state.tasks[state.indexCurrentDay] = state.tasks[
-        state.indexCurrentDay
-      ].filter(task => task._id !== payload);
     },
   },
 
@@ -99,7 +97,6 @@ export const {
   addIndexCurrentDay,
   addChoosedDay,
   clearTasks,
-  deleteTask,
 } = calendarSlice.actions;
 
 export const calendarReducer = persistReducer(
