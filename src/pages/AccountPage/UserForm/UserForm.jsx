@@ -176,6 +176,8 @@ export const UserForm = () => {
                 placeholder="name"
                 onChange={formik.handleChange}
                 value={formik.values.name}
+                onBlur={formik.handleBlur}
+                hasError={formik.touched.name && formik.errors.name}
                 {...formik.getFieldProps('name')}
               />
               {formik.touched.name && formik.errors.name ? (
@@ -221,7 +223,9 @@ export const UserForm = () => {
                 type="email"
                 placeholder="email"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.email}
+                hasError={formik.touched.email && formik.errors.email}
                 {...formik.getFieldProps('email')}
               />
               {formik.touched.email && formik.errors.email ? (
@@ -235,12 +239,14 @@ export const UserForm = () => {
                 name="phone"
                 type="phone"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 placeholder="phone number"
                 value={
                   formik.values.phone === '' || !formik.values.phone
                     ? ''
                     : formik.values.phone
                 }
+                hasError={formik.touched.phone && formik.errors.phone}
                 {...formik.getFieldProps('phone')}
               />
               {formik.touched.phone && formik.errors.phone ? (
@@ -254,12 +260,14 @@ export const UserForm = () => {
                 name="telegram"
                 type="text"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 placeholder="telegram"
                 value={
                   formik.values.telegram === '' || !formik.values.telegram
                     ? ''
                     : formik.values.telegram
                 }
+                hasError={formik.touched.telegram && formik.errors.telegram}
                 {...formik.getFieldProps('telegram')}
               />
               {formik.touched.telegram && formik.errors.telegram ? (

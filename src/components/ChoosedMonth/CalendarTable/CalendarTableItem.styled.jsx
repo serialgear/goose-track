@@ -106,9 +106,7 @@ export const Title = styled.p`
   }
 `;
 export const MoreTasks = styled.p`
-  @media (max-width: 374.98) {
-    font-size: 8px;
-  }
+ 
   margin-top: 4px;
   white-space: nowrap;
 

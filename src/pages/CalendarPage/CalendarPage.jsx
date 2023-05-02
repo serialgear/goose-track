@@ -14,7 +14,7 @@ export default function CalendarPage() {
   useEffect(() => {
     dispatch(
       getTasksOfMonth({
-        month: format(new Date(currentDate), 'M') - 1,
+        month: format(new Date(currentDate), 'M'),
         year: Number(format(new Date(currentDate), 'yyyy')),
       })
     );

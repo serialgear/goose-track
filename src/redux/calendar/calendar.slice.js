@@ -8,9 +8,12 @@ import {
   editTaskOperation,
   deleteTaskOperation,
 } from './calendar.operations';
+import { formatISO } from 'date-fns';
 
 const calendarInitState = {
-  currentMonth: new Date().toISOString(),
+  currentMonth: formatISO(new Date(), {
+    representation: 'date',
+  }),
   choosedDay: null,
   tasks: [],
   indexCurrentDay: null,
@@ -21,6 +24,7 @@ const calendarInitState = {
 const calendarSlice = createSlice({
   name: 'calendar',
   initialState: calendarInitState,
+
   reducers: {
     addCurrentMonth(state, { payload }) {
       state.currentMonth = payload;
@@ -33,11 +37,6 @@ const calendarSlice = createSlice({
     },
     clearTasks(state) {
       state.tasks = [];
-    },
-    deleteTask(state, { payload }) {
-      state.tasks[state.indexCurrentDay] = state.tasks[
-        state.indexCurrentDay
-      ].filter(task => task._id !== payload);
     },
   },
 
@@ -56,19 +55,24 @@ const calendarSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(authLogout.fulfilled, () => calendarInitState)
-      .addCase(addTaskOperation.pending, state => state)
+
+      .addCase(addTaskOperation.pending, state => {
+        state.isLoading = true;
+      })
       .addCase(addTaskOperation.fulfilled, (state, { payload }) => {
         state.tasks[state.indexCurrentDay].push(payload);
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(addTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
+        state.isLoading = false;
       })
       .addCase(deleteTaskOperation.pending, state => {
-        state.error = null;
+        state.isLoading = true;
       })
       .addCase(deleteTaskOperation.fulfilled, (state, { payload }) => {
-        console.log('payload ', payload);
+        state.isLoading = false;
         state.error = null;
         state.tasks[state.indexCurrentDay] = state.tasks[
           state.indexCurrentDay
@@ -76,6 +80,7 @@ const calendarSlice = createSlice({
       })
       .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
+        state.isLoading = false;
       })
       .addCase(editTaskOperation.pending, state => {
         state.isLoading = true;
@@ -87,9 +92,12 @@ const calendarSlice = createSlice({
         if (index !== -1) {
           state.tasks[state.indexCurrentDay][index] = payload;
         }
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(editTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
+        state.isLoading = false;
       });
   },
 });
@@ -99,7 +107,6 @@ export const {
   addIndexCurrentDay,
   addChoosedDay,
   clearTasks,
-  deleteTask,
 } = calendarSlice.actions;
 
 export const calendarReducer = persistReducer(

@@ -11,6 +11,8 @@ import * as STC from '../LoginForm/LoginForm.styled';
 import { LoginImg, LoginImg2, Text, Span } from './RegisterForm.styled';
 import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
 import { NAME_REGEX, PASSWORD_REGEX } from '../../constants/joiRegex';
+import { useState } from 'react';
+import icon from '../../images/sprite.svg';
 
 const RegisterValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -30,6 +32,7 @@ const RegisterValidationSchema = Yup.object().shape({
 });
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const [isPass, setIsPass] = useState(true);
 
   return (
     <>
@@ -122,6 +125,24 @@ export const RegisterForm = () => {
                   <STC.Errors>
                     {errors.password && touched.password && errors.password}
                   </STC.Errors>
+
+                  <STC.ButtonEye
+                    type="button"
+                    onClick={() => {
+                      isPass ? setIsPass(false) : setIsPass(true);
+                    }}
+                  >
+                    {' '}
+                    {isPass ? (
+                      <STC.SvgEye>
+                        <use xlinkHref={`${icon}#closed-eye`}></use>
+                      </STC.SvgEye>
+                    ) : (
+                      <STC.SvgEye>
+                        <use xlinkHref={`${icon}#opened-eye`}></use>
+                      </STC.SvgEye>
+                    )}
+                  </STC.ButtonEye>
                 </STC.Label>
 
                 <STC.Button type="submit">
@@ -141,7 +162,7 @@ export const RegisterForm = () => {
                 height="330"
               />
               <LoginImg2 width="50" height="50">
-                <use xlinkHref={`${logInCloud}#${'login-cloud'}`} />
+                <use xlinkHref={`${logInCloud}#${'login-door-sf'}`} />
               </LoginImg2>
               <Text>
                 Quickly <Span>register</Span> and familiarize yourself with the
