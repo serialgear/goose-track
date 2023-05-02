@@ -198,6 +198,13 @@ export const PlusSvg = styled.svg`
   }
 `;
 
+export const ArrowSvg = styled.svg`
+  stroke: currentColor;
+  fill: currentColor;
+  width: 12px;
+  height: 12px;
+`;
+
 export const Button = styled.button`
   font-family: 'Inter', sans-serif;
   /* margin: 40px auto; */
@@ -213,6 +220,12 @@ export const Button = styled.button`
   text-align: center;
   border: none;
   padding: 14px;
+
+  &[disabled] {
+    background-color: #84828a;
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
   @media (min-width: 768px) {
     padding: 15px;
@@ -471,7 +484,7 @@ export const GlobalStyles = createGlobalStyle`
 .react-datepicker__triangle {
   visibility: hidden;
 }
-  
+
 `;
 
 export const StyledDatePick = styled(DatePicker)`

@@ -52,6 +52,8 @@ export const Link = styled(NavLink)`
   :focus {
     background-color: var(--secondary-background-color);
     border: var(--border);
+    /* color: var(--btn-text-color);
+    background-color: var(--hover-btn-background-color); */
   }
   @media (min-width: 768px) {
     padding: 16px 20px;
@@ -59,8 +61,15 @@ export const Link = styled(NavLink)`
     height: 56px;
   }
   &.active {
-    background: var(--active-item-sidebar-background);
+    background-color: var(--active-item-sidebar-background);
     color: var(--accent-text-color);
+
+    transition: background-color var(--animation);
+
+    &:hover,
+    :focus {
+      background-color: var(--hover-active-item-sidebar-background);
+    }
   }
 `;
 export const Icon = styled.svg`

@@ -1,3 +1,5 @@
+import ScrollToTop from 'react-scroll-up';
+
 import * as STC from './StartPage.styled';
 import LogoGoose from '../../images/GOOSE.png';
 import Icons from '../../images/sprite.svg';
@@ -14,7 +16,7 @@ export default function StartPage() {
       <STC.Hero>
         <STC.LogoImg src={`${LogoGoose}`} />
         <STC.Title>
-          G<span style={{ fontStyle: 'italic', marginRight: '7px' }}>oo</span>
+          G<STC.Title className="italic">oo</STC.Title>
           seTrack
         </STC.Title>
         <STC.LinkBox>
@@ -77,11 +79,16 @@ export default function StartPage() {
             </STC.Txt>
           </STC.ContentBox>
           <STC.ImageBox>
-            <STC.ImageEllipse className="day" />
             <STC.Images className="day" src={ImageDay} />
           </STC.ImageBox>
         </STC.ContentItem>
       </STC.ContentList>
+
+      <ScrollToTop showUnder={160}>
+        <STC.ScrollToTop>
+          <STC.ScrollTopTxt>UP</STC.ScrollTopTxt>
+        </STC.ScrollToTop>
+      </ScrollToTop>
     </STC.Container>
   );
 }

@@ -6,6 +6,7 @@ import {
   getTasksOfMonth,
   addTaskOperation,
   editTaskOperation,
+  deleteTaskOperation,
 } from './calendar.operations';
 
 const calendarInitState = {
@@ -55,9 +56,7 @@ const calendarSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(authLogout.fulfilled, () => calendarInitState)
-
       .addCase(addTaskOperation.pending, state => state)
-
       .addCase(addTaskOperation.fulfilled, (state, { payload }) => {
         state.tasks[state.indexCurrentDay].push(payload);
         state.error = null;
@@ -65,22 +64,32 @@ const calendarSlice = createSlice({
       .addCase(addTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
       })
-
+      .addCase(deleteTaskOperation.pending, state => {
+        state.error = null;
+      })
+      .addCase(deleteTaskOperation.fulfilled, (state, { payload }) => {
+        console.log('payload ', payload);
+        state.error = null;
+        state.tasks[state.indexCurrentDay] = state.tasks[
+          state.indexCurrentDay
+        ].filter(task => task._id !== payload._id);
+      })
+      .addCase(deleteTaskOperation.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
       .addCase(editTaskOperation.pending, state => {
         state.isLoading = true;
       })
       .addCase(editTaskOperation.fulfilled, (state, { payload }) => {
-        state.error = null;
-        state.isLoading = false;
-        const idx = state.tasks[state.indexCurrentDay].findIndex(
+        const index = state.tasks[state.indexCurrentDay].findIndex(
           task => task._id === payload._id
         );
-
-        state.tasks[state.indexCurrentDay][idx] = payload;
+        if (index !== -1) {
+          state.tasks[state.indexCurrentDay][index] = payload;
+        }
       })
       .addCase(editTaskOperation.rejected, (state, { payload }) => {
         state.error = payload;
-        state.isLoading = false;
       });
   },
 });

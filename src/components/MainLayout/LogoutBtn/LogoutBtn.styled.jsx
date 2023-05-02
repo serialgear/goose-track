@@ -11,7 +11,7 @@ export const Btn = styled.button`
   padding: 14px 28px;
 
   color: var(--btn-text-color);
-  background: var(--accent-background-color);
+  background-color: var(--accent-background-color);
   box-shadow: var(--shadow-logout-btn);
   border-radius: 16px;
 

@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { Formik } from 'formik';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import {
   Form,
   Input,
@@ -22,6 +20,7 @@ import {
   StyledIconContainer,
   PlusSvg,
   BirthdayContainer,
+  ArrowSvg,
 } from './UserForm.styled';
 import { GlobalStyles } from './UserForm.styled';
 import { format } from 'date-fns';
@@ -40,12 +39,12 @@ import {
 import { userForm } from '../../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
-// import { Persist } from 'formik-persist';
 import {
   NAME_REGEX,
   PHONE_REGEX,
   TELEGRAM_REGEX,
 } from '../../../constants/joiRegex';
+import { toast } from 'react-toastify';
 
 export const UserForm = () => {
   const [image, setImage] = useState(null);
@@ -61,27 +60,16 @@ export const UserForm = () => {
 
   const formattedDate = format(new Date(birthday), 'yyyy-MM-dd');
 
-  // const handleFileInputChange = event => {
-  //   const file = event.target.files[0];
-  //   const imageUrl = URL.createObjectURL(file);
-  //   setImage(imageUrl);
-  // };
-
   const handleUpload = async event => {
     event.preventDefault();
     if (!setImage) {
-      alert('Please select a file');
+      toast.error('Please select a file');
       return true;
     }
   };
 
-  // const FILE_SIZE = 2 * 1024 * 1024;
-  const SUPPORTED_FORMATS = [
-    'image/jpg',
-    'image/jpeg',
-    'image/gif',
-    'image/png',
-  ];
+  const FILE_SIZE = 2 * 1024 * 1024;
+  const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 
   return (
     <Formik
@@ -98,31 +86,37 @@ export const UserForm = () => {
         phone: Yup.string()
           .matches(PHONE_REGEX, 'Not correct, try again')
           .nullable(),
-        // .required('Number is required'),
         telegram: Yup.string()
           .matches(TELEGRAM_REGEX, 'Not correct, try again')
           .max(16, 'Too Long!')
           .nullable(),
-        // avatar: Yup.mixed()
-        //   .test('size', 'File too large', value => {
-        //     const isGoodSize = value && value.size <= FILE_SIZE;
-        //     if (!isGoodSize) {
-        //       toast.error('File too large');
-        //     }
-        //     return isGoodSize;
-        //   })
-        //   .test('format', 'Unsupported Format', value => {
-        //     const isSupportedFormat =
-        //       value && SUPPORTED_FORMATS.includes(value.type);
-        //     if (!isSupportedFormat) {
-        //       toast.error('Unsupported format');
-        //     }
-        //     return isSupportedFormat;
-        //   }),
+        avatar: Yup.mixed()
+          .nullable()
+          .test('size', 'File too large', value => {
+            if (!value) {
+              return true;
+            }
+            const isGoodSize = value?.size <= FILE_SIZE;
+            if (!isGoodSize) {
+              toast.error('File too large');
+            }
+            return isGoodSize;
+          })
+          .test('format', 'Unsupported Format', value => {
+            if (!value) {
+              return true;
+            }
+            const isSupportedFormat = SUPPORTED_FORMATS.includes(value.type);
+            if (!isSupportedFormat) {
+              toast.error('Unsupported format');
+            }
+            return isSupportedFormat;
+          }),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         await dispatch(userForm(values)).unwrap();
         setSubmitting(false);
+        toast.success('Form submitted successfully');
       }}
     >
       {formik => (
@@ -193,11 +187,11 @@ export const UserForm = () => {
               <Label htmlFor="birthday">
                 <LabelSpan>Birthday</LabelSpan>
                 <StyledIconContainer>
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    width={'18px'}
-                    height={'18px'}
-                  />
+                  <ArrowSvg>
+                    <use
+                      xlinkHref={`${defaultAvatar}#${'user-chevron-down-sf'}`}
+                    />
+                  </ArrowSvg>
                 </StyledIconContainer>
 
                 {formik.touched.birthday && formik.errors.birthday ? (
@@ -258,7 +252,7 @@ export const UserForm = () => {
               <Input
                 id="telegram"
                 name="telegram"
-                type="telegram"
+                type="text"
                 onChange={formik.handleChange}
                 placeholder="telegram"
                 value={
@@ -273,15 +267,13 @@ export const UserForm = () => {
               ) : null}
             </Label>
           </FlexInput>
-
           <Button
             onSubmit={handleUpload}
             type="submit"
-            disabled={!formik.isValid}
+            disabled={!(formik.isValid && formik.dirty)}
           >
             Save changes
           </Button>
-          {/* <Persist name="user-form" /> */}
         </Form>
       )}
     </Formik>

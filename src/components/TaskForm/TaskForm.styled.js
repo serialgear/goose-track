@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  /* display: flex;
-  flex-direction: column; */
+  min-width: 246px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   /* padding: 40px 18px; */
   /* width: 303px; */
   /* width: 100%; */
@@ -16,18 +18,22 @@ export const Form = styled.form`
   font-weight: 400;
   font-size: 14px;
   line-height: 1.29;
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
 
+  @media (min-width: 375px) {
+    /* padding: 40px 28px; */
+    width: 267px;
+  }
   @media (min-width: 768px) {
     /* padding: 40px 28px; */
-    /* width: 396px; */
+    width: 396px;
   }
 `;
 
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  /* margin-bottom: 8px; */
+  width: 100%;
   color: var(--task-modal-label-color);
   font-weight: 500;
   font-size: 12px;
@@ -50,7 +56,7 @@ export const Span = styled.span`
 
 export const Input = styled.input`
   height: 42px;
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
   padding: 14px;
   width: 100%;
   outline: none;
@@ -58,7 +64,7 @@ export const Input = styled.input`
   border: var(--border-auth);
   border-radius: 8px;
   font-family: var(--primary-font);
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -76,7 +82,7 @@ export const Input = styled.input`
 
 export const Errors = styled.span`
   min-height: 14px;
-  margin-top: -14px;
+  margin-top: 4px;
   margin-bottom: 2px;
   color: red;
   font-family: var(--primary-font);
@@ -91,7 +97,7 @@ export const Errors = styled.span`
 `;
 
 export const Button = styled.button`
-  flex-grow: 1;
+  width: 100%;
   height: 42px;
 
   display: flex;
@@ -99,7 +105,7 @@ export const Button = styled.button`
   justify-content: center;
   column-gap: 12px;
   padding: 14px;
-  background: var(--accent-background-color);
+  background-color: var(--accent-background-color);
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 8px;
   border: none;
@@ -111,9 +117,11 @@ export const Button = styled.button`
   line-height: 1.29;
   letter-spacing: -0.02em;
 
+  transition: box-shadow var(--animation), background-color var(--animation);
   &:hover,
   :focus {
     box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
+    background-color: var(--hover-btn-background-color);
   }
 
   @media (min-width: 768px) {
@@ -126,7 +134,7 @@ export const ButtonCancel = styled.button`
   /* display: flex;
   align-items: center;
   justify-content: center; */
-  flex-grow: 0.73;
+  width: 100%;
   height: 42px;
   padding: 12px;
   column-gap: 12px;
@@ -141,6 +149,7 @@ export const ButtonCancel = styled.button`
   line-height: 1.29;
   letter-spacing: -0.02em;
 
+  transition: box-shadow var(--animation);
   &:hover,
   :focus {
     box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
@@ -167,6 +176,7 @@ export const Svg = styled.svg`
 export const Wrapper = styled.div`
   display: flex;
   gap: 14px;
+  justify-content: space-between;
 `;
 
 export const RadioButtonGroup = styled.div`
@@ -174,10 +184,12 @@ export const RadioButtonGroup = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 32px;
+  gap: 16px;
+  /* margin-bottom: 32px; */
+  padding-bottom: 20px;
 
   @media (min-width: 768px) {
-    margin-top: 10px;
+    /* margin-top: 10px; */
   }
 `;
 
@@ -191,9 +203,9 @@ export const RadioButtonLabel = styled.label`
   line-height: 1.17;
   color: var(--secondary-text-color);
   cursor: pointer;
-
-  &:not(:last-child) {
-    margin-right: 16px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.29;
   }
 `;
 
@@ -206,12 +218,22 @@ export const RadioButtonInput = styled.input`
   &::before {
     content: '';
     position: absolute;
-    top: 2px;
+    top: 0px;
     left: -17px;
 
     border-radius: 50%;
-    height: 10px;
-    width: 10px;
+    height: 12px;
+    width: 12px;
+
+    @media (min-width: 768px) {
+      height: 14px;
+      width: 14px;
+      top: 2px;
+      left: -20px;
+    }
+
+    /* transition: outline var(--animation); */
+
     border: 1px solid var(--primary-background-color);
     ${({ value }) => {
       switch (value) {
@@ -230,10 +252,14 @@ export const RadioButtonInput = styled.input`
   &:checked::before {
     content: '';
     position: absolute;
-    height: 10px;
-    width: 10px;
+    height: 12px;
+    width: 12px;
     /* border-radius: 50%; */
 
     outline: 2px solid;
+    @media (min-width: 768px) {
+      height: 14px;
+      width: 14px;
+    }
   }
 `;

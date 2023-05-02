@@ -36,6 +36,8 @@ export const LogoImg = styled.img`
   }
 `;
 export const Title = styled.h1`
+  display: flex;
+  justify-content: center;
   margin-bottom: 32px;
 
   font-family: var(--secondary-font);
@@ -52,6 +54,13 @@ export const Title = styled.h1`
 
     font-size: 120px;
     line-height: 150px;
+  }
+  &.italic {
+    font-style: italic;
+    margin-right: 3px;
+    @media (min-width: 768px) {
+      margin-right: 7px;
+    }
   }
 `;
 export const LinkBox = styled.div`
@@ -74,10 +83,22 @@ export const LoginLink = styled(NavLink)`
   box-shadow: var(--shadow-logout-btn);
   background-color: var(--sidebar-background-color);
   color: var(--accent-text-color);
+  border: var(--border);
+  border-color: transparent;
+
+  transition: background-color var(--animation), color var(--animation),
+    border var(--animation);
 
   @media (min-width: 768px) {
     margin: 0;
-    margin-left: 24px;
+    margin-left: 10px;
+  }
+
+  &:hover,
+  :focus {
+    background-color: var(--hover-btn-background-color);
+    color: var(--btn-text-color);
+    border-color: var(--btn-text-color);
   }
 `;
 export const LoginTxt = styled.span`
@@ -98,6 +119,9 @@ export const LoginSvg = styled.svg`
   fill: transparent;
 `;
 export const SignupLink = styled(NavLink)`
+  padding: 14px 32px;
+  border-radius: 16px;
+
   font-weight: 600;
   font-size: 12px;
   line-height: 14px;
@@ -107,10 +131,22 @@ export const SignupLink = styled(NavLink)`
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
   color: var(--btn-text-color);
+  border: var(--border);
+  border-color: transparent;
+
+  transition: background-color var(--animation), color var(--animation),
+    border var(--animation);
 
   @media (min-width: 768px) {
     font-size: 14px;
     line-height: 18px;
+  }
+
+  &:hover,
+  :focus {
+    background-color: var(--hover-btn-background-color);
+    color: var(--btn-text-color);
+    border-color: var(--btn-text-color);
   }
 `;
 
@@ -160,7 +196,6 @@ export const Number = styled.p`
   font-weight: 700;
   font-size: 80px;
   line-height: 100%;
-  /* identical to box height, or 80px */
 
   letter-spacing: -4px;
   color: var(--accent-text-color);
@@ -183,7 +218,6 @@ export const Category = styled.h2`
   font-weight: 700;
   font-size: 32px;
   line-height: 40px;
-  /* identical to box height, or 125% */
 
   text-transform: uppercase;
   @media (min-width: 768px) {
@@ -200,7 +234,6 @@ export const SubTitle = styled.h2`
   font-weight: 700;
   font-size: 32px;
   line-height: 40px;
-  /* identical to box height, or 125% */
 
   text-transform: uppercase;
 
@@ -218,7 +251,6 @@ export const Txt = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-  /* or 129% */
 
   color: rgba(17, 17, 17, 0.9);
 
@@ -253,7 +285,7 @@ export const Images = styled.img`
   border-radius: 8px;
 
   &.calendar1 {
-    width: 251.75px;
+    min-width: 251.75px;
     height: 196.76px;
     left: 34px;
     top: 100px;
@@ -262,14 +294,14 @@ export const Images = styled.img`
     transform: rotate(-28deg);
 
     @media (min-width: 768px) {
-      width: 457.33px;
+      min-width: 457.33px;
       height: 357.44px;
       left: 80px;
       top: 160px;
     }
   }
   &.calendar2 {
-    width: 254px;
+    min-width: 254px;
     height: 199px;
     left: 204px;
     top: 100px;
@@ -282,16 +314,14 @@ export const Images = styled.img`
       0px 0.796296px 2.95139px rgba(0, 0, 0, 0.0625926);
     transform: rotate(-28deg);
     @media (min-width: 768px) {
-      width: 463.21px;
+      min-width: 463.21px;
       height: 362.34px;
       left: 380px;
       top: 160px;
     }
-    @media (min-width: 1280px) {
-    }
   }
   &.calendar3 {
-    width: 105.12px;
+    min-width: 105.12px;
     height: 99.73px;
     left: 130px;
     top: 270px;
@@ -301,16 +331,14 @@ export const Images = styled.img`
       0px 0.796296px 2.95139px rgba(0, 0, 0, 0.0625926);
     transform: rotate(-28deg);
     @media (min-width: 768px) {
-      width: 190.96px;
+      min-width: 190.96px;
       height: 181.17px;
       left: 255px;
       top: 485px;
     }
-    @media (min-width: 1280px) {
-    }
   }
   &.navigationdark {
-    width: 111.24px;
+    min-width: 111.24px;
     height: 347.61px;
     left: -9px;
     top: 130px;
@@ -318,20 +346,20 @@ export const Images = styled.img`
     box-shadow: -17px 36px 45px rgba(0, 0, 0, 0.2);
     transform: rotate(28deg);
     @media (min-width: 768px) {
-      width: 199px;
+      min-width: 199px;
       height: 626px;
       left: 80px;
       top: 122px;
     }
     @media (min-width: 1280px) {
-      width: 191px;
+      min-width: 191px;
       height: 599px;
       left: 20px;
       top: 150px;
     }
   }
   &.navigationlite {
-    width: 111.24px;
+    min-width: 111.24px;
     height: 347.61px;
     left: 130px;
     top: 130px;
@@ -340,30 +368,28 @@ export const Images = styled.img`
     border-radius: 8px;
     transform: rotate(28deg);
     @media (min-width: 768px) {
-      width: 199px;
+      min-width: 199px;
       height: 626px;
       left: 330px;
       top: 122px;
     }
     @media (min-width: 1280px) {
-      width: 191px;
+      min-width: 191px;
       height: 599px;
       left: 260px;
       top: 150px;
     }
   }
   &.day {
-    width: 496px;
+    max-width: max-content;
     height: 310px;
     left: 59px;
     top: 102px;
 
     padding: 11px;
 
-    border-radius: 8px;
     border: 1.5px solid rgba(62, 133, 243, 0.4);
     @media (min-width: 768px) {
-      width: 851px;
       height: 532px;
       left: 84px;
       top: 84px;
@@ -386,8 +412,7 @@ export const ImageEllipse = styled.div`
     width: 617px;
     height: 617px;
   }
-  @media (min-width: 1280px) {
-  }
+
   &.calendar {
     left: 190px;
     top: 330px;
@@ -395,8 +420,6 @@ export const ImageEllipse = styled.div`
     @media (min-width: 768px) {
       left: 300px;
       top: 515px;
-    }
-    @media (min-width: 1280px) {
     }
   }
   &.sidebar {
@@ -406,10 +429,31 @@ export const ImageEllipse = styled.div`
       left: -330px;
       top: -350px;
     }
-    @media (min-width: 1280px) {
-    }
   }
-  &.day {
-    display: none;
+`;
+
+export const ScrollToTop = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+
+  border: 5px solid var(--auth-bg-color);
+  border-radius: 50%;
+  background-color: var(--accent-background-color);
+
+  transition: background-color var(--animation), border-color var(--animation);
+
+  &:hover,
+  :focus {
+    background-color: var(--accent-background-color);
+    border-color: var(--hover-btn-background-color);
   }
+`;
+export const ScrollTopTxt = styled.span`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--btn-text-color);
 `;

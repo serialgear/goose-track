@@ -57,7 +57,7 @@ export const Span = styled.span`
     props.error ? 'var(--text-error-color)' : 'var(--primary-text-color)'};
 
   @media (min-width: 768px) {
-    margin-top: 18px;
+    margin-top: 5px;
     font-size: 14px;
     line-height: 17px;
   }
@@ -90,6 +90,8 @@ export const Input = styled.input`
   width: 100%;
   outline: none;
 
+  transition: border var(--animation);
+
   &:hover {
     border: 1px solid var(--primary-text-color);
   }
@@ -118,7 +120,7 @@ export const Button = styled.button`
   border-radius: 16px;
   border: none;
   color: var(--btn-text-color);
-
+  transition: background-color var(--animation);
   &:hover,
   :focus {
     background: var(--hover-btn-background-color);
