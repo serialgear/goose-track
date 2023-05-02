@@ -1,22 +1,24 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-around;
-padding: 16px;
-`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 14px;
+  padding-top: 16px;
+`;
+
 export const Text = styled.h2`
   font-family: var(--primary-font);
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
   text-align: center;
+  padding: 16px 0;
 `;
 
-export const ButtonDel = styled.button`
-  width: 30%;
+export const ButtonCancel = styled.button`
+  width: 100%;
   height: 42px;
 
   display: flex;
@@ -44,16 +46,12 @@ export const ButtonDel = styled.button`
   }
 
   @media (min-width: 768px) {
-    /* width: 400px; */
     height: 48px;
   }
 `;
 
-export const ButtonCancel = styled.button`
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-  width: 30%;
+export const ButtonDel = styled.button`
+  width: 100%;
   height: 42px;
   padding: 12px;
   column-gap: 12px;
@@ -75,8 +73,6 @@ export const ButtonCancel = styled.button`
   }
 
   @media (min-width: 768px) {
-    /* width: 400px; */
     height: 48px;
   }
 `;
-
