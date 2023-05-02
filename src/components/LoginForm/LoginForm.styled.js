@@ -40,6 +40,7 @@ export const Title = styled.h1`
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
+  position: relative;
   // margin-bottom: 24px;
   // @media (min-width: 768px) {
   //   margin-bottom: 18px;
@@ -223,4 +224,17 @@ export const GooseText = styled.p`
 export const GooseTextAccent = styled.span`
   color: var(--accent-text-color);
   font-style: italic;
+`;
+
+export const ButtonEye = styled.button`
+  position: absolute;
+  top: 45%;
+  left: 90%;
+`;
+
+export const SvgEye = styled.svg`
+  width: 18px;
+  height: 20px;
+
+  fill: var(--secondary-text-color);
 `;
