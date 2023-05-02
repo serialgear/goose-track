@@ -36,7 +36,7 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
               alt="Logo"
             />
             <STC.LogoTxt>
-              G<STC.LogoTxt className="italic">oo</STC.LogoTxt>
+              G<STC.LogoSpan>oo</STC.LogoSpan>
               seTrack
             </STC.LogoTxt>
           </STC.Logo>
