@@ -1,7 +1,7 @@
 import ScrollToTop from 'react-scroll-up';
 
 import * as STC from './StartPage.styled';
-import LogoGoose from '../../images/GOOSE.png';
+import LogoGoose from '../../images/GooseLogo.png';
 import Icons from '../../images/sprite.svg';
 import ImageCalendar1 from '../../images/StartPage/Calendar1.jpg';
 import ImageCalendar2 from '../../images/StartPage/Calendar2.jpg';

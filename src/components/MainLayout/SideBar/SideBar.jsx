@@ -5,7 +5,7 @@ import { LogoutBtn } from '../LogoutBtn/LogoutBtn';
 import { UserNav } from '../UserNav/UserNav';
 
 import * as STC from './SideBar.styled';
-import LogoGoose from '../../../images/GOOSE.png';
+import LogoGoose from '../../../images/GooseLogo.png';
 import Icons from '../../../images/sprite.svg';
 
 export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
@@ -30,7 +30,7 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
           <STC.Logo to="/" onClick={handleCloseMobalMenu}>
             <STC.LogoImg src={`${LogoGoose}`} alt="Logo" />
             <STC.LogoTxt>
-              G<STC.LogoSpan>oo</STC.LogoSpan>
+              G<STC.LogoTxt className="italic">oo</STC.LogoTxt>
               seTrack
             </STC.LogoTxt>
           </STC.Logo>
