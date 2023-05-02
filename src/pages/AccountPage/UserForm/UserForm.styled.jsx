@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 export const Form = styled.form`
   display: flex;
