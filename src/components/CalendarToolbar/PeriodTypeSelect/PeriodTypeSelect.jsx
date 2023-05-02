@@ -3,10 +3,13 @@ import {
   Wrapper,
   StyledLinkDay,
   StyledLinkMonth,
+  LinkActiveMonth,
+  LinkActiveDay,
 } from './PeriodTypeSelect.styled';
 import {
   selectChoosedDay,
   selectCurrentMonth,
+  selectIndexCurrentDay,
 } from 'redux/calendar/calendar.selectors';
 import { format, formatISO, isThisMonth } from 'date-fns';
 import {
@@ -18,11 +21,15 @@ export const PeriodTypeSelect = () => {
   const dispath = useDispatch();
   const currentDate = useSelector(selectCurrentMonth);
   const choosedDay = useSelector(selectChoosedDay);
+  const currentIndex = useSelector(selectIndexCurrentDay);
+
+  const LinkMonth = currentIndex !== null ? StyledLinkMonth : LinkActiveMonth;
+  const LinkDay = currentIndex !== null ? LinkActiveDay : StyledLinkDay;
 
   return (
     <Wrapper>
       {isThisMonth(new Date(currentDate)) ? (
-        <StyledLinkMonth
+        <LinkMonth
           to={`month/${formatISO(new Date(currentDate), {
             representation: 'date',
           })}`}
@@ -31,9 +38,9 @@ export const PeriodTypeSelect = () => {
           }}
         >
           Month
-        </StyledLinkMonth>
+        </LinkMonth>
       ) : (
-        <StyledLinkMonth
+        <LinkMonth
           to={`month/${formatISO(new Date(choosedDay), {
             representation: 'date',
           })}`}
@@ -42,11 +49,11 @@ export const PeriodTypeSelect = () => {
           }}
         >
           Month
-        </StyledLinkMonth>
+        </LinkMonth>
       )}
 
       {isThisMonth(new Date(currentDate)) ? (
-        <StyledLinkDay
+        <LinkDay
           to={`day/${formatISO(new Date(currentDate), {
             representation: 'date',
           })}`}
@@ -62,9 +69,9 @@ export const PeriodTypeSelect = () => {
           }}
         >
           Day
-        </StyledLinkDay>
+        </LinkDay>
       ) : (
-        <StyledLinkDay
+        <LinkDay
           to={`day/${formatISO(new Date(choosedDay), {
             representation: 'date',
           })}`}
@@ -80,7 +87,7 @@ export const PeriodTypeSelect = () => {
           }}
         >
           Day
-        </StyledLinkDay>
+        </LinkDay>
       )}
     </Wrapper>
   );

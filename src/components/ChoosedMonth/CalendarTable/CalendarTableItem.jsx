@@ -88,7 +88,7 @@ CalendarTableItem.propTypes = {
         createMonth: PropTypes.number.isRequired,
         createYear: PropTypes.number.isRequired,
         end: PropTypes.string,
-        owner: PropTypes.string.isRequired,
+        owner: PropTypes.any.isRequired,
         priority: PropTypes.string.isRequired,
         start: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired,

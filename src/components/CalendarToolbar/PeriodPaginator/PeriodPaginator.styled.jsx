@@ -8,10 +8,10 @@ export const Wrapper = styled.div`
 
   @media (min-width: 768px) {
     width: ${props => {
-      if (props.index) {
-        return '270px';
+      if (props.index === null) {
+        return '245px';
       }
-      return '245px';
+      return '270px';
     }};
   }
 `;

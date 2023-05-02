@@ -43,6 +43,11 @@ export const StyledLinkMonth = styled(StyledLink)`
   border-radius: 8px 0px 0px 8px;
 `;
 
+export const LinkActiveMonth = styled(StyledLinkMonth)`
+  background: var(--active-button-period-type);
+  color: var(--accent-text-color);
+`;
+
 export const StyledLinkDay = styled(StyledLink)`
   padding: 8px 25px;
   border: none;
@@ -50,4 +55,9 @@ export const StyledLinkDay = styled(StyledLink)`
   @media (min-width: 768px) {
     padding: 8px 26px;
   }
+`;
+
+export const LinkActiveDay = styled(StyledLinkDay)`
+  background: var(--active-button-period-type);
+  color: var(--accent-text-color);
 `;
