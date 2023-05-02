@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/goose-track/static/css/main.409429b5.css",
-    "main.js": "/goose-track/static/js/main.c39d6831.js",
+    "main.js": "/goose-track/static/js/main.af191108.js",
     "static/js/941.cc4dc804.chunk.js": "/goose-track/static/js/941.cc4dc804.chunk.js",
     "static/js/911.615a06de.chunk.js": "/goose-track/static/js/911.615a06de.chunk.js",
     "static/js/161.148def2f.chunk.js": "/goose-track/static/js/161.148def2f.chunk.js",
     "static/js/37.50ba766d.chunk.js": "/goose-track/static/js/37.50ba766d.chunk.js",
-    "static/js/961.e196faa5.chunk.js": "/goose-track/static/js/961.e196faa5.chunk.js",
+    "static/js/961.41def4f0.chunk.js": "/goose-track/static/js/961.41def4f0.chunk.js",
     "static/js/386.9f6cb507.chunk.js": "/goose-track/static/js/386.9f6cb507.chunk.js",
     "static/css/44.4b7b33cb.chunk.css": "/goose-track/static/css/44.4b7b33cb.chunk.css",
     "static/js/44.858bf654.chunk.js": "/goose-track/static/js/44.858bf654.chunk.js",
@@ -38,18 +38,18 @@
     "index.html": "/goose-track/index.html",
     "static/media/logInIcon.svg": "/goose-track/static/media/logInIcon.a255be8977dff107049bccd8351f44a7.svg",
     "main.409429b5.css.map": "/goose-track/static/css/main.409429b5.css.map",
-    "main.c39d6831.js.map": "/goose-track/static/js/main.c39d6831.js.map",
+    "main.af191108.js.map": "/goose-track/static/js/main.af191108.js.map",
     "941.cc4dc804.chunk.js.map": "/goose-track/static/js/941.cc4dc804.chunk.js.map",
     "911.615a06de.chunk.js.map": "/goose-track/static/js/911.615a06de.chunk.js.map",
     "161.148def2f.chunk.js.map": "/goose-track/static/js/161.148def2f.chunk.js.map",
     "37.50ba766d.chunk.js.map": "/goose-track/static/js/37.50ba766d.chunk.js.map",
-    "961.e196faa5.chunk.js.map": "/goose-track/static/js/961.e196faa5.chunk.js.map",
+    "961.41def4f0.chunk.js.map": "/goose-track/static/js/961.41def4f0.chunk.js.map",
     "386.9f6cb507.chunk.js.map": "/goose-track/static/js/386.9f6cb507.chunk.js.map",
     "44.4b7b33cb.chunk.css.map": "/goose-track/static/css/44.4b7b33cb.chunk.css.map",
     "44.858bf654.chunk.js.map": "/goose-track/static/js/44.858bf654.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.409429b5.css",
-    "static/js/main.c39d6831.js"
+    "static/js/main.af191108.js"
   ]
 }
