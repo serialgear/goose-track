@@ -156,5 +156,5 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
 };
 PeriodPaginator.propTypes = {
   currentIndex: PropTypes.number || null.isRequired,
-  choosedDay: PropTypes.string.isRequired,
+  choosedDay: PropTypes.string,
 };
