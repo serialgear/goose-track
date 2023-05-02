@@ -12,7 +12,7 @@ import { LoginImg, LoginImg2, Text, Span } from './RegisterForm.styled';
 import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
 import { NAME_REGEX, PASSWORD_REGEX } from '../../constants/joiRegex';
 import { useState } from 'react';
-import icon from '../../images/sprite.svg'
+import icon from '../../images/sprite.svg';
 
 const RegisterValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -143,7 +143,6 @@ export const RegisterForm = () => {
                       </STC.SvgEye>
                     )}
                   </STC.ButtonEye>
-
                 </STC.Label>
 
                 <STC.Button type="submit">
@@ -163,7 +162,7 @@ export const RegisterForm = () => {
                 height="330"
               />
               <LoginImg2 width="50" height="50">
-                <use xlinkHref={`${logInCloud}#${'login-cloud'}`} />
+                <use xlinkHref={`${logInCloud}#${'login-door-sf'}`} />
               </LoginImg2>
               <Text>
                 Quickly <Span>register</Span> and familiarize yourself with the
