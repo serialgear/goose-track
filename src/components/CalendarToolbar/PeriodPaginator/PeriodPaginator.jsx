@@ -84,7 +84,7 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
   return (
     <Wrapper index={currentIndex}>
       <MonthWrapper>
-        {currentIndex ? (
+        {currentIndex !== null ? (
           <MonthName>{format(new Date(choosedDay), 'd MMMM yyyy')}</MonthName>
         ) : (
           <MonthName>{format(currentMonth, 'MMMM yyyy')}</MonthName>
@@ -92,7 +92,7 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
       </MonthWrapper>
 
       <WrapperButton>
-        {currentIndex ? (
+        {currentIndex !== null ? (
           isFirstDayOfMonth(new Date(choosedDay)) ? (
             <ButtonLeft disabled>
               <Icon width="20" height="20">
@@ -113,17 +113,20 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
             </Icon>
           </ButtonLeft>
         ) : (
-          <ButtonLeft to={`month/${formatISO(
-            new Date(subMonths(startOfMonth(new Date(currentMonth)), 1)),
-            { representation: 'date' }
-          )}`} onClick={handlePrevMonth}>
+          <ButtonLeft
+            to={`month/${formatISO(
+              new Date(subMonths(startOfMonth(new Date(currentMonth)), 1)),
+              { representation: 'date' }
+            )}`}
+            onClick={handlePrevMonth}
+          >
             <Icon width="20" height="20">
               <use href={`${Icons}#calendar-right-sf`}></use>
             </Icon>
           </ButtonLeft>
         )}
 
-        {currentIndex ? (
+        {currentIndex !== null ? (
           isLastDayOfMonth(new Date(choosedDay)) ? (
             <ButtonRight disabled>
               <Icon>
@@ -138,10 +141,13 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
             </ButtonRight>
           )
         ) : (
-          <ButtonRight to={`month/${formatISO(
-            new Date(addMonths(startOfMonth(new Date(currentMonth)), 1)),
-            { representation: 'date' }
-          )}`} onClick={handleNextMonth}>
+          <ButtonRight
+            to={`month/${formatISO(
+              new Date(addMonths(startOfMonth(new Date(currentMonth)), 1)),
+              { representation: 'date' }
+            )}`}
+            onClick={handleNextMonth}
+          >
             <Icon>
               <use href={`${Icons}#calendar-left-sf`}></use>
             </Icon>
