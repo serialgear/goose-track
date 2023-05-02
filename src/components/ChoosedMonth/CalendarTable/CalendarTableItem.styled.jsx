@@ -13,11 +13,20 @@ export const DaysOfMonth = styled.div`
   padding: 4px 6px;
 
   border-radius: 6px;
+  @media (min-width: 768px) {
+    top: 12px;
+    right: 14px;
+    width: 27px;
+    height: 26px;
+
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
 `;
 
 export const Today = styled(DaysOfMonth)`
   background-color: var(--accent-background-color);
-  color: var(--primary-background-color);
+  color: var(--btn-text-color);
 `;
 export const BoxTasks = styled.ul`
   width: 100%;
@@ -27,8 +36,18 @@ export const BoxTasks = styled.ul`
   display: grid;
   justify-items: center;
   grid-template-columns: 1fr;
-  grid-auto-rows: minmax(auto, 20px);
+  grid-auto-rows: 20px;
   grid-gap: 2px;
+  @media (min-width: 768px) {
+    padding-top: 36px;
+    grid-auto-rows: 24px;
+  }
+  padding-bottom: 0;
+  @media (min-width: 1280px) {
+    padding-top: 39px;
+    grid-auto-rows: 23px;
+    grid-gap: 4px;
+  }
 `;
 
 export const Task = styled.li`
@@ -51,13 +70,21 @@ export const Task = styled.li`
     }}
   );
   border-radius: 8px;
+  @media (min-width: 768px) {
+    width: 90%;
+    grid-template-rows: minmax(auto, 11px);
+    padding: 0 6px;
+  }
+  @media (min-width: 1280px) {
+    width: 90%;
+  }
 `;
 
 export const Title = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: 'Inter';
+  font-family: var(--primary-font);
   font-style: normal;
   font-weight: 500;
   font-size: 10px;
@@ -74,4 +101,30 @@ export const Title = styled.p`
       return '--task-priority-low-color';
     }}
   );
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
+`;
+export const MoreTasks = styled.p`
+  @media (max-width: 374.98) {
+    font-size: 8px;
+  }
+  margin-top: 4px;
+  white-space: nowrap;
+
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 200;
+  font-size: 10px;
+  line-height: 1;
+  vertical-align: center;
+  @media (min-width: 768px) {
+    margin-top: 6.5px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  @media (min-width: 1280px) {
+    margin-top: 4px;
+    font-size: 14px;
+  }
 `;

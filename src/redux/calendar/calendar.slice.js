@@ -5,8 +5,8 @@ import { authLogout } from 'redux/auth/auth.operations';
 import {
   getTasksOfMonth,
   addTaskOperation,
-  deleteTaskOperation,
   editTaskOperation,
+  deleteTaskOperation,
 } from './calendar.operations';
 
 const calendarInitState = {
@@ -33,6 +33,11 @@ const calendarSlice = createSlice({
     },
     clearTasks(state) {
       state.tasks = [];
+    },
+    deleteTask(state, { payload }) {
+      state.tasks[state.indexCurrentDay] = state.tasks[
+        state.indexCurrentDay
+      ].filter(task => task._id !== payload);
     },
   },
 
@@ -73,7 +78,7 @@ const calendarSlice = createSlice({
         state.error = payload;
       })
       .addCase(editTaskOperation.pending, state => {
-        state.error = null;
+        state.isLoading = true;
       })
       .addCase(editTaskOperation.fulfilled, (state, { payload }) => {
         const index = state.tasks[state.indexCurrentDay].findIndex(
@@ -94,6 +99,7 @@ export const {
   addIndexCurrentDay,
   addChoosedDay,
   clearTasks,
+  deleteTask,
 } = calendarSlice.actions;
 
 export const calendarReducer = persistReducer(

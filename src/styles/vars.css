@@ -41,6 +41,7 @@
   --priority-high-bg-color: #ffd2dd;
   --active-button-period-type: #cae8ff;
   --button-period-type: #e3f3ff;
+  --color-button-period-type: #3e85f3;
   --close-btn-color: #111111;
   --modal-border-color: rgba(220, 227, 229, 0.8);
   --modal-shadow-color: rgba(17, 17, 17, 0.4);
@@ -88,6 +89,8 @@
   --active-item-sidebar-background: #3e85f3;
   --hover-active-item-sidebar-background: #2b78ef;
   --accent-span-text-color: #3e85f3;
+  --btn-text-color: #ffffff;
+  --secondary-text-color: #ffffff;
 
   --calendar-digit-color: #ffffff;
   --task-input-bg-color: rgba(255, 255, 255, 0);
@@ -104,6 +107,9 @@
   --close-btn-color: #ffffff;
   --modal-border-color: #21222c;
   --modal-shadow-color: rgba(62, 133, 243, 0.4);
+  --active-button-period-type: #3e85f3;
+  --button-period-type: #21222c;
+  --color-button-period-type: #3e85f3;
 
   /* shadow */
   --shadow-logout-btn: 4px 2px 16px rgba(136, 165, 191, 0.3);

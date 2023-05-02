@@ -24,10 +24,13 @@ import {
   addIndexCurrentDay,
 } from 'redux/calendar/calendar.slice';
 import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
+import PropTypes from 'prop-types';
+import { useMedia } from 'react-use';
 
 export const CalendarHead = ({ currentDay }) => {
   const currentMonth = useSelector(selectCurrentMonth);
   const dispath = useDispatch();
+  const isWide = useMedia('(min-width: 768px)');
 
   let daysInWeek;
 
@@ -57,7 +60,11 @@ export const CalendarHead = ({ currentDay }) => {
           const choosedDay = new Date(day).toISOString();
           return (
             <Week key={idx}>
-              <DayWeek>{format(day, 'EEEEE')}</DayWeek>
+              {isWide ? (
+                <DayWeek>{format(day, 'EEE')}</DayWeek>
+              ) : (
+                <DayWeek>{format(day, 'EEEEE')}</DayWeek>
+              )}
 
               {currentDay && (
                 <StyledLink
@@ -78,4 +85,7 @@ export const CalendarHead = ({ currentDay }) => {
       </List>
     </>
   );
+};
+CalendarHead.propTypes = {
+  currentDay: PropTypes.string,
 };

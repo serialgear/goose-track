@@ -29,9 +29,11 @@ import {
 } from 'redux/calendar/calendar.slice';
 import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
 import Icons from '../../../images/sprite.svg';
+import PropTypes from 'prop-types';
 
 export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
+
   const dispatch = useDispatch();
 
   const handlePrevMonth = () => {
@@ -67,9 +69,13 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
     dispatch(addIndexCurrentDay(currentIndex + 1));
   };
   return (
-    <Wrapper>
+    <Wrapper index={currentIndex}>
       <MonthWrapper>
-        <MonthName>{format(currentMonth, 'MMMM yyyy')}</MonthName>
+        {currentIndex ? (
+          <MonthName>{format(new Date(choosedDay), 'd MMMM yyyy')}</MonthName>
+        ) : (
+          <MonthName>{format(currentMonth, 'MMMM yyyy')}</MonthName>
+        )}
       </MonthWrapper>
 
       <WrapperButton>
@@ -147,4 +153,8 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
       </WrapperButton>
     </Wrapper>
   );
+};
+PeriodPaginator.propTypes = {
+  currentIndex: PropTypes.number || null.isRequired,
+  choosedDay: PropTypes.string,
 };

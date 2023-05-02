@@ -9,20 +9,20 @@ export const Container = styled.div`
 `;
 
 export const Hero = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  min-height: 812px;
-  padding: 232px 0 88px;
+  height: 100vh;
 
   background-color: var(--accent-background-color);
   color: var(--btn-text-color);
 
   @media (min-width: 768px) {
     min-height: 1024px;
-    padding: 320px 0;
   }
   @media (min-width: 1280px) {
     min-height: 770px;
-    padding: 187px 0;
   }
 `;
 export const LogoImg = styled.img`
@@ -63,7 +63,27 @@ export const Title = styled.h1`
     }
   }
 `;
+
+export const LogoSpan = styled.span`
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+  color: inherit;
+
+  font-style: italic;
+  margin-right: 3px;
+  @media (min-width: 768px) {
+    margin-right: 7px;
+  }
+`;
+
 export const LinkBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
   @media (min-width: 768px) {
     display: flex;
     flex-direction: row-reverse;
@@ -75,7 +95,8 @@ export const LoginLink = styled(NavLink)`
   display: flex;
   justify-content: center;
 
-  margin: 0 auto 208px;
+  margin: 0 auto;
+  margin-bottom: 30%;
   width: 131px;
   padding: 14px 32px;
 
@@ -91,7 +112,6 @@ export const LoginLink = styled(NavLink)`
 
   @media (min-width: 768px) {
     margin: 0;
-    margin-left: 10px;
   }
 
   &:hover,
@@ -140,6 +160,12 @@ export const SignupLink = styled(NavLink)`
   @media (min-width: 768px) {
     font-size: 14px;
     line-height: 18px;
+  }
+  @media (max-width: 767px) {
+    position: absolute;
+    left: 50%; /*Add this*/
+    transform: translate(-50%, 0); /*Add this*/
+    top: calc(100vh - 15%);
   }
 
   &:hover,

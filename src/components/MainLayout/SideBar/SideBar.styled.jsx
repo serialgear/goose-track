@@ -113,10 +113,18 @@ export const LogoTxt = styled.h1`
     font-size: 24px;
     line-height: 24px;
   }
-  &.italic {
-    font-style: italic;
-    margin-right: 1.5px;
-  }
+`;
+
+export const LogoSpan = styled.span`
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+  color: var(--accent-text-color);
+
+  font-style: italic;
+  margin-right: 1.5px;
 `;
 
 export const Box = styled.div`
