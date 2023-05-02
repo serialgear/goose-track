@@ -16,7 +16,7 @@ export default function StartPage() {
       <STC.Hero>
         <STC.LogoImg src={`${LogoGoose}`} />
         <STC.Title>
-          G<STC.Title className="italic">oo</STC.Title>
+          G<STC.LogoSpan>oo</STC.LogoSpan>
           seTrack
         </STC.Title>
         <STC.LinkBox>
