@@ -24,7 +24,6 @@ export const TaskStatusModal = ({ handleCloseStatusModal, ...props }) => {
         <STC.Ul>
           {filteredStatuses.map(status => (
             <li key={status.id}>
-              {console.log('STATUS in MAP===', status.name)}
               <STC.Button
                 type="button"
                 onClick={() => handleStatusClick(status.name)}
