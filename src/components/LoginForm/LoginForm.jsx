@@ -8,7 +8,9 @@ import logInIcon from '../../images/sprite.svg';
 import { toast } from 'react-toastify';
 import loginRocketSvg from '../../images/Icons/login-rocket-goose.svg';
 import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
+import { useState } from 'react';
 import { PASSWORD_REGEX } from '../../constants/joiRegex';
+import icon from '../../images/sprite.svg';
 
 const LoginValidationSchema = Yup.object().shape({
   email: Yup.string().email('This is an ERROR email').required('Required'),
@@ -22,6 +24,7 @@ const LoginValidationSchema = Yup.object().shape({
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const [isPass, setIsPass] = useState(true);
 
   useEffect(() => {
     document.body.classList.remove('dark-theme');
@@ -93,7 +96,7 @@ export const LoginForm = () => {
                     Password
                   </STC.Span>
                   <STC.Input
-                    type="password"
+                    type={isPass ? 'password' : 'text'}
                     name="password"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -104,6 +107,23 @@ export const LoginForm = () => {
                   <STC.Errors>
                     {errors.password && touched.password && errors.password}
                   </STC.Errors>
+                  <STC.ButtonEye
+                    type="button"
+                    onClick={() => {
+                      isPass ? setIsPass(false) : setIsPass(true);
+                    }}
+                  >
+                    {' '}
+                    {isPass ? (
+                      <STC.SvgEye>
+                        <use xlinkHref={`${icon}#closed-eye`}></use>
+                      </STC.SvgEye>
+                    ) : (
+                      <STC.SvgEye>
+                        <use xlinkHref={`${icon}#opened-eye`}></use>
+                      </STC.SvgEye>
+                    )}
+                  </STC.ButtonEye>
                 </STC.Label>
 
                 <STC.Button type="submit" disabled={isSubmitting}>
