@@ -61,7 +61,7 @@ Modal.propTypes = {
   onClose: PropTypes.func,
   isCloseBtn: PropTypes.bool,
   editRef: PropTypes.shape({
-    left: PropTypes.string,
-    top: PropTypes.string,
+    left: PropTypes.number,
+    top: PropTypes.number,
   }),
 };
