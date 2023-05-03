@@ -1,42 +1,33 @@
-import { ColorRing } from 'react-loader-spinner';
-import {
-  LoaderSpinner,
-  DotsOverlay,
-  DotsWrapper,
-  DotsLoader,
-} from './Loader.styled';
+import HashLoader from 'react-spinners/HashLoader';
+
+import { LoaderWrapper, LoaderPrivatePageWrapper } from './Loader.styled';
 
 export function Loader() {
   return (
-    <LoaderSpinner>
-      <ColorRing
-        visible={true}
-        height="80"
-        width="80"
-        ariaLabel="blocks-loading"
-        wrapperStyle={{}}
-        wrapperClass="blocks-wrapper"
-        colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+    <LoaderWrapper>
+      <HashLoader
+        color="#3e85f3"
+        size={50}
+        speedMultiplier={1}
+        cssOverride={{
+          margin: '0 auto',
+        }}
       />
-    </LoaderSpinner>
+    </LoaderWrapper>
   );
 }
 
-export function DotsSpinner() {
+export function LoaderPrivatePage() {
   return (
-    <DotsOverlay>
-      <DotsWrapper>
-        <DotsLoader
-          height="80"
-          width="80"
-          radius="9"
-          color="#3E85F3"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-        />
-      </DotsWrapper>
-    </DotsOverlay>
+    <LoaderPrivatePageWrapper>
+      <HashLoader
+        color="#3e85f3"
+        size={50}
+        speedMultiplier={1}
+        cssOverride={{
+          margin: '0 auto',
+        }}
+      />
+    </LoaderPrivatePageWrapper>
   );
 }

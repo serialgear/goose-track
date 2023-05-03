@@ -1,28 +1,23 @@
 import styled from 'styled-components';
-import { ThreeDots } from 'react-loader-spinner';
 
-export const LoaderSpinner = styled.div`
-  text-align: center;
-`;
-
-export const DotsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const DotsOverlay = styled.div`
+export const LoaderWrapper = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  justify-content: center;
-  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
-export const DotsLoader = styled(ThreeDots)`
-  margin: 0 auto;
+export const LoaderPrivatePageWrapper = styled.div`
+  position: absolute;
+  top: calc((100vh / 2) - 88px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (min-width: 768px) {
+    top: calc((100vh / 2) - 102px);
+  }
+
+  @media (min-width: 1280px) {
+    top: calc((100vh / 2) - 132px);
+  }
 `;
