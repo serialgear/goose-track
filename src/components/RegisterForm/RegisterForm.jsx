@@ -162,7 +162,7 @@ export const RegisterForm = () => {
                 height="330"
               />
               <LoginImg2 width="50" height="50">
-                <use xlinkHref={`${logInCloud}#${'login-door-sf'}`} />
+                <use xlinkHref={`${logInCloud}#${'login-cloud'}`} />
               </LoginImg2>
               <Text>
                 Quickly <Span>register</Span> and familiarize yourself with the
