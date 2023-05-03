@@ -7,12 +7,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 
   @media (min-width: 768px) {
-    width: ${props => {
-      if (props.index === null) {
-        return '245px';
-      }
-      return '270px';
-    }};
+    width: 278px;
   }
 `;
 
@@ -23,16 +18,14 @@ export const MonthWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  min-width: 118px;
+  width: 192px;
   height: 30px;
-  padding: 3px 12px;
+  padding: 8px 12px;
 
   background-color: var(--accent-btn-background);
   border-radius: 8px;
   @media (min-width: 768px) {
-    min-width: 131px;
     height: 34px;
-    padding: 8px 12px;
   }
 `;
 
