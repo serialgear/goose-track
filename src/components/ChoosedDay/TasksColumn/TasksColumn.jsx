@@ -1,3 +1,4 @@
+import * as ReactDOM from 'react-dom';
 import { useState } from 'react';
 import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
 import { ColumnHeadBar } from './ColumnHeadBar/ColumnHeadBar';
@@ -23,9 +24,14 @@ export const TasksColumn = ({ status }) => {
         <ColumnsTasksList status={status} />
         <AddTaskBtn handleShowModal={handleShowModal} />
       </Container>
-      {showModal && (
-        <TaskModal handleCloseModal={handleCloseModal} status={status.name} />
-      )}
+      {showModal &&
+        ReactDOM.createPortal(
+          <TaskModal
+            handleCloseModal={handleCloseModal}
+            status={status.name}
+          />,
+          document.querySelector('#modal-root')
+        )}
     </>
   );
 };
