@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Calendar = styled.ul`
+  position: relative;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-auto-rows: 94px;
