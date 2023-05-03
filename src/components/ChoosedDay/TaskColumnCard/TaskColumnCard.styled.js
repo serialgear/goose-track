@@ -55,14 +55,9 @@ export const TaskPriority = styled.p`
   font-style: normal;
   font-weight: 600;
   font-size: 10px;
-  line-height: 12px;
-  /* identical to box height, or 120% */
+  line-height: 1.2;
 
   text-align: center;
 
   color: var(--btn-text-color);
-
-  /* fill-opacity: 0.18; */
-  /* overflow: hidden; */
-  /* cursor: pointer; */
 `;

@@ -21,7 +21,7 @@ export const TasksColumn = ({ status }) => {
       <Container>
         <ColumnHeadBar title={status.name} handleShowModal={handleShowModal} />
         <ColumnsTasksList status={status} />
-        <AddTaskBtn status={status.name} handleShowModal={handleShowModal} />
+        <AddTaskBtn handleShowModal={handleShowModal} />
       </Container>
       {showModal && (
         <TaskModal handleCloseModal={handleCloseModal} status={status.name} />

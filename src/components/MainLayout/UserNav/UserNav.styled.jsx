@@ -52,8 +52,7 @@ export const Link = styled(NavLink)`
   :focus {
     background-color: var(--secondary-background-color);
     border: var(--border);
-    /* color: var(--btn-text-color);
-    background-color: var(--hover-btn-background-color); */
+   
   }
   @media (min-width: 768px) {
     padding: 16px 20px;

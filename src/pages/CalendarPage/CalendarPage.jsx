@@ -15,7 +15,7 @@ export default function CalendarPage() {
     dispatch(
       getTasksOfMonth({
         month: format(new Date(currentDate), 'M'),
-        year: Number(format(new Date(currentDate), 'yyyy')),
+        year: format(new Date(currentDate), 'yyyy'),
       })
     );
   }, [currentDate, dispatch]);

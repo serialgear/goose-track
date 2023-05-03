@@ -27,13 +27,17 @@ import {
   addIndexCurrentDay,
   clearTasks,
 } from 'redux/calendar/calendar.slice';
-import { selectCurrentMonth } from 'redux/calendar/calendar.selectors';
+import {
+  selectCurrentMonth,
+  selectIsLoading,
+} from 'redux/calendar/calendar.selectors';
 import Icons from '../../../images/sprite.svg';
 import PropTypes from 'prop-types';
 
 export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
   const currentMonth = parseISO(useSelector(selectCurrentMonth));
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
   const prevMonth = formatISO(new Date(subMonths(currentMonth, 1)), {
     representation: 'date',
@@ -118,7 +122,13 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
               new Date(subMonths(startOfMonth(new Date(currentMonth)), 1)),
               { representation: 'date' }
             )}`}
-            onClick={handlePrevMonth}
+            onClick={() => {
+              if (isLoading) {
+                return;
+              }
+              handlePrevMonth();
+            }}
+            disabled={isLoading}
           >
             <Icon width="20" height="20">
               <use href={`${Icons}#calendar-right-sf`}></use>
@@ -146,7 +156,13 @@ export const PeriodPaginator = ({ currentIndex, choosedDay }) => {
               new Date(addMonths(startOfMonth(new Date(currentMonth)), 1)),
               { representation: 'date' }
             )}`}
-            onClick={handleNextMonth}
+            onClick={() => {
+              if (isLoading) {
+                return;
+              }
+              handleNextMonth();
+            }}
+            disabled={isLoading}
           >
             <Icon>
               <use href={`${Icons}#calendar-left-sf`}></use>

@@ -1,6 +1,6 @@
 import { Button, AddTask, Plus } from './AddTaskBtn.styled';
 
-export const AddTaskBtn = ({ status, handleShowModal }) => {
+export const AddTaskBtn = ({ handleShowModal }) => {
   return (
     <>
       <Button type="button" onClick={handleShowModal}>
