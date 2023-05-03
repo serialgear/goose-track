@@ -1,3 +1,4 @@
+import * as ReactDOM from 'react-dom';
 import {
   TaskToolbarButton,
   TaskToolbarList,
@@ -74,26 +75,32 @@ export const TaskToolbar = props => {
         </li>
       </TaskToolbarList>
 
-      {showModal && (
-        <TaskModal
-          editMode={true}
-          handleCloseModal={handleCloseModal}
-          {...props}
-        />
-      )}
-      {showDeleteModal && (
-        <TaskDelete
-          handleCloseDeleteModal={handleCloseDeleteModal}
-          id={props._id}
-        />
-      )}
-      {showStatusModal && (
-        <TaskStatusModal
-          editRef={editElement}
-          handleCloseStatusModal={handleCloseStatusModal}
-          {...props}
-        />
-      )}
+      {showModal &&
+        ReactDOM.createPortal(
+          <TaskModal
+            editMode={true}
+            handleCloseModal={handleCloseModal}
+            {...props}
+          />,
+          document.querySelector('#modal-root')
+        )}
+      {showDeleteModal &&
+        ReactDOM.createPortal(
+          <TaskDelete
+            handleCloseDeleteModal={handleCloseDeleteModal}
+            id={props._id}
+          />,
+          document.querySelector('#modal-root')
+        )}
+      {showStatusModal &&
+        ReactDOM.createPortal(
+          <TaskStatusModal
+            editRef={editElement}
+            handleCloseStatusModal={handleCloseStatusModal}
+            {...props}
+          />,
+          document.querySelector('#modal-root')
+        )}
     </>
   );
 };
