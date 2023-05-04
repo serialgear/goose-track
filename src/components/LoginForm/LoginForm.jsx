@@ -19,18 +19,14 @@ const LoginValidationSchema = Yup.object().shape({
 
   password: Yup.string()
     .matches(PASSWORD_REGEX, 'This is an ERROR password')
-    .min(6, 'Too Short!')
-    .max(50, 'Too Long!')
+    .min(6, 'Too short!')
+    .max(50, 'Too long!')
     .required('Required'),
 });
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [isPass, setIsPass] = useState(true);
-  const [emailValidationCompleted, setEmailValidationCompleted] =
-    useState(false);
-  const [passwordValidationCompleted, setPasswordValidationCompleted] =
-    useState(false);
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
@@ -90,7 +86,6 @@ export const LoginForm = () => {
                     onChange={handleChange}
                     onBlur={event => {
                       handleBlur(event);
-                      setEmailValidationCompleted(true);
                     }}
                     value={values.email}
                     placeholder="Enter your email"
@@ -98,12 +93,9 @@ export const LoginForm = () => {
                     touched={touched.email}
                   />
                   <STC.Errors error={errors.email && touched.email}>
-                    {emailValidationCompleted &&
-                      (errors.email && touched.email ? (
-                        <span>{errors.email}</span>
-                      ) : (
-                        <span>This is an CORRECT email</span>
-                      ))}
+                    {errors.email && touched.email && (
+                      <span>{errors.email}</span>
+                    )}
                   </STC.Errors>
                 </STC.Label>
 
@@ -119,7 +111,6 @@ export const LoginForm = () => {
                     onChange={handleChange}
                     onBlur={event => {
                       handleBlur(event);
-                      setPasswordValidationCompleted(true);
                     }}
                     value={values.password}
                     placeholder="Enter password"
@@ -127,12 +118,9 @@ export const LoginForm = () => {
                     touched={touched.password}
                   />
                   <STC.Errors error={errors.password && touched.password}>
-                    {passwordValidationCompleted &&
-                      (errors.password && touched.password ? (
-                        <span>{errors.password}</span>
-                      ) : (
-                        <span>This is an CORRECT password</span>
-                      ))}
+                    {errors.password && touched.password && (
+                      <span>{errors.password}</span>
+                    )}
                   </STC.Errors>
                   <STC.ButtonEye
                     type="button"
