@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Formik } from 'formik';
 import { authLogin } from 'redux/auth/auth.operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import * as STC from './LoginForm.styled';
 import logInIcon from '../../images/sprite.svg';
@@ -11,6 +11,8 @@ import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
 import { useState } from 'react';
 import { PASSWORD_REGEX } from '../../constants/joiRegex';
 import icon from '../../images/sprite.svg';
+import { Loader } from 'components/Loader/Loader';
+import { selectIsLoading } from 'redux/auth/auth.selectors';
 
 const LoginValidationSchema = Yup.object().shape({
   email: Yup.string().email('This is an ERROR email').required('Required'),
@@ -29,6 +31,7 @@ export const LoginForm = () => {
     useState(false);
   const [passwordValidationCompleted, setPasswordValidationCompleted] =
     useState(false);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     document.body.classList.remove('dark-theme');
@@ -36,6 +39,7 @@ export const LoginForm = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
       <Formik
         initialValues={{
           email: '',
@@ -148,7 +152,7 @@ export const LoginForm = () => {
                   </STC.ButtonEye>
                 </STC.Label>
 
-                <STC.Button type="submit" disabled={isSubmitting}>
+                <STC.Button type="submit" disabled={isSubmitting || isLoading}>
                   <STC.BtnSpan>Log In</STC.BtnSpan>
                   <STC.Svg>
                     <use href={`${logInIcon}#login-door-sf`} />
