@@ -9,7 +9,8 @@ import {
 } from 'date-fns';
 import {
   ListMonth,
-  DateOfWeek,
+  DateOfWeekCurrentMonth,
+  DateOfWeekOtherMonth,
   ChoosedDate,
   DayWeek,
   Days,
@@ -54,6 +55,11 @@ export const CalendarHead = ({ currentDay }) => {
           const StyledLink = !isSameMonth(new Date(day), new Date(currentMonth))
             ? OtherMonthStyledLink
             : CurrentMonthStyledLink;
+
+          const DateOfWeek = isSameMonth(new Date(day), new Date(currentMonth))
+            ? DateOfWeekCurrentMonth
+            : DateOfWeekOtherMonth;
+
           const DateWeek = isSameDay(new Date(currentDay), new Date(day))
             ? ChoosedDate
             : DateOfWeek;

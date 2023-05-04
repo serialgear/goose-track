@@ -37,6 +37,7 @@ export const BoxTasks = styled.ul`
   grid-template-columns: 1fr;
   grid-auto-rows: 20px;
   grid-gap: 2px;
+
   @media (min-width: 768px) {
     grid-auto-rows: 24px;
     grid-gap: 4px;
@@ -106,7 +107,6 @@ export const MoreTasks = styled.p`
   font-weight: 500;
   font-size: 10px;
   line-height: 1;
-  vertical-align: center;
   @media (min-width: 768px) {
     margin-top: 6.5px;
     font-weight: 600;

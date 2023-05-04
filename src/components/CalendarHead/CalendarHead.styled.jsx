@@ -67,7 +67,7 @@ export const CurrentMonthStyledLink = styled(Link)`
   color: currentColor;
 `;
 
-export const DateOfWeek = styled(Day)`
+const DateOfWeek = styled(Day)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,6 +81,7 @@ export const DateOfWeek = styled(Day)`
   padding: 4px 6px;
   color: var(--calendar-digit-color);
   border-radius: 6px;
+
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 1.12px;
@@ -94,4 +95,16 @@ export const DateOfWeek = styled(Day)`
 export const ChoosedDate = styled(DateOfWeek)`
   background-color: var(--accent-background-color);
   color: var(--btn-text-color);
+`;
+export const DateOfWeekCurrentMonth = styled(DateOfWeek)`
+  transition: box-shadow var(--animation), box-shadow var(--animation);
+
+  &:hover,
+  :focus {
+    box-shadow: 4px 4px 24px rgba(136, 165, 191, 1);
+  }
+`;
+
+export const DateOfWeekOtherMonth = styled(DateOfWeek)`
+  opacity: 0.3;
 `;

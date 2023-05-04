@@ -26,11 +26,26 @@ export const Calendar = styled.ul.attrs(props => ({
   }
 `;
 
-export const Days = styled.li`
+export const AllDays = styled.li`
   position: relative;
   border: var(--border-calendar);
+
   @media (min-width: 768px) {
     border: var(--border);
+  }
+`;
+
+export const CurrentMonthDays = styled(AllDays)`
+  transition: background-color var(--animation), box-shadow var(--animation),
+    transform var(--animation), box-shadow var(--animation),
+    box-shadow var(--animation), box-shadow var(--animation);
+
+  &:hover,
+  :focus {
+    box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
+    transform: scale(1.05);
+    background-color: var(--primary-background-color);
+    z-index: 10;
   }
 `;
 

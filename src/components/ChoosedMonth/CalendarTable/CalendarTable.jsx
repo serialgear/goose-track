@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Calendar,
-  Days,
+  AllDays,
+  CurrentMonthDays,
   OtherMonthStyledLink,
   CurrentMonthStyledLink,
 } from './CalendarTable.styled';
@@ -87,6 +88,9 @@ export const CalendarTable = () => {
             ? OtherMonthStyledLink
             : CurrentMonthStyledLink;
 
+            const Days = !isSameMonth(day, currentMonth) ? 
+            AllDays 
+            : CurrentMonthDays
           return (
             <Days key={idx}>
               <StyledLink
