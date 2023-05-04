@@ -6,7 +6,7 @@ export const Container = styled.div`
   gap: 24px;
 
   @media (min-width: 768px) {
-    padding-top: 32px;
+    /* padding-top: 32px; */
     gap: 32px;
   }
   @media (min-width: 1280px) {
