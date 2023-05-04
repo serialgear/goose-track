@@ -37,8 +37,9 @@ export const AllDays = styled.li`
 `;
 
 export const CurrentMonthDays = styled(AllDays)`
-  transition: background-color var(--animation), box-shadow var(--animation);
-  transition: transform var(--animation), box-shadow var(--animation);
+  transition: background-color var(--animation), box-shadow var(--animation),
+    transform var(--animation), box-shadow var(--animation),
+    box-shadow var(--animation), box-shadow var(--animation);
 
   &:hover,
   :focus {

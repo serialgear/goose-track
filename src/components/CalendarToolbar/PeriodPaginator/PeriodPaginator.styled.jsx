@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -55,7 +55,7 @@ export const WrapperButton = styled.div`
   display: flex;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,10 +73,13 @@ const StyledLink = styled(Link)`
     }
     return '1';
   }};
-&:hover,
-:focus {
-  background-color: var(--button-period-type);
-}
+  &.active {
+    &:hover,
+    :focus {
+      background: var(--primary-background-color);
+      box-shadow: none;
+    }
+  }
 
   @media (min-width: 768px) {
     width: 38px;
@@ -88,9 +91,21 @@ const StyledLink = styled(Link)`
 
 export const ButtonLeft = styled(StyledLink)`
   border-radius: 8px 0px 0px 8px;
+
+  &:hover,
+  :focus {
+    background: var(--hover-button-period-type);
+    box-shadow: -4px 2px 10px rgba(136, 165, 191, 1);
+  }
 `;
 export const ButtonRight = styled(StyledLink)`
   border-radius: 0px 8px 8px 0px;
+
+  &:hover,
+  :focus {
+    background: var(--hover-button-period-type);
+    box-shadow: 4px 2px 10px rgba(136, 165, 191, 1);
+  }
 `;
 export const Icon = styled.svg`
   width: 16px;
