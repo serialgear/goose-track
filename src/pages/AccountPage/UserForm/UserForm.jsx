@@ -45,6 +45,7 @@ import {
   TELEGRAM_REGEX,
 } from '../../../constants/joiRegex';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 export const UserForm = () => {
   const [image, setImage] = useState(null);
@@ -311,4 +312,14 @@ export const UserForm = () => {
       )}
     </Formik>
   );
+};
+
+
+UserForm.propTypes = {
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string,
+  birthday: PropTypes.string.isRequired,
+  telegram: PropTypes.string,
+  avatar: PropTypes.object
 };
