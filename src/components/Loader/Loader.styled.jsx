@@ -5,6 +5,7 @@ export const LoaderWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10000;
 `;
 
 export const LoaderPrivatePageWrapper = styled.div`
@@ -12,6 +13,7 @@ export const LoaderPrivatePageWrapper = styled.div`
   top: calc((100vh / 2) - 88px);
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10000;
 
   @media (min-width: 768px) {
     top: calc((100vh / 2) - 102px);
