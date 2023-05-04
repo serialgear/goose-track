@@ -25,7 +25,7 @@ import {
 import { GlobalStyles } from './UserForm.styled';
 import { format } from 'date-fns';
 
-import defaultAvatar from '../../../images/sprite.svg';
+import defaultAvatar from 'images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectUserAvatarURL,
@@ -50,6 +50,9 @@ export const UserForm = () => {
   const [image, setImage] = useState(null);
   const filePicker = useRef(null);
   const dispatch = useDispatch();
+
+  const [birthdayValidationCompleted, setBirthdayValidationCompleted] =
+    useState(false);
 
   const name = useSelector(selectUserName);
   const email = useSelector(selectUserEmail);
@@ -76,19 +79,26 @@ export const UserForm = () => {
       initialValues={{ name, birthday: formattedDate, email, phone, telegram }}
       validationSchema={Yup.object({
         name: Yup.string()
-          .matches(NAME_REGEX, 'Not correct, try again')
-          .max(16, 'Too Long!')
+          .matches(NAME_REGEX, 'Allow letters, apostrophe, dash and spaces')
+          .min(3, 'Too short!')
+          .max(16, 'Too long!')
           .required('Name is required'),
         email: Yup.string()
           .email('Invalid email')
           .required('Email is required'),
         birthday: Yup.date().required('Birthday is required').nullable(),
         phone: Yup.string()
-          .matches(PHONE_REGEX, 'Not correct, try again')
+          .matches(
+            PHONE_REGEX,
+            'Allow digits, spaces, dashes and can start with +'
+          )
           .nullable(),
         telegram: Yup.string()
-          .matches(TELEGRAM_REGEX, 'Not correct, try again')
-          .max(16, 'Too Long!')
+          .matches(
+            TELEGRAM_REGEX,
+            'Start with @ and contain only [a-z], [0-9] and underscores'
+          )
+          .max(16, 'Too long!')
           .nullable(),
         avatar: Yup.mixed()
           .nullable()
@@ -199,8 +209,10 @@ export const UserForm = () => {
             <BirthdayContainer>
               <Label htmlFor="birthday">
                 <LabelSpan
-                  hasError={formik.touched.birthday && formik.errors.birthday}
-                  success={formik.touched.birthday && !formik.errors.birthday}
+                  hasError={formik.errors.birthday}
+                  success={
+                    formik.touched.birthday || birthdayValidationCompleted
+                  }
                 >
                   Birthday
                 </LabelSpan>
@@ -217,14 +229,18 @@ export const UserForm = () => {
                 id="birthday"
                 name="birthday"
                 selected={new Date(formik.values.birthday)}
-                onChange={date => formik.setFieldValue('birthday', date)}
+                onChange={date => {
+                  formik.setFieldValue('birthday', date);
+                  setBirthdayValidationCompleted(true);
+                }}
+                onBlur={formik.handleBlur}
                 dateFormat="dd-MM-yyyy"
                 maxDate={new Date()}
                 placeholderText="dd-MM-yyyy"
                 formatWeekDay={day => day.charAt(0)}
                 calendarStartDay={1}
                 hasError={formik.touched.birthday && formik.errors.birthday}
-                success={formik.touched.birthday && !formik.errors.birthday}
+                success={formik.touched.birthday || birthdayValidationCompleted}
               />
               <Errors>
                 {formik.touched.birthday &&
