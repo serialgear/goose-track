@@ -168,7 +168,12 @@ export const UserForm = () => {
 
           <FlexInput>
             <Label htmlFor="name">
-              <LabelSpan>User Name</LabelSpan>
+              <LabelSpan
+                hasError={formik.touched.name && formik.errors.name}
+                success={formik.touched.name && !formik.errors.name}
+              >
+                User Name
+              </LabelSpan>
               <Input
                 id="name"
                 name="name"
@@ -178,16 +183,27 @@ export const UserForm = () => {
                 value={formik.values.name}
                 onBlur={formik.handleBlur}
                 hasError={formik.touched.name && formik.errors.name}
+                success={formik.touched.name && !formik.errors.name}
                 {...formik.getFieldProps('name')}
               />
-              {formik.touched.name && formik.errors.name ? (
-                <Errors>{formik.errors.name}</Errors>
-              ) : null}
+              <Errors>
+                {formik.touched.name &&
+                  formik.errors.name &&
+                  formik.errors.name}
+              </Errors>
+              {/* {formik.touched.name && !formik.errors.name && (
+                <Success>Valid name</Success>
+              )} */}
             </Label>
 
             <BirthdayContainer>
               <Label htmlFor="birthday">
-                <LabelSpan>Birthday</LabelSpan>
+                <LabelSpan
+                  hasError={formik.touched.birthday && formik.errors.birthday}
+                  success={formik.touched.birthday && !formik.errors.birthday}
+                >
+                  Birthday
+                </LabelSpan>
                 <StyledIconContainer>
                   <ArrowSvg>
                     <use
@@ -195,10 +211,6 @@ export const UserForm = () => {
                     />
                   </ArrowSvg>
                 </StyledIconContainer>
-
-                {formik.touched.birthday && formik.errors.birthday ? (
-                  <Errors>{formik.errors.birthday}</Errors>
-                ) : null}
               </Label>
               <GlobalStyles />
               <StyledDatePick
@@ -206,17 +218,32 @@ export const UserForm = () => {
                 name="birthday"
                 selected={new Date(formik.values.birthday)}
                 onChange={date => formik.setFieldValue('birthday', date)}
-                dateFormat="dd-MMM-yyyy"
+                dateFormat="dd-MM-yyyy"
                 maxDate={new Date()}
-                placeholderText="dd-MMM-yyyy"
+                placeholderText="dd-MM-yyyy"
                 formatWeekDay={day => day.charAt(0)}
                 calendarStartDay={1}
                 disabledKeyboardNavigation
+                hasError={formik.touched.birthday && formik.errors.birthday}
+                success={formik.touched.birthday && !formik.errors.birthday}
               />
+              <Errors>
+                {formik.touched.birthday &&
+                  formik.errors.birthday &&
+                  formik.errors.birthday}
+              </Errors>
+              {/* {formik.touched.birthday && !formik.errors.birthday && (
+                <Success>Valid birthday</Success>
+              )} */}
             </BirthdayContainer>
 
             <Label htmlFor="email">
-              <LabelSpan>Email</LabelSpan>
+              <LabelSpan
+                hasError={formik.touched.email && formik.errors.email}
+                success={formik.touched.email && !formik.errors.email}
+              >
+                Email
+              </LabelSpan>
               <Input
                 id="email"
                 name="email"
@@ -226,14 +253,25 @@ export const UserForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
                 hasError={formik.touched.email && formik.errors.email}
+                success={formik.touched.email && !formik.errors.email}
                 {...formik.getFieldProps('email')}
               />
-              {formik.touched.email && formik.errors.email ? (
-                <Errors>{formik.errors.email}</Errors>
-              ) : null}
+              <Errors>
+                {formik.touched.email &&
+                  formik.errors.email &&
+                  formik.errors.email}
+              </Errors>
+              {/* {formik.touched.email && !formik.errors.email && (
+                <Success>Valid email</Success>
+              )} */}
             </Label>
             <Label htmlFor="phone">
-              <LabelSpan>Phone</LabelSpan>
+              <LabelSpan
+                hasError={formik.touched.phone && formik.errors.phone}
+                success={formik.touched.phone && !formik.errors.phone}
+              >
+                Phone
+              </LabelSpan>
               <Input
                 id="phone"
                 name="phone"
@@ -247,14 +285,25 @@ export const UserForm = () => {
                     : formik.values.phone
                 }
                 hasError={formik.touched.phone && formik.errors.phone}
+                success={formik.touched.phone && !formik.errors.phone}
                 {...formik.getFieldProps('phone')}
               />
-              {formik.touched.phone && formik.errors.phone ? (
-                <Errors>{formik.errors.phone}</Errors>
-              ) : null}
+              <Errors>
+                {formik.touched.phone &&
+                  formik.errors.phone &&
+                  formik.errors.phone}
+              </Errors>
+              {/* {formik.touched.phone && !formik.errors.phone && (
+                <Success>Valid phone</Success>
+              )} */}
             </Label>
             <Label htmlFor="telegram">
-              <LabelSpan>Telegram</LabelSpan>
+              <LabelSpan
+                hasError={formik.touched.telegram && formik.errors.telegram}
+                success={formik.touched.telegram && !formik.errors.telegram}
+              >
+                Telegram
+              </LabelSpan>
               <Input
                 id="telegram"
                 name="telegram"
@@ -268,11 +317,18 @@ export const UserForm = () => {
                     : formik.values.telegram
                 }
                 hasError={formik.touched.telegram && formik.errors.telegram}
+                success={formik.touched.telegram && !formik.errors.telegram}
                 {...formik.getFieldProps('telegram')}
               />
-              {formik.touched.telegram && formik.errors.telegram ? (
-                <Errors>{formik.errors.telegram}</Errors>
-              ) : null}
+              <Errors>
+                {formik.touched.telegram &&
+                  formik.errors.telegram &&
+                  formik.errors.telegram}
+              </Errors>
+
+              {/* {formik.touched.telegram && !formik.errors.telegram && (
+                <Success>Valid telegram</Success>
+              )} */}
             </Label>
           </FlexInput>
           <Button

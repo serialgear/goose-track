@@ -48,7 +48,9 @@ export const FlexInput = styled.div`
 
 export const LabelSpan = styled.span`
   margin-bottom: 8px;
-  color: var(--secondary-text-color);
+  //color: var(--secondary-text-color);
+  color: ${({ hasError, success }) => hasError ? 'red' : success ? 'green' : 'var(--secondary-text-color)'};
+
 `;
 
 export const Label = styled.label`
@@ -57,6 +59,9 @@ export const Label = styled.label`
   line-height: 1.2;
   display: flex;
   flex-direction: column;
+
+
+
   @media (min-width: 768px) {
     font-size: 14px;
   }
@@ -68,7 +73,9 @@ export const Input = styled.input`
   font-size: 14px;
   line-height: 1.3;
   outline: none;
-  border: var(--border);
+  //border: var(--border);
+  border: 1px solid ${({ hasError, success }) =>
+    hasError ? 'red' : success ? 'green' : 'var(--secondary-text-color)'};
   border-radius: 8px;
   height: 42px;
   padding: 12px 12px 12px 14px;
@@ -94,7 +101,7 @@ export const Input = styled.input`
   @media (min-width: 768px) {
     width: 354px;
     height: 46px;
-    padding-left: 14px 14px 14px 18px;
+    padding: 14px 14px 14px 18px;
     font-size: 16px;
   }
 
@@ -281,7 +288,20 @@ export const TextAvatar = styled.p`
 
 export const Errors = styled.div`
   color: red;
-  font-size: 10px;
+  font-size: 12px;
+  height: 14px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+export const Success = styled.div`
+  color: green;
+  font-size: 12px;
+  height: 14px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const GlobalStyles = createGlobalStyle`
@@ -513,7 +533,9 @@ export const StyledDatePick = styled(DatePicker)`
   position: relative;
   width: 299px;
   height: 42px;
-  border: var(--border);
+  //border: var(--border);
+  border: 1px solid ${({ hasError, success }) =>
+    hasError ? 'red' : success ? 'green' : 'var(--secondary-text-color)'};
   border-radius: 8px;
   font-family: 'Inter', serif;
   font-style: normal;
