@@ -2,18 +2,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Calendar = styled.ul`
-  ${() => {
-    const calendarHeight = window.innerHeight - 293;
-    if (window.innerHeight > 763) {
-      return `height: ${calendarHeight}px`;
-    }
-    // return `${calendarHeight}px`;
-  }};
+  height: ${props => props.calendarHeight};
   position: relative;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  /* grid-auto-rows: 1fr; */
-  grid-auto-rows: minmax(94px, 1fr);
+  grid-auto-rows: 1fr;
+  grid-auto-rows: minmax(${props => props.minGridRowsHeight}, 1fr);
 
   background: var(--primary-background-color);
   border-radius: 8px;

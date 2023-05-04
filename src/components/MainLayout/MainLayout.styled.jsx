@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   display: block;
   width: 100%;
   /* height: 100vh; */
-  min-height: 763px;
+  /* min-height: 763px; */
   padding: 20px;
   @media (min-width: 768px) {
     padding: 32px;

@@ -8,6 +8,6 @@ export const Wrapper = styled.div`
     gap: 18px;
   }
   @media (min-width: 1280px) {
-    gap: 15px;
+    /* gap: 15px; */
   }
 `;

@@ -11,10 +11,26 @@ import {
 import { useMedia } from 'react-use';
 import PropTypes from 'prop-types';
 
-export const CalendarTableItem = ({ day, dayTasks }) => {
+export const CalendarTableItem = ({ day, dayTasks, gridRowHeight }) => {
   const DayOfMonth = useParams();
-  const isWide = useMedia('(min-width: 768px) and (max-width: 1279.98px)');
+  const isWide = useMedia('(min-width: 768px) and (max-width: 1600px)');
   const isWideSmaller = useMedia('(max-width: 374.98px)');
+
+  const borderHeight = 1;
+  let columnPaddingTop = 27;
+  let taskHeight = 20 + 2; // height + gap
+
+  if (isWide) {
+    columnPaddingTop = 36;
+    taskHeight = 24 + 4; // height + gap
+  }
+
+  const maxTasksInColumn = Math.floor(
+    (gridRowHeight + borderHeight * 2 - columnPaddingTop) / taskHeight
+  );
+  // console.log('countTasksInColumn ', maxTasksInColumn);
+
+  const countTasks = dayTasks?.length;
 
   const AllDays = isThisMonth(new Date(DayOfMonth.currentDate))
     ? isToday(day)
@@ -26,53 +42,34 @@ export const CalendarTableItem = ({ day, dayTasks }) => {
   return (
     <>
       <AllDays>{format(day, 'd')}</AllDays>
-      <BoxTasks length={dayTasks?.length}>
-        {isWide
-          ? dayTasks?.length > 0 && dayTasks?.length <= 4
-            ? dayTasks?.map(task => {
-                return (
-                  <Task key={task._id} priority={task.priority}>
-                    <Title priority={task.priority}>{task.title}</Title>
-                  </Task>
-                );
-              })
-            : dayTasks?.map((task, idx) => {
-                if (idx < 3) {
-                  return (
-                    <Task key={task._id} priority={task.priority}>
-                      <Title priority={task.priority}>{task.title}</Title>
-                    </Task>
-                  );
-                }
-                return false;
-              })
-          : dayTasks?.length > 0 && dayTasks?.length <= 3
-          ? dayTasks?.map(task => {
+      <BoxTasks length={dayTasks?.length} columnPaddingTop={columnPaddingTop}>
+        {countTasks > 0 &&
+          countTasks <= maxTasksInColumn &&
+          dayTasks?.map(task => {
+            return (
+              <Task key={task._id} priority={task.priority}>
+                <Title priority={task.priority}>{task.title}</Title>
+              </Task>
+            );
+          })}
+        {countTasks > 0 &&
+          countTasks > maxTasksInColumn &&
+          dayTasks?.map((task, idx) => {
+            if (idx < maxTasksInColumn - 1) {
               return (
                 <Task key={task._id} priority={task.priority}>
                   <Title priority={task.priority}>{task.title}</Title>
                 </Task>
               );
-            })
-          : dayTasks?.map((task, idx) => {
-              if (idx < 2) {
-                return (
-                  <Task key={task._id} priority={task.priority}>
-                    <Title priority={task.priority}>{task.title}</Title>
-                  </Task>
-                );
-              }
-              return false;
-            })}
-
-        {dayTasks?.length > 4 && isWide && (
-          <MoreTasks>+ {dayTasks?.length - 3} More</MoreTasks>
-        )}
-        {dayTasks?.length > 3 && isWideSmaller ? (
-          <MoreTasks>+ {dayTasks?.length - 2}</MoreTasks>
+            }
+            return false;
+          })}
+        {countTasks > maxTasksInColumn && isWideSmaller ? (
+          <MoreTasks>+ {countTasks - maxTasksInColumn + 1}</MoreTasks>
         ) : (
-          dayTasks?.length > 3 &&
-          !isWide && <MoreTasks>+ {dayTasks?.length - 2} More</MoreTasks>
+          countTasks > maxTasksInColumn && (
+            <MoreTasks>+{countTasks - maxTasksInColumn + 1} More</MoreTasks>
+          )
         )}
       </BoxTasks>
     </>
