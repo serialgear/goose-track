@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 155px;
-  max-height: inherit;
+  max-height: 100%;
   padding: 20px;
   gap: 14px;
 
