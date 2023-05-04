@@ -24,15 +24,20 @@ const RegisterValidationSchema = Yup.object().shape({
   password: Yup.string()
     .matches(
       PASSWORD_REGEX,
-      'must contain minimum 6 characters,at least 1 letter and 1 number'
+      'Must contain minimum 6 characters, at least 1 letter and 1 number'
     )
-    .min(5, 'Too Short!')
+    .min(6, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
 });
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [isPass, setIsPass] = useState(true);
+  const [nameValidationCompleted, setNameValidationCompleted] = useState(false);
+  const [emailValidationCompleted, setEmailValidationCompleted] =
+    useState(false);
+  const [passwordValidationCompleted, setPasswordValidationCompleted] =
+    useState(false);
 
   return (
     <>
@@ -71,24 +76,35 @@ export const RegisterForm = () => {
               <STC.Form onSubmit={handleSubmit} autoComplete="on">
                 <STC.Title>Sign Up</STC.Title>
                 <STC.Label htmlFor="name">
-                  <STC.Span error={errors.name && touched.name}>Name</STC.Span>
+                  <STC.Span error={errors.name} touched={touched.name}>
+                    Name
+                  </STC.Span>
                   <STC.Input
                     id="name"
                     name="name"
                     type="text"
-                    onBlur={handleBlur}
+                    onBlur={event => {
+                      handleBlur(event);
+                      setNameValidationCompleted(true);
+                    }}
                     value={values.name}
                     onChange={handleChange}
                     placeholder="Enter your name"
-                    error={errors.name && touched.name}
+                    error={errors.name}
+                    touched={touched.name}
                   />
-                  <STC.Errors>
-                    {errors.name && touched.name && errors.name}
+                  <STC.Errors error={errors.name && touched.name}>
+                    {nameValidationCompleted &&
+                      (errors.name && touched.name ? (
+                        <span>{errors.name}</span>
+                      ) : (
+                        <span>This is an CORRECT name</span>
+                      ))}
                   </STC.Errors>
                 </STC.Label>
 
                 <STC.Label htmlFor="email">
-                  <STC.Span error={errors.email && touched.email}>
+                  <STC.Span error={errors.email} touched={touched.email}>
                     Email
                   </STC.Span>
                   <STC.Input
@@ -96,34 +112,56 @@ export const RegisterForm = () => {
                     name="email"
                     type="email"
                     value={values.email}
-                    onBlur={handleBlur}
+                    onBlur={event => {
+                      handleBlur(event);
+                      setEmailValidationCompleted(true);
+                    }}
                     onChange={handleChange}
                     placeholder="Enter email"
-                    error={errors.email && touched.email}
+                    error={errors.email}
+                    touched={touched.email}
                   />
-                  <STC.Errors>
-                    {errors.email && touched.email && errors.email}
+                  <STC.Errors error={errors.email && touched.email}>
+                    {emailValidationCompleted &&
+                      (errors.email && touched.email ? (
+                        <span>{errors.email}</span>
+                      ) : (
+                        <span>This is an CORRECT email</span>
+                      ))}
                   </STC.Errors>
                 </STC.Label>
 
                 <STC.Label
                   htmlFor="password"
-                  error={errors.password && touched.password}
+                  // error={errors.password && touched.password}
                 >
-                  <STC.Span>Password</STC.Span>
+                  <STC.Span error={errors.password} touched={touched.password}>
+                    Password
+                  </STC.Span>
                   <STC.Input
                     id="password"
                     name="password"
-                    type="password"
+                    type={isPass ? 'password' : 'text'}
                     required
                     autoComplete="off"
                     placeholder="Enter password"
                     value={values.password}
                     onChange={handleChange}
-                    error={errors.password && touched.password}
+                    onBlur={event => {
+                      handleBlur(event);
+                      setPasswordValidationCompleted(true);
+                    }}
+                    // error={errors.password && touched.password}
+                    error={errors.password}
+                    touched={touched.password}
                   />
-                  <STC.Errors>
-                    {errors.password && touched.password && errors.password}
+                  <STC.Errors error={errors.password && touched.password}>
+                    {passwordValidationCompleted &&
+                      (errors.password && touched.password ? (
+                        <span>{errors.password}</span>
+                      ) : (
+                        <span>This is an CORRECT password</span>
+                      ))}
                   </STC.Errors>
 
                   <STC.ButtonEye
@@ -132,7 +170,6 @@ export const RegisterForm = () => {
                       isPass ? setIsPass(false) : setIsPass(true);
                     }}
                   >
-                    {' '}
                     {isPass ? (
                       <STC.SvgEye>
                         <use xlinkHref={`${icon}#closed-eye`}></use>
