@@ -48,7 +48,9 @@ export const FlexInput = styled.div`
 
 export const LabelSpan = styled.span`
   margin-bottom: 8px;
-  color: var(--secondary-text-color);
+  //color: var(--secondary-text-color);
+  color: ${({ hasError, success }) => hasError ? 'red' : success ? 'green' : '#333'};
+
 `;
 
 export const Label = styled.label`
@@ -57,6 +59,8 @@ export const Label = styled.label`
   line-height: 1.2;
   display: flex;
   flex-direction: column;
+
+
   @media (min-width: 768px) {
     font-size: 14px;
   }
@@ -68,7 +72,9 @@ export const Input = styled.input`
   font-size: 14px;
   line-height: 1.3;
   outline: none;
-  border: var(--border);
+  //border: var(--border);
+  border: 1px solid ${({ hasError, success }) =>
+    hasError ? 'red' : success ? 'green' : '#ccc'};
   border-radius: 8px;
   height: 42px;
   padding: 12px 12px 12px 14px;
@@ -99,6 +105,7 @@ export const Input = styled.input`
   }
 
   transition: border var(--animation);
+
   &:hover,
   :focus {
     border: 1px solid ${props => (props.hasError ? 'red' : 'gray')};
@@ -185,6 +192,7 @@ export const ButtonPlus = styled.div`
     height: 24px;
   }
   transition: background-color var(--animation);
+
   &:hover,
   :focus {
     background-color: var(--hover-btn-background-color);
@@ -245,6 +253,7 @@ export const Button = styled.button`
   }
 
   transition: background-color var(--animation), box-shadow var(--animation);
+
   &:hover,
   :focus {
     box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
@@ -281,7 +290,22 @@ export const TextAvatar = styled.p`
 
 export const Errors = styled.div`
   color: red;
-  font-size: 10px;
+  font-size: 12px;
+  height: 14px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+
+  }
+`;
+
+export const Success = styled.div`
+  color: green;
+  font-size: 12px;
+  height: 14px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+
+  }
 `;
 
 export const GlobalStyles = createGlobalStyle`
@@ -541,9 +565,11 @@ export const StyledDatePick = styled(DatePicker)`
     padding: 14px 14px 14px 18px;
   }
   transition: border var(--animation);
+
   &:hover,
   :focus {
-    border: 1px solid ${props => (props.hasError ? 'red' : 'gray')};
+    border: 1px solid ${({ hasError, success }) =>
+      hasError ? 'red' : success ? 'green' : '#ccc'};
   }
 `;
 
