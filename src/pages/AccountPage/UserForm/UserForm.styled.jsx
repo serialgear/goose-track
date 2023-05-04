@@ -6,9 +6,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 40px;
   width: 100%;
+  height: 100%;
   margin-top: 51px;
   padding: 40px 20px;
   background-color: var(--primary-background-color);
@@ -48,7 +49,6 @@ export const FlexInput = styled.div`
 
 export const LabelSpan = styled.span`
   margin-bottom: 8px;
-  //color: var(--secondary-text-color);
   color: ${({ hasError, success }) =>
     hasError ? 'red' : success ? 'green' : 'var(--secondary-text-color)'};
 `;

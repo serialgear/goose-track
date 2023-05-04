@@ -108,7 +108,7 @@ export const UserForm = () => {
           telegram: Yup.string()
             .matches(
               TELEGRAM_REGEX,
-              'Start with @ and contain only [a-z], [0-9] and underscores'
+              'Start with @ and contain only [a-z], [0-9] and _'
             )
             .max(16, 'Too long!')
             .nullable(),
