@@ -28,16 +28,19 @@ const authSlice = createSlice({
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
+        state.error = null;
       })
       .addCase(authLogin.pending, state => {
         state.isLoading = true;
       })
       .addCase(authLogin.fulfilled, (state, { payload }) => {
         state.error = null;
+        state.isLoading = false;
         state.user = payload.user;
         state.token = payload.token;
       })
       .addCase(authLogin.rejected, (state, { payload }) => {
+        state.isLoading = false;
         state.error = payload;
       })
       .addCase(authLogout.pending, state => {
@@ -56,13 +59,17 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, () => authInitState)
 
-      .addCase(userForm.pending, (state, _) => state)
+      .addCase(userForm.pending, (state, _) => {
+        state.isLoading = true;
+      })
       .addCase(userForm.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
         state.error = null;
         state.user = payload.user;
         state.token = payload.token;
       })
       .addCase(userForm.rejected, (state, { payload }) => {
+        state.isLoading = false;
         state.error = payload;
       });
   },
