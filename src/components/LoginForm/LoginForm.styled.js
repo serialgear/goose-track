@@ -130,6 +130,12 @@ export const Button = styled.button`
     background: var(--hover-btn-background-color);
   }
 
+  &[disabled] {
+    background-color: #84828a;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   @media (min-width: 768px) {
     /* width: 400px; */
     height: 56px;
