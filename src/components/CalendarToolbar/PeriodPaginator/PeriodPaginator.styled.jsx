@@ -91,6 +91,7 @@ const StyledLink = styled(NavLink)`
 export const ButtonLeft = styled(StyledLink)`
   border-radius: 8px 0px 0px 8px;
 
+  transition: box-shadow var(--animation);
   &:hover {
     box-shadow: -4px 2px 10px rgba(136, 165, 191, 1);
   }
@@ -98,6 +99,7 @@ export const ButtonLeft = styled(StyledLink)`
 export const ButtonRight = styled(StyledLink)`
   border-radius: 0px 8px 8px 0px;
 
+  transition: box-shadow var(--animation);
   &:hover {
     box-shadow: 4px 2px 10px rgba(136, 165, 191, 1);
   }
