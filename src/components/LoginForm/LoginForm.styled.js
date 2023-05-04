@@ -235,8 +235,8 @@ export const ButtonEye = styled.button`
   top: 38%;
   left: 89%;
   @media (min-width: 768px) {
-    top: 47%;
-    left: 87%;
+    top: 45%;
+    left: 91%;
   }
 `;
 

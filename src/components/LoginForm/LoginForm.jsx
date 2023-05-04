@@ -17,7 +17,7 @@ const LoginValidationSchema = Yup.object().shape({
 
   password: Yup.string()
     .matches(PASSWORD_REGEX, 'This is an ERROR password')
-    .min(5, 'Too Short!')
+    .min(6, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
 });
@@ -108,7 +108,9 @@ export const LoginForm = () => {
                     Password
                   </STC.Span>
                   <STC.Input
+                    id="password"
                     type={isPass ? 'password' : 'text'}
+                    required
                     name="password"
                     onChange={handleChange}
                     onBlur={event => {
@@ -134,7 +136,6 @@ export const LoginForm = () => {
                       isPass ? setIsPass(false) : setIsPass(true);
                     }}
                   >
-                    {' '}
                     {isPass ? (
                       <STC.SvgEye>
                         <use xlinkHref={`${icon}#closed-eye`}></use>

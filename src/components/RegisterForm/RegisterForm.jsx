@@ -24,9 +24,9 @@ const RegisterValidationSchema = Yup.object().shape({
   password: Yup.string()
     .matches(
       PASSWORD_REGEX,
-      'must contain minimum 6 characters,at least 1 letter and 1 number'
+      'Must contain minimum 6 characters, at least 1 letter and 1 number'
     )
-    .min(5, 'Too Short!')
+    .min(6, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
 });
@@ -35,6 +35,8 @@ export const RegisterForm = () => {
   const [isPass, setIsPass] = useState(true);
   const [nameValidationCompleted, setNameValidationCompleted] = useState(false);
   const [emailValidationCompleted, setEmailValidationCompleted] =
+    useState(false);
+  const [passwordValidationCompleted, setPasswordValidationCompleted] =
     useState(false);
 
   return (
@@ -131,22 +133,35 @@ export const RegisterForm = () => {
 
                 <STC.Label
                   htmlFor="password"
-                  error={errors.password && touched.password}
+                  // error={errors.password && touched.password}
                 >
-                  <STC.Span>Password</STC.Span>
+                  <STC.Span error={errors.password} touched={touched.password}>
+                    Password
+                  </STC.Span>
                   <STC.Input
                     id="password"
                     name="password"
-                    type="password"
+                    type={isPass ? 'password' : 'text'}
                     required
                     autoComplete="off"
                     placeholder="Enter password"
                     value={values.password}
                     onChange={handleChange}
-                    error={errors.password && touched.password}
+                    onBlur={event => {
+                      handleBlur(event);
+                      setPasswordValidationCompleted(true);
+                    }}
+                    // error={errors.password && touched.password}
+                    error={errors.password}
+                    touched={touched.password}
                   />
                   <STC.Errors error={errors.password && touched.password}>
-                    {errors.password && touched.password && errors.password}
+                    {passwordValidationCompleted &&
+                      (errors.password && touched.password ? (
+                        <span>{errors.password}</span>
+                      ) : (
+                        <span>This is an CORRECT password</span>
+                      ))}
                   </STC.Errors>
 
                   <STC.ButtonEye
@@ -155,7 +170,6 @@ export const RegisterForm = () => {
                       isPass ? setIsPass(false) : setIsPass(true);
                     }}
                   >
-                    {' '}
                     {isPass ? (
                       <STC.SvgEye>
                         <use xlinkHref={`${icon}#closed-eye`}></use>
