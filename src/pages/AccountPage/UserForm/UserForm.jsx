@@ -223,7 +223,6 @@ export const UserForm = () => {
                 placeholderText="dd-MM-yyyy"
                 formatWeekDay={day => day.charAt(0)}
                 calendarStartDay={1}
-                disabledKeyboardNavigation
                 hasError={formik.touched.birthday && formik.errors.birthday}
                 success={formik.touched.birthday && !formik.errors.birthday}
               />
