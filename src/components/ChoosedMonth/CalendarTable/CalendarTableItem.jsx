@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 
 export const CalendarTableItem = ({ day, dayTasks, gridRowHeight }) => {
   const DayOfMonth = useParams();
-  const isWide = useMedia('(min-width: 768px) and (max-width: 1600px)');
+  const isWide = useMedia('(min-width: 768px)');
   const isWideSmaller = useMedia('(max-width: 374.98px)');
 
   const borderHeight = 1;
