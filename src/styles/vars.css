@@ -16,6 +16,7 @@
 
   --auth-bg-color: #dcebf7;
 
+  --border-color: rgba(220, 227, 229, 0.8);
   --border: 1px solid rgba(220, 227, 229, 0.8);
   --border-calendar: 1px solid rgba(220, 227, 229, 0.5);
   --border-calendar-period-type: 1px solid rgba(62, 133, 243, 0.2);
@@ -110,7 +111,7 @@
   --modal-border-color: #21222c;
   --modal-shadow-color: rgba(62, 133, 243, 0.4);
   --active-button-period-type: #3e85f3;
-  --hover-button-period-type:rgba(33, 34, 44, 0.6);
+  --hover-button-period-type: rgba(33, 34, 44, 0.6);
   --button-period-type: #21222c;
   --color-button-period-type: #3e85f3;
 
