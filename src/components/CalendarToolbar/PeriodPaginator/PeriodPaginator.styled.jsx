@@ -73,6 +73,10 @@ const StyledLink = styled(Link)`
     }
     return '1';
   }};
+&:hover,
+:focus {
+  background-color: var(--button-period-type);
+}
 
   @media (min-width: 768px) {
     width: 38px;

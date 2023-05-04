@@ -15,8 +15,6 @@ export const Calendar = styled.ul`
   font-size: 12px;
   line-height: 1.17px;
 
-  text-transform: uppercase;
-
   color: var(--calendar-digit-color);
   @media (min-width: 768px) {
     grid-auto-rows: 144px;
@@ -29,11 +27,25 @@ export const Calendar = styled.ul`
   }
 `;
 
-export const Days = styled.li`
+export const AllDays = styled.li`
   position: relative;
   border: var(--border-calendar);
+
   @media (min-width: 768px) {
     border: var(--border);
+  }
+`;
+
+export const CurrentMonthDays = styled(AllDays)`
+  transition: background-color var(--animation), box-shadow var(--animation);
+  transition: transform var(--animation), box-shadow var(--animation);
+
+  &:hover,
+  :focus {
+    box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
+    transform: scale(1.05);
+    background-color: var(--primary-background-color);
+    z-index: 10;
   }
 `;
 

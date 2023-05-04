@@ -38,6 +38,7 @@ export const BoxTasks = styled.ul`
   grid-template-columns: 1fr;
   grid-auto-rows: 20px;
   grid-gap: 2px;
+
   @media (min-width: 768px) {
     padding-top: 36px;
     grid-auto-rows: 24px;
@@ -106,7 +107,6 @@ export const Title = styled.p`
   }
 `;
 export const MoreTasks = styled.p`
- 
   margin-top: 4px;
   white-space: nowrap;
 
@@ -115,7 +115,6 @@ export const MoreTasks = styled.p`
   font-weight: 200;
   font-size: 10px;
   line-height: 1;
-  vertical-align: center;
   @media (min-width: 768px) {
     margin-top: 6.5px;
     font-weight: 600;

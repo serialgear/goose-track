@@ -12,6 +12,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   display: block;
   width: 100%;
+
   padding: 20px;
   @media (min-width: 768px) {
     padding: 32px;

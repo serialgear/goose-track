@@ -81,6 +81,13 @@ export const DateOfWeek = styled(Day)`
   padding: 4px 6px;
   color: var(--calendar-digit-color);
   border-radius: 6px;
+
+  transition: box-shadow var(--animation), box-shadow var(--animation);
+
+  &:hover, 
+  :focus {
+    box-shadow: 4px 4px 24px rgba(136, 165, 191, 1)
+  }
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 1.12px;

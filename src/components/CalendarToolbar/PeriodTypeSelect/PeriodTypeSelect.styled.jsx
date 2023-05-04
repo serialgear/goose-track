@@ -23,6 +23,11 @@ const StyledLink = styled(NavLink)`
   line-height: 1.29px;
 
   color: var(--color-button-period-type);
+&:hover,
+:focus {
+  background-color: var(--active-button-period-type);
+}
+
   &.active {
     background: var(--active-button-period-type);
     color: var(--accent-text-color);
