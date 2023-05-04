@@ -33,6 +33,9 @@ const RegisterValidationSchema = Yup.object().shape({
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [isPass, setIsPass] = useState(true);
+  const [nameValidationCompleted, setNameValidationCompleted] = useState(false);
+  const [emailValidationCompleted, setEmailValidationCompleted] =
+    useState(false);
 
   return (
     <>
@@ -71,24 +74,35 @@ export const RegisterForm = () => {
               <STC.Form onSubmit={handleSubmit} autoComplete="on">
                 <STC.Title>Sign Up</STC.Title>
                 <STC.Label htmlFor="name">
-                  <STC.Span error={errors.name && touched.name}>Name</STC.Span>
+                  <STC.Span error={errors.name} touched={touched.name}>
+                    Name
+                  </STC.Span>
                   <STC.Input
                     id="name"
                     name="name"
                     type="text"
-                    onBlur={handleBlur}
+                    onBlur={event => {
+                      handleBlur(event);
+                      setNameValidationCompleted(true);
+                    }}
                     value={values.name}
                     onChange={handleChange}
                     placeholder="Enter your name"
-                    error={errors.name && touched.name}
+                    error={errors.name}
+                    touched={touched.name}
                   />
-                  <STC.Errors>
-                    {errors.name && touched.name && errors.name}
+                  <STC.Errors error={errors.name && touched.name}>
+                    {nameValidationCompleted &&
+                      (errors.name && touched.name ? (
+                        <span>{errors.name}</span>
+                      ) : (
+                        <span>This is an CORRECT name</span>
+                      ))}
                   </STC.Errors>
                 </STC.Label>
 
                 <STC.Label htmlFor="email">
-                  <STC.Span error={errors.email && touched.email}>
+                  <STC.Span error={errors.email} touched={touched.email}>
                     Email
                   </STC.Span>
                   <STC.Input
@@ -96,13 +110,22 @@ export const RegisterForm = () => {
                     name="email"
                     type="email"
                     value={values.email}
-                    onBlur={handleBlur}
+                    onBlur={event => {
+                      handleBlur(event);
+                      setEmailValidationCompleted(true);
+                    }}
                     onChange={handleChange}
                     placeholder="Enter email"
-                    error={errors.email && touched.email}
+                    error={errors.email}
+                    touched={touched.email}
                   />
-                  <STC.Errors>
-                    {errors.email && touched.email && errors.email}
+                  <STC.Errors error={errors.email && touched.email}>
+                    {emailValidationCompleted &&
+                      (errors.email && touched.email ? (
+                        <span>{errors.email}</span>
+                      ) : (
+                        <span>This is an CORRECT email</span>
+                      ))}
                   </STC.Errors>
                 </STC.Label>
 
@@ -122,7 +145,7 @@ export const RegisterForm = () => {
                     onChange={handleChange}
                     error={errors.password && touched.password}
                   />
-                  <STC.Errors>
+                  <STC.Errors error={errors.password && touched.password}>
                     {errors.password && touched.password && errors.password}
                   </STC.Errors>
 

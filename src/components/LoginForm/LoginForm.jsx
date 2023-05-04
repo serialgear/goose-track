@@ -25,6 +25,10 @@ const LoginValidationSchema = Yup.object().shape({
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [isPass, setIsPass] = useState(true);
+  const [emailValidationCompleted, setEmailValidationCompleted] =
+    useState(false);
+  const [passwordValidationCompleted, setPasswordValidationCompleted] =
+    useState(false);
 
   useEffect(() => {
     document.body.classList.remove('dark-theme');
@@ -65,7 +69,6 @@ export const LoginForm = () => {
           handleBlur,
           handleSubmit,
           isSubmitting,
-          /* and other goodies */
         }) => (
           <STC.Box>
             <STC.Container>
@@ -73,7 +76,7 @@ export const LoginForm = () => {
                 <STC.Title>Log In</STC.Title>
 
                 <STC.Label htmlFor="email">
-                  <STC.Span error={errors.email && touched.email}>
+                  <STC.Span error={errors.email} touched={touched.email}>
                     Email
                   </STC.Span>
                   <STC.Input
@@ -81,31 +84,49 @@ export const LoginForm = () => {
                     name="email"
                     id="email"
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    onBlur={event => {
+                      handleBlur(event);
+                      setEmailValidationCompleted(true);
+                    }}
                     value={values.email}
                     placeholder="Enter your email"
-                    error={errors.email && touched.email}
+                    error={errors.email}
+                    touched={touched.email}
                   />
-                  <STC.Errors>
-                    {errors.email && touched.email && errors.email}
+                  <STC.Errors error={errors.email && touched.email}>
+                    {emailValidationCompleted &&
+                      (errors.email && touched.email ? (
+                        <span>{errors.email}</span>
+                      ) : (
+                        <span>This is an CORRECT email</span>
+                      ))}
                   </STC.Errors>
                 </STC.Label>
 
                 <STC.Label htmlFor="password">
-                  <STC.Span error={errors.password && touched.password}>
+                  <STC.Span error={errors.password} touched={touched.password}>
                     Password
                   </STC.Span>
                   <STC.Input
                     type={isPass ? 'password' : 'text'}
                     name="password"
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    onBlur={event => {
+                      handleBlur(event);
+                      setPasswordValidationCompleted(true);
+                    }}
                     value={values.password}
                     placeholder="Enter password"
-                    error={errors.password && touched.password}
+                    error={errors.password}
+                    touched={touched.password}
                   />
-                  <STC.Errors>
-                    {errors.password && touched.password && errors.password}
+                  <STC.Errors error={errors.password && touched.password}>
+                    {passwordValidationCompleted &&
+                      (errors.password && touched.password ? (
+                        <span>{errors.password}</span>
+                      ) : (
+                        <span>This is an CORRECT password</span>
+                      ))}
                   </STC.Errors>
                   <STC.ButtonEye
                     type="button"

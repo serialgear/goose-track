@@ -41,10 +41,6 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   position: relative;
-  // margin-bottom: 24px;
-  // @media (min-width: 768px) {
-  //   margin-bottom: 18px;
-  // }
 `;
 
 export const Span = styled.span`
@@ -54,8 +50,12 @@ export const Span = styled.span`
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
-  color: ${props =>
-    props.error ? 'var(--text-error-color)' : 'var(--primary-text-color)'};
+  color: ${({ touched, error }) =>
+    touched && error
+      ? 'var(--text-error-color)'
+      : touched && !error
+      ? 'var(--text-correct-color)'
+      : 'var(--primary-text-color)'};
 
   @media (min-width: 768px) {
     margin-top: 5px;
@@ -83,9 +83,13 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   background-color: rgba(255, 255, 255, 0);
-  /* border: var(--border-auth); */
-  border: ${props =>
-    props.error ? 'var(--border-auth-error)' : 'var(--border-auth)'};
+  border: ${({ touched, error }) =>
+    touched && error
+      ? 'var( --border-auth-error)'
+      : touched && !error
+      ? 'var(--border-auth-correct)'
+      : 'var(--border-auth)'};
+
   border-radius: 8px;
   padding: 14px;
   width: 100%;
@@ -109,7 +113,6 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   height: 46px;
-  /* width: 287px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -191,7 +194,8 @@ export const ImgRocketSvg = styled.img`
 export const Errors = styled.span`
   width: 100%;
   height: 24px;
-  color: red;
+  color: ${({ error }) =>
+    error ? 'var( --text-error-color)' : 'var(--text-correct-color)'};
   font-family: var(--primary-font);
   font-style: normal;
   font-weight: 400;
