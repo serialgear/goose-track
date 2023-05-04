@@ -31,21 +31,14 @@ export const Today = styled(DaysOfMonth)`
 export const BoxTasks = styled.ul`
   width: 100%;
   height: 100%;
-  padding-top: 27px;
-  padding-bottom: 1px;
+  padding-top: ${props => props.columnPaddingTop}px;
   display: grid;
   justify-items: center;
   grid-template-columns: 1fr;
   grid-auto-rows: 20px;
   grid-gap: 2px;
   @media (min-width: 768px) {
-    padding-top: 36px;
     grid-auto-rows: 24px;
-  }
-  padding-bottom: 0;
-  @media (min-width: 1280px) {
-    padding-top: 39px;
-    grid-auto-rows: 23px;
     grid-gap: 4px;
   }
 `;
@@ -106,13 +99,11 @@ export const Title = styled.p`
   }
 `;
 export const MoreTasks = styled.p`
- 
   margin-top: 4px;
   white-space: nowrap;
 
   font-family: var(--primary-font);
-  font-style: normal;
-  font-weight: 200;
+  font-weight: 500;
   font-size: 10px;
   line-height: 1;
   vertical-align: center;

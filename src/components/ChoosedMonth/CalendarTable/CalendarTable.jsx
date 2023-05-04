@@ -15,6 +15,7 @@ import {
   parseISO,
   eachDayOfInterval,
   formatISO,
+  getWeeksInMonth,
 } from 'date-fns';
 import {
   selectCurrentMonth,
@@ -25,6 +26,7 @@ import { CalendarTableItem } from './CalendarTableItem';
 import { Loader } from '../../Loader/Loader';
 import { addIndexCurrentDay } from 'redux/calendar/calendar.slice';
 import { addChoosedDay } from 'redux/calendar/calendar.slice';
+import { useMedia, useWindowSize } from 'react-use';
 
 export const CalendarTable = () => {
   const dispath = useDispatch();
@@ -41,9 +43,44 @@ export const CalendarTable = () => {
     end: endOfWeek(monthEnd, { weekStartsOn: 1 }),
   });
 
+  // const isMobileSmaller = useMedia('(max-width: 374.98px)');
+  // const isMobile = useMedia('(min-width: 375px) and (max-width: 767.98px)');
+  const isTablet = useMedia('(min-width: 768px) and (max-width: 1279.98px)');
+  const isDesktop = useMedia('(min-width: 1280px)');
+
+  let minGridRowsHeight = 94;
+  let headerHeight = 278;
+
+  if (isTablet) {
+    minGridRowsHeight = 122;
+    headerHeight = 264;
+  }
+
+  if (isDesktop) {
+    minGridRowsHeight = 122;
+    headerHeight = 294;
+  }
+
+  const { height: windowHeight } = useWindowSize();
+  const weeksInMonth = getWeeksInMonth(new Date(currentMonth), {
+    weekStartsOn: 1,
+  });
+  const minCalendarHeight = weeksInMonth * minGridRowsHeight;
+  let calendarHeight = minCalendarHeight;
+  if (windowHeight > minCalendarHeight + headerHeight) {
+    calendarHeight = windowHeight - headerHeight - 2;
+  }
+
+  const gridRowHeight = Math.floor(calendarHeight / weeksInMonth);
+  // console.log('calendarHeight ', calendarHeight);
+  // console.log('weeksInMonth ', weeksInMonth);
+
   return (
     <>
-      <Calendar>
+      <Calendar
+        calendarHeight={`${calendarHeight}px`}
+        minGridRowsHeight={`${minGridRowsHeight}px`}
+      >
         {isLoading && <Loader />}
         {daysInMonth?.map((day, idx) => {
           const StyledLink = !isSameMonth(day, currentMonth)
@@ -71,6 +108,7 @@ export const CalendarTable = () => {
                   <CalendarTableItem
                     day={day}
                     dayTasks={tasksOfMonth[Number(format(day, 'd')) - 1]}
+                    gridRowHeight={gridRowHeight}
                   />
                 )}
               </StyledLink>

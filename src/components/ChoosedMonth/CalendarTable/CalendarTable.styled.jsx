@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Calendar = styled.ul`
+export const Calendar = styled.ul.attrs(props => ({
+  style: {
+    height: props.calendarHeight,
+    gridAutoRows: `minmax(${props.minGridRowsHeight}, 1fr)`,
+  },
+}))`
   position: relative;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-auto-rows: 94px;
 
   background: var(--primary-background-color);
   border-radius: 8px;
@@ -15,17 +19,10 @@ export const Calendar = styled.ul`
   font-size: 12px;
   line-height: 1.17px;
 
-  text-transform: uppercase;
-
   color: var(--calendar-digit-color);
   @media (min-width: 768px) {
-    grid-auto-rows: 144px;
-
     font-size: 16px;
     line-height: 1.12;
-  }
-  @media (min-width: 1280px) {
-    grid-auto-rows: 125px;
   }
 `;
 
