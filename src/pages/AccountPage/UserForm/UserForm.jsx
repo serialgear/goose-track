@@ -201,8 +201,6 @@ export const UserForm = () => {
                     />
                   </ArrowSvg>
                 </StyledIconContainer>
-
-
               </Label>
               <GlobalStyles />
               <StyledDatePick

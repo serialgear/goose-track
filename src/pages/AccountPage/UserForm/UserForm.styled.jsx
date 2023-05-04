@@ -49,7 +49,7 @@ export const FlexInput = styled.div`
 export const LabelSpan = styled.span`
   margin-bottom: 8px;
   //color: var(--secondary-text-color);
-  color: ${({ hasError, success }) => hasError ? 'red' : success ? 'green' : '#333'};
+  color: ${({ hasError, success }) => hasError ? 'red' : success ? 'green' : 'var(--secondary-text-color)'};
 
 `;
 
@@ -59,6 +59,7 @@ export const Label = styled.label`
   line-height: 1.2;
   display: flex;
   flex-direction: column;
+
 
 
   @media (min-width: 768px) {
@@ -74,7 +75,7 @@ export const Input = styled.input`
   outline: none;
   //border: var(--border);
   border: 1px solid ${({ hasError, success }) =>
-    hasError ? 'red' : success ? 'green' : '#ccc'};
+    hasError ? 'red' : success ? 'green' : 'var(--secondary-text-color)'};
   border-radius: 8px;
   height: 42px;
   padding: 12px 12px 12px 14px;
@@ -100,12 +101,11 @@ export const Input = styled.input`
   @media (min-width: 768px) {
     width: 354px;
     height: 46px;
-    padding-left: 14px 14px 14px 18px;
+    padding: 14px 14px 14px 18px;
     font-size: 16px;
   }
 
   transition: border var(--animation);
-
   &:hover,
   :focus {
     border: 1px solid ${props => (props.hasError ? 'red' : 'gray')};
@@ -192,7 +192,6 @@ export const ButtonPlus = styled.div`
     height: 24px;
   }
   transition: background-color var(--animation);
-
   &:hover,
   :focus {
     background-color: var(--hover-btn-background-color);
@@ -253,7 +252,6 @@ export const Button = styled.button`
   }
 
   transition: background-color var(--animation), box-shadow var(--animation);
-
   &:hover,
   :focus {
     box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
@@ -294,7 +292,6 @@ export const Errors = styled.div`
   height: 14px;
   @media (min-width: 768px) {
     font-size: 14px;
-
   }
 `;
 
@@ -304,7 +301,6 @@ export const Success = styled.div`
   height: 14px;
   @media (min-width: 768px) {
     font-size: 14px;
-
   }
 `;
 
@@ -537,7 +533,9 @@ export const StyledDatePick = styled(DatePicker)`
   position: relative;
   width: 299px;
   height: 42px;
-  border: var(--border);
+  //border: var(--border);
+  border: 1px solid ${({ hasError, success }) =>
+    hasError ? 'red' : success ? 'green' : 'var(--secondary-text-color)'};
   border-radius: 8px;
   font-family: 'Inter', serif;
   font-style: normal;
@@ -565,11 +563,9 @@ export const StyledDatePick = styled(DatePicker)`
     padding: 14px 14px 14px 18px;
   }
   transition: border var(--animation);
-
   &:hover,
   :focus {
-    border: 1px solid ${({ hasError, success }) =>
-      hasError ? 'red' : success ? 'green' : '#ccc'};
+    border: 1px solid ${props => (props.hasError ? 'red' : 'gray')};
   }
 `;
 
