@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 
 import { authLogout } from 'redux/auth/auth.operations';
 import * as STC from './LogoutBtn.styled';
-import Icons from '../../../images/sprite.svg';
+import Icons from 'images/sprite.svg';
 
 export const LogoutBtn = () => {
   const dispatch = useDispatch();
@@ -11,8 +11,6 @@ export const LogoutBtn = () => {
     <STC.Btn
       onClick={() => {
         dispatch(authLogout());
-        const body = document.querySelector('body');
-        body.classList.remove('dark-theme');
       }}
     >
       <STC.Txt>Log out</STC.Txt>
