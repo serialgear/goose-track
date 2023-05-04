@@ -76,7 +76,6 @@ const StyledLink = styled(NavLink)`
   &.active {
     &:hover,
     :focus {
-      background: var(--primary-background-color);
       box-shadow: none;
     }
   }
@@ -92,18 +91,14 @@ const StyledLink = styled(NavLink)`
 export const ButtonLeft = styled(StyledLink)`
   border-radius: 8px 0px 0px 8px;
 
-  &:hover,
-  :focus {
-    background: var(--hover-button-period-type);
+  &:hover {
     box-shadow: -4px 2px 10px rgba(136, 165, 191, 1);
   }
 `;
 export const ButtonRight = styled(StyledLink)`
   border-radius: 0px 8px 8px 0px;
 
-  &:hover,
-  :focus {
-    background: var(--hover-button-period-type);
+  &:hover {
     box-shadow: 4px 2px 10px rgba(136, 165, 191, 1);
   }
 `;

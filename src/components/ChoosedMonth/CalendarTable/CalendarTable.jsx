@@ -44,8 +44,6 @@ export const CalendarTable = () => {
     end: endOfWeek(monthEnd, { weekStartsOn: 1 }),
   });
 
-  // const isMobileSmaller = useMedia('(max-width: 374.98px)');
-  // const isMobile = useMedia('(min-width: 375px) and (max-width: 767.98px)');
   const isTablet = useMedia('(min-width: 768px) and (max-width: 1279.98px)');
   const isDesktop = useMedia('(min-width: 1280px)');
 
@@ -73,8 +71,6 @@ export const CalendarTable = () => {
   }
 
   const gridRowHeight = Math.floor(calendarHeight / weeksInMonth);
-  // console.log('calendarHeight ', calendarHeight);
-  // console.log('weeksInMonth ', weeksInMonth);
 
   return (
     <>
@@ -88,9 +84,9 @@ export const CalendarTable = () => {
             ? OtherMonthStyledLink
             : CurrentMonthStyledLink;
 
-            const Days = !isSameMonth(day, currentMonth) ? 
-            AllDays 
-            : CurrentMonthDays
+          const Days = !isSameMonth(day, currentMonth)
+            ? AllDays
+            : CurrentMonthDays;
           return (
             <Days key={idx}>
               <StyledLink
