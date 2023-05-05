@@ -9,6 +9,7 @@ import { createRef, useState } from 'react';
 import { TaskModal } from '../../TaskModal/TaskModal';
 import { TaskDelete } from 'components/TaskDelete/TaskDelete';
 import { TaskStatusModal } from 'components/TaskStatusModal/TaskStatusModal';
+import { useMedia } from 'react-use';
 
 export const TaskToolbar = props => {
   const [showModal, setShowModal] = useState(false);
@@ -16,6 +17,7 @@ export const TaskToolbar = props => {
   const [showStatusModal, setShowStatusModal] = useState(false);
   const [editElement, setEditElement] = useState(null);
   const editRef = createRef();
+  const isWide = useMedia('(min-width: 768px) ');
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -41,11 +43,16 @@ export const TaskToolbar = props => {
             onClick={() => {
               // Розміри і координати поточного елементи
               const element = editRef.current.getBoundingClientRect();
-              // Якщо відстань зліва + 165px > за ширину екрану
-              // то зменшуємо на 145, інакше відстань зліва без змін
+              // Якщо відстань зліва + minLeftDistance > за ширину екрану
+              // то зменшуємо на ширину модалки, інакше відстань зліва без змін
+              const minLeftDistance = isWide ? 165 : 135;
+              const modalWidth =
+                props.status === 'In progress'
+                  ? minLeftDistance - 70
+                  : minLeftDistance - 35;
               const elemLeft =
-                element.left + 165 > window.innerWidth
-                  ? element.left - 145
+                element.left + minLeftDistance > window.innerWidth
+                  ? element.left - modalWidth
                   : element.left;
               setEditElement({ top: element.top + 24, left: elemLeft });
               setShowStatusModal(true);
