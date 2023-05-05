@@ -167,6 +167,7 @@ export const LabelAva = styled.label`
   /* margin: -36px auto 0 auto; */
   /* overflow: hidden; */
   background-color: var(--avatar-background-color);
+  cursor: pointer;
 
   @media (min-width: 768px) {
     width: 124px;

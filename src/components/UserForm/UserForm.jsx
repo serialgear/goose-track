@@ -49,8 +49,8 @@ import { toast } from 'react-toastify';
 import { Loader } from 'components/Loader/Loader';
 
 export const UserForm = () => {
-  const [image, setImage] = useState(null);
-  const filePicker = useRef(null);
+  const [image, setImage] = useState();
+  const filePicker = useRef();
   const dispatch = useDispatch();
 
   const [birthdayValidationCompleted, setBirthdayValidationCompleted] =
@@ -58,22 +58,13 @@ export const UserForm = () => {
 
   const name = useSelector(selectUserName);
   const email = useSelector(selectUserEmail);
-  const phone = useSelector(selectUserPhone);
-  const telegram = useSelector(selectUserTelegram);
+  const phone = useSelector(selectUserPhone) || '';
+  const telegram = useSelector(selectUserTelegram) || '';
   const avatar = useSelector(selectUserAvatarURL);
   const birthday = useSelector(selectUserBirthday) || Date.now();
   const isLoading = useSelector(selectIsLoading);
 
   const formattedDate = format(new Date(birthday), 'yyyy-MM-dd');
-
-  // const handleUpload = async event => {
-  //   console.log('handleUpload ');
-  //   event.preventDefault();
-  //   if (!setImage) {
-  //     toast.error('Please select a file');
-  //     return true;
-  //   }
-  // };
 
   const FILE_SIZE = 2 * 1024 * 1024;
   const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
@@ -345,12 +336,6 @@ export const UserForm = () => {
               </Label>
             </FlexInput>
             <Button
-              // onSubmit={() => {
-              //   console.log('then ');
-              //   handleUpload().finally(() => {
-              //     setIsFormSubmitted(true);
-              //   });
-              // }}
               type="submit"
               disabled={!(formik.isValid && formik.dirty) || isLoading}
             >
