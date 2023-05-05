@@ -1,5 +1,5 @@
 import { useMedia, useWindowSize } from 'react-use';
-import { UserForm } from './UserForm/UserForm';
+import { UserForm } from '../../components/UserForm/UserForm';
 import { Container } from './AccountPage.styled';
 
 export default function AccountPage() {

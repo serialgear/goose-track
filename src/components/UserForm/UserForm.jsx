@@ -35,16 +35,16 @@ import {
   selectUserName,
   selectUserPhone,
   selectUserTelegram,
-} from '../../../redux/auth/auth.selectors';
+} from '../../redux/auth/auth.selectors';
 
-import { userForm } from '../../../redux/auth/auth.operations';
+import { userForm } from '../../redux/auth/auth.operations';
 import * as Yup from 'yup';
 
 import {
   NAME_REGEX,
   PHONE_REGEX,
   TELEGRAM_REGEX,
-} from '../../../constants/joiRegex';
+} from '../../constants/joiRegex';
 import { toast } from 'react-toastify';
 import { Loader } from 'components/Loader/Loader';
 
